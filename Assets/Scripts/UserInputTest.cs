@@ -15,6 +15,31 @@ public class UserInputTest : MonoBehaviour
 
     void Start()
     {
+        // Instantiate the player with a gamepad
+        GameObject activePlayer = Instantiate(activePlayerPrefab, new Vector3(1f, 1f, 0f), Quaternion.identity);
+        PlayerInput activePlayerInput = activePlayer.GetComponent<PlayerInput>();
+        if (Gamepad.current != null)
+        {
+            activePlayerInput.SwitchCurrentControlScheme("ControllerPlayer", Gamepad.current);
+        }
+        else
+        {
+            Debug.LogError("No gamepad connected for activePlayer.");
+        }
+
+        // Instantiate the player with a keyboard and mouse
+        GameObject managerPlayer = Instantiate(managerPlayerPrefab, new Vector3(-1f, 1f, 0f), Quaternion.identity);
+        PlayerInput managerPlayerInput = managerPlayer.GetComponent<PlayerInput>();
+        // Assuming you have created a control scheme for Keyboard&Mouse in your Input Actions called "KeyboardMouseScheme"
+        managerPlayerInput.SwitchCurrentControlScheme("KBMPlayer", Keyboard.current, Mouse.current);
+    }
+
+}
+
+/*
+ 
+    void Start()
+    {
         // Ensure two gamepads are connected
         if (Gamepad.all.Count < 2)
         {
@@ -34,4 +59,4 @@ public class UserInputTest : MonoBehaviour
 
     }
 
-}
+*/

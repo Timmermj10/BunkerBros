@@ -8,48 +8,66 @@ public class ManagerPlayerInputs : MonoBehaviour
 {
     private Vector2 movementInputValue;
 
+    PlayerInput playerInput;
+
+    InputAction moveAction;
+
+    private Camera mainCamera;
+
+    private void Start()
+    {
+        playerInput = GetComponent<PlayerInput>();
+        moveAction = playerInput.actions.FindAction("Move");
+
+        Debug.Log(playerInput.currentControlScheme);
+        Debug.Log(playerInput.currentActionMap);
+
+        mainCamera = Camera.main;
+    }
+
+
     private void OnMove(InputValue value)
     {
         movementInputValue = value.Get<Vector2>();
         Debug.Log("Manager Player: MovementInputValue = " + movementInputValue);
     }
+
+    private void OnInteract(InputValue value)
+    {
+
+        Vector2 screenPosition = Mouse.current.position.ReadValue();
+        Ray mouseRay = mainCamera.ScreenPointToRay(screenPosition);
+        RaycastHit hit;
+
+        if (Physics.Raycast(mouseRay, out hit))
+        {
+            Vector3 worldPosition = hit.point;
+            Debug.Log("Mouse is over the tile at Position: " + new Vector3(Mathf.RoundToInt(worldPosition.x), 0f, Mathf.RoundToInt(worldPosition.z)));
+            // Now worldPosition contains the 3D point in world space where the mouse is pointing
+        }
+        else
+        {
+            // Optional: Handle the case where the ray does not hit any collider
+            Debug.Log("Mouse is over nothing");
+        }
+    }
+
 }
 
 /*
- * 
- *     private void Awake()
+     private void FixedUpdate()
     {
-        input = new UserInputs();
+        movePlayer();
     }
 
-
-    private void OnEnable()
+    private void movePlayer()
     {
-        input.Enable();
-        input.ManagerPlayer.ManagerMovement.performed += OnMovementPerformed;
-        input.ManagerPlayer.ManagerMovement.performed += OnMovementCancelled;
+        if (moveAction.ReadValue<Vector2>() != Vector2.zero)
+        {
+            Debug.Log(moveAction.ReadValue<Vector2>());
+        }
     }
-
-    private void OnDisable()
-    {
-        input.Disable();
-        input.ManagerPlayer.ManagerMovement.performed -= OnMovementPerformed;
-        input.ManagerPlayer.ManagerMovement.performed -= OnMovementCancelled;
     }
-
-    private void OnMovementPerformed(InputAction.CallbackContext value)
-    {
-        movementInputValue = value.ReadValue<Vector2>();
-    }
-
-    private void OnMovementCancelled(InputAction.CallbackContext value)
-    {
-        movementInputValue = Vector2.zero;
-    }
-
-    private void FixedUpdate()
-    {
-        Debug.Log("Manager Player: movementInputValue = " + movementInputValue);
-    }*/
+*/
 
 
