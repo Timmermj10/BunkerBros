@@ -359,7 +359,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2297d40293a35f4c9abf6611dda144b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemID: 1
+  itemID: 0
   priceText: {fileID: 1018864843}
   quantityText: {fileID: 1879524359}
   ShopManager: {fileID: 728025141}
@@ -922,6 +922,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df14a1843690f2841a5df35514557572, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shopItems:
+  - itemId: 0
+    itemName: Nuke
+    itemCost: 50
+    itemIcon: {fileID: 0}
+    itemCount: 0
+  - itemId: 1
+    itemName: Wall
+    itemCost: 25
+    itemIcon: {fileID: 0}
+    itemCount: 0
+  - itemId: 2
+    itemName: Turret
+    itemCost: 200
+    itemIcon: {fileID: 0}
+    itemCount: 0
   coins: 1000
   coinsText: {fileID: 57328708}
 --- !u!4 &728025143
@@ -993,7 +1009,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2297d40293a35f4c9abf6611dda144b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemID: 3
+  itemID: 2
   priceText: {fileID: 2020052979}
   quantityText: {fileID: 1379772485}
   ShopManager: {fileID: 728025141}
@@ -1818,7 +1834,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2297d40293a35f4c9abf6611dda144b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemID: 2
+  itemID: 1
   priceText: {fileID: 1314476475}
   quantityText: {fileID: 2083450280}
   ShopManager: {fileID: 728025141}
