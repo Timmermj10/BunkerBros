@@ -4,13 +4,7 @@
 TagManager:
   serializedVersion: 2
   tags:
-<<<<<<< HEAD
-  - Objective
-  - Structure
-  - Enemy
-=======
   - Event
->>>>>>> 9e895f86500d6756602d3487100ff7b6df3ece2f
   layers:
   - Default
   - TransparentFX
