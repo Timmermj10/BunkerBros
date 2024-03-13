@@ -32,6 +32,25 @@ public class ShopManagerScript : MonoBehaviour
 
             // Update quantity text
             ButtonRef.GetComponent<ButtonInfo>().quantityText.text = shopItems[ButtonRef.GetComponent<ButtonInfo>().itemID].ToString();
+
+            // Publish purchase event
+            EventBus.Publish<PurchaseEvent>(new PurchaseEvent(shopItems[ButtonRef.GetComponent<ButtonInfo>().itemID]));
         }
+    }
+}
+
+public class PurchaseEvent
+{
+    public int itemID;
+    public string itemName;
+    public Sprite itemIcon;
+    public int itemCount;
+
+    public PurchaseEvent(InventoryItem item)
+    {
+        itemID = item.itemId;
+        itemName = item.itemName;
+        itemIcon = item.itemIcon;
+        itemCount = item.itemCount;
     }
 }
