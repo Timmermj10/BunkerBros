@@ -34,20 +34,7 @@ public class EnemyMovement : MonoBehaviour
         transform.position += newLoca;
     }
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        Debug.Log("Touched " + collision.collider.tag);
-        if (collision.collider.tag == "Player")
-        {
-            //Deal damage
-        } else if (collision.collider.tag == "Objective")
-        {
-            //Deal damage
-        } else if (collision.collider.tag == "Structure")
-        {
-            //Deal damage
-        }
-    }
+    
 
     private void OnTriggerEnter(Collider other)
     {
@@ -79,3 +66,5 @@ public class EnemyMovement : MonoBehaviour
     }
 
 }
+
+

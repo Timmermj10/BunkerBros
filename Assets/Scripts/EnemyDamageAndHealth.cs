@@ -6,17 +6,6 @@ public class EnemyDamageAndHealth : MonoBehaviour
 {
 
     public int health = 1;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -25,7 +14,7 @@ public class EnemyDamageAndHealth : MonoBehaviour
         {
             //Deal damage
             DealDamage(collision);
-            TakeDamage(1);
+            
             
         }
         else if (collision.collider.tag == "Objective")
