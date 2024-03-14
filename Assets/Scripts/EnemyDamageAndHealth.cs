@@ -25,6 +25,7 @@ public class EnemyDamageAndHealth : MonoBehaviour
         {
             //Deal damage
             DealDamage(collision);
+            TakeDamage(1);
             
         }
         else if (collision.collider.tag == "Objective")
@@ -37,6 +38,10 @@ public class EnemyDamageAndHealth : MonoBehaviour
             //Deal damage
             DealDamage(collision);
         } //else if sword or weapon? or have them call takedamage? < call is probably easier
+        else if (collision.collider.tag == "Projectile")
+        {
+            TakeDamage(1); //temp, may change into projectile behavior
+        }
     }
 
     public void DealDamage(Collision c)
@@ -68,7 +73,7 @@ public class EnemyDamageAndHealth : MonoBehaviour
 
 public class EnemyDefeat
 {
-    Vector2 spawn_location;
+    public Vector3 spawn_location;
 
     public EnemyDefeat(Vector3 location)
     {

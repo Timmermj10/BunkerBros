@@ -9,10 +9,17 @@ public class ShopManagerScript : MonoBehaviour
     public List<InventoryItem> shopItems;
     public float coins;
     public Text coinsText;
+    private Subscription<CoinCollect> coin_in;
 
     void Start()
     {
         coinsText.text = "Coins: " + coins;
+        coin_in = EventBus.Subscribe<CoinCollect>(_coin);
+    }
+
+    private void _coin(CoinCollect c)
+    {
+        coins += c.value;
     }
 
     public void Buy()
