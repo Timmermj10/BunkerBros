@@ -28,6 +28,7 @@ public class EnemyMovement : MonoBehaviour
     private void move()
     {
         Vector3 play = obj_loca - transform.position;
+        Debug.Log(Vector3.Distance(obj_loca, transform.position));
         Vector3 newLoca = play.normalized * speed * Time.deltaTime;
         newLoca.y = 0;
         

@@ -6,6 +6,7 @@ public class EnemySpawnManager : MonoBehaviour
 {
 
     public GameObject EnemyPrefab;
+    public Direction direct = Direction.X;
     public float spawnDelay = 200f;
     public float random_spawn = 5f;
     private float random;
@@ -23,7 +24,13 @@ public class EnemySpawnManager : MonoBehaviour
         {
             Instantiate(EnemyPrefab);
             Vector3 loca = transform.position;
-            loca.x += random;
+            if (direct == Direction.X)
+            {
+                loca.x += random;
+            } else
+            {
+                loca.z += random;
+            }
             EnemyPrefab.transform.position = loca;
             spawnDelay = initDelay;
         } else
@@ -31,4 +38,9 @@ public class EnemySpawnManager : MonoBehaviour
             spawnDelay -= 1;
         }
     }
+}
+
+public enum Direction
+{
+    X, Z
 }
