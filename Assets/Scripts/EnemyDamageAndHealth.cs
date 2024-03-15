@@ -10,22 +10,12 @@ public class EnemyDamageAndHealth : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         Debug.Log("Touched " + collision.collider.tag);
-        if (collision.collider.tag == "Player")
+        if (collision.collider.tag == "Player" || collision.collider.tag == "Objective" || collision.collider.tag == "Structure")
         {
             //Deal damage
             DealDamage(collision);
             
             
-        }
-        else if (collision.collider.tag == "Objective")
-        {
-            //Deal damage
-            DealDamage(collision);
-        }
-        else if (collision.collider.tag == "Structure")
-        {
-            //Deal damage
-            DealDamage(collision);
         } //else if sword or weapon? or have them call takedamage? < call is probably easier
         else if (collision.collider.tag == "Projectile")
         {

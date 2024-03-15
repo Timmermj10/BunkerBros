@@ -10,6 +10,7 @@ public class EnemyMovement : MonoBehaviour
     private GameObject obj;
     private Vector3 obj_loca;
     private bool detect = false;
+    private bool attack = false;
 
     
     void Awake()
@@ -22,7 +23,10 @@ public class EnemyMovement : MonoBehaviour
     void Update()
     {
         float time = Time.deltaTime;
-        move();
+        if (!attack)
+        {
+            move();
+        }
     }
 
     private void move()
@@ -63,6 +67,22 @@ public class EnemyMovement : MonoBehaviour
             obj = GameObject.Find("Objective");
             obj_loca = obj.transform.position;
             detect = false;
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.collider.tag == "Player" || collision.collider.tag == "Objective" || collision.collider.tag == "Structure")
+        {
+            attack = true;
+        }
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.collider.tag == "Player" || collision.collider.tag == "Objective" || collision.collider.tag == "Structure")
+        {
+            attack = false;
         }
     }
 
