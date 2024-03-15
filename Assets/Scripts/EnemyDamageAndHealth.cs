@@ -26,6 +26,7 @@ public class EnemyDamageAndHealth : MonoBehaviour
     public void DealDamage(Collision c)
     {
         //Decrement health of player, structure, or objective > probably in has health component
+        GameObject collide = c.gameObject;
     }
 
     public void TakeDamage(int damage)

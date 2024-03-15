@@ -63,6 +63,13 @@ public class Sword : Weapons
         }
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Enemy") {
+            other.GetComponent<EnemyDamageAndHealth>().TakeDamage(1);
+        }
+    }
+
     IEnumerator SwingSword()
     {
         hitBox.enabled = true;
