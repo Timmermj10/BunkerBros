@@ -53,8 +53,14 @@ public class ActivePlayerInputs : MonoBehaviour
 
     private void OnAttack(InputValue value)
     {
+        Debug.Log("Active Player: Player Attacked");
+        
+        if (aimInputValue != Vector2.zero)
+        {
+            EventBus.Publish(new MainWeaponUsedEvent(Weapon.Types.WeaponType.Sword, aimInputValue, transform));
+        }
 
-        Debug.Log("Active Player: Player Shot");
+        /*
         if (aimInputValue != Vector2.zero)
         {
             shootingTimer = shootingCooldown;
@@ -68,6 +74,7 @@ public class ActivePlayerInputs : MonoBehaviour
             GameObject projectileObject = Instantiate(ProjectilePrefab.gameObject, spawnPosition, rotation);
             //ProjectileBehavior projectile = projectileObject.GetComponent<ProjectileBehavior>();
         }
+        */
 
     }
 }
