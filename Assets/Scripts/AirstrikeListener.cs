@@ -57,6 +57,7 @@ public class AirstrikeListener : MonoBehaviour
     }
 
     // Update is called once per frame
+    /*
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space)) // Press Space to test the airstrike
@@ -65,4 +66,5 @@ public class AirstrikeListener : MonoBehaviour
             _CallAirstrike(new AirstrikeEvent(target));
         }
     }
+    */
 }

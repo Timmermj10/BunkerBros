@@ -32,10 +32,13 @@ public class TileSelect : MonoBehaviour
                 Vector3 worldPositionRounded = new Vector3(Mathf.RoundToInt(worldPosition.x), 0f, Mathf.RoundToInt(worldPosition.z));
 
                 // Check to see if we have the Airstrike equipped in the inventory
-                if (inventory.inventoryItems[inventory.equippedInventoryItemID] == 0)
+                if (inventory.inventoryItems[inventory.inventoryItemsIndex] == 0)
                 {
                     // Publish the airstrike event
                     EventBus.Publish<AirstrikeEvent>(new AirstrikeEvent(worldPositionRounded));
+
+                    // Publish a use Event so the shop manager can update count
+                    EventBus.Publish<ItemUseEvent>(new ItemUseEvent(0));
                 }
 
                 Debug.Log("Mouse is over the tile at Position: " + new Vector3(Mathf.RoundToInt(worldPosition.x), 0f, Mathf.RoundToInt(worldPosition.z)));
