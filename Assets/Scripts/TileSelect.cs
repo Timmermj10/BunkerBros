@@ -24,7 +24,7 @@ public class TileSelect : MonoBehaviour
             RaycastHit hit;
 
             // Perform the raycast
-            if (Physics.Raycast(ray, out hit))
+            if (Physics.Raycast(ray, out hit) && inventory.inventoryItems.Count > 0)
             {
                 Vector3 worldPosition = hit.point;
 
