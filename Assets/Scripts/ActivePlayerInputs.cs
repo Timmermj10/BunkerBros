@@ -9,9 +9,9 @@ public class ActivePlayerInputs : MonoBehaviour
     private Vector2 movementInputValue;
     private Vector2 aimInputValue;
 
-    private bool playerControls = false;
-    private float shootingCooldown = 0.3f;
-    private float shootingTimer = 0f;
+    //private bool playerControls = false;
+    //private float shootingCooldown = 0.3f;
+    //private float shootingTimer = 0f;
 
     public ProjectileBehavior ProjectilePrefab;
 
@@ -55,15 +55,17 @@ public class ActivePlayerInputs : MonoBehaviour
     {
         Debug.Log("Active Player: Player Attacked");
         
+        /*
         if (aimInputValue != Vector2.zero)
         {
             EventBus.Publish(new MainWeaponUsedEvent(Weapon.Types.WeaponType.Sword, aimInputValue, transform));
         }
+        */
 
-        /*
+        
         if (aimInputValue != Vector2.zero)
         {
-            shootingTimer = shootingCooldown;
+            //shootingTimer = shootingCooldown;
             Vector2 aimDirection = RoundVectorToDirection(aimInputValue).normalized;
             Vector3 spawnPosition = gameObject.transform.position + new Vector3(aimDirection.x / 1.6f, 0f, aimDirection.y);
 
@@ -74,7 +76,7 @@ public class ActivePlayerInputs : MonoBehaviour
             GameObject projectileObject = Instantiate(ProjectilePrefab.gameObject, spawnPosition, rotation);
             //ProjectileBehavior projectile = projectileObject.GetComponent<ProjectileBehavior>();
         }
-        */
+        
 
     }
 }

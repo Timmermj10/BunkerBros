@@ -10,13 +10,13 @@ public class UserInputTest : MonoBehaviour
     public GameObject activePlayerPrefab;
     public GameObject managerPlayerPrefab;
 
-    private GameObject activePlayer;
+    public GameObject activePlayer;
     private GameObject managerPlayer;
 
     void Start()
     {
         // Instantiate the player with a gamepad
-        GameObject activePlayer = Instantiate(activePlayerPrefab, new Vector3(1f, 1f, 0f), Quaternion.identity);
+        //GameObject activePlayer = Instantiate(activePlayerPrefab, new Vector3(1f, 1f, 0f), Quaternion.identity);
         PlayerInput activePlayerInput = activePlayer.GetComponent<PlayerInput>();
         if (Gamepad.current != null)
         {
@@ -28,10 +28,13 @@ public class UserInputTest : MonoBehaviour
         }
 
         // Instantiate the player with a keyboard and mouse
-        GameObject managerPlayer = Instantiate(managerPlayerPrefab, new Vector3(-1f, 1f, 0f), Quaternion.identity);
+        //GameObject managerPlayer = Instantiate(managerPlayerPrefab, new Vector3(-1f, 1f, 0f), Quaternion.identity);
         PlayerInput managerPlayerInput = managerPlayer.GetComponent<PlayerInput>();
         // Assuming you have created a control scheme for Keyboard&Mouse in your Input Actions called "KeyboardMouseScheme"
-        managerPlayerInput.SwitchCurrentControlScheme("KBMPlayer", Keyboard.current, Mouse.current);
+        if (managerPlayerInput == null)
+        {
+            managerPlayerInput.SwitchCurrentControlScheme("KBMPlayer", Keyboard.current, Mouse.current);
+        }
     }
 
 }
