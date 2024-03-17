@@ -47,7 +47,7 @@ public class EnemyDamageAndHealth : MonoBehaviour
 
         //Delete or reset
         //Defaulting to Delete for now
-        GameObject.Destroy(gameObject);
+        Destroy(gameObject);
     }
 }
 
