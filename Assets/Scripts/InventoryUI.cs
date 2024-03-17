@@ -42,8 +42,8 @@ public class InventoryUI : MonoBehaviour
 
     void _OnPurchase(PurchaseEvent e)
     {
-        // If the item has not been purchased before
-        if (ShopManager.GetComponent<ShopManagerScript>().shopItems[e.itemID].itemCount == 1)
+        // If the item has not been purchased before and it's not one time purchasable
+        if (ShopManager.GetComponent<ShopManagerScript>().shopItems[e.itemID].itemCount == 1 && !e.isOneTimePurchase)
         {
             Debug.Log($"Purchased: {e.itemName} for the first time!");
             inventoryItems.Add(e.itemID);
@@ -56,13 +56,20 @@ public class InventoryUI : MonoBehaviour
             StartCoroutine(destroyShopItem(e));
         }
 
-        // Update UI
-        equippedInventoryItemID = inventoryItems[inventoryItemsIndex];
-        equippedInventoryItem = ShopManager.GetComponent<ShopManagerScript>().shopItems[equippedInventoryItemID];
-        inventoryUI.text = equippedInventoryItem.itemName;
-        if (equippedInventoryItem.itemCount > 1)
+        // Only update manager inventory UI if it's multiple purchases
+
+        // ONLY FOR NOW, MAYBE AIRDROPS LATER
+
+        else
         {
-            inventoryUI.text += $" x {equippedInventoryItem.itemCount}";
+            // Update UI
+            equippedInventoryItemID = inventoryItems[inventoryItemsIndex];
+            equippedInventoryItem = ShopManager.GetComponent<ShopManagerScript>().shopItems[equippedInventoryItemID];
+            inventoryUI.text = equippedInventoryItem.itemName;
+            if (equippedInventoryItem.itemCount > 1)
+            {
+                inventoryUI.text += $" x {equippedInventoryItem.itemCount}";
+            }
         }
     }
 
