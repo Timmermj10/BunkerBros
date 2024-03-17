@@ -46,12 +46,14 @@ public class ShopManagerScript : MonoBehaviour
     }
 }
 
+// Class for general item purchases
 public class PurchaseEvent
 {
     public int itemID;
     public string itemName;
     public Sprite itemIcon;
     public int itemCount;
+    public bool isOneTimePurchase;
 
     public PurchaseEvent(InventoryItem item)
     {
@@ -59,5 +61,6 @@ public class PurchaseEvent
         itemName = item.itemName;
         itemIcon = item.itemIcon;
         itemCount = item.itemCount;
+        isOneTimePurchase = item.oneTimePurchase;
     }
 }

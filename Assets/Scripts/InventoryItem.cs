@@ -9,4 +9,5 @@ public class InventoryItem
     public float itemCost;
     public Sprite itemIcon;
     public int itemCount;
+    public bool oneTimePurchase;
 }

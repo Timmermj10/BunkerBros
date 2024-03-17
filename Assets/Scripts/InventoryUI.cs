@@ -42,13 +42,19 @@ public class InventoryUI : MonoBehaviour
 
     void _OnPurchase(PurchaseEvent e)
     {
-        // If the item is already purchased
+        // If the item has not been purchased before
         if (ShopManager.GetComponent<ShopManagerScript>().shopItems[e.itemID].itemCount == 1)
         {
             Debug.Log($"Purchased: {e.itemName} for the first time!");
             inventoryItems.Add(e.itemID);
         }
         Debug.Log($"Purchased: {e.itemName}" );
+
+        // If the purchase is a one time purchase
+        if (e.isOneTimePurchase)
+        {
+            StartCoroutine(destroyShopItem(e));
+        }
 
         // Update UI
         equippedInventoryItemID = inventoryItems[inventoryItemsIndex];
@@ -59,6 +65,23 @@ public class InventoryUI : MonoBehaviour
             inventoryUI.text += $" x {equippedInventoryItem.itemCount}";
         }
     }
+
+    IEnumerator destroyShopItem(PurchaseEvent e)
+    {
+        // Wait 0.25 second before destroying the button for the one time purchase
+        yield return new WaitForSeconds(0.25f);
+
+        // Get the item game object
+        GameObject item = GameObject.Find($"Item{e.itemID + 1}");
+
+        // Destroy game object for the one time purchase item
+        Destroy(item);
+
+        Debug.Log($"One time purchase of {item}");
+
+        yield return null;
+    }
+
 
     void _OnUse(ItemUseEvent e)
     {
@@ -134,6 +157,5 @@ public class InventoryUI : MonoBehaviour
                 inventoryUI.text += $" x {equippedInventoryItem.itemCount}";
             }
         }
-
     }
 }
