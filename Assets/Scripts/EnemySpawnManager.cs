@@ -35,7 +35,7 @@ public class EnemySpawnManager : MonoBehaviour
             GameObject enemy = Instantiate(EnemyPrefab);
 
             // Set the enemies position
-            enemy.transform.position = new Vector3(spawnerLocation.x + randomX, 1.5f, spawnerLocation.z + randomZ);
+            enemy.transform.position = new Vector3(spawnerLocation.x + randomX, 1f, spawnerLocation.z + randomZ);
 
             // Debug Statement
             Debug.Log($"Spawning enemy at X: {enemy.transform.position.x}, Z: {enemy.transform.position.z}");

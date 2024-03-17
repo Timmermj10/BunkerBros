@@ -13,7 +13,7 @@ public class EnemyDamageAndHealth : MonoBehaviour
         if (collision.collider.tag == "Player" || collision.collider.tag == "Objective" || collision.collider.tag == "Structure")
         {
             //Deal damage
-            DealDamage(collision);
+            DealDamage(collision.gameObject);
             
             
         } //else if sword or weapon? or have them call takedamage? < call is probably easier
@@ -23,7 +23,23 @@ public class EnemyDamageAndHealth : MonoBehaviour
         }
     }
 
-    public void DealDamage(Collision c)
+    private void OnTriggerEnter(Collider other)
+    {
+        Debug.Log("Touched " + other.tag);
+        if (other.tag == "Player" || other.tag == "Objective" || other.tag == "Structure")
+        {
+            //Deal damage
+            DealDamage(other.gameObject);
+
+
+        } //else if sword or weapon? or have them call takedamage? < call is probably easier
+        else if (other.tag == "Projectile")
+        {
+            TakeDamage(1); //temp, may change into projectile behavior
+        }
+    }
+
+    public void DealDamage(GameObject c)
     {
         //Decrement health of player, structure, or objective > probably in has health component
         GameObject collide = c.gameObject;

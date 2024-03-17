@@ -21,7 +21,7 @@ public class AirstrikeListener : MonoBehaviour
 
     void _CallAirstrike(AirstrikeEvent e)
     {
-        Vector3 strikePosition = new Vector3(e.x_cord, e.y_cord + 2f, e.z_cord);
+        Vector3 strikePosition = new Vector3(e.x_cord, e.y_cord + 1f, e.z_cord);
 
         StartCoroutine(DelayedExplosion(strikePosition));
     }
