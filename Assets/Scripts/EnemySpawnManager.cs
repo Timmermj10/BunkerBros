@@ -9,32 +9,42 @@ public class EnemySpawnManager : MonoBehaviour
     public Direction direct = Direction.X;
     public float spawnDelay = 200f;
     public float random_spawn = 5f;
-    private float random;
+    private float randomX;
+    private float randomZ;
     private float initDelay;
+
+    Vector3 spawnerLocation;
 
     private void Start()
     {
+        // Set the initial delay
         initDelay = spawnDelay;
+
+        // Get the spawner location
+        spawnerLocation = transform.position;
     }
 
     void FixedUpdate()
     {
-        random = Random.Range(-random_spawn, random_spawn);
+        randomX = Random.Range(-random_spawn, random_spawn);
+        randomZ = Random.Range(-random_spawn, random_spawn);
+
         if (spawnDelay <= 0)
         {
-            Instantiate(EnemyPrefab);
-            Vector3 loca = transform.position;
-            if (direct == Direction.X)
-            {
-                loca.x += random;
-            } else
-            {
-                loca.z += random;
-            }
-            EnemyPrefab.transform.position = loca;
+            // Instantiate the enemy
+            GameObject enemy = Instantiate(EnemyPrefab);
+
+            // Set the enemies position
+            enemy.transform.position = new Vector3(spawnerLocation.x + randomX, 1.5f, spawnerLocation.z + randomZ);
+
+            // Debug Statement
+            Debug.Log($"Spawning enemy at X: {enemy.transform.position.x}, Z: {enemy.transform.position.z}");
+
+            // Reset the spawn timer
             spawnDelay = initDelay;
         } else
         {
+            // Decrement spawn timer
             spawnDelay -= 1;
         }
     }

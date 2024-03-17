@@ -32,7 +32,7 @@ public class EnemyMovement : MonoBehaviour
     private void move()
     {
         Vector3 play = obj_loca - transform.position;
-        Debug.Log(Vector3.Distance(obj_loca, transform.position));
+        // Debug.Log(Vector3.Distance(obj_loca, transform.position));
         Vector3 newLoca = play.normalized * speed * Time.deltaTime;
         newLoca.y = 0;
         
@@ -48,7 +48,7 @@ public class EnemyMovement : MonoBehaviour
             obj = other.gameObject;
             obj_loca = obj.transform.position;
             detect = true;
-            Debug.Log("Detected");
+            // Debug.Log("Detected");
         }
     }
 
