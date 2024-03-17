@@ -22,6 +22,9 @@ public class InventoryUI : MonoBehaviour
     // Subscribe to Item Use Events
     Subscription<ItemUseEvent> item_event_subscription;
 
+    //Subscribe to Inventory Cycle Events
+    Subscription<ManagerCycleEvent> manager_event_subscription;
+
     private GameObject ShopManager;
 
     // Inventory Icon / Text
@@ -32,6 +35,7 @@ public class InventoryUI : MonoBehaviour
     {
         purchase_event_subscription = EventBus.Subscribe<PurchaseEvent>(_OnPurchase);
         item_event_subscription = EventBus.Subscribe<ItemUseEvent>(_OnUse);
+        manager_event_subscription = EventBus.Subscribe<ManagerCycleEvent>(_OnCycle);
         ShopManager = GameObject.Find("ShopManager");
         inventoryUI = GameObject.Find("Inventory").GetComponent<Text>();
     }
@@ -99,6 +103,7 @@ public class InventoryUI : MonoBehaviour
         }
     }
 
+    /*
     // Update is called once per frame
     void Update()
     {
@@ -113,5 +118,22 @@ public class InventoryUI : MonoBehaviour
                 inventoryUI.text += $" x {equippedInventoryItem.itemCount}";
             }
         }
+    }
+    */
+
+    private void _OnCycle(ManagerCycleEvent e)
+    {
+        if (inventoryItems.Count > 0)
+        {
+            inventoryItemsIndex = (inventoryItemsIndex + 1) % inventoryItems.Count;
+            equippedInventoryItemID = inventoryItems[inventoryItemsIndex];
+            equippedInventoryItem = ShopManager.GetComponent<ShopManagerScript>().shopItems[equippedInventoryItemID];
+            inventoryUI.text = equippedInventoryItem.itemName;
+            if (equippedInventoryItem.itemCount > 1)
+            {
+                inventoryUI.text += $" x {equippedInventoryItem.itemCount}";
+            }
+        }
+
     }
 }

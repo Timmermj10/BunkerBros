@@ -26,13 +26,13 @@ public class PlayerManager : MonoBehaviour
             Debug.LogError("No gamepad connected for activePlayer.");
         }
 
-        // Instantiate the player with a keyboard and mouse
-        //GameObject managerPlayer = Instantiate(managerPlayerPrefab, new Vector3(-1f, 1f, 0f), Quaternion.identity);
+        //Instantiate the player with a keyboard and mouse
+        GameObject managerPlayer = Instantiate(managerPlayerPrefab, new Vector3(-1f, 1f, 0f), Quaternion.identity);
         PlayerInput managerPlayerInput = managerPlayer.GetComponent<PlayerInput>();
-        // Assuming you have created a control scheme for Keyboard&Mouse in your Input Actions called "KeyboardMouseScheme"
+        //Assuming you have created a control scheme for Keyboard&Mouse in your Input Actions called "KeyboardMouseScheme"
         if (managerPlayerInput != null)
         {
-            managerPlayerInput.SwitchCurrentControlScheme("KBMPlayer", Keyboard.current, Mouse.current);
+           managerPlayerInput.SwitchCurrentControlScheme("KBMPlayer", Keyboard.current, Mouse.current);
         }
     }
 

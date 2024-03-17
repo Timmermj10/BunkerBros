@@ -1,5 +1,5 @@
 {
-    "name": "UserInputs2",
+    "name": "KBMandController",
     "maps": [
         {
             "name": "ActivePlayer",
@@ -90,6 +90,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Cycle",
+                    "type": "Button",
+                    "id": "a84d88f8-9606-41b5-a91f-c3bc258f5930",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -156,6 +165,17 @@
                     "processors": "",
                     "groups": "KBMPlayer",
                     "action": "Interact",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "216b0c5d-18b6-4eb4-9b9c-0745142ad9ef",
+                    "path": "<Keyboard>/tab",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KBMPlayer",
+                    "action": "Cycle",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
