@@ -7,8 +7,6 @@ public class PlayerManager : MonoBehaviour
 {
     // Start is called before the first frame update
 
-    public GameObject managerPlayerPrefab;
-
     public GameObject activePlayer;
     private GameObject managerPlayer;
 
@@ -27,7 +25,8 @@ public class PlayerManager : MonoBehaviour
         }
 
         //Instantiate the player with a keyboard and mouse
-        GameObject managerPlayer = Instantiate(managerPlayerPrefab, new Vector3(-1f, 1f, 0f), Quaternion.identity);
+        // GameObject managerPlayer = Instantiate(managerPlayerPrefab, new Vector3(-1f, 1f, 0f), Quaternion.identity);
+        managerPlayer = GameObject.Find("ManagerCamera");
         PlayerInput managerPlayerInput = managerPlayer.GetComponent<PlayerInput>();
         //Assuming you have created a control scheme for Keyboard&Mouse in your Input Actions called "KeyboardMouseScheme"
         if (managerPlayerInput != null)
