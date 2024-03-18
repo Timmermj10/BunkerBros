@@ -11,10 +11,12 @@ public class EnemyMovement : MonoBehaviour
     private Vector3 obj_loca;
     private bool detect = false;
     private bool attack = false;
+    private Rigidbody rb;
 
     
     void Awake()
     {
+        rb = GetComponent<Rigidbody>();
         obj = GameObject.Find("Objective");
         obj_loca = obj.transform.position;
     }
@@ -35,6 +37,8 @@ public class EnemyMovement : MonoBehaviour
         // Debug.Log(Vector3.Distance(obj_loca, transform.position));
         Vector3 newLoca = play.normalized * speed * Time.deltaTime;
         newLoca.y = 0;
+        //rb.velocity = newLoca;
+        //rb.AddForce(newLoca);
         
         transform.position += newLoca;
     }
@@ -75,6 +79,7 @@ public class EnemyMovement : MonoBehaviour
         if (collision.collider.tag == "Player" || collision.collider.tag == "Objective" || collision.collider.tag == "Structure")
         {
             attack = true;
+            rb.velocity = Vector2.zero;
         }
     }
 
