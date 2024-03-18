@@ -1,6 +1,7 @@
 using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -10,11 +11,21 @@ public class KnifeAttack : MonoBehaviour
     private Transform hand;
     private float radius;
     private bool swinging = false;
+    Subscription<AttackEvent> sub = null;
     void Awake()
     {
         hand = transform.parent;
         radius = hand.localPosition.magnitude;
-        EventBus.Subscribe<AttackEvent>(_Attack);
+        sub = EventBus.Subscribe<AttackEvent>(_Attack);
+    }
+    private void OnEnable()
+    {
+        if (sub == null) EventBus.Subscribe<AttackEvent>(_Attack);
+    }
+    private void OnDisable()
+    {
+        EventBus.Unsubscribe(sub);
+        sub = null;
     }
     void _Attack(AttackEvent e)
     {
