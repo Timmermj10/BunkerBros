@@ -7,6 +7,8 @@ public class HasHealth : MonoBehaviour
     public int maxHealth = 1;
     public int currentHealth;
 
+    private bool canTakeDamage = true;
+
     private void Start()
     {
         currentHealth = maxHealth;
@@ -27,12 +29,20 @@ public class HasHealth : MonoBehaviour
         Destroy(gameObject);
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnCollisionStay(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Enemy"))
+        if (collision.gameObject.CompareTag("Enemy") && canTakeDamage)
         {
             TakeDamage(1);
+            StartCoroutine(DamageCooldown(3f)); // Start the cooldown coroutine
         }
+    }
+
+    private IEnumerator DamageCooldown(float cooldownTime)
+    {
+        canTakeDamage = false;
+        yield return new WaitForSeconds(cooldownTime);
+        canTakeDamage = true;
     }
 }
 
