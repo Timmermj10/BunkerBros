@@ -373,7 +373,6 @@ GameObject:
   - component: {fileID: 6550895762749905412}
   - component: {fileID: 1794213896188112388}
   - component: {fileID: 6666310169799892393}
-  - component: {fileID: 1049974099285457963}
   m_Layer: 7
   m_Name: ManagerView
   m_TagString: Player
@@ -446,25 +445,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &1049974099285457963
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2862491295029339654}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d1a8219ccb163494abeca0d34a5d950d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  explosionPrefab: {fileID: 2278422487833797206, guid: 30da79b3e424b16418db2f372358f60e,
-    type: 3}
-  airstrikeHeight: 2
-  blastRadius: 3
-  damageableLayer:
-    serializedVersion: 2
-    m_Bits: 0
 --- !u!1 &3181877069799814617
 GameObject:
   m_ObjectHideFlags: 0

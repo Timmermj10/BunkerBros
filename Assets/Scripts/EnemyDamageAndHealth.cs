@@ -58,6 +58,8 @@ public class EnemyDamageAndHealth : MonoBehaviour
     private void EnemyDefeated()
     {
         Vector3 loca = transform.position;
+
+
         //For Spawning resource pickup, and maybe spawner/respawn
         EventBus.Publish<EnemyDefeat>(new EnemyDefeat(loca));
 

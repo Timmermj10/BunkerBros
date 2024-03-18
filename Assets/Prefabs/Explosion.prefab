@@ -4924,4 +4924,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthChange: -2
-  damageCooldown: 10
+  damageCooldown: 0

@@ -5,7 +5,7 @@ using UnityEngine;
 public class ResourceManage : MonoBehaviour
 {
     public float timer = 30f;
-    public int value = 2;
+    public int value = 10;
     private float time;
 
     private void Awake()
@@ -20,8 +20,8 @@ public class ResourceManage : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             Debug.Log($"Coin collected by {other.gameObject.name} with tag {other.gameObject.tag}");
-            EventBus.Publish<CoinCollect>(new CoinCollect(value));
             Destroy(gameObject);
+            EventBus.Publish<CoinCollect>(new CoinCollect(value));
         }
     }
 
@@ -29,8 +29,8 @@ public class ResourceManage : MonoBehaviour
     {
         if (timer <= 0)
         {
-            EventBus.Publish<CoinCollect>(new CoinCollect(value / 2));
             Destroy(gameObject);
+            EventBus.Publish<CoinCollect>(new CoinCollect(value / 2));
         } else
         {
             timer -= 1;
