@@ -16,6 +16,8 @@ public class ManagerPlayerInputs : MonoBehaviour
 
     private InventoryUI inventory;
 
+    public GameObject wallPrefab;
+
     private void Start()
     {
         playerInput = GetComponent<PlayerInput>();
@@ -58,6 +60,14 @@ public class ManagerPlayerInputs : MonoBehaviour
 
                 // Publish a use Event so the shop manager can update count
                 EventBus.Publish<ItemUseEvent>(new ItemUseEvent(0));
+            }
+            else if (inventory.inventoryItems.Count > 0 && inventory.inventoryItems[inventory.inventoryItemsIndex] == 1)
+            {
+                // Spawn the wall
+                Instantiate(wallPrefab, worldPositionRounded + new Vector3(0f,1f,0f), Quaternion.identity);
+
+                // Publish a use Event so the shop manager can update count
+                EventBus.Publish<ItemUseEvent>(new ItemUseEvent(1)); // Changed to 1 for a wall
             }
         }
         else
