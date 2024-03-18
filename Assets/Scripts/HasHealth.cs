@@ -32,7 +32,6 @@ public class HasHealth : MonoBehaviour
         if (collision.gameObject.CompareTag("Enemy"))
         {
             TakeDamage(1);
-            Destroy(collision.gameObject);
         }
     }
 }
