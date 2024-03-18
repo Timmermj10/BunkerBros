@@ -9,7 +9,7 @@ public class EnemyDamageAndHealth : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        Debug.Log("Touched " + collision.collider.tag);
+        //Debug.Log("Touched " + collision.collider.tag);
         if (collision.collider.tag == "Player" || collision.collider.tag == "Objective" || collision.collider.tag == "Structure")
         {
             //Deal damage
@@ -25,7 +25,7 @@ public class EnemyDamageAndHealth : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Touched " + other.tag);
+        //Debug.Log("Touched " + other.tag);
         if (other.tag == "Player" || other.tag == "Objective" || other.tag == "Structure")
         {
             //Deal damage

@@ -14,9 +14,9 @@ public class HasHealth : MonoBehaviour
         currentHealth = maxHealth;
     }
 
-    public void TakeDamage(int damageAmount)
+    public void changeHealth(int healthChange)
     {
-        currentHealth -= damageAmount;
+        currentHealth += healthChange;
         if (currentHealth <= 0)
         {
             Die();
@@ -29,6 +29,8 @@ public class HasHealth : MonoBehaviour
         Destroy(gameObject);
     }
 
+
+    /*
     private void OnCollisionStay(Collision collision)
     {
         if (collision.gameObject.CompareTag("Enemy") && canTakeDamage)
@@ -44,5 +46,6 @@ public class HasHealth : MonoBehaviour
         yield return new WaitForSeconds(cooldownTime);
         canTakeDamage = true;
     }
+    */
 }
 
