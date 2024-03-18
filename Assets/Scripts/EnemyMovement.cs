@@ -37,10 +37,11 @@ public class EnemyMovement : MonoBehaviour
         // Debug.Log(Vector3.Distance(obj_loca, transform.position));
         Vector3 newLoca = play.normalized * speed * Time.deltaTime;
         newLoca.y = 0;
-        rb.velocity = newLoca;
-        //rb.AddForce(newLoca);
+        //rb.velocity = newLoca;
         
-        //transform.position += newLoca;
+        //rb.AddForce(newLoca);
+        transform.LookAt(transform.position + newLoca);
+        transform.position += newLoca;
     }
 
     
