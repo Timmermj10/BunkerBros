@@ -8,20 +8,20 @@ public class ActivePlayerInputs : MonoBehaviour
     public float moveSpeed = 5f;
     private Vector2 movementInputValue;
     private Vector2 aimInputValue;
+    private Rigidbody rb;
 
     //private bool playerControls = false;
     //private float shootingCooldown = 0.3f;
     //private float shootingTimer = 0f;
-
-    private void Update()
+    private void Awake()
     {
-        transform.position += moveSpeed * Time.deltaTime * new Vector3(movementInputValue.x, 0, movementInputValue.y);
+        rb = GetComponent<Rigidbody>();
     }
-
     // Constantly sets the value of movementInputValue to the current input on the left joystick
     private void OnMove(InputValue value)
     {
         movementInputValue = value.Get<Vector2>();
+        rb.velocity = moveSpeed * new Vector3(movementInputValue.x, 0, movementInputValue.y);
         //Debug.Log("Active Player: MovementInputValue = " + movementInputValue);
     }
 
