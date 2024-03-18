@@ -15,7 +15,11 @@ public class ResourceManage : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Player") {
+        Debug.Log($"Detected collision between {gameObject.name} and {other.gameObject.name}");
+
+        if (other.gameObject.CompareTag("Player"))
+        {
+            Debug.Log($"Coin collected by {other.gameObject.name} with tag {other.gameObject.tag}");
             EventBus.Publish<CoinCollect>(new CoinCollect(value));
             Destroy(gameObject);
         }
