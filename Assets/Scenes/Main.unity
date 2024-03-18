@@ -3167,7 +3167,7 @@ PrefabInstance:
     - target: {fileID: 2996310300922822429, guid: 2f989cafe2d9243b2a04b1d6779dcb21,
         type: 3}
       propertyPath: random_spawn
-      value: 5
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6594445399303443660, guid: 2f989cafe2d9243b2a04b1d6779dcb21,
         type: 3}
@@ -3177,7 +3177,7 @@ PrefabInstance:
     - target: {fileID: 8068522591549321756, guid: 2f989cafe2d9243b2a04b1d6779dcb21,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8068522591549321756, guid: 2f989cafe2d9243b2a04b1d6779dcb21,
         type: 3}
@@ -3187,7 +3187,7 @@ PrefabInstance:
     - target: {fileID: 8068522591549321756, guid: 2f989cafe2d9243b2a04b1d6779dcb21,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1
+      value: -2
       objectReference: {fileID: 0}
     - target: {fileID: 8068522591549321756, guid: 2f989cafe2d9243b2a04b1d6779dcb21,
         type: 3}
