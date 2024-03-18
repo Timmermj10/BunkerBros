@@ -4871,6 +4871,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08e4a12f61e93e945b1eb9ee716f9f52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spriteRenderer: {fileID: 0}
+  hitBox: {fileID: 0}
+  swingingSwordCoRoutine: 0
+  swingDuration: 0.3
 --- !u!65 &1232671310
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5189,6 +5193,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -6369740529766550865, guid: c1cf7c557e41a435db23620016b92d83,
+        type: 3}
+      propertyPath: moveSpeed
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 2463675146606809864, guid: c1cf7c557e41a435db23620016b92d83,
         type: 3}
       propertyPath: m_Name
@@ -5243,6 +5252,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7625096359321242721, guid: c1cf7c557e41a435db23620016b92d83,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -6446,7 +6460,7 @@ PrefabInstance:
     - target: {fileID: 5353217459263341450, guid: f97966fa08f7246579cb2f278c1d4909,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5353217459263341450, guid: f97966fa08f7246579cb2f278c1d4909,
         type: 3}
@@ -6487,11 +6501,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6776554893320096386, guid: f97966fa08f7246579cb2f278c1d4909,
-        type: 3}
-      propertyPath: maxHealth
-      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 7215493473248351806, guid: f97966fa08f7246579cb2f278c1d4909,
         type: 3}

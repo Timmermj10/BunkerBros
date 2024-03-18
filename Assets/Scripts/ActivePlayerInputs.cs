@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 
 public class ActivePlayerInputs : MonoBehaviour
 {
-
+    public float moveSpeed = 5f;
     private Vector2 movementInputValue;
     private Vector2 aimInputValue;
 
@@ -14,20 +14,27 @@ public class ActivePlayerInputs : MonoBehaviour
     //private float shootingTimer = 0f;
 
     public ProjectileBehavior ProjectilePrefab;
-
+    private void Update()
+    {
+        transform.position += moveSpeed * Time.deltaTime * new Vector3(movementInputValue.x, 0, movementInputValue.y);
+    }
 
     // Constantly sets the value of movementInputValue to the current input on the left joystick
     private void OnMove(InputValue value)
     {
         movementInputValue = value.Get<Vector2>();
-        Debug.Log("Active Player: MovementInputValue = " + movementInputValue);
+        //Debug.Log("Active Player: MovementInputValue = " + movementInputValue);
     }
 
     // Constantly sets the value of aimInputValue to the current input on the right joystick
     private void OnAim(InputValue value)
     {
-        aimInputValue = value.Get<Vector2>();
-        Debug.Log("Active Player: AimInputValue = " + aimInputValue);
+        if(value.Get<Vector2>() != Vector2.zero)
+        {
+            aimInputValue = value.Get<Vector2>();
+            transform.LookAt(new Vector3(aimInputValue.x, transform.position.y, aimInputValue.y));
+        }
+        //Debug.Log("Active Player: AimInputValue = " + aimInputValue);
     }
 
 
@@ -54,13 +61,8 @@ public class ActivePlayerInputs : MonoBehaviour
     private void OnAttack(InputValue value)
     {
         Debug.Log("Active Player: Player Attacked");
+        EventBus.Publish(new AttackEvent());
         
-        /*
-        if (aimInputValue != Vector2.zero)
-        {
-            EventBus.Publish(new MainWeaponUsedEvent(Weapon.Types.WeaponType.Sword, aimInputValue, transform));
-        }
-        */
 
         
         if (aimInputValue != Vector2.zero)
