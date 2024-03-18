@@ -8293,11 +8293,11 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1290056572}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1210054900
+--- !u!114 &1210054900 stripped
 MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 2795680284881736967, guid: c1cf7c557e41a435db23620016b92d83,
+    type: 3}
+  m_PrefabInstance: {fileID: 1290056572}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1210054893}
   m_Enabled: 1
@@ -8305,8 +8305,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ada0cb034d14d4065882f6fdbed5bdd0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 5
-  currentHealth: 0
 --- !u!1 &1214143401
 GameObject:
   m_ObjectHideFlags: 0
@@ -8986,26 +8984,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: -6369740529766550865, guid: c1cf7c557e41a435db23620016b92d83,
-        type: 3}
-      propertyPath: lookSpeed
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 99159361637308448, guid: c1cf7c557e41a435db23620016b92d83,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 749158184279088800, guid: c1cf7c557e41a435db23620016b92d83,
-        type: 3}
-      propertyPath: m_Constraints
-      value: 112
-      objectReference: {fileID: 0}
-    - target: {fileID: 1049974099285457963, guid: c1cf7c557e41a435db23620016b92d83,
-        type: 3}
-      propertyPath: explosionPrefab
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 2463675146606809864, guid: c1cf7c557e41a435db23620016b92d83,
         type: 3}
       propertyPath: m_Name
@@ -9061,20 +9039,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7625096359321242721, guid: c1cf7c557e41a435db23620016b92d83,
-        type: 3}
-      propertyPath: m_TagString
-      value: Untagged
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 1049974099285457963, guid: c1cf7c557e41a435db23620016b92d83, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 2463675146606809864, guid: c1cf7c557e41a435db23620016b92d83,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1210054900}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c1cf7c557e41a435db23620016b92d83, type: 3}
 --- !u!4 &1290056573 stripped
 Transform:
