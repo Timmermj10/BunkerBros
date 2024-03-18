@@ -16,7 +16,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &8121438671452252299
 Transform:
   m_ObjectHideFlags: 0
@@ -31,6 +31,7 @@ Transform:
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 6832485722327512465}
+  - {fileID: 8512320177947744401}
   m_Father: {fileID: 3323060938116591285}
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!64 &8631599359867439705
@@ -88,6 +89,37 @@ Transform:
   - {fileID: 6764482800391549094}
   - {fileID: 8121438671452252299}
   m_Father: {fileID: 3457418052326730881}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1532122942738014198
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8512320177947744401}
+  m_Layer: 0
+  m_Name: BulletSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8512320177947744401
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1532122942738014198}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.3, y: 1.2, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8121438671452252299}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2422488895765723781
 GameObject:
@@ -265,6 +297,7 @@ GameObject:
   - component: {fileID: 6550895762749905412}
   - component: {fileID: 1794213896188112388}
   - component: {fileID: 6666310169799892393}
+  - component: {fileID: 1049974099285457963}
   m_Layer: 7
   m_Name: ManagerView
   m_TagString: Untagged
@@ -337,6 +370,25 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &1049974099285457963
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2862491295029339654}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1a8219ccb163494abeca0d34a5d950d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  explosionPrefab: {fileID: 2278422487833797206, guid: 30da79b3e424b16418db2f372358f60e,
+    type: 3}
+  airstrikeHeight: 2
+  blastRadius: 3
+  damageableLayer:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1 &3181877069799814617
 GameObject:
   m_ObjectHideFlags: 0
@@ -717,7 +769,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6764482800391549094
 Transform:
   m_ObjectHideFlags: 0
