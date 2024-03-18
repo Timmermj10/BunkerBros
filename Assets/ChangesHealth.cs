@@ -18,7 +18,7 @@ public class ChangesHealth : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        Debug.Log($"ChangesHealth Collision detected: {gameObject.name} and {other.gameObject.name}");
+        //Debug.Log($"ChangesHealth Collision detected: {gameObject.name} and {other.gameObject.name}");
         //Get the HasHealth Component of the object collided with
         HasHealth hasHealth = other.gameObject.GetComponent<HasHealth>();
 

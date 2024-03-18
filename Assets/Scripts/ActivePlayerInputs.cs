@@ -66,7 +66,7 @@ public class ActivePlayerInputs : MonoBehaviour
         if (aimInputValue != Vector2.zero)
         {
             //shootingTimer = shootingCooldown;
-            Vector2 aimDirection = RoundVectorToDirection(aimInputValue).normalized;
+            Vector2 aimDirection = aimInputValue.normalized;
             Vector3 spawnPosition = gameObject.transform.position + new Vector3(aimDirection.x / 1.6f, 0f, aimDirection.y);
 
             float spawnAngle = Mathf.Atan2(-aimDirection.y, aimDirection.x) * Mathf.Rad2Deg;

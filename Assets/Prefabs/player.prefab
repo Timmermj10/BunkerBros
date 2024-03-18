@@ -9,10 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8121438671452252299}
-  - component: {fileID: 8631599359867439705}
   m_Layer: 0
   m_Name: Gun
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -34,28 +33,6 @@ Transform:
   - {fileID: 8512320177947744401}
   m_Father: {fileID: 3323060938116591285}
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
---- !u!64 &8631599359867439705
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 587537794480630010}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300000, guid: b780922eee5a96f4287766dcf76fbd35, type: 2}
 --- !u!1 &1146948152980202626
 GameObject:
   m_ObjectHideFlags: 0
@@ -67,7 +44,7 @@ GameObject:
   - component: {fileID: 3323060938116591285}
   m_Layer: 0
   m_Name: RightHand
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -101,7 +78,7 @@ GameObject:
   - component: {fileID: 8512320177947744401}
   m_Layer: 0
   m_Name: BulletSpawner
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -134,7 +111,7 @@ GameObject:
   - component: {fileID: 816556579701105655}
   m_Layer: 6
   m_Name: PlayerView
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -217,7 +194,7 @@ GameObject:
   - component: {fileID: -6369740529766550865}
   m_Layer: 0
   m_Name: player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -300,7 +277,7 @@ GameObject:
   - component: {fileID: 1049974099285457963}
   m_Layer: 7
   m_Name: ManagerView
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -402,7 +379,7 @@ GameObject:
   - component: {fileID: 5552378799822126500}
   m_Layer: 6
   m_Name: PlayerView
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -483,7 +460,7 @@ GameObject:
   - component: {fileID: 559308685136879643}
   m_Layer: 0
   m_Name: LeftHand
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -600,7 +577,7 @@ GameObject:
   - component: {fileID: 8110367767019497016}
   m_Layer: 6
   m_Name: PlayerView
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -683,7 +660,7 @@ GameObject:
   - component: {fileID: 7576211946775839464}
   m_Layer: 6
   m_Name: PlayerView
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -765,7 +742,7 @@ GameObject:
   - component: {fileID: 99159361637308448}
   m_Layer: 0
   m_Name: Knife
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
