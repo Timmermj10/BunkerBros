@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 public class ActivePlayerInputs : MonoBehaviour
 {
     public float moveSpeed = 5f;
+    public float lookSpeed = 5f;
     private Vector2 movementInputValue;
     private Vector2 aimInputValue;
     private Rigidbody rb;
@@ -13,6 +14,10 @@ public class ActivePlayerInputs : MonoBehaviour
     //private bool playerControls = false;
     //private float shootingCooldown = 0.3f;
     //private float shootingTimer = 0f;
+    private void Update()
+    {
+        transform.Rotate(Vector3.up, aimInputValue.x * lookSpeed);
+    }
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
@@ -21,18 +26,16 @@ public class ActivePlayerInputs : MonoBehaviour
     private void OnMove(InputValue value)
     {
         movementInputValue = value.Get<Vector2>();
-        rb.velocity = moveSpeed * new Vector3(movementInputValue.x, 0, movementInputValue.y);
+        Vector3 forward = movementInputValue.y * transform.forward;
+        Vector3 right = movementInputValue.x * transform.right;
+        rb.velocity = moveSpeed * (forward + right);
         //Debug.Log("Active Player: MovementInputValue = " + movementInputValue);
     }
 
     // Constantly sets the value of aimInputValue to the current input on the right joystick
     private void OnAim(InputValue value)
     {
-        if(value.Get<Vector2>() != Vector2.zero)
-        {
-            aimInputValue = value.Get<Vector2>();
-            transform.LookAt(transform.position + new Vector3(aimInputValue.x, 0f, aimInputValue.y));
-        }
+        aimInputValue = value.Get<Vector2>();
         //Debug.Log("Active Player: AimInputValue = " + aimInputValue);
     }
 
