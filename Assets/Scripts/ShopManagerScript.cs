@@ -20,6 +20,7 @@ public class ShopManagerScript : MonoBehaviour
     private void _coin(CoinCollect c)
     {
         coins += c.value;
+        coinsText.text = "Coins: " + coins;
     }
 
     public void Buy()
