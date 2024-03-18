@@ -13,7 +13,6 @@ public class ActivePlayerInputs : MonoBehaviour
     //private float shootingCooldown = 0.3f;
     //private float shootingTimer = 0f;
 
-    public ProjectileBehavior ProjectilePrefab;
     private void Update()
     {
         transform.position += moveSpeed * Time.deltaTime * new Vector3(movementInputValue.x, 0, movementInputValue.y);
@@ -32,7 +31,7 @@ public class ActivePlayerInputs : MonoBehaviour
         if(value.Get<Vector2>() != Vector2.zero)
         {
             aimInputValue = value.Get<Vector2>();
-            transform.LookAt(new Vector3(aimInputValue.x, transform.position.y, aimInputValue.y));
+            transform.LookAt(transform.position + new Vector3(aimInputValue.x, 0f, aimInputValue.y));
         }
         //Debug.Log("Active Player: AimInputValue = " + aimInputValue);
     }
@@ -62,23 +61,5 @@ public class ActivePlayerInputs : MonoBehaviour
     {
         Debug.Log("Active Player: Player Attacked");
         EventBus.Publish(new AttackEvent());
-        
-
-        
-        if (aimInputValue != Vector2.zero)
-        {
-            //shootingTimer = shootingCooldown;
-            Vector2 aimDirection = aimInputValue.normalized;
-            Vector3 spawnPosition = gameObject.transform.position + new Vector3(aimDirection.x / 1.6f, 0f, aimDirection.y);
-
-            float spawnAngle = Mathf.Atan2(-aimDirection.y, aimDirection.x) * Mathf.Rad2Deg;
-            Quaternion rotation = Quaternion.Euler(0f, spawnAngle, 0f);
-
-
-            GameObject projectileObject = Instantiate(ProjectilePrefab.gameObject, spawnPosition, rotation);
-            //ProjectileBehavior projectile = projectileObject.GetComponent<ProjectileBehavior>();
-        }
-        
-
     }
 }
