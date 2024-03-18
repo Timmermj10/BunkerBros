@@ -32,7 +32,7 @@ public class HasHealth : MonoBehaviour
             EventBus.Publish<EnemyDefeat>(new EnemyDefeat(transform.position));
         }
 
-        Debug.Log(gameObject.name + " has died!");
+        //Debug.Log(gameObject.name + " has died!");
         Destroy(gameObject);
     }
 

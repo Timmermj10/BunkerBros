@@ -59,7 +59,7 @@ public class ActivePlayerInputs : MonoBehaviour
 
     private void OnAttack(InputValue value)
     {
-        Debug.Log("Active Player: Player Attacked");
+        //Debug.Log("Active Player: Player Attacked");
         EventBus.Publish(new AttackEvent());
     }
 }

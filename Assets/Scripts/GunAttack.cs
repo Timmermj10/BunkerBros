@@ -19,6 +19,6 @@ public class GunAttack : MonoBehaviour
 
 
         GameObject projectileObject = Instantiate(ProjectilePrefab.gameObject, spawnPosition, rotation);
-        Debug.Log("Gun Attacking");
+        //Debug.Log("Gun Attacking");
     }
 }

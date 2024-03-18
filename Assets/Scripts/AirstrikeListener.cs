@@ -52,7 +52,7 @@ public class AirstrikeListener : MonoBehaviour
             // Example: hitCollider.gameObject.GetComponent<IDamageable>()?.TakeDamage(damageAmount);
 
             // For demonstration purposes, let's just print out the objects hit
-            Debug.Log($"Airstrike hit: {hitCollider.gameObject.name}");
+            //Debug.Log($"Airstrike hit: {hitCollider.gameObject.name}");
             if (hitCollider.tag == "Enemy")
             {
                 hitCollider.GetComponent<EnemyDamageAndHealth>().TakeDamage(5);

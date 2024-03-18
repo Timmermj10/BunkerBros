@@ -13,7 +13,7 @@ public class ChangesHealth : MonoBehaviour
 
     private void Start()
     {
-        Debug.Log("Changes Health Script Initialized");
+        //Debug.Log("Changes Health Script Initialized");
     }
 
     private void OnTriggerStay(Collider other)

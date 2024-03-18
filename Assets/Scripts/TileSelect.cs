@@ -41,12 +41,12 @@ public class TileSelect : MonoBehaviour
                     EventBus.Publish<ItemUseEvent>(new ItemUseEvent(0));
                 }
 
-                Debug.Log("Mouse is over the tile at Position: " + new Vector3(Mathf.RoundToInt(worldPosition.x), 0f, Mathf.RoundToInt(worldPosition.z)));
+                //Debug.Log("Mouse is over the tile at Position: " + new Vector3(Mathf.RoundToInt(worldPosition.x), 0f, Mathf.RoundToInt(worldPosition.z)));
             }
             else
             {
                 // Optional: Handle the case where the ray does not hit any collider
-                Debug.Log("Mouse is over nothing");
+                //Debug.Log("Mouse is over nothing");
             }
         }
     }

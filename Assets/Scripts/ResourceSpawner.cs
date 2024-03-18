@@ -18,7 +18,7 @@ public class ResourceSpawner : MonoBehaviour
     {
         
         location = e.spawn_location;
-        Debug.Log("Spawning at " + location);
+        //Debug.Log("Spawning at " + location);
         coin_prefab.transform.position = location;
         Instantiate(coin_prefab);
 

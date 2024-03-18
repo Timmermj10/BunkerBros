@@ -34,7 +34,7 @@ public class ManagerPlayerInputs : MonoBehaviour
     private void OnMove(InputValue value)
     {
         movementInputValue = value.Get<Vector2>();
-        Debug.Log("Manager Player: MovementInputValue = " + movementInputValue);
+        //Debug.Log("Manager Player: MovementInputValue = " + movementInputValue);
     }
 
     private void OnInteract(InputValue value)
@@ -50,7 +50,7 @@ public class ManagerPlayerInputs : MonoBehaviour
             // Now worldPosition contains the 3D point in world space where the mouse is pointing
             Vector3 worldPosition = hit.point;
             Vector3 worldPositionRounded = new Vector3(Mathf.RoundToInt(worldPosition.x), worldPosition.y, Mathf.RoundToInt(worldPosition.z));
-            Debug.Log("Mouse is over the tile at Position: " + worldPositionRounded);
+            //Debug.Log("Mouse is over the tile at Position: " + worldPositionRounded);
 
             // Check to see if we have the Airstrike equipped in the inventory
             if (inventory.inventoryItems.Count > 0 && inventory.inventoryItems[inventory.inventoryItemsIndex] == 0)
@@ -73,7 +73,7 @@ public class ManagerPlayerInputs : MonoBehaviour
         else
         {
             // Optional: Handle the case where the ray does not hit any collider
-            Debug.Log("Mouse is over nothing");
+            //Debug.Log("Mouse is over nothing");
         }
     }
 

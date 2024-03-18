@@ -45,10 +45,10 @@ public class InventoryUI : MonoBehaviour
         // If the item has not been purchased before and it's not one time purchasable
         if (ShopManager.GetComponent<ShopManagerScript>().shopItems[e.itemID].itemCount == 1 && !e.isOneTimePurchase)
         {
-            Debug.Log($"Purchased: {e.itemName} for the first time!");
+            //Debug.Log($"Purchased: {e.itemName} for the first time!");
             inventoryItems.Add(e.itemID);
         }
-        Debug.Log($"Purchased: {e.itemName}" );
+        //Debug.Log($"Purchased: {e.itemName}" );
 
         // If the purchase is a one time purchase
         if (e.isOneTimePurchase)
@@ -84,7 +84,7 @@ public class InventoryUI : MonoBehaviour
         // Destroy game object for the one time purchase item
         Destroy(item);
 
-        Debug.Log($"One time purchase of {item}");
+        //Debug.Log($"One time purchase of {item}");
 
         yield return null;
     }

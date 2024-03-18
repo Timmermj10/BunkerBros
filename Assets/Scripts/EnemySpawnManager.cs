@@ -38,7 +38,7 @@ public class EnemySpawnManager : MonoBehaviour
             enemy.transform.position = new Vector3(spawnerLocation.x + randomX, 1f, spawnerLocation.z + randomZ);
 
             // Debug Statement
-            Debug.Log($"Spawning enemy at X: {enemy.transform.position.x}, Z: {enemy.transform.position.z}");
+            //Debug.Log($"Spawning enemy at X: {enemy.transform.position.x}, Z: {enemy.transform.position.z}");
 
             // Reset the spawn timer
             spawnDelay = initDelay;
