@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SocialPlatforms;
 
 public class HasHealth : MonoBehaviour
 {
@@ -25,6 +26,12 @@ public class HasHealth : MonoBehaviour
 
     private void Die()
     {
+
+        if (gameObject.CompareTag("Enemy"))
+        {
+            EventBus.Publish<EnemyDefeat>(new EnemyDefeat(transform.position));
+        }
+
         Debug.Log(gameObject.name + " has died!");
         Destroy(gameObject);
     }
