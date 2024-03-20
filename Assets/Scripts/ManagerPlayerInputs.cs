@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UIElements;
 using UnityEngine.Windows;
 
 public class ManagerPlayerInputs : MonoBehaviour
@@ -12,11 +13,14 @@ public class ManagerPlayerInputs : MonoBehaviour
 
     InputAction moveAction;
 
-    private Camera mainCamera;
+    private GameObject managerCamera;
 
     private InventoryUI inventory;
 
     public GameObject wallPrefab;
+
+    // Movement Speed
+    public float movementSpeed = 5.0f;
 
     private void Start()
     {
@@ -27,14 +31,28 @@ public class ManagerPlayerInputs : MonoBehaviour
         //Debug.Log(playerInput.currentControlScheme);
         //Debug.Log(playerInput.currentActionMap);
 
-        mainCamera = Camera.main;
+        managerCamera = GameObject.Find("ManagerCamera");
+    }
+
+    private void Update()
+    {
+        // Set the velocity
+        managerCamera.GetComponent<Rigidbody>().velocity = new Vector3(movementInputValue[0], 0, movementInputValue[1]) * movementSpeed;
     }
 
 
     private void OnMove(InputValue value)
     {
+        // X,Z vector 2
         movementInputValue = value.Get<Vector2>();
-        //Debug.Log("Manager Player: MovementInputValue = " + movementInputValue);
+
+        // Calculate the new position of the camera
+        //Vector3 newPosition = new Vector3(managerCamera.position[0] + movementInputValue[0], managerCamera.position[1], managerCamera.position[2] + movementInputValue[1]);
+
+        // Move the manager camera
+        //managerCamera.position = newPosition;
+
+        Debug.Log("Manager Player: MovementInputValue = " + movementInputValue);
     }
 
     private void OnInteract(InputValue value)
@@ -50,10 +68,12 @@ public class ManagerPlayerInputs : MonoBehaviour
             // Now worldPosition contains the 3D point in world space where the mouse is pointing
             Vector3 worldPosition = hit.point;
             Vector3 worldPositionRounded = new Vector3(Mathf.RoundToInt(worldPosition.x), worldPosition.y, Mathf.RoundToInt(worldPosition.z));
-            //Debug.Log("Mouse is over the tile at Position: " + worldPositionRounded);
+            // Debug.Log("Mouse is over the tile at Position: " + worldPositionRounded);
 
-            // Check to see if we have the Airstrike equipped in the inventory
-            if (inventory.inventoryItems.Count > 0 && inventory.inventoryItems[inventory.inventoryItemsIndex] == 0)
+
+            // Check to see if that tile is within the camera area
+            // Debug.Log($"X: {managerCamera.transform.position.x}, Z: {managerCamera.transform.position.z}");
+            if (withinView(worldPositionRounded))
             {
                 //get the location of the item
                 Vector3 itemUsedLocation = new Vector3(worldPositionRounded.x, worldPositionRounded.y + 0.5f, worldPositionRounded.z);
@@ -87,6 +107,22 @@ public class ManagerPlayerInputs : MonoBehaviour
         EventBus.Publish(new ManagerCycleEvent());
     }
 
+    private bool withinView(Vector3 worldPosition)
+    {
+        float worldPositionX = worldPosition.x;
+        float worldPositionZ = worldPosition.z;
+        float managerPositionX = Mathf.RoundToInt(managerCamera.transform.position.x);
+        float managerPositionZ = Mathf.RoundToInt(managerCamera.transform.position.z - 2);
+
+       
+        if ((managerPositionX - 6 <= worldPosition.x && worldPosition.x <= managerPositionX + 6)
+            && (managerPositionZ - 6 <= worldPosition.z && worldPosition.z <= managerPositionZ + 6))
+        {
+            return true;
+        }
+
+        return false;
+    } 
 }
 
 /*
