@@ -8304,18 +8304,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1290056572}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1210054900 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2795680284881736967, guid: c1cf7c557e41a435db23620016b92d83,
-    type: 3}
-  m_PrefabInstance: {fileID: 1290056572}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1210054893}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ada0cb034d14d4065882f6fdbed5bdd0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1214143401
 GameObject:
   m_ObjectHideFlags: 0
@@ -8995,6 +8983,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -6369740529766550865, guid: c1cf7c557e41a435db23620016b92d83,
+        type: 3}
+      propertyPath: lookSpeed
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 2463675146606809864, guid: c1cf7c557e41a435db23620016b92d83,
         type: 3}
       propertyPath: m_Name
@@ -9055,18 +9048,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c1cf7c557e41a435db23620016b92d83, type: 3}
---- !u!114 &1290056574 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2795680284881736967, guid: c1cf7c557e41a435db23620016b92d83,
-    type: 3}
-  m_PrefabInstance: {fileID: 1290056572}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1210054893}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ada0cb034d14d4065882f6fdbed5bdd0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1318113357
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13829,7 +13810,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 098342e6aafc65c419287dd3a33fe5fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerHealth: {fileID: 1290056574}
   towerHealth: {fileID: 747948175}
   playerHealthUI: {fileID: 1780979230}
   towerHealthUI: {fileID: 59514331}
