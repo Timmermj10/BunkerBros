@@ -8,8 +8,6 @@ public class HasHealth : MonoBehaviour
     public int maxHealth = 1;
     public int currentHealth;
 
-    private bool canTakeDamage = true;
-
     private void Start()
     {
         currentHealth = maxHealth;

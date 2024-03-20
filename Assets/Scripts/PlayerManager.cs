@@ -52,7 +52,7 @@ public class PlayerManager : MonoBehaviour
 
         yield return new WaitForSeconds(3);
 
-        Debug.Log("Respawning Player");
+        //Debug.Log("Respawning Player");
 
         GameObject activePlayer = Instantiate(activePlayerPrefab, new Vector3(0, 1, -2), Quaternion.identity);
 

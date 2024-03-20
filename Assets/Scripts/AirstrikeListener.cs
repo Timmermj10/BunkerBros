@@ -39,7 +39,7 @@ public class AirstrikeListener : MonoBehaviour
         // Get the ParticleSystem component
         ParticleSystem particles = explosionEffect.GetComponent<ParticleSystem>();
 
-        Debug.Log("Calling DamageObjectsWithinRadius");
+        //Debug.Log("Calling DamageObjectsWithinRadius");
         DamageObjectsWithinRadius(position, 1.5f, airstrikeDamage);
 
 
@@ -48,22 +48,6 @@ public class AirstrikeListener : MonoBehaviour
 
         // Destroy the GameObject that holds the particle system
         Destroy(explosionEffect);
-
-        // Apply damage or effects to the target area
-        Collider[] hitColliders = Physics.OverlapSphere(position, blastRadius, damageableLayer);
-        foreach (var hitCollider in hitColliders)
-        {
-            // Apply damage to the objects within the blast radius
-            // You might need to access an 'IDamageable' interface or a script on these objects that can receive damage.
-            // Example: hitCollider.gameObject.GetComponent<IDamageable>()?.TakeDamage(damageAmount);
-
-            // For demonstration purposes, let's just print out the objects hit
-            //Debug.Log($"Airstrike hit: {hitCollider.gameObject.name}");
-            if (hitCollider.tag == "Enemy")
-            {
-                hitCollider.GetComponent<EnemyDamageAndHealth>().TakeDamage(5);
-            }
-        }
     }
 
     void DamageObjectsWithinRadius(Vector3 center, float radius, int damage)
@@ -91,7 +75,7 @@ public class AirstrikeListener : MonoBehaviour
         // Do something with the objects you found
         foreach (HasHealth obj in objectsToDamage)
         {
-            Debug.Log("Found an object with health: " + obj.name);
+            //Debug.Log("Found an object with health: " + obj.name);
             obj.changeHealth(damage);
         }
     }

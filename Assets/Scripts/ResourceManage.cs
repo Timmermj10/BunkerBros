@@ -15,11 +15,11 @@ public class ResourceManage : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log($"Detected collision between {gameObject.name} and {other.gameObject.name}");
+        //Debug.Log($"Detected collision between {gameObject.name} and {other.gameObject.name}");
 
         if (other.gameObject.CompareTag("Player"))
         {
-            Debug.Log($"Coin collected by {other.gameObject.name} with tag {other.gameObject.tag}");
+            //Debug.Log($"Coin collected by {other.gameObject.name} with tag {other.gameObject.tag}");
             Destroy(gameObject);
             EventBus.Publish<CoinCollect>(new CoinCollect(value));
         }
@@ -30,18 +30,11 @@ public class ResourceManage : MonoBehaviour
         if (timer <= 0)
         {
             Destroy(gameObject);
-            EventBus.Publish<CoinCollect>(new CoinCollect(value / 2));
+            //EventBus.Publish<CoinCollect>(new CoinCollect(value / 2));
         } else
         {
             timer -= 1;
         }
     }
 
-}
-
-public class CoinCollect
-{
-    public int value;
-
-    public CoinCollect(int _new_value) { value = _new_value; }
 }
