@@ -50,24 +50,30 @@ public class ManagerPlayerInputs : MonoBehaviour
             // Now worldPosition contains the 3D point in world space where the mouse is pointing
             Vector3 worldPosition = hit.point;
             Vector3 worldPositionRounded = new Vector3(Mathf.RoundToInt(worldPosition.x), worldPosition.y, Mathf.RoundToInt(worldPosition.z));
-            //Debug.Log("Mouse is over the tile at Position: " + worldPositionRounded);
+            Debug.Log("Mouse is over the tile at Position: " + worldPositionRounded);
 
-            // Check to see if we have the Airstrike equipped in the inventory
-            if (inventory.inventoryItems.Count > 0 && inventory.inventoryItems[inventory.inventoryItemsIndex] == 0)
+
+            // Check to see if that tile is within the camera area
+            // NOT ROBUST ONLY FOR DEFAULT SPAWN OF MANAGER
+            if (System.Math.Abs(worldPosition.x) <= 6 && System.Math.Abs(worldPosition.z) <= 6)
             {
-                // Publish the airstrike event
-                EventBus.Publish<AirstrikeEvent>(new AirstrikeEvent(new Vector3(worldPositionRounded.x, 0f, worldPositionRounded.z)));
+                // Check to see if we have the Airstrike equipped in the inventory
+                if (inventory.inventoryItems.Count > 0 && inventory.inventoryItems[inventory.inventoryItemsIndex] == 0)
+                {
+                    // Publish the airstrike event
+                    EventBus.Publish<AirstrikeEvent>(new AirstrikeEvent(new Vector3(worldPositionRounded.x, 0f, worldPositionRounded.z)));
 
-                // Publish a use Event so the shop manager can update count
-                EventBus.Publish<ItemUseEvent>(new ItemUseEvent(0));
-            }
-            else if (inventory.inventoryItems.Count > 0 && inventory.inventoryItems[inventory.inventoryItemsIndex] == 1 && worldPositionRounded.y < 1)
-            {
-                // Spawn the wall
-                Instantiate(wallPrefab, worldPositionRounded + new Vector3(0f,0.5f,0f), Quaternion.identity);
+                    // Publish a use Event so the shop manager can update count
+                    EventBus.Publish<ItemUseEvent>(new ItemUseEvent(0));
+                }
+                else if (inventory.inventoryItems.Count > 0 && inventory.inventoryItems[inventory.inventoryItemsIndex] == 1 && worldPositionRounded.y < 1)
+                {
+                    // Spawn the wall
+                    Instantiate(wallPrefab, worldPositionRounded + new Vector3(0f, 0.5f, 0f), Quaternion.identity);
 
-                // Publish a use Event so the shop manager can update count
-                EventBus.Publish<ItemUseEvent>(new ItemUseEvent(1)); // Changed to 1 for a wall
+                    // Publish a use Event so the shop manager can update count
+                    EventBus.Publish<ItemUseEvent>(new ItemUseEvent(1)); // Changed to 1 for a wall
+                }
             }
         }
         else

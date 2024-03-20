@@ -31,6 +31,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "HoldToGet",
+                    "type": "Value",
+                    "id": "1208abd1-2b87-4e20-9e08-0fea7551bd64",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -64,6 +73,17 @@
                     "processors": "",
                     "groups": "ControllerPlayer",
                     "action": "Attack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "708bb914-859c-429b-afa3-95fe360296c0",
+                    "path": "<Gamepad>/buttonWest",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "ControllerPlayer",
+                    "action": "HoldToGet",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
