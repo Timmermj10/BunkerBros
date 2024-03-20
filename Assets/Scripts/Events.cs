@@ -5,27 +5,30 @@ using UnityEngine;
 public class AttackEvent
 {
 }
-public class AirstrikeEvent
-{
-    public float x_cord;
-    public float y_cord;
-    public float z_cord;
-
-    public AirstrikeEvent(Vector3 coordinates)
-    {
-        x_cord = coordinates.x;
-        y_cord = coordinates.y;
-        z_cord = coordinates.z;
-    }
-}
 
 public class ItemUseEvent
 {
     public int itemID;
+    public Vector3 itemLocation;
+    public bool isAirdrop;
 
-    public ItemUseEvent(int itemUsed)
+    public ItemUseEvent(int itemUsed, Vector3 itemLocation, bool isAirdrop)
     {
-        itemID = itemUsed;
+        this.itemID = itemUsed;
+        this.itemLocation = itemLocation;
+        this.isAirdrop = isAirdrop;
+    }
+}
+
+public class AirdropLandedEvent
+{
+    public int itemID;
+    public Vector3 itemLocation;
+
+    public AirdropLandedEvent(int itemUsed, Vector3 itemLocation)
+    {
+        this.itemID = itemUsed;
+        this.itemLocation = itemLocation;
     }
 }
 

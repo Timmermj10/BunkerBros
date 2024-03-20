@@ -13,19 +13,22 @@ public class AirstrikeListener : MonoBehaviour
 
 
     // Subscribe to Purchase Events
-    Subscription<AirstrikeEvent> airstrike_event_subscription;
+    Subscription<ItemUseEvent> airstrike_event_subscription;
 
     // Start is called before the first frame update
     void Start()
     {
-        airstrike_event_subscription = EventBus.Subscribe<AirstrikeEvent>(_CallAirstrike);
+        airstrike_event_subscription = EventBus.Subscribe<ItemUseEvent>(_CallAirstrike);
     }
 
-    void _CallAirstrike(AirstrikeEvent e)
+    void _CallAirstrike(ItemUseEvent e)
     {
-        Vector3 strikePosition = new Vector3(e.x_cord, e.y_cord + 1f, e.z_cord);
+        //if the id is the AirstrikeID
+        if (e.itemID == 0) {
 
-        StartCoroutine(DelayedExplosion(strikePosition));
+            //Call in an Airstrike at the itemLocation
+            StartCoroutine(DelayedExplosion(e.itemLocation));
+        }
     }
 
     private IEnumerator DelayedExplosion(Vector3 position)
