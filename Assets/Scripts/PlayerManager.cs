@@ -5,13 +5,16 @@ using UnityEngine.InputSystem;
 
 public class PlayerManager : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public GameObject activePlayerPrefab;
 
     public GameObject activePlayer;
     private GameObject managerPlayer;
 
     void Start()
     {
+
+        EventBus.Subscribe<ObjectDestroyedEvent>(_PlayerDead);
+
         // Instantiate the player with a gamepad
         //GameObject activePlayer = Instantiate(activePlayerPrefab, new Vector3(1f, 1f, 0f), Quaternion.identity);
         PlayerInput activePlayerInput = activePlayer.GetComponent<PlayerInput>();
@@ -34,5 +37,39 @@ public class PlayerManager : MonoBehaviour
            managerPlayerInput.SwitchCurrentControlScheme("KBMPlayer", Keyboard.current, Mouse.current);
         }
     }
+
+    private void _PlayerDead(ObjectDestroyedEvent e)
+    {
+        if (e.tag == "Player")
+        {
+
+            StartCoroutine(RespawnPlayer());
+        }
+    }
+
+    IEnumerator RespawnPlayer()
+    {
+
+        yield return new WaitForSeconds(3);
+
+        Debug.Log("Respawning Player");
+
+        GameObject activePlayer = Instantiate(activePlayerPrefab, new Vector3(0, 1, -2), Quaternion.identity);
+
+        PlayerInput activePlayerInput = activePlayer.GetComponent<PlayerInput>();
+        if (Gamepad.current != null)
+        {
+            activePlayerInput.SwitchCurrentControlScheme("ControllerPlayer", Gamepad.current);
+        }
+        else
+        {
+            Debug.LogError("No gamepad connected for activePlayer.");
+        }
+        EventBus.Publish(new PlayerRespawnEvent(activePlayer.transform.position, activePlayer));
+
+        yield return null;
+    }
+
+
 
 }

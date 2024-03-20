@@ -6,21 +6,26 @@ public class ResourceSpawner : MonoBehaviour
 {
     public GameObject coin_prefab;
     private Vector3 location;
-    private Subscription<EnemyDefeat> spawner;
+    private Subscription<ObjectDestroyedEvent> spawner;
     // Start is called before the first frame update
     void Start()
     {
-        spawner = EventBus.Subscribe<EnemyDefeat>(_spawn);
+        spawner = EventBus.Subscribe<ObjectDestroyedEvent>(_spawn);
     }
 
 
-    void _spawn(EnemyDefeat e)
+    void _spawn(ObjectDestroyedEvent e)
     {
-        
-        location = e.spawn_location;
-        //Debug.Log("Spawning at " + location);
-        coin_prefab.transform.position = location;
-        Instantiate(coin_prefab);
+
+        //If an enemy died
+        if (e.tag == "Enemy")
+        {
+            //get the location of the death
+            location = e.deathCoordinates;
+
+            //spawn a coin at that location
+            Instantiate(coin_prefab, location, Quaternion.identity);
+        }
 
     }
 }
