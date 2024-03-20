@@ -12,7 +12,7 @@ public class HandInventory : MonoBehaviour
 
     void _Purchase(PurchaseEvent e)
     {
-        if(e.itemName == "Gun")
+        if(e.purchasedItem.itemName == "Gun")
         {
             transform.Find("Gun").gameObject.SetActive(true);
             transform.Find("Knife").gameObject.SetActive(false);

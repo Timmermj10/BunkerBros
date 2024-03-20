@@ -10,6 +10,7 @@ TagManager:
   - Projectile
   - Structure
   - Resource
+  - Pickup
   layers:
   - Default
   - TransparentFX

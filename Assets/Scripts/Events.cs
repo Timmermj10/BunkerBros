@@ -73,19 +73,33 @@ public class CoinCollect
 // Class for general item purchases
 public class PurchaseEvent
 {
-    public int itemID;
-    public string itemName;
-    public Sprite itemIcon;
-    public int itemCount;
-    public bool isOneTimePurchase;
-    //public InventoryItem item;
-    //TODO: Consolidate
+    //public int itemID;
+    //public string itemName;
+    //public Sprite itemIcon;
+    //public int itemCount;
+    //public bool isOneTimePurchase;
+    public InventoryItem purchasedItem;
+
     public PurchaseEvent(InventoryItem item)
     {
-        itemID = item.itemId;
-        itemName = item.itemName;
-        itemIcon = item.itemIcon;
-        itemCount = item.itemCount;
-        isOneTimePurchase = item.oneTimePurchase;
+        purchasedItem.itemId = item.itemId;
+        purchasedItem.itemName = item.itemName;
+        purchasedItem.itemIcon = item.itemIcon;
+        purchasedItem.itemCount = item.itemCount;
+        purchasedItem.oneTimePurchase = item.oneTimePurchase;
     }
 }
+
+// Class for picking up items
+public class PickUpEvent
+{
+    public InventoryItem pickedUpItem;
+    public int itemID;
+    public string itemName;
+
+    public PickUpEvent(InventoryItem item)
+    {
+        pickedUpItem.itemId = item.itemId;
+        pickedUpItem.itemName = item.itemName;
+    }
+}   
