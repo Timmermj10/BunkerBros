@@ -2,18 +2,33 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using static UnityEngine.GraphicsBuffer;
 
-public class HealthUI : MonoBehaviour
+public class HealthManager : MonoBehaviour
 {
     // Health
-    public HasHealth playerHealth;
+    private HasHealth playerHealth;
     public HasHealth towerHealth;
 
     // UI
     public Text playerHealthUI;
     public Text towerHealthUI;
 
-    // Update is called once per frame
+
+    private void Start()
+    {
+        EventBus.Subscribe<PlayerRespawnEvent>(_PlayerRespawn);
+
+        Transform target = GameObject.FindWithTag("Player").transform;
+
+        while (target.parent != null)
+        {
+            target = target.parent;
+        }
+
+        playerHealth = target.GetComponent<HasHealth>();
+    }
+
     void Update()
     {
         // Adjust values to min out at 1
@@ -23,5 +38,10 @@ public class HealthUI : MonoBehaviour
         // Set UI
         playerHealthUI.text = $"Player Health: {playerHealth.currentHealth}";
         towerHealthUI.text = $"Tower Health: {towerHealth.currentHealth}";
+    }
+
+    private void _PlayerRespawn(PlayerRespawnEvent e)
+    {
+        playerHealth = e.activePlayer.GetComponent<HasHealth>();
     }
 }

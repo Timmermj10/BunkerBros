@@ -26,11 +26,7 @@ public class HasHealth : MonoBehaviour
 
     private void Die()
     {
-
-        if (gameObject.CompareTag("Enemy"))
-        {
-            EventBus.Publish<EnemyDefeat>(new EnemyDefeat(transform.position));
-        }
+        EventBus.Publish(new ObjectDestroyedEvent(gameObject.name, gameObject.tag, gameObject.transform.position));
 
         //Debug.Log(gameObject.name + " has died!");
         Destroy(gameObject);

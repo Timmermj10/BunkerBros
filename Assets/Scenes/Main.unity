@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571337, b: 0.3069219, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -534,7 +534,6 @@ GameObject:
   - component: {fileID: 59514330}
   - component: {fileID: 59514332}
   - component: {fileID: 59514331}
-  - component: {fileID: 59514333}
   m_Layer: 5
   m_Name: TowerHealth
   m_TagString: Untagged
@@ -603,22 +602,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 59514329}
   m_CullTransparentMesh: 1
---- !u!114 &59514333
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 59514329}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 35cf4d77cfa73b34a8f0ea32e2e6c96c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerHealth: {fileID: 1210054900}
-  towerHealth: {fileID: 747948175}
-  playerHealthUI: {fileID: 1780979230}
-  towerHealthUI: {fileID: 59514331}
 --- !u!1001 &61013739
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2278,6 +2261,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c8d251c3d4c75b4e9550019e8bc5fe5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  activePlayerPrefab: {fileID: 2463675146606809864, guid: c1cf7c557e41a435db23620016b92d83,
+    type: 3}
   activePlayer: {fileID: 1210054893}
 --- !u!114 &330585549
 MonoBehaviour:
@@ -2291,7 +2276,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 763064076d5e44d42b351511aeb32cc4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 1290056573}
   offset: {x: 0, y: 0.2, z: 0}
 --- !u!1001 &330777159
 PrefabInstance:
@@ -5445,7 +5429,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 1509652063}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 888826564}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ada0cb034d14d4065882f6fdbed5bdd0, type: 3}
@@ -6563,6 +6547,33 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 870323513}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &888826564 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7215493473248351806, guid: f97966fa08f7246579cb2f278c1d4909,
+    type: 3}
+  m_PrefabInstance: {fileID: 1509652063}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &888826567
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 888826564}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0.050000012, z: 0}
 --- !u!1001 &891703167
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7430,7 +7441,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -0.000030517578, y: 0}
   m_SizeDelta: {x: 0, y: 321.772}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1113516764
@@ -9076,12 +9087,18 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1210054900}
   m_SourcePrefab: {fileID: 100100000, guid: c1cf7c557e41a435db23620016b92d83, type: 3}
---- !u!4 &1290056573 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 3457418052326730881, guid: c1cf7c557e41a435db23620016b92d83,
+--- !u!114 &1290056574 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2795680284881736967, guid: c1cf7c557e41a435db23620016b92d83,
     type: 3}
   m_PrefabInstance: {fileID: 1290056572}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1210054893}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ada0cb034d14d4065882f6fdbed5bdd0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1318113357
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10894,7 +10911,11 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7215493473248351806, guid: f97966fa08f7246579cb2f278c1d4909,
+        type: 3}
+      insertIndex: 1
+      addedObject: {fileID: 888826567}
   m_SourcePrefab: {fileID: 100100000, guid: f97966fa08f7246579cb2f278c1d4909, type: 3}
 --- !u!1001 &1514998379
 PrefabInstance:
@@ -12987,7 +13008,6 @@ GameObject:
   - component: {fileID: 1780979229}
   - component: {fileID: 1780979231}
   - component: {fileID: 1780979230}
-  - component: {fileID: 1780979232}
   m_Layer: 5
   m_Name: PlayerHealth
   m_TagString: Untagged
@@ -13056,22 +13076,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1780979228}
   m_CullTransparentMesh: 1
---- !u!114 &1780979232
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1780979228}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 35cf4d77cfa73b34a8f0ea32e2e6c96c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerHealth: {fileID: 1210054900}
-  towerHealth: {fileID: 747948175}
-  playerHealthUI: {fileID: 1780979230}
-  towerHealthUI: {fileID: 59514331}
 --- !u!1001 &1800844721
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13750,6 +13754,7 @@ GameObject:
   - component: {fileID: 1875324183}
   - component: {fileID: 1875324182}
   - component: {fileID: 1875324181}
+  - component: {fileID: 1875324185}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -13844,6 +13849,22 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1875324185
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1875324180}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 098342e6aafc65c419287dd3a33fe5fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerHealth: {fileID: 1290056574}
+  towerHealth: {fileID: 747948175}
+  playerHealthUI: {fileID: 1780979230}
+  towerHealthUI: {fileID: 59514331}
 --- !u!1001 &1895483988
 PrefabInstance:
   m_ObjectHideFlags: 0
