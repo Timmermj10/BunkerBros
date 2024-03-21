@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3788505914144343284}
   - component: {fileID: 6732744233939267377}
   - component: {fileID: -6600371470969792827}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Airdrop
   m_TagString: Untagged
   m_Icon: {fileID: 0}

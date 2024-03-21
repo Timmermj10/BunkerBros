@@ -2479,7 +2479,7 @@ MonoBehaviour:
     itemIcon: {fileID: 0}
     itemCount: 0
     oneTimePurchase: 1
-  coins: 150
+  coins: 1000
   coinsText: {fileID: 734753316}
 --- !u!4 &349862697
 Transform:
@@ -8992,6 +8992,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: player
+      objectReference: {fileID: 0}
+    - target: {fileID: 2463675146606809864, guid: c1cf7c557e41a435db23620016b92d83,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 3457418052326730881, guid: c1cf7c557e41a435db23620016b92d83,
         type: 3}
