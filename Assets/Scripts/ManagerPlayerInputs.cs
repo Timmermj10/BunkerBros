@@ -39,9 +39,6 @@ public class ManagerPlayerInputs : MonoBehaviour
 
     private void MarkOccupiedTiles()
     {
-
-        Camera managerCamera = GameObject.Find("ManagerCamera").GetComponent<Camera>();
-
         //Debug.Log($"Looking for occupied tiles");
         for(float i = -10; i < 10; i++)
         {
@@ -63,14 +60,14 @@ public class ManagerPlayerInputs : MonoBehaviour
                     }
                 } else
                 {
-                    Debug.Log($"Raycast for tile {i}, {j} hit nothing");
+                    //Debug.Log($"Raycast for tile {i}, {j} hit nothing");
                 }
             }
         }
 
         foreach (Vector2 tile in occupiedTiles)
         {
-            Debug.Log($"Occupied Tile = {tile}");
+            //Debug.Log($"Occupied Tile = {tile}");
         }
     }
 
