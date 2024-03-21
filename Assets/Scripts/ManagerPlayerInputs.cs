@@ -73,7 +73,7 @@ public class ManagerPlayerInputs : MonoBehaviour
 
             // Check to see if that tile is within the camera area
             // Debug.Log($"X: {managerCamera.transform.position.x}, Z: {managerCamera.transform.position.z}");
-            if (withinView(worldPositionRounded))
+            if (inventory.inventoryItems.Count > 0 && withinView(worldPositionRounded))
             {
                 // Check to see if we have the Airstrike equipped in the inventory
                 if (inventory.inventoryItems[inventory.inventoryItemsIndex] == 0)

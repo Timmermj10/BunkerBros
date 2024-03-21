@@ -103,3 +103,14 @@ public class PickUpEvent
         pickedUpItem.itemName = item.itemName;
     }
 }   
+
+// Class for the gold chest enemies
+public class GoldChestEvent
+{
+    public bool entering;
+
+    public GoldChestEvent(bool e)
+    {
+        entering = e;
+    }
+}

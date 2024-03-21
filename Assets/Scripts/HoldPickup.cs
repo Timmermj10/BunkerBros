@@ -55,7 +55,7 @@ public class HoldPickup : MonoBehaviour
                     InventoryItem pickup = new InventoryItem();
                     
                     // If the item is a goldchest
-                    if (item.name is "goldchest")
+                    if (item.name is "GoldChest")
                     {
                         // Publish a CoinCollect event
                         EventBus.Publish<CoinCollect>(new CoinCollect(150));

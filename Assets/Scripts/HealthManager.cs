@@ -24,9 +24,11 @@ public class HealthManager : MonoBehaviour
         while (target.parent != null)
         {
             target = target.parent;
+            Debug.Log(target.name);
         }
 
         playerHealth = target.GetComponent<HasHealth>();
+        Debug.Log(playerHealth.currentHealth);
     }
 
     void Update()
