@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 5353217459263341450}
   - component: {fileID: 2997319142065192431}
   - component: {fileID: 6776554893320096386}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Objective
   m_TagString: Objective
   m_Icon: {fileID: 0}
@@ -150,5 +150,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ada0cb034d14d4065882f6fdbed5bdd0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 20
+  maxHealth: 1000
   currentHealth: 0

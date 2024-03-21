@@ -73,7 +73,7 @@ public class ManagerPlayerInputs : MonoBehaviour
 
             // Check to see if that tile is within the camera area
             // Debug.Log($"X: {managerCamera.transform.position.x}, Z: {managerCamera.transform.position.z}");
-            if (withinView(worldPositionRounded))
+            if (withinView(worldPositionRounded) && inventory.inventoryItems.Count > 0)
             {
                 // Check to see if we have the Airstrike equipped in the inventory
                 if (inventory.inventoryItems[inventory.inventoryItemsIndex] == 0)
@@ -89,7 +89,7 @@ public class ManagerPlayerInputs : MonoBehaviour
                     //get the location of the item
                     Vector3 itemUsedLocation = new Vector3(worldPositionRounded.x, worldPositionRounded.y + 0.5f, worldPositionRounded.z);
 
-                    Debug.Log("Publishing itemUseEvent for wall");
+                    //Debug.Log("Publishing itemUseEvent for wall");
                     EventBus.Publish<ItemUseEvent>(new ItemUseEvent(1, itemUsedLocation, true)); // Changed to 1 for a wall
                 }
             }

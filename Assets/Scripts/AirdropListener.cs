@@ -25,7 +25,7 @@ public class AirdropListener : MonoBehaviour
         //If the item used is an airdrop item
         if (e.isAirdrop)
         {
-            Debug.Log("Starting Airdrop");
+            //Debug.Log("Starting Airdrop");
 
             //get the airdrop start position
             Vector3 initialDropLocation = new Vector3(e.itemLocation.x, e.itemLocation.y + dropHeight, e.itemLocation.z);

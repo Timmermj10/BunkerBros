@@ -9282,7 +9282,6 @@ GameObject:
   - component: {fileID: 1350505078}
   - component: {fileID: 1350505077}
   - component: {fileID: 1350505076}
-  - component: {fileID: 1350505080}
   - component: {fileID: 1350505082}
   - component: {fileID: 1350505081}
   - component: {fileID: 1350505083}
@@ -9414,18 +9413,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
---- !u!114 &1350505080
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1350505075}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a057737c7a337f4ca43eba09ec35a9e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1350505081
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10922,6 +10909,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Objective
       objectReference: {fileID: 0}
+    - target: {fileID: 7215493473248351806, guid: f97966fa08f7246579cb2f278c1d4909,
+        type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -11161,6 +11153,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2996310300922822429, guid: 2f989cafe2d9243b2a04b1d6779dcb21,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2996310300922822429, guid: 2f989cafe2d9243b2a04b1d6779dcb21,
         type: 3}
       propertyPath: spawnDelay
@@ -20631,7 +20628,7 @@ Transform:
   m_GameObject: {fileID: 2067350578}
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 2.952, y: 2, z: -4}
+  m_LocalPosition: {x: 0, y: 2, z: 5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
