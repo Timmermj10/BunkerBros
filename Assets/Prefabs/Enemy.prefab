@@ -326,7 +326,6 @@ GameObject:
   - component: {fileID: 8146292613159046740}
   - component: {fileID: 7516923686927751606}
   - component: {fileID: 8176726984862410168}
-  - component: {fileID: 5232023001597368649}
   - component: {fileID: 2106889251236612774}
   - component: {fileID: 5468410044496945492}
   m_Layer: 11
@@ -459,20 +458,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 2
---- !u!114 &5232023001597368649
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8086104934813058034}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 38e3ec4bb299e4c5b969928df0936357, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  coin_prefab: {fileID: 5115533215760890170, guid: 770d9d49059474322b8e216accffa33a,
-    type: 3}
 --- !u!114 &2106889251236612774
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571337, b: 0.3069219, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -9437,6 +9437,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   wallPrefab: {fileID: 6836581503973730888, guid: b73f1c3525d174001a5008d8146ca880,
     type: 3}
+  movementSpeed: 5
 --- !u!114 &1350505082
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10602,7 +10603,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1421389290}
   m_HandleRect: {fileID: 1421389289}
   m_Direction: 0
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -11111,10 +11112,15 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemySpawnerX (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 6594445399303443660, guid: 2f989cafe2d9243b2a04b1d6779dcb21,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8068522591549321756, guid: 2f989cafe2d9243b2a04b1d6779dcb21,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3
+      value: 2.52
       objectReference: {fileID: 0}
     - target: {fileID: 8068522591549321756, guid: 2f989cafe2d9243b2a04b1d6779dcb21,
         type: 3}
@@ -11124,7 +11130,7 @@ PrefabInstance:
     - target: {fileID: 8068522591549321756, guid: 2f989cafe2d9243b2a04b1d6779dcb21,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -5
+      value: -2.73
       objectReference: {fileID: 0}
     - target: {fileID: 8068522591549321756, guid: 2f989cafe2d9243b2a04b1d6779dcb21,
         type: 3}
@@ -12054,6 +12060,52 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1624232940}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1641772574
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1641772576}
+  - component: {fileID: 1641772575}
+  m_Layer: 0
+  m_Name: ResourceSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1641772575
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1641772574}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38e3ec4bb299e4c5b969928df0936357, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coin_prefab: {fileID: 5115533215760890170, guid: 770d9d49059474322b8e216accffa33a,
+    type: 3}
+--- !u!4 &1641772576
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1641772574}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 11.00235, y: 14.92063, z: -1.3810537}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1643585853
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16426,3 +16478,4 @@ SceneRoots:
   - {fileID: 1509652063}
   - {fileID: 434760924}
   - {fileID: 1522445967}
+  - {fileID: 1641772576}
