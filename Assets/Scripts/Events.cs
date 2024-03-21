@@ -78,7 +78,7 @@ public class PurchaseEvent
     //public Sprite itemIcon;
     //public int itemCount;
     //public bool isOneTimePurchase;
-    public InventoryItem purchasedItem;
+    public InventoryItem purchasedItem = new InventoryItem();
 
     public PurchaseEvent(InventoryItem item)
     {

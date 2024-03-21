@@ -75,24 +75,23 @@ public class ManagerPlayerInputs : MonoBehaviour
             // Debug.Log($"X: {managerCamera.transform.position.x}, Z: {managerCamera.transform.position.z}");
             if (withinView(worldPositionRounded))
             {
-                //get the location of the item
-                Vector3 itemUsedLocation = new Vector3(worldPositionRounded.x, worldPositionRounded.y + 0.5f, worldPositionRounded.z);
+                // Check to see if we have the Airstrike equipped in the inventory
+                if (inventory.inventoryItems[inventory.inventoryItemsIndex] == 0)
+                {
+                    //get the location of the item
+                    Vector3 itemUsedLocation = new Vector3(worldPositionRounded.x, worldPositionRounded.y + 0.5f, worldPositionRounded.z);
 
-                // Publish a use Event so the shop manager can update count and 
-                EventBus.Publish<ItemUseEvent>(new ItemUseEvent(0, itemUsedLocation, false)); //id is 0 for airstrike
-            }
-            else if (inventory.inventoryItems.Count > 0 && inventory.inventoryItems[inventory.inventoryItemsIndex] == 1 && worldPositionRounded.y < 1)
-            {
-                //get the location of the item
-                Vector3 itemUsedLocation = new Vector3(worldPositionRounded.x, worldPositionRounded.y + 0.5f, worldPositionRounded.z);
+                    // Publish a use Event so the shop manager can update count and 
+                    EventBus.Publish<ItemUseEvent>(new ItemUseEvent(0, itemUsedLocation, false)); //id is 0 for airstrike
+                }
+                else if (inventory.inventoryItems[inventory.inventoryItemsIndex] == 1 && worldPositionRounded.y < 1)
+                {
+                    //get the location of the item
+                    Vector3 itemUsedLocation = new Vector3(worldPositionRounded.x, worldPositionRounded.y + 0.5f, worldPositionRounded.z);
 
-                // Spawn the wall
-                //Instantiate(wallPrefab, itemUsedLocation, Quaternion.identity);
-
-                // Publish a use Event so the shop manager can update count
-
-                Debug.Log("Publishing itemUseEvent for wall");
-                EventBus.Publish<ItemUseEvent>(new ItemUseEvent(1, itemUsedLocation, true)); // Changed to 1 for a wall
+                    Debug.Log("Publishing itemUseEvent for wall");
+                    EventBus.Publish<ItemUseEvent>(new ItemUseEvent(1, itemUsedLocation, true)); // Changed to 1 for a wall
+                }
             }
         }
         else
