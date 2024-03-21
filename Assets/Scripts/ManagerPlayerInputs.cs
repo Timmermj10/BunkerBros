@@ -19,6 +19,8 @@ public class ManagerPlayerInputs : MonoBehaviour
 
     public GameObject wallPrefab;
 
+    private HashSet<Vector2> occupiedTiles = new HashSet<Vector2>();
+
     // Movement Speed
     public float movementSpeed = 5.0f;
 
@@ -28,13 +30,20 @@ public class ManagerPlayerInputs : MonoBehaviour
         moveAction = playerInput.actions.FindAction("Move");
         inventory = GameObject.Find("Inventory").GetComponent<InventoryUI>();
 
-        //Debug.Log(playerInput.currentControlScheme);
-        //Debug.Log(playerInput.currentActionMap);
-
         managerCamera = GameObject.Find("ManagerCamera");
+
+        //Add location of objective
+        occupiedTiles.Add(new Vector2(-3, -2));
+
+        EventBus.Subscribe<ObjectDestroyedEvent>(_UpdateOccupiedTiles);
     }
 
-    private void Update()
+    private void _UpdateOccupiedTiles(ObjectDestroyedEvent e)
+    {
+        occupiedTiles.Remove(new Vector2(Mathf.RoundToInt(e.deathCoordinates.x), Mathf.RoundToInt(e.deathCoordinates.z)));
+    }
+
+    private void FixedUpdate()
     {
         // Set the velocity
         managerCamera.GetComponent<Rigidbody>().velocity = new Vector3(movementInputValue[0], 0, movementInputValue[1]) * movementSpeed;
@@ -84,10 +93,11 @@ public class ManagerPlayerInputs : MonoBehaviour
                     // Publish a use Event so the shop manager can update count and 
                     EventBus.Publish<ItemUseEvent>(new ItemUseEvent(0, itemUsedLocation, false)); //id is 0 for airstrike
                 }
-                else if (inventory.inventoryItems[inventory.inventoryItemsIndex] == 1 && worldPositionRounded.y < 1)
+                else if (inventory.inventoryItems[inventory.inventoryItemsIndex] == 1 && !occupiedTiles.Contains(new Vector2(worldPositionRounded.x, worldPositionRounded.z)))
                 {
                     //get the location of the item
                     Vector3 itemUsedLocation = new Vector3(worldPositionRounded.x, worldPositionRounded.y + 0.5f, worldPositionRounded.z);
+                    occupiedTiles.Add(new Vector2(worldPositionRounded.x, worldPositionRounded.z));
 
                     //Debug.Log("Publishing itemUseEvent for wall");
                     EventBus.Publish<ItemUseEvent>(new ItemUseEvent(1, itemUsedLocation, true)); // Changed to 1 for a wall
@@ -123,21 +133,5 @@ public class ManagerPlayerInputs : MonoBehaviour
         return false;
     } 
 }
-
-/*
-     private void FixedUpdate()
-    {
-        movePlayer();
-    }
-
-    private void movePlayer()
-    {
-        if (moveAction.ReadValue<Vector2>() != Vector2.zero)
-        {
-            Debug.Log(moveAction.ReadValue<Vector2>());
-        }
-    }
-    }
-*/
 
 
