@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using static UnityEngine.Rendering.DebugUI;
@@ -8,6 +9,7 @@ public class HoldPickup : MonoBehaviour
 {
     // Time it will take to pick items up
     public float timeToPickup = 3.0f;
+    private float pickupTimer = 0;
 
     // Whether the button is pressed down
     private bool buttonPressed = false;
@@ -19,60 +21,55 @@ public class HoldPickup : MonoBehaviour
     public List<GameObject> pickedUpItems = new List<GameObject>();
 
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
     // Update is called once per frame
-    void Update()
+    private void FixedUpdate()
     {
         // If we are pressing down the button and there is an item that can be pickedup
         if (buttonPressed && itemsInRange.Count > 0)
         {
-            timeToPickup -= Time.deltaTime;
+            pickupTimer -= Time.deltaTime;
+            Debug.Log($"Attempting to pickup, timer = {pickupTimer}");
+
+            // Check if we have reached the end of the timer
+            if (pickupTimer <= 0)
+            {
+                pickupTimer = timeToPickup;
+
+                // For each item within range
+                foreach (var item in itemsInRange)
+                {
+                    // If there is an item
+                    if (item != null)
+                    {
+                        // Define a pickup InventoryItem
+                        InventoryItem pickup = new InventoryItem();
+
+                        // If the item is a goldchest
+                        if (item.name is "GoldChest")
+                        {
+                            // Publish a CoinCollect event
+                            EventBus.Publish<CoinCollect>(new CoinCollect(150));
+                        }
+                        else if (item.name is "MissileBox")
+                        {
+                            Debug.Log("Publishing missileparts pickup");
+                            EventBus.Publish<PickUpEvent>(new PickUpEvent(ActivePlayerInventory.activePlayerItems.MissileParts));
+                        }
+
+                        // Destroy the item
+                        Destroy(item);
+                    }
+                }
+
+                // Clear the items in range list
+                itemsInRange.Clear();
+            }
         }
 
         // If we aren't pressing down the button
-        else if (timeToPickup != 3.0f)
+        else if (pickupTimer != timeToPickup)
         {
-            timeToPickup = 3.0f;
-        }
-
-        // Check if we have reached the end of the timer
-        if (timeToPickup <= 0)
-        {
-            timeToPickup = 3.0f;
-
-            // For each item within range
-            foreach (var item in itemsInRange)
-            {
-                // If there is an item
-                if (item != null)
-                {
-                    // Define a pickup InventoryItem
-                    InventoryItem pickup = new InventoryItem();
-                    
-                    // If the item is a goldchest
-                    if (item.name is "GoldChest")
-                    {
-                        // Publish a CoinCollect event
-                        EventBus.Publish<CoinCollect>(new CoinCollect(150));
-                    }
-                    else
-                    {
-                        // Publish a PickUpEvent
-                        EventBus.Publish<PickUpEvent>(new PickUpEvent(pickup));
-                    }
-
-                    // Destroy the item
-                    Destroy(item);
-                }
-            }
-
-            // Clear the items in range list
-            itemsInRange.Clear();
+            pickupTimer = timeToPickup;
         }
     }
 

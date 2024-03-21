@@ -32,10 +32,46 @@ public class ManagerPlayerInputs : MonoBehaviour
 
         managerCamera = GameObject.Find("ManagerCamera");
 
-        //Add location of objective
-        occupiedTiles.Add(new Vector2(-3, -2));
+        MarkOccupiedTiles();
 
         EventBus.Subscribe<ObjectDestroyedEvent>(_UpdateOccupiedTiles);
+    }
+
+    private void MarkOccupiedTiles()
+    {
+
+        Camera managerCamera = GameObject.Find("ManagerCamera").GetComponent<Camera>();
+
+        //Debug.Log($"Looking for occupied tiles");
+        for(float i = -10; i < 10; i++)
+        {
+            for (float j = -10; j < 10; j++)
+            {
+                Vector3 rayStart = new Vector3(i, 10, j);
+                Ray ray = new Ray(rayStart, Vector3.down);
+                RaycastHit hit;
+
+                if (Physics.Raycast(ray, out hit, Mathf.Infinity, ~LayerMask.GetMask("Player")))
+                {
+                    Vector3 worldPosition = hit.point;
+
+                    //Debug.Log($"tile {i}, {j} has height {worldPosition.y}");
+
+                    if (worldPosition.y >= 1)
+                    {
+                        occupiedTiles.Add(new Vector2(Mathf.RoundToInt(i), Mathf.RoundToInt(j)));
+                    }
+                } else
+                {
+                    Debug.Log($"Raycast for tile {i}, {j} hit nothing");
+                }
+            }
+        }
+
+        foreach (Vector2 tile in occupiedTiles)
+        {
+            Debug.Log($"Occupied Tile = {tile}");
+        }
     }
 
     private void _UpdateOccupiedTiles(ObjectDestroyedEvent e)
@@ -72,7 +108,7 @@ public class ManagerPlayerInputs : MonoBehaviour
         //Ray mouseRay = mainCamera.ScreenPointToRay(screenPosition);
         RaycastHit hit;
 
-        if (Physics.Raycast(mouseRay, out hit, Mathf.Infinity, ~LayerMask.GetMask("Enemy")))
+        if (Physics.Raycast(mouseRay, out hit, Mathf.Infinity, ~(LayerMask.GetMask("Enemy") | LayerMask.GetMask("Player"))))
         {
             // Now worldPosition contains the 3D point in world space where the mouse is pointing
             Vector3 worldPosition = hit.point;

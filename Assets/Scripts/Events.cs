@@ -93,14 +93,11 @@ public class PurchaseEvent
 // Class for picking up items
 public class PickUpEvent
 {
-    public InventoryItem pickedUpItem;
-    public int itemID;
-    public string itemName;
+    public ActivePlayerInventory.activePlayerItems pickedUpItem;
 
-    public PickUpEvent(InventoryItem item)
+    public PickUpEvent(ActivePlayerInventory.activePlayerItems item)
     {
-        pickedUpItem.itemId = item.itemId;
-        pickedUpItem.itemName = item.itemName;
+        pickedUpItem = item;
     }
 }   
 
