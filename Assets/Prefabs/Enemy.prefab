@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9172794361944238741}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: LeftHand
-  m_TagString: Player
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -62,7 +62,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 8516339391024268590}
   m_Father: {fileID: 4295381654903413534}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &5739468835191835407
@@ -126,9 +127,9 @@ GameObject:
   - component: {fileID: 8516339391024268590}
   - component: {fileID: 6930101886078574427}
   - component: {fileID: 1787090526256415796}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Hands
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -148,7 +149,7 @@ Transform:
   m_Children:
   - {fileID: 1315551065882304683}
   - {fileID: 9172794361944238741}
-  m_Father: {fileID: 4295381654903413534}
+  m_Father: {fileID: 7776007843613503935}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!136 &6930101886078574427
 CapsuleCollider:
@@ -283,7 +284,7 @@ GameObject:
   - component: {fileID: 1655073689176507908}
   m_Layer: 6
   m_Name: PlayerView
-  m_TagString: Player
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -421,7 +422,6 @@ Transform:
   - {fileID: 4992681325320834671}
   - {fileID: 2010521837325947228}
   - {fileID: 7776007843613503935}
-  - {fileID: 8516339391024268590}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &7946255645848568829
@@ -531,9 +531,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1315551065882304683}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: RightHand
-  m_TagString: Player
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -567,7 +567,7 @@ GameObject:
   - component: {fileID: 5826665789256303488}
   m_Layer: 6
   m_Name: PlayerView
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
