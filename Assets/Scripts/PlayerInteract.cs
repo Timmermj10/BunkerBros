@@ -69,7 +69,7 @@ public class PlayerInteract : MonoBehaviour
                         if (item.name is "MissileSilo" || item.name is "MissileSilo(Clone)")
                         {
                             MissileSiloStatus silo = item.GetComponent<MissileSiloStatus>();
-                            Debug.Log("Attempting to load Silo");
+                            //Debug.Log("Attempting to load Silo");
                             if (silo != null && !silo.isSiloLoaded() && GetComponent<ActivePlayerInventory>().itemInInventory(ActivePlayerInventory.activePlayerItems.MissileParts))
                             {
                                 //Debug.Log("Loading MissileSilo");

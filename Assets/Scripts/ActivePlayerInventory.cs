@@ -21,7 +21,7 @@ public class ActivePlayerInventory : MonoBehaviour
 
     private void _OnPickup(PickUpEvent e)
     {
-        Debug.Log($"Adding {e.pickedUpItem} of type {e.pickedUpItem.GetType()} to activePlayerInventory");
+        //Debug.Log($"Adding {e.pickedUpItem} of type {e.pickedUpItem.GetType()} to activePlayerInventory");
         playerInventory.Add(e.pickedUpItem);
     }
 
