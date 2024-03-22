@@ -53,7 +53,7 @@ public class AirstrikeListener : MonoBehaviour
         ParticleSystem particles = explosionEffect.GetComponent<ParticleSystem>();
 
         //Debug.Log("Calling DamageObjectsWithinRadius");
-        DamageObjectsWithinRadius(position, 1.5f, airstrikeDamage);
+        DamageObjectsWithinRadius(position, blastRadius, airstrikeDamage);
 
 
         // Wait for the particle system to finish

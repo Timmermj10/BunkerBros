@@ -60317,7 +60317,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1265600107}
   - component: {fileID: 1265600108}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: PickupArea
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -65686,7 +65686,7 @@ MonoBehaviour:
   explosionPrefab: {fileID: 2278422487833797206, guid: 30da79b3e424b16418db2f372358f60e,
     type: 3}
   airstrikeHeight: 2
-  blastRadius: 3
+  blastRadius: 5
   damageableLayer:
     serializedVersion: 2
     m_Bits: 0
