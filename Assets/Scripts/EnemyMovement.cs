@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemyMovement : MonoBehaviour
 {
 
-    
+    public BoxCollider detecter;
     public float speed = 5f;
     private GameObject obj;
     private Vector3 obj_loca;
