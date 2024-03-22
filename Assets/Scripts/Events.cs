@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEditor.Rendering.CameraUI;
 
 public class AttackEvent
 {
@@ -110,4 +111,19 @@ public class GoldChestEvent
     {
         entering = e;
     }
+}
+
+public class InteractTimerStartedEvent
+{
+    public float duration;
+
+    public InteractTimerStartedEvent(float duration)
+    {
+        this.duration = duration;
+    }
+
+}
+
+public class InteractTimerEndedEvent
+{
 }

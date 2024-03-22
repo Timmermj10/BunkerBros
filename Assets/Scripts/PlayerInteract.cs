@@ -9,7 +9,7 @@ using static UnityEngine.Rendering.DebugUI;
 public class PlayerInteract : MonoBehaviour
 {
     // Time it will take to pick items up
-    public float timeToInteract = 3.0f;
+    public float timeToInteract = 2.0f;
     private float interactTimer = 0;
 
     // Whether the button is pressed down
@@ -28,13 +28,16 @@ public class PlayerInteract : MonoBehaviour
         // If we are pressing down the button and there is an item that can be pickedup
         if (buttonPressed && itemsInRange.Count > 0)
         {
+            EventBus.Publish(new InteractTimerStartedEvent(timeToInteract));
+
             interactTimer -= Time.deltaTime;
-            Debug.Log($"Attempting to interact, timer = {interactTimer}");
+            //Debug.Log($"Attempting to interact, timer = {interactTimer}");
 
             // Check if we have reached the end of the timer
             if (interactTimer <= 0)
             {
                 interactTimer = timeToInteract;
+                EventBus.Publish(new InteractTimerEndedEvent());
 
                 // For each item within range
                 foreach (var item in itemsInRange)
@@ -53,7 +56,7 @@ public class PlayerInteract : MonoBehaviour
                         }
                         else if (item.name is "MissileBox" || item.name is "MissileBox(Clone)")
                         {
-                            Debug.Log("Publishing missileparts pickup");
+                            //Debug.Log("Publishing missileparts pickup");
                             EventBus.Publish<PickUpEvent>(new PickUpEvent(ActivePlayerInventory.activePlayerItems.MissileParts));
                         }
 
@@ -69,12 +72,12 @@ public class PlayerInteract : MonoBehaviour
                             Debug.Log("Attempting to load Silo");
                             if (silo != null && !silo.isSiloLoaded() && GetComponent<ActivePlayerInventory>().itemInInventory(ActivePlayerInventory.activePlayerItems.MissileParts))
                             {
-                                Debug.Log("Loading MissileSilo");
+                                //Debug.Log("Loading MissileSilo");
                                 silo.loadSilo();
                             }
                             else
                             {
-                                Debug.Log($"Failed to load Silo: silo status = {silo.isSiloLoaded()}, doesThePlayerHaveMissileParts = {GetComponent<ActivePlayerInventory>().itemInInventory(ActivePlayerInventory.activePlayerItems.MissileParts)}");
+                                //Debug.Log($"Failed to load Silo: silo status = {silo.isSiloLoaded()}, doesThePlayerHaveMissileParts = {GetComponent<ActivePlayerInventory>().itemInInventory(ActivePlayerInventory.activePlayerItems.MissileParts)}");
                             }
                             
                         }
@@ -91,6 +94,7 @@ public class PlayerInteract : MonoBehaviour
         else if (interactTimer != timeToInteract)
         {
             interactTimer = timeToInteract;
+            EventBus.Publish(new InteractTimerEndedEvent());
         }
     }
 
