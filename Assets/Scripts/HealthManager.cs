@@ -36,10 +36,6 @@ public class HealthManager : MonoBehaviour
         // Adjust values to min out at 1
         playerHealth.currentHealth = Mathf.Max(playerHealth.currentHealth, 0);
         towerHealth.currentHealth = Mathf.Max(towerHealth.currentHealth, 0);
-
-        // Set UI
-        playerHealthUI.text = $"Player Health: {playerHealth.currentHealth}";
-        towerHealthUI.text = $"Tower Health: {towerHealth.currentHealth}";
     }
 
     private void _PlayerRespawn(PlayerRespawnEvent e)
