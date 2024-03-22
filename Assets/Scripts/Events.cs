@@ -74,20 +74,11 @@ public class CoinCollect
 // Class for general item purchases
 public class PurchaseEvent
 {
-    //public int itemID;
-    //public string itemName;
-    //public Sprite itemIcon;
-    //public int itemCount;
-    //public bool isOneTimePurchase;
     public InventoryItem purchasedItem = new InventoryItem();
 
     public PurchaseEvent(InventoryItem item)
     {
-        purchasedItem.itemId = item.itemId;
-        purchasedItem.itemName = item.itemName;
-        purchasedItem.itemIcon = item.itemIcon;
-        purchasedItem.itemCount = item.itemCount;
-        purchasedItem.oneTimePurchase = item.oneTimePurchase;
+        purchasedItem = item;
     }
 }
 
@@ -126,4 +117,14 @@ public class InteractTimerStartedEvent
 
 public class InteractTimerEndedEvent
 {
+}
+
+public class SiloLoadedEvent
+{
+    public MissileSiloStatus status;
+
+    public SiloLoadedEvent(MissileSiloStatus e)
+    {
+        status = e;
+    }
 }

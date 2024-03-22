@@ -117,14 +117,14 @@ public class ManagerPlayerInputs : MonoBehaviour
             // Debug.Log($"X: {managerCamera.transform.position.x}, Z: {managerCamera.transform.position.z}");
             if (withinView(worldPositionRounded) && inventory.inventoryItems.Count > 0)
             {
-                // Check to see if we have the Airstrike equipped in the inventory
+                // Check to see if we have the Nuke Parts equipped in the inventory
                 if (inventory.inventoryItems[inventory.inventoryItemsIndex] == 0)
                 {
                     //get the location of the item
                     Vector3 itemUsedLocation = new Vector3(worldPositionRounded.x, worldPositionRounded.y + 0.5f, worldPositionRounded.z);
+                    occupiedTiles.Add(new Vector2(worldPositionRounded.x, worldPositionRounded.z));
 
-                    // Publish a use Event so the shop manager can update count and 
-                    EventBus.Publish<ItemUseEvent>(new ItemUseEvent(0, itemUsedLocation, false)); //id is 0 for airstrike
+                    EventBus.Publish<ItemUseEvent>(new ItemUseEvent(0, itemUsedLocation, true)); // Changed to 0 for nuke parts
                 }
                 else if (inventory.inventoryItems[inventory.inventoryItemsIndex] == 1 && !occupiedTiles.Contains(new Vector2(worldPositionRounded.x, worldPositionRounded.z)))
                 {
@@ -134,6 +134,14 @@ public class ManagerPlayerInputs : MonoBehaviour
 
                     //Debug.Log("Publishing itemUseEvent for wall");
                     EventBus.Publish<ItemUseEvent>(new ItemUseEvent(1, itemUsedLocation, true)); // Changed to 1 for a wall
+                }
+                else if (inventory.inventoryItems[inventory.inventoryItemsIndex] == 4 && !occupiedTiles.Contains(new Vector2(worldPositionRounded.x, worldPositionRounded.z)))
+                {
+                    //get the location of the item
+                    Vector3 itemUsedLocation = new Vector3(worldPositionRounded.x, worldPositionRounded.y + 0.5f, worldPositionRounded.z);
+
+                    // Publish a use Event so the shop manager can update count and 
+                    EventBus.Publish<ItemUseEvent>(new ItemUseEvent(4, itemUsedLocation, false)); //id is 4 for nuke
                 }
             }
         }

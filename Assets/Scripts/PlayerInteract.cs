@@ -74,6 +74,9 @@ public class PlayerInteract : MonoBehaviour
                             {
                                 //Debug.Log("Loading MissileSilo");
                                 silo.loadSilo();
+
+                                // Publish Silo Loaded Event
+                                EventBus.Publish<SiloLoadedEvent>(new SiloLoadedEvent(silo));
                             }
                             else
                             {

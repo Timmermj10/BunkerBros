@@ -8,6 +8,7 @@ public class MissileSiloStatus : MonoBehaviour
     private bool isLoaded = false;
     
     public Material loadedMaterial;
+    public Material unloadedMaterial;
 
     public bool isSiloLoaded()
     {
@@ -23,5 +24,16 @@ public class MissileSiloStatus : MonoBehaviour
 
         // Change the material of the Renderer to the loaded material
         renderer.material = loadedMaterial;
+    }
+
+    public void unloadSilo()
+    {
+        isLoaded = false;
+
+        //Change visual to indicate silo is loaded
+        Renderer renderer = GetComponent<Renderer>();
+
+        // Change the material of the Renderer to the loaded material
+        renderer.material = unloadedMaterial;
     }
 }

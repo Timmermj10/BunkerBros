@@ -11299,7 +11299,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Nuke
+  m_Text: Nuke Parts
 --- !u!222 &254182707
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -15888,7 +15888,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shopItems:
   - itemId: 0
-    itemName: Nuke
+    itemName: Nuke Parts
     itemCost: 50
     itemIcon: {fileID: 0}
     itemCount: 0
@@ -15911,6 +15911,12 @@ MonoBehaviour:
     itemIcon: {fileID: 0}
     itemCount: 0
     oneTimePurchase: 1
+  - itemId: 4
+    itemName: Nuke
+    itemCost: 0
+    itemIcon: {fileID: 0}
+    itemCount: 0
+    oneTimePurchase: 0
   coins: 15000
   coinsText: {fileID: 734753316}
 --- !u!4 &349862697
@@ -65676,6 +65682,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1a8219ccb163494abeca0d34a5d950d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  siloStatus: []
   explosionPrefab: {fileID: 2278422487833797206, guid: 30da79b3e424b16418db2f372358f60e,
     type: 3}
   airstrikeHeight: 2
@@ -65743,6 +65750,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wallPrefab: {fileID: 6836581503973730888, guid: b73f1c3525d174001a5008d8146ca880,
+    type: 3}
+  nukePartsPrefab: {fileID: 3684922817480610989, guid: e6216b580c6f0294bb808bf7d81b8e00,
     type: 3}
 --- !u!1001 &1352601483
 PrefabInstance:

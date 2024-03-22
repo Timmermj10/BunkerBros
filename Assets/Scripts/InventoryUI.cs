@@ -24,6 +24,9 @@ public class InventoryUI : MonoBehaviour
     //Subscribe to Inventory Cycle Events
     Subscription<ManagerCycleEvent> manager_event_subscription;
 
+    //Subscribe to Silo Loaded Events
+    Subscription<SiloLoadedEvent> silo_loaded_event_subscription;
+
     private GameObject ShopManager;
 
     // Inventory Icon / Text
@@ -35,6 +38,7 @@ public class InventoryUI : MonoBehaviour
         purchase_event_subscription = EventBus.Subscribe<PurchaseEvent>(_OnPurchase);
         item_event_subscription = EventBus.Subscribe<ItemUseEvent>(_OnUse);
         manager_event_subscription = EventBus.Subscribe<ManagerCycleEvent>(_OnCycle);
+        silo_loaded_event_subscription = EventBus.Subscribe<SiloLoadedEvent>(_SiloLoadedInventory);
         ShopManager = GameObject.Find("ShopManager");
         inventoryUI = GameObject.Find("Inventory").GetComponent<Text>();
     }
@@ -163,5 +167,32 @@ public class InventoryUI : MonoBehaviour
                 inventoryUI.text += $" x {equippedInventoryItem.itemCount}";
             }
         }
+    }
+
+    void _SiloLoadedInventory(SiloLoadedEvent e) 
+    {
+        // If the item has not been purchased before and it's not one time purchasable
+        if (ShopManager.GetComponent<ShopManagerScript>().shopItems[4].itemCount == 0)
+        {
+            inventoryItems.Add(4);
+        }
+
+        // Increment count in shop
+        ShopManager.GetComponent<ShopManagerScript>().shopItems[4].itemCount += 1;
+
+        // Only update manager inventory UI if it's multiple purchases
+
+        // ONLY FOR NOW, MAYBE AIRDROPS LATER
+
+        // Update UI
+        equippedInventoryItemID = inventoryItems[inventoryItemsIndex];
+        equippedInventoryItem = ShopManager.GetComponent<ShopManagerScript>().shopItems[equippedInventoryItemID];
+        inventoryUI.text = equippedInventoryItem.itemName;
+        if (equippedInventoryItem.itemCount > 1)
+        {
+            inventoryUI.text += $" x {equippedInventoryItem.itemCount}";
+        }
+
+
     }
 }

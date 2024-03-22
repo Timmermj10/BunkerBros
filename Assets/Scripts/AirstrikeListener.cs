@@ -5,6 +5,9 @@ using UnityEngine;
 
 public class AirstrikeListener : MonoBehaviour
 {
+    // List to hold all of the loaded silos
+    public List<MissileSiloStatus> siloStatus = new List<MissileSiloStatus>();
+
     public GameObject explosionPrefab;    // Prefab for the explosion effect
     public float airstrikeHeight = 2f;   // Height from which the airstrike comes
     public float blastRadius = 3f;        // Radius of the airstrike's effect
@@ -15,19 +18,26 @@ public class AirstrikeListener : MonoBehaviour
     // Subscribe to Purchase Events
     Subscription<ItemUseEvent> airstrike_event_subscription;
 
+    // Subscribe to Silo Loaded Events
+    Subscription<SiloLoadedEvent> silo_loaded_event_subscription;
+
     // Start is called before the first frame update
     void Start()
     {
         airstrike_event_subscription = EventBus.Subscribe<ItemUseEvent>(_CallAirstrike);
+        silo_loaded_event_subscription = EventBus.Subscribe<SiloLoadedEvent>(_SiloLoadedStrike);
     }
 
     void _CallAirstrike(ItemUseEvent e)
     {
-        //if the id is the AirstrikeID
-        if (e.itemID == 0) {
-
+        // if the id is the AirstrikeID
+        if (e.itemID == 4)
+        {
             //Call in an Airstrike at the itemLocation
             StartCoroutine(DelayedExplosion(e.itemLocation));
+
+            // Unload the silo
+            siloUnloadedStrike();
         }
     }
 
@@ -81,6 +91,21 @@ public class AirstrikeListener : MonoBehaviour
             //Debug.Log("Found an object with health: " + obj.name);
             obj.changeHealth(damage);
         }
+    }
+
+    void _SiloLoadedStrike(SiloLoadedEvent e)
+    {
+        // Add the silo to the list of loaded silos
+        siloStatus.Add(e.status);
+    }
+
+    void siloUnloadedStrike()
+    {
+        // Unload silo for the first silo in list
+        siloStatus[0].unloadSilo();
+
+        // Pop the silo from the list
+        siloStatus.RemoveAt(0);
     }
 
     // Update is called once per frame
