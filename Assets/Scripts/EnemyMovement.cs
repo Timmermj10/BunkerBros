@@ -25,7 +25,7 @@ public class EnemyMovement : MonoBehaviour
     void Update()
     {
         float time = Time.deltaTime;
-        if (!attack || !detect)
+        if (!attack)
         {
             move();
         }
