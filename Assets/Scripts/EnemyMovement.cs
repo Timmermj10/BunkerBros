@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 public class EnemyMovement : MonoBehaviour
 {
@@ -8,38 +9,43 @@ public class EnemyMovement : MonoBehaviour
     public BoxCollider detecter;
     public float speed = 5f;
     private GameObject obj;
+    private GameObject player;
     private Vector3 obj_loca;
-    private bool detect = false;
+    private Vector3 player_loca;
     private bool attack = false;
-    private Rigidbody rb;
+    private bool isChasingPlayer = false;
 
-    
+
     void Awake()
     {
-        rb = GetComponent<Rigidbody>();
         obj = GameObject.Find("Objective");
         obj_loca = obj.transform.position;
+        player = GameObject.Find("player");
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        float time = Time.deltaTime;
         if (!attack)
         {
-            move();
+            if (!isChasingPlayer)
+            {
+                move(obj.transform.position);
+            }
+            else if (player != null)
+            {
+                move(player.transform.position);
+            }
         }
     }
 
-    private void move()
+    private void move(Vector3 location)
     {
-        Vector3 play = obj_loca - transform.position;
-        // Debug.Log(Vector3.Distance(obj_loca, transform.position));
+        Vector3 play = location - transform.position;
         Vector3 newLoca = play.normalized * speed * Time.deltaTime;
         newLoca.y = 0;
-        //rb.velocity = newLoca;
-        
-        //rb.AddForce(newLoca);
+       
         transform.LookAt(transform.position + newLoca);
         transform.position += newLoca;
     }
@@ -48,49 +54,34 @@ public class EnemyMovement : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Player" && (detect == false))
+        if (other.tag == "Player")
         {
-            obj = other.gameObject;
-            obj_loca = obj.transform.position;
-            detect = true;
-            // Debug.Log("Detected");
+            player = other.gameObject;
+            isChasingPlayer = true;
+            
         }
     }
 
-    private void OnTriggerStay(Collider other)
-    {
-        if (other.tag == "Player")
-        {
-            detect = true;
-        }
-    }
 
     private void OnTriggerExit(Collider other)
     {
         if (other.tag == "Player")
         {
-            obj = GameObject.Find("Objective");
-            obj_loca = obj.transform.position;
-            detect = false;
+            player = null;
+            isChasingPlayer = false;
         }
     }
+
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.collider.tag == "Player" || collision.collider.tag == "Objective" || collision.collider.tag == "Structure")
+        if (collision.collider.tag == "Objective")
         {
             attack = true;
-            rb.velocity = Vector2.zero;
-        }
+        } 
     }
 
-    private void OnCollisionExit(Collision collision)
-    {
-        if (collision.collider.tag == "Player" || collision.collider.tag == "Objective" || collision.collider.tag == "Structure")
-        {
-            attack = false;
-        }
-    }
+    
 
 }
 
