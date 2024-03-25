@@ -6,83 +6,55 @@ using static UnityEngine.GraphicsBuffer;
 public class EnemyMovement : MonoBehaviour
 {
 
-    public BoxCollider detecter;
     public float speed = 5f;
-    private GameObject obj;
-    private GameObject player;
-    private Vector3 obj_loca;
-    private Vector3 player_loca;
-    private bool attack = false;
-    private bool isChasingPlayer = false;
+    public float moveDistance = 10f;
+    public float attackDistance = 1f;
 
+    private GameObject objective;
+    private GameObject player;
+    private bool active = false;
+    private bool attacking = false;
+    private Animator animator;
+    private Rigidbody rb;
 
     void Awake()
     {
-        obj = GameObject.Find("Objective");
-        obj_loca = obj.transform.position;
+        objective = GameObject.Find("Objective");
         player = GameObject.Find("player");
-        
+        animator = this.GetComponent<Animator>();
+        rb = this.GetComponent<Rigidbody>();
+        animator.speed = speed * 2;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (!attack)
+        Vector3 objectiveOffset = objective.transform.position - transform.position;
+        Vector3 playerOffset = player.transform.position - transform.position;
+        Vector3 minOffset = objectiveOffset.magnitude <= playerOffset.magnitude ? objectiveOffset : playerOffset;
+        minOffset.y = 0;
+        active = minOffset.magnitude <= moveDistance;
+        animator.SetBool("walking", active);
+        attacking = minOffset.magnitude <= attackDistance;
+        animator.SetBool("attacking", attacking);
+        transform.LookAt(transform.position + minOffset);
+        if (active && !attacking)
         {
-            if (!isChasingPlayer)
-            {
-                move(obj.transform.position);
-            }
-            else if (player != null)
-            {
-                move(player.transform.position);
-            }
+            rb.velocity = minOffset.normalized * speed;
         }
     }
-
-    private void move(Vector3 location)
-    {
-        Vector3 play = location - transform.position;
-        Vector3 newLoca = play.normalized * speed * Time.deltaTime;
-        newLoca.y = 0;
-       
-        transform.LookAt(transform.position + newLoca);
-        transform.position += newLoca;
-    }
-
-    
-
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Player")
-        {
-            player = other.gameObject;
-            isChasingPlayer = true;
-            
-        }
+        Debug.Log("trigger enter: " + other.tag);
     }
-
-
     private void OnTriggerExit(Collider other)
     {
-        if (other.tag == "Player")
-        {
-            player = null;
-            isChasingPlayer = false;
-        }
+        Debug.Log("trigger exit: " + other.tag);
     }
-
-
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.collider.tag == "Objective")
-        {
-            attack = true;
-        } 
+        Debug.Log("collision enter: " + collision.collider.tag);
     }
-
-    
-
 }
 
 

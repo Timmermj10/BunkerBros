@@ -616,13 +616,18 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 042626fd93c1a6e4ea17e809ff117048,
         type: 3}
       propertyPath: m_Name
-      value: Enemy Armored 1
+      value: Enemy Armored
       objectReference: {fileID: 0}
     - target: {fileID: 5866666021909216657, guid: 042626fd93c1a6e4ea17e809ff117048,
         type: 3}
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 9b44345be1814fd4caa9cc5627f4c922, type: 2}
+    - target: {fileID: 5866666021909216657, guid: 042626fd93c1a6e4ea17e809ff117048,
+        type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -983,8 +988,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e24fdbbedc08f447ab21b10532aba513, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  detecter: {fileID: 0}
-  speed: 5
+  detecter: {fileID: 4117914090188166690}
+  speed: 1
 --- !u!114 &3457330455854418069
 MonoBehaviour:
   m_ObjectHideFlags: 0
