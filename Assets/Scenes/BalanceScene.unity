@@ -62131,6 +62131,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 155481110080056303, guid: c1cf7c557e41a435db23620016b92d83,
         type: 3}
+      propertyPath: distance
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 155481110080056303, guid: c1cf7c557e41a435db23620016b92d83,
+        type: 3}
       propertyPath: playerCam
       value: 
       objectReference: {fileID: 330585545}
@@ -66035,7 +66040,7 @@ MonoBehaviour:
   siloStatus: []
   explosionPrefab: {fileID: 2278422487833797206, guid: 30da79b3e424b16418db2f372358f60e,
     type: 3}
-  airstrikeHeight: 2
+  nukeHeight: 2
   blastRadius: 5
   damageableLayer:
     serializedVersion: 2

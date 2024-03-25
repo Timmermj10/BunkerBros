@@ -214,4 +214,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dcd7a608ec1d04c4d9ae3f5712478a62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  promptMessage: Grab the chest to score big
+  promptMessage: Hold SQUARE to score big
