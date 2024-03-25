@@ -10006,7 +10006,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e74b875edecfb8b45a4cef026ad6aa13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waveButton: {fileID: 0}
+  waveButton: {fileID: 557348242}
 --- !u!4 &226248810
 Transform:
   m_ObjectHideFlags: 0
@@ -25304,7 +25304,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 557348245}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 226248809}
+        m_TargetAssemblyTypeName: WaveManager, Assembly-CSharp
+        m_MethodName: StartWave
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &557348245
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -62129,7 +62141,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b15a336ef71a74b83818e16f491496e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EnemyPrefab: {fileID: 8086104934813058034, guid: 292f74f8bc2404988b096b2052177848,
+  EnemyPrefab: {fileID: 3780342249592017795, guid: 252860dd1fe42324499501160b4fa1f8,
     type: 3}
   spawnDelay: 200
   random_spawn: 8
