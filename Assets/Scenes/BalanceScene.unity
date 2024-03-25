@@ -62142,6 +62142,11 @@ PrefabInstance:
       propertyPath: mask.m_Bits
       value: 90113
       objectReference: {fileID: 0}
+    - target: {fileID: 155481110080056303, guid: c1cf7c557e41a435db23620016b92d83,
+        type: 3}
+      propertyPath: timeToInteract
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 2463675146606809864, guid: c1cf7c557e41a435db23620016b92d83,
         type: 3}
       propertyPath: m_Name
