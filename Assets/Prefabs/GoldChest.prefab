@@ -155,8 +155,9 @@ GameObject:
   m_Component:
   - component: {fileID: 7559527813248015142}
   - component: {fileID: 2184712013514366087}
+  - component: {fileID: -5320866077655233272}
   m_Layer: 0
-  m_Name: goldchest
+  m_Name: GoldChest
   m_TagString: Pickup
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -201,3 +202,16 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &-5320866077655233272
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6836581503973730888}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dcd7a608ec1d04c4d9ae3f5712478a62, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  promptMessage: Grab the chest to score big

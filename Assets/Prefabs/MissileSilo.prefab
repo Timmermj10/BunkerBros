@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6194296950797755792}
   - component: {fileID: 4347306608964324068}
   - component: {fileID: 7151162275287271179}
+  - component: {fileID: 99800009423462142}
   m_Layer: 0
   m_Name: MissileSilo
   m_TagString: Interactable
@@ -122,3 +123,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   loadedMaterial: {fileID: 2100000, guid: 08b317d4068ae9e4381d80dbc482805c, type: 2}
   unloadedMaterial: {fileID: 2100000, guid: 618a1f8ae4da0244babd34ba143a1aea, type: 2}
+--- !u!114 &99800009423462142
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5708377699064700879}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae716b0b0b6fbdf4297149e42b85372f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  promptMessage: Load the silo with nuke parts
