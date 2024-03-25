@@ -38,9 +38,13 @@ public class EnemyMovement : MonoBehaviour
         attacking = minOffset.magnitude <= attackDistance;
         animator.SetBool("attacking", attacking);
         transform.LookAt(transform.position + minOffset);
-        if (active && !attacking)
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName("walk"))
         {
-            rb.velocity = minOffset.normalized * speed;
+            rb.velocity = minOffset.normalized * speed + Vector3.up * rb.velocity.y;
+        }
+        else
+        {
+            rb.velocity = Vector3.up * rb.velocity.y;
         }
     }
     private void OnTriggerEnter(Collider other)
