@@ -14705,7 +14705,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 36983
+    m_Bits: 37239
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -66035,7 +66035,7 @@ MonoBehaviour:
   siloStatus: []
   explosionPrefab: {fileID: 2278422487833797206, guid: 30da79b3e424b16418db2f372358f60e,
     type: 3}
-  airstrikeHeight: 2
+  nukeHeight: 2
   blastRadius: 5
   damageableLayer:
     serializedVersion: 2

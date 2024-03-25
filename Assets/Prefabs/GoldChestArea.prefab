@@ -44,7 +44,7 @@ GameObject:
   - component: {fileID: 7775876847668511344}
   - component: {fileID: 8199738375303705848}
   - component: {fileID: 9135562831751942252}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: GoldChestParent
   m_TagString: Untagged
   m_Icon: {fileID: 0}
