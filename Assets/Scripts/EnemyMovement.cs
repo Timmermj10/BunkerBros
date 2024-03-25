@@ -8,7 +8,7 @@ public class EnemyMovement : MonoBehaviour
 
     public float speed = 5f;
     public float moveDistance = 10f;
-    public float attackDistance = 1f;
+    public float attackDistance = 1.5f;
 
     private GameObject objective;
     private GameObject player;
@@ -29,22 +29,44 @@ public class EnemyMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector3 objectiveOffset = objective.transform.position - transform.position;
-        Vector3 playerOffset = player.transform.position - transform.position;
-        Vector3 minOffset = objectiveOffset.magnitude <= playerOffset.magnitude ? objectiveOffset : playerOffset;
-        minOffset.y = 0;
-        active = minOffset.magnitude <= moveDistance;
-        animator.SetBool("walking", active);
-        attacking = minOffset.magnitude <= attackDistance;
-        animator.SetBool("attacking", attacking);
-        transform.LookAt(transform.position + minOffset);
-        if (animator.GetCurrentAnimatorStateInfo(0).IsName("walk"))
+        if (player == null)
         {
-            rb.velocity = minOffset.normalized * speed + Vector3.up * rb.velocity.y;
+            Vector3 objectiveOffset = objective.transform.position - transform.position;
+            Vector3 minOffset = objectiveOffset;
+            active = minOffset.magnitude <= moveDistance;
+            animator.SetBool("walking", active);
+            attacking = minOffset.magnitude <= attackDistance;
+            animator.SetBool("attacking", attacking);
+            transform.LookAt(transform.position + minOffset);
+            if (animator.GetCurrentAnimatorStateInfo(0).IsName("walk"))
+            {
+                rb.velocity = minOffset.normalized * speed + Vector3.up * rb.velocity.y;
+            }
+            else
+            {
+                rb.velocity = Vector3.up * rb.velocity.y;
+            }
+            player = GameObject.Find("player");
         }
-        else
+        else if (objective != null)
         {
-            rb.velocity = Vector3.up * rb.velocity.y;
+            Vector3 objectiveOffset = objective.transform.position - transform.position;
+            Vector3 playerOffset = player.transform.position - transform.position;
+            Vector3 minOffset = objectiveOffset.magnitude <= playerOffset.magnitude ? objectiveOffset : playerOffset;
+            minOffset.y = 0;
+            active = minOffset.magnitude <= moveDistance;
+            animator.SetBool("walking", active);
+            attacking = minOffset.magnitude <= attackDistance;
+            animator.SetBool("attacking", attacking);
+            transform.LookAt(transform.position + minOffset);
+            if (animator.GetCurrentAnimatorStateInfo(0).IsName("walk"))
+            {
+                rb.velocity = minOffset.normalized * speed + Vector3.up * rb.velocity.y;
+            }
+            else
+            {
+                rb.velocity = Vector3.up * rb.velocity.y;
+            }
         }
     }
     private void OnTriggerEnter(Collider other)

@@ -56,6 +56,12 @@ public class ActivePlayerInputs : MonoBehaviour
             Vector3 right = movementInputValue.x * transform.right;
             rb.velocity = moveSpeed * (forward + right);
             //Debug.Log("Active Player: MovementInputValue = " + movementInputValue);
+
+            if (movementInputValue == Vector2.zero)
+            {
+                rb.velocity = Vector3.zero;
+            }
+
         } else
         {
             rb.velocity = Vector3.zero;
