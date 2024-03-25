@@ -15809,8 +15809,8 @@ MonoBehaviour:
     itemCount: 0
     oneTimePurchase: 0
   - itemId: 2
-    itemName: SOOOON
-    itemCost: 10000
+    itemName: Turret
+    itemCost: 150
     itemIcon: {fileID: 0}
     itemCount: 0
     oneTimePurchase: 0
@@ -31358,9 +31358,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Coming Soon
-
-'
+  m_Text: Turret
 --- !u!222 &677036335
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -62128,6 +62126,11 @@ PrefabInstance:
         type: 3}
       propertyPath: lookSpeed
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 155481110080056303, guid: c1cf7c557e41a435db23620016b92d83,
+        type: 3}
+      propertyPath: distance
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 155481110080056303, guid: c1cf7c557e41a435db23620016b92d83,
         type: 3}

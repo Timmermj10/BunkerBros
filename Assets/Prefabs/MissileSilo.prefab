@@ -135,4 +135,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae716b0b0b6fbdf4297149e42b85372f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  promptMessage: Load the silo with nuke parts
+  promptMessage: Hold SQUARE to load the silo with nuke parts
