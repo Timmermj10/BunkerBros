@@ -15,6 +15,7 @@ public class TurretController : MonoBehaviour
         nextShot = Time.time;
         gun = transform.Find("gun");
     }
+
     private void FixedUpdate()
     {
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
@@ -40,6 +41,7 @@ public class TurretController : MonoBehaviour
 
 
                 GameObject projectileObject = Instantiate(ProjectilePrefab.gameObject, spawnPosition, rotation);
+                projectileObject.GetComponent<ChangesHealth>().setHealthChange(-2);
                 nextShot = Time.time + cooldown;
             }
         }

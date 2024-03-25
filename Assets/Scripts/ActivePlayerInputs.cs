@@ -41,7 +41,7 @@ public class ActivePlayerInputs : MonoBehaviour
     private void WaveEnded(WaveEndedEvent e)
     {
         playerControls = false;
-        //Debug.Log("Turning Off Player Controls");
+        Debug.Log("Turning Off Player Controls");
     }
 
 

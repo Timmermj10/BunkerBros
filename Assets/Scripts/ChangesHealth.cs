@@ -50,4 +50,9 @@ public class ChangesHealth : MonoBehaviour
         }
     }
 
+    public void setHealthChange(int newHealthChange)
+    {
+        healthChange = newHealthChange;
+    }
+
 }

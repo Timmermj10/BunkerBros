@@ -15826,7 +15826,7 @@ MonoBehaviour:
     itemIcon: {fileID: 0}
     itemCount: 0
     oneTimePurchase: 0
-  coins: 150
+  coins: 1500
   coinsText: {fileID: 734753316}
 --- !u!4 &349862697
 Transform:
@@ -26700,6 +26700,79 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 580812075}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &581280028
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2892135611953840231, guid: eeafb6aaef7224943875ba93c108da2d,
+        type: 3}
+      propertyPath: activationDistance
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4026683265520269817, guid: eeafb6aaef7224943875ba93c108da2d,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4026683265520269817, guid: eeafb6aaef7224943875ba93c108da2d,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4026683265520269817, guid: eeafb6aaef7224943875ba93c108da2d,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4026683265520269817, guid: eeafb6aaef7224943875ba93c108da2d,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4026683265520269817, guid: eeafb6aaef7224943875ba93c108da2d,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4026683265520269817, guid: eeafb6aaef7224943875ba93c108da2d,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4026683265520269817, guid: eeafb6aaef7224943875ba93c108da2d,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4026683265520269817, guid: eeafb6aaef7224943875ba93c108da2d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4026683265520269817, guid: eeafb6aaef7224943875ba93c108da2d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4026683265520269817, guid: eeafb6aaef7224943875ba93c108da2d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4371438003745727299, guid: eeafb6aaef7224943875ba93c108da2d,
+        type: 3}
+      propertyPath: m_Name
+      value: Turret
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: eeafb6aaef7224943875ba93c108da2d, type: 3}
 --- !u!1001 &581654339
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -65679,6 +65752,7 @@ GameObject:
   - component: {fileID: 1350505083}
   - component: {fileID: 1350505085}
   - component: {fileID: 1350505086}
+  - component: {fileID: 1350505087}
   m_Layer: 0
   m_Name: ManagerCamera
   m_TagString: MainCamera
@@ -65932,6 +66006,22 @@ MonoBehaviour:
   wallPrefab: {fileID: 6836581503973730888, guid: b73f1c3525d174001a5008d8146ca880,
     type: 3}
   nukePartsPrefab: {fileID: 3684922817480610989, guid: e6216b580c6f0294bb808bf7d81b8e00,
+    type: 3}
+  turretPrefab: {fileID: 4371438003745727299, guid: eeafb6aaef7224943875ba93c108da2d,
+    type: 3}
+--- !u!114 &1350505087
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1350505075}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38e3ec4bb299e4c5b969928df0936357, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coin_prefab: {fileID: 5115533215760890170, guid: 770d9d49059474322b8e216accffa33a,
     type: 3}
 --- !u!1001 &1352601483
 PrefabInstance:
@@ -74951,6 +75041,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Objective
+      objectReference: {fileID: 0}
+    - target: {fileID: 7215493473248351806, guid: f97966fa08f7246579cb2f278c1d4909,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 8131118742938539657, guid: f97966fa08f7246579cb2f278c1d4909,
         type: 3}
@@ -102542,3 +102637,4 @@ SceneRoots:
   - {fileID: 750748226}
   - {fileID: 1786956049}
   - {fileID: 463083552}
+  - {fileID: 581280028}

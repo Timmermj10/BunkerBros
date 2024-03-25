@@ -7,6 +7,7 @@ public class StructureSpawner : MonoBehaviour
 
     public GameObject wallPrefab;
     public GameObject nukePartsPrefab;
+    public GameObject turretPrefab;
 
     void Start()
     {
@@ -25,6 +26,11 @@ public class StructureSpawner : MonoBehaviour
         {
             //spawn wall with vertical offset for the wall being 2 blocks tall
             Instantiate(wallPrefab, e.itemLocation + new Vector3(0, 0.5f, 0), Quaternion.identity);
+        }
+        else if (e.itemID == 2)
+        {
+            //spawn turret
+            Instantiate(turretPrefab, e.itemLocation + new Vector3(0, -0.4f, 0), Quaternion.identity);
         }
     }
 }

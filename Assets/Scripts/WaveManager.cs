@@ -84,6 +84,7 @@ public class WaveManager : MonoBehaviour
         }
 
         yield return new WaitForSeconds(3);
+
         EventBus.Publish(new WaveEndedEvent());
     }
 
