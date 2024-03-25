@@ -27,7 +27,7 @@ public class ActivePlayerInputs : MonoBehaviour
         EventBus.Subscribe<WaveStartedEvent>(WaveStarted);
         EventBus.Subscribe<WaveEndedEvent>(WaveEnded);
 
-        Debug.Log("Turning Off Player Controls");
+        //Debug.Log("Turning Off Player Controls");
         playerControls = false;
 }
 
@@ -35,13 +35,13 @@ public class ActivePlayerInputs : MonoBehaviour
     private void WaveStarted(WaveStartedEvent e)
     {
         playerControls = true;
-        Debug.Log("Turning on Player Controls");
+        //Debug.Log("Turning on Player Controls");
     }
 
     private void WaveEnded(WaveEndedEvent e)
     {
         playerControls = false;
-        Debug.Log("Turning Off Player Controls");
+        //Debug.Log("Turning Off Player Controls");
     }
 
 
@@ -50,7 +50,7 @@ public class ActivePlayerInputs : MonoBehaviour
     {
         if (playerControls)
         {
-            Debug.Log("Moving the player");
+            //Debug.Log("Moving the player");
             movementInputValue = value.Get<Vector2>();
             Vector3 forward = movementInputValue.y * transform.forward;
             Vector3 right = movementInputValue.x * transform.right;

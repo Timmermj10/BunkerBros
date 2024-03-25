@@ -18,12 +18,13 @@ public class StructureSpawner : MonoBehaviour
     {
         if (e.itemID == 0)
         {
+            //spawn nuke parts
             Instantiate(nukePartsPrefab, e.itemLocation, Quaternion.identity);
         }
         else if (e.itemID == 1)
         {
-            //Debug.Log("Spawned Wall");
-            Instantiate(wallPrefab, e.itemLocation, Quaternion.identity);
+            //spawn wall with vertical offset for the wall being 2 blocks tall
+            Instantiate(wallPrefab, e.itemLocation + new Vector3(0, 0.5f, 0), Quaternion.identity);
         }
     }
 }

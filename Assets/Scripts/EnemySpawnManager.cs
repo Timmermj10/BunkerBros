@@ -62,7 +62,7 @@ public class EnemySpawnManager : MonoBehaviour
 
                 float randomVal = Random.Range(0f, 100f);
 
-                Debug.Log($"Comparing {randomVal} to {60 * ((float)waveManager.getNumEnemiesSpawnedSoFar() / waveManager.getNumEnemiesToSpawnThisRound())}");
+                //Debug.Log($"Comparing {randomVal} to {60 * ((float)waveManager.getNumEnemiesSpawnedSoFar() / waveManager.getNumEnemiesToSpawnThisRound())}");
 
                 if ((((float)waveManager.getNumEnemiesSpawnedSoFar() + 1) / waveManager.getNumEnemiesToSpawnThisRound() > 0.2f) && randomVal < 80 * ((float)waveManager.getNumEnemiesSpawnedSoFar() / waveManager.getNumEnemiesToSpawnThisRound()) && waveManager.getNumArmoredSpawnedSoFar() < waveManager.getNumArmoredToSpawnThisRound())
                 {
@@ -86,7 +86,7 @@ public class EnemySpawnManager : MonoBehaviour
                     //Let the waveManager know an enemy has been spawned
                     waveManager.enemySpawned(EnemyType.Basic);
                 }
-                Debug.Log($"Enemies Spawned So far = {waveManager.getNumEnemiesSpawnedSoFar()} out of {waveManager.getNumEnemiesToSpawnThisRound()}");
+                //Debug.Log($"Enemies Spawned So far = {waveManager.getNumEnemiesSpawnedSoFar()} out of {waveManager.getNumEnemiesToSpawnThisRound()}");
             }
             else
             {
