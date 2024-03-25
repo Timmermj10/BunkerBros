@@ -920,6 +920,9 @@ MonoBehaviour:
   maxHealth: 1
   currentHealth: 0
   healthBar: {fileID: 0}
+  overlay: {fileID: 0}
+  duration: 0
+  fadeSpeed: 0
 --- !u!136 &5176528592067510252
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -979,8 +982,9 @@ MonoBehaviour:
   timer: 2
   startTimer: 0
   startingPosition: {x: 0, y: 0, z: 0}
-  enemyVelocityReturn: 0.1
-  enemyVelocityChase: 20
+  startingRotation: {x: 0, y: 0, z: 0, w: 0}
+  enemyVelocityReturn: 3
+  enemyVelocityChase: 2
   followPlayer: 0
 --- !u!1 &8136124660385764615
 GameObject:
