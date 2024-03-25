@@ -19,13 +19,6 @@ public class HasHealth : MonoBehaviour
 
     private float durationTimer; // timer to check against the duration
 
-    [Header("Damage Overlay")]
-    public Image overlay; // DamageOverlay GameObject
-    public float duration; // how long the image will stay
-    public float fadeSpeed; // how quickly the red will fade
-
-    private float durationTimer; // timer to check against the duration
-
     private void Start()
     {
         // Set the current health to the max possible
@@ -46,7 +39,6 @@ public class HasHealth : MonoBehaviour
 
     private void Update()
     {
-<<<<<<< Updated upstream
         if (overlay != null)
         {
             // Check if the blood is onscreen
@@ -60,18 +52,6 @@ public class HasHealth : MonoBehaviour
                     tempAlpha -= Time.deltaTime * fadeSpeed;
                     overlay.color = new Color(overlay.color.r, overlay.color.g, overlay.color.b, tempAlpha);
                 }
-=======
-        // Check if the blood is onscreen
-        if (overlay.color.a > 0 && gameObject.name is "player")
-        {
-            durationTimer += Time.deltaTime;
-            if (durationTimer > duration)
-            {
-                // Fade the image
-                float tempAlpha = overlay.color.a;
-                tempAlpha -= Time.deltaTime * fadeSpeed;
-                overlay.color = new Color(overlay.color.r, overlay.color.g, overlay.color.b, tempAlpha);
->>>>>>> Stashed changes
             }
         }
     }
