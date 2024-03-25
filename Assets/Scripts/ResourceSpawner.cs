@@ -18,10 +18,10 @@ public class ResourceSpawner : MonoBehaviour
     {
 
         //If an enemy died
-        if (e.tag == "Enemy")
+        if (e.tag == "Enemy" || e.tag == "GoldChestEnemy")
         {
-            //get the location of the death
-            location = e.deathCoordinates;
+            //get the location of the death and add a vertical offset of 0.5
+            location = new Vector3(e.deathCoordinates.x, 1f, e.deathCoordinates.z);
 
             //spawn a coin at that location
             Instantiate(coin_prefab, location, Quaternion.identity);

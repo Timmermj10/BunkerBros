@@ -147,7 +147,7 @@ public class GoldChestEventListener : MonoBehaviour
         }
 
         // Once we have reached the starting position, rotate them to their starting rotation as well
-        Debug.Log("Reached Destination");
+        //Debug.Log("Reached Destination");
 
         // Lock them into the starting position
         transform.position = startingPosition;

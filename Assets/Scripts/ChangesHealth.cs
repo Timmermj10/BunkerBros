@@ -18,6 +18,10 @@ public class ChangesHealth : MonoBehaviour
             return;
         }
 
+        //if (gameObject.layer == other.gameObject.layer)
+        //{
+        //    return;
+        //}
 
         //Debug.Log($"OTS Collision: {gameObject.name} and {other.gameObject.name} with damageCooldown of {damageCooldownTimer}");
 
@@ -48,6 +52,11 @@ public class ChangesHealth : MonoBehaviour
                 //Debug.Log($"Damage cooldown reset for {gameObject.name}");
             }
         }
+    }
+
+    public void setHealthChange(int newHealthChange)
+    {
+        healthChange = newHealthChange;
     }
 
 }

@@ -809,6 +809,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 042626fd93c1a6e4ea17e809ff117048,
         type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 042626fd93c1a6e4ea17e809ff117048,
+        type: 3}
       propertyPath: m_TagString
       value: Enemy
       objectReference: {fileID: 0}
@@ -1414,7 +1419,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b4b0c34eccb8d147b9abc5fcfcc30c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthChange: -5
+  healthChange: -4
   damageCooldown: 1
 --- !u!1 &7965559796635896354 stripped
 GameObject:
@@ -1563,5 +1568,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b4b0c34eccb8d147b9abc5fcfcc30c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthChange: -5
+  healthChange: -4
   damageCooldown: 1

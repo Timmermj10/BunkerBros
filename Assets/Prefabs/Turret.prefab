@@ -176,6 +176,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4026683265520269817}
   - component: {fileID: 2892135611953840231}
+  - component: {fileID: -345408362153957565}
   m_Layer: 0
   m_Name: Turret
   m_TagString: Untagged
@@ -216,7 +217,25 @@ MonoBehaviour:
   cooldown: 0.5
   ProjectilePrefab: {fileID: 4820764227730699988, guid: 07cac96898c26b041928e90fb5d15422,
     type: 3}
-  activationDistance: 100
+  activationDistance: 5
+--- !u!114 &-345408362153957565
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4371438003745727299}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ada0cb034d14d4065882f6fdbed5bdd0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 8
+  currentHealth: 0
+  healthBar: {fileID: 0}
+  overlay: {fileID: 0}
+  duration: 0
+  fadeSpeed: 0
 --- !u!1 &7454894412028755868
 GameObject:
   m_ObjectHideFlags: 0

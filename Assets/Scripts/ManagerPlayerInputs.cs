@@ -94,7 +94,7 @@ public class ManagerPlayerInputs : MonoBehaviour
         // Move the manager camera
         //managerCamera.position = newPosition;
 
-        Debug.Log("Manager Player: MovementInputValue = " + movementInputValue);
+        //Debug.Log("Manager Player: MovementInputValue = " + movementInputValue);
     }
 
     private void OnInteract(InputValue value)
@@ -134,6 +134,15 @@ public class ManagerPlayerInputs : MonoBehaviour
 
                     //Debug.Log("Publishing itemUseEvent for wall");
                     EventBus.Publish<ItemUseEvent>(new ItemUseEvent(1, itemUsedLocation, true)); // Changed to 1 for a wall
+                }
+                else if (inventory.inventoryItems[inventory.inventoryItemsIndex] == 2 && !occupiedTiles.Contains(new Vector2(worldPositionRounded.x, worldPositionRounded.z)))
+                {
+                    //get the location of the item
+                    Vector3 itemUsedLocation = new Vector3(worldPositionRounded.x, worldPositionRounded.y + 0.5f, worldPositionRounded.z);
+                    occupiedTiles.Add(new Vector2(worldPositionRounded.x, worldPositionRounded.z));
+
+                    //Debug.Log("Publishing itemUseEvent for turret");
+                    EventBus.Publish<ItemUseEvent>(new ItemUseEvent(2, itemUsedLocation, true)); // Changed to 2 for a turret
                 }
                 else if (inventory.inventoryItems[inventory.inventoryItemsIndex] == 4 && !occupiedTiles.Contains(new Vector2(worldPositionRounded.x, worldPositionRounded.z)))
                 {

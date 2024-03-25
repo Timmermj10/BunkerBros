@@ -12,7 +12,7 @@ public class AirstrikeListener : MonoBehaviour
     public float nukeHeight = 2f;   // Height from which the nuke comes
     public float blastRadius = 3f;        // Radius of the nuke's effect
     public LayerMask damageableLayer;     // Layers that can be damaged by the nuke, set up in the inspector
-    private int nukeDamage = -7;
+    private int nukeDamage = -15;
 
 
     // Subscribe to Purchase Events

@@ -42,7 +42,6 @@ public class PlayerManager : MonoBehaviour
     {
         if (e.tag == "Player")
         {
-
             StartCoroutine(RespawnPlayer());
         }
     }
@@ -55,6 +54,7 @@ public class PlayerManager : MonoBehaviour
         //Debug.Log("Respawning Player");
 
         GameObject activePlayer = Instantiate(activePlayerPrefab, new Vector3(0, 1, -2), Quaternion.identity);
+        activePlayer.name = "player";
 
         PlayerInput activePlayerInput = activePlayer.GetComponent<PlayerInput>();
         if (Gamepad.current != null)
