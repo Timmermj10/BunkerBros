@@ -20,6 +20,7 @@ public class ChangesHealth : MonoBehaviour
 
 
         //Debug.Log($"OTS Collision: {gameObject.name} and {other.gameObject.name} with damageCooldown of {damageCooldownTimer}");
+
         //Get the HasHealth Component of the object collided with
         HasHealth hasHealth = other.gameObject.GetComponent<HasHealth>();
 

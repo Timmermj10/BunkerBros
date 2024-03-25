@@ -60431,7 +60431,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1265600107
 Transform:
   m_ObjectHideFlags: 0
@@ -62104,6 +62104,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7625096359321242721, guid: c1cf7c557e41a435db23620016b92d83,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 7933112437878570029, guid: c1cf7c557e41a435db23620016b92d83,
         type: 3}
       propertyPath: healthChange
@@ -62141,7 +62146,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b15a336ef71a74b83818e16f491496e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EnemyPrefab: {fileID: 3780342249592017795, guid: 252860dd1fe42324499501160b4fa1f8,
+  BasicEnemyPrefab: {fileID: 3780342249592017795, guid: 252860dd1fe42324499501160b4fa1f8,
+    type: 3}
+  ArmoredEnemyPrefab: {fileID: 5318527134438833502, guid: f8ba1fdf2a5ff634cbad838678660568,
     type: 3}
   spawnDelay: 200
   random_spawn: 8
