@@ -5,7 +5,11 @@ using UnityEngine;
 public class EnemySpawnManager : MonoBehaviour
 {
 
-    public GameObject EnemyPrefab;
+    //Enemy type prefabs
+    public GameObject BasicEnemyPrefab;
+    public GameObject ArmoredEnemyPrefab;
+
+
     public float spawnDelay = 200f;
     public float random_spawn = 10f;
     private float randomX;
@@ -52,20 +56,32 @@ public class EnemySpawnManager : MonoBehaviour
             //Make sure the maximum amount of enemies is not exceeded and the amount of enemies per wave is not exceeded
             if (spawnDelay <= 0 && waveManager.getNumEnemiesAlive() < waveManager.getMaxEnemiesAliveAtOnce())
             {
-                // Instantiate the enemy
-                GameObject enemy = Instantiate(EnemyPrefab);
-
-                // Set the enemies position
-                enemy.transform.position = new Vector3(transform.position.x + randomX, 1f, transform.position.z + randomZ);
-
-                // Debug Statement
-                //Debug.Log($"Spawning enemy at X: {enemy.transform.position.x}, Z: {enemy.transform.position.z}");
 
                 // Reset the spawn timer
                 spawnDelay = initDelay;
 
-                //Let the waveManager know an enemy has been spawned
-                waveManager.enemySpawned();
+                if ((waveManager.getNumEnemiesSpawnedSoFar() / waveManager.getNumEnemiesToSpawnThisRound() > 0.2f) && Random.Range(0, 1) < 0.6 * (waveManager.getNumEnemiesSpawnedSoFar() / waveManager.getNumEnemiesToSpawnThisRound()) && waveManager.getNumArmoredSpawnedSoFar() < waveManager.getNumArmoredToSpawnThisRound())
+                {
+                    // Instantiate the enemy
+                    GameObject enemy = Instantiate(ArmoredEnemyPrefab);
+
+                    // Set the enemies position
+                    enemy.transform.position = new Vector3(transform.position.x + randomX, 1f, transform.position.z + randomZ);
+
+                    //Let the waveManager know an enemy has been spawned
+                    waveManager.enemySpawned(EnemyType.Armored);
+                }
+                else
+                {
+                    // Instantiate the enemy
+                    GameObject enemy = Instantiate(BasicEnemyPrefab);
+
+                    // Set the enemies position
+                    enemy.transform.position = new Vector3(transform.position.x + randomX, 1f, transform.position.z + randomZ);
+
+                    //Let the waveManager know an enemy has been spawned
+                    waveManager.enemySpawned(EnemyType.Basic);
+                }
             }
             else
             {
