@@ -38,16 +38,19 @@ public class HasHealth : MonoBehaviour
 
     private void Update()
     {
-        // Check if the blood is onscreen
-        if (overlay.color.a > 0 && gameObject.name is "player")
+        if (overlay != null)
         {
-            durationTimer += Time.deltaTime;
-            if (durationTimer > duration)
+            // Check if the blood is onscreen
+            if (overlay.color.a > 0 && gameObject.name is "player")
             {
-                // Fade the image
-                float tempAlpha = overlay.color.a;
-                tempAlpha -= Time.deltaTime * fadeSpeed;
-                overlay.color = new Color(overlay.color.r, overlay.color.g, overlay.color.b, tempAlpha);
+                durationTimer += Time.deltaTime;
+                if (durationTimer > duration)
+                {
+                    // Fade the image
+                    float tempAlpha = overlay.color.a;
+                    tempAlpha -= Time.deltaTime * fadeSpeed;
+                    overlay.color = new Color(overlay.color.r, overlay.color.g, overlay.color.b, tempAlpha);
+                }
             }
         }
     }
