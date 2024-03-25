@@ -128,3 +128,11 @@ public class SiloLoadedEvent
         status = e;
     }
 }
+
+public class WaveEndedEvent
+{
+}
+
+public class WaveStartedEvent
+{
+}
