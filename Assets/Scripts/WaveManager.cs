@@ -94,5 +94,11 @@ public class WaveManager : MonoBehaviour
     {
         // Make the button interactable
         waveButton.GetComponent<Button>().interactable = true;
+
+        // Increment the wave number
+        waveNumber += 1;
+
+        // Increase the number of enemies to be spawned
+        numEnemiesToSpawnThisRound = Mathf.RoundToInt(numEnemiesToSpawnThisRound * 1.5f);
     }
 }
