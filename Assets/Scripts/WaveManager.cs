@@ -117,11 +117,16 @@ public class WaveManager : MonoBehaviour
         // Increment the wave number
         waveNumber += 1;
 
+        //Reset the spawn count
+        numEnemiesSpawnedSoFar = 0;
+
         // Increase the number of enemies to be spawned
         numEnemiesToSpawnThisRound = Mathf.RoundToInt(numEnemiesToSpawnThisRound * 1.5f);
+        Debug.Log($"Changed numEnemiesToSpawnThisRound to {numEnemiesToSpawnThisRound}");
 
         // Increase the number of Armored Enemies to be spawned
         numArmoredToSpawnThisRound = Mathf.RoundToInt(numArmoredToSpawnThisRound * 1.6f) + 1;
+        Debug.Log($"Changed numArmoredToSpawnThisRound to {numArmoredToSpawnThisRound}");
     }
 }
 

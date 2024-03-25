@@ -42,6 +42,7 @@ public class EnemySpawnManager : MonoBehaviour
 
         while (waveManager.getNumEnemiesSpawnedSoFar() < waveManager.getNumEnemiesToSpawnThisRound())
         {
+
             do
             {
                 randomX = Random.Range(-random_spawn, random_spawn);
@@ -56,11 +57,14 @@ public class EnemySpawnManager : MonoBehaviour
             //Make sure the maximum amount of enemies is not exceeded and the amount of enemies per wave is not exceeded
             if (spawnDelay <= 0 && waveManager.getNumEnemiesAlive() < waveManager.getMaxEnemiesAliveAtOnce())
             {
-
                 // Reset the spawn timer
                 spawnDelay = initDelay;
 
-                if ((waveManager.getNumEnemiesSpawnedSoFar() / waveManager.getNumEnemiesToSpawnThisRound() > 0.2f) && Random.Range(0, 1) < 0.6 * (waveManager.getNumEnemiesSpawnedSoFar() / waveManager.getNumEnemiesToSpawnThisRound()) && waveManager.getNumArmoredSpawnedSoFar() < waveManager.getNumArmoredToSpawnThisRound())
+                float randomVal = Random.Range(0f, 100f);
+
+                Debug.Log($"Comparing {randomVal} to {60 * ((float)waveManager.getNumEnemiesSpawnedSoFar() / waveManager.getNumEnemiesToSpawnThisRound())}");
+
+                if ((((float)waveManager.getNumEnemiesSpawnedSoFar() + 1) / waveManager.getNumEnemiesToSpawnThisRound() > 0.2f) && randomVal < 80 * ((float)waveManager.getNumEnemiesSpawnedSoFar() / waveManager.getNumEnemiesToSpawnThisRound()) && waveManager.getNumArmoredSpawnedSoFar() < waveManager.getNumArmoredToSpawnThisRound())
                 {
                     // Instantiate the enemy
                     GameObject enemy = Instantiate(ArmoredEnemyPrefab);
@@ -82,6 +86,7 @@ public class EnemySpawnManager : MonoBehaviour
                     //Let the waveManager know an enemy has been spawned
                     waveManager.enemySpawned(EnemyType.Basic);
                 }
+                Debug.Log($"Enemies Spawned So far = {waveManager.getNumEnemiesSpawnedSoFar()} out of {waveManager.getNumEnemiesToSpawnThisRound()}");
             }
             else
             {

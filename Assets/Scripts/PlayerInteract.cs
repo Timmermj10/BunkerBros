@@ -21,6 +21,36 @@ public class PlayerInteract : MonoBehaviour
     // Items that have been successfully picked up
     public List<GameObject> pickedUpItems = new List<GameObject>();
 
+    [Header("Text Popups for Interactables")]
+    // Camera
+    public Camera playerCam;
+    public float distance = 3f;
+    public LayerMask mask;
+    private PlayerUI playerUI;
+
+
+    private void Start()
+    {
+        playerUI = GetComponent<PlayerUI>();
+    }
+
+    private void Update()
+    {
+        playerUI.UpdateText(string.Empty);
+        // Create a ray at the center of the camera, shooting outwards
+        Ray ray = new Ray(playerCam.transform.position, playerCam.transform.forward);
+        Debug.DrawRay(ray.origin, ray.direction * distance);
+
+        RaycastHit hitInfo; // Variable to hold collision info
+        if (Physics.Raycast(ray, out hitInfo, distance, mask))
+        {
+            if (hitInfo.collider.GetComponent<Interactable>() != null)
+            {
+                playerUI.UpdateText(hitInfo.collider.GetComponent<Interactable>().promptMessage);
+            }
+        }
+    }
+
 
     // Update is called once per frame
     private void FixedUpdate()
@@ -82,9 +112,7 @@ public class PlayerInteract : MonoBehaviour
                             {
                                 //Debug.Log($"Failed to load Silo: silo status = {silo.isSiloLoaded()}, doesThePlayerHaveMissileParts = {GetComponent<ActivePlayerInventory>().itemInInventory(ActivePlayerInventory.activePlayerItems.MissileParts)}");
                             }
-                            
                         }
-                   
                     }
                 }
 
