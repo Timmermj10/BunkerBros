@@ -12,6 +12,7 @@ TagManager:
   - Resource
   - Pickup
   - Interactable
+  - GoldChestEnemy
   layers:
   - Default
   - TransparentFX
