@@ -15809,8 +15809,8 @@ MonoBehaviour:
     itemCount: 0
     oneTimePurchase: 0
   - itemId: 2
-    itemName: SOOOON
-    itemCost: 10000
+    itemName: Turret
+    itemCost: 150
     itemIcon: {fileID: 0}
     itemCount: 0
     oneTimePurchase: 0
@@ -31358,9 +31358,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Coming Soon
-
-'
+  m_Text: Turret
 --- !u!222 &677036335
 CanvasRenderer:
   m_ObjectHideFlags: 0
