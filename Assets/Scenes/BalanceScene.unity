@@ -15826,7 +15826,7 @@ MonoBehaviour:
     itemIcon: {fileID: 0}
     itemCount: 0
     oneTimePurchase: 0
-  coins: 15000
+  coins: 150
   coinsText: {fileID: 734753316}
 --- !u!4 &349862697
 Transform:
@@ -20899,7 +20899,7 @@ PrefabInstance:
     - target: {fileID: 3182648188766191019, guid: bbb58982c97712146af1f5baa58c1713,
         type: 3}
       propertyPath: m_Name
-      value: GoldChestArea (2)
+      value: GoldChestArea
       objectReference: {fileID: 0}
     - target: {fileID: 4306180720939660689, guid: bbb58982c97712146af1f5baa58c1713,
         type: 3}
@@ -60529,7 +60529,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1265600107
 Transform:
   m_ObjectHideFlags: 0
@@ -85587,7 +85587,7 @@ PrefabInstance:
     - target: {fileID: 3182648188766191019, guid: bbb58982c97712146af1f5baa58c1713,
         type: 3}
       propertyPath: m_Name
-      value: GoldChestArea (1)
+      value: GoldChestArea
       objectReference: {fileID: 0}
     - target: {fileID: 4306180720939660689, guid: bbb58982c97712146af1f5baa58c1713,
         type: 3}
