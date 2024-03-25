@@ -21,10 +21,6 @@ public class WaveManager : MonoBehaviour
     {
         EventBus.Subscribe<ObjectDestroyedEvent>(_DidEnemyDie);
         EventBus.Subscribe<WaveEndedEvent>(_WaveEnd);
-
-
-        //Just for testing, immediately start the wave
-        EventBus.Publish(new WaveStartedEvent());
     }
 
     public void setMaxEnemiesAtOnce(int newNumEnemies)

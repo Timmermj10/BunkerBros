@@ -215,8 +215,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ada0cb034d14d4065882f6fdbed5bdd0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 2
+  maxHealth: 10
   currentHealth: 0
+  healthBar: {fileID: 0}
+  overlay: {fileID: 0}
+  duration: 0
+  fadeSpeed: 0
 --- !u!65 &5840851645559709886
 BoxCollider:
   m_ObjectHideFlags: 0

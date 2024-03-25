@@ -11,6 +11,8 @@ public class ActivePlayerInputs : MonoBehaviour
     private Vector2 aimInputValue;
     private Rigidbody rb;
 
+    private bool playerControls = false;
+
     //private bool playerControls = false;
     //private float shootingCooldown = 0.3f;
     //private float shootingTimer = 0f;
@@ -21,22 +23,53 @@ public class ActivePlayerInputs : MonoBehaviour
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
+
+        EventBus.Subscribe<WaveStartedEvent>(WaveStarted);
+        EventBus.Subscribe<WaveEndedEvent>(WaveEnded);
+
+        Debug.Log("Turning Off Player Controls");
+        playerControls = false;
+}
+
+
+    private void WaveStarted(WaveStartedEvent e)
+    {
+        playerControls = true;
+        Debug.Log("Turning on Player Controls");
     }
+
+    private void WaveEnded(WaveEndedEvent e)
+    {
+        playerControls = false;
+        Debug.Log("Turning Off Player Controls");
+    }
+
+
     // Constantly sets the value of movementInputValue to the current input on the left joystick
     private void OnMove(InputValue value)
     {
-        movementInputValue = value.Get<Vector2>();
-        Vector3 forward = movementInputValue.y * transform.forward;
-        Vector3 right = movementInputValue.x * transform.right;
-        rb.velocity = moveSpeed * (forward + right);
-        //Debug.Log("Active Player: MovementInputValue = " + movementInputValue);
+        if (playerControls)
+        {
+            Debug.Log("Moving the player");
+            movementInputValue = value.Get<Vector2>();
+            Vector3 forward = movementInputValue.y * transform.forward;
+            Vector3 right = movementInputValue.x * transform.right;
+            rb.velocity = moveSpeed * (forward + right);
+            //Debug.Log("Active Player: MovementInputValue = " + movementInputValue);
+        } else
+        {
+            rb.velocity = Vector3.zero;
+        }
     }
 
     // Constantly sets the value of aimInputValue to the current input on the right joystick
     private void OnAim(InputValue value)
     {
-        aimInputValue = value.Get<Vector2>();
-        //Debug.Log("Active Player: AimInputValue = " + aimInputValue);
+        if (playerControls)
+        {
+            aimInputValue = value.Get<Vector2>();
+            //Debug.Log("Active Player: AimInputValue = " + aimInputValue);
+        }
     }
 
 
