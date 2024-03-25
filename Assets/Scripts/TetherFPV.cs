@@ -4,20 +4,13 @@ using UnityEngine;
 
 public class TetherFPV : MonoBehaviour
 {
-    private Transform target;
+    public Transform target;
     public Vector3 offset;
 
 
     private void Start()
     {
         EventBus.Subscribe<PlayerRespawnEvent>(_PlayerRespawn);
-
-        target = GameObject.FindWithTag("Player").transform;
-        
-        while (target.parent != null)
-        {
-            target = target.parent;
-        }
     }
 
     void Update()

@@ -30,7 +30,8 @@ public class EnemyMovement : MonoBehaviour
     void Update()
     {
         Vector3 objectiveOffset = objective.transform.position - transform.position;
-        Vector3 playerOffset = player.transform.position - transform.position;
+        if (player == null) player = GameObject.Find("player");
+        Vector3 playerOffset = (player != null) ? player.transform.position - transform.position : Vector3.one * moveDistance;
         Vector3 minOffset = objectiveOffset.magnitude <= playerOffset.magnitude ? objectiveOffset : playerOffset;
         minOffset.y = 0;
         active = minOffset.magnitude <= moveDistance;

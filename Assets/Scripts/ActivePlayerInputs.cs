@@ -2,23 +2,31 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Windows;
 
 public class ActivePlayerInputs : MonoBehaviour
 {
     public float moveSpeed = 5f;
-    public float lookSpeed = 5f;
+    public Vector2 lookSpeed = new Vector2(90, 90);
+
     private Vector2 movementInputValue;
     private Vector2 aimInputValue;
+    private Vector2 rotation;
     private Rigidbody rb;
-
+    private Transform look;
     private bool playerControls = false;
 
     //private bool playerControls = false;
     //private float shootingCooldown = 0.3f;
     //private float shootingTimer = 0f;
-    private void Update()
-    {
-        transform.Rotate(Vector3.up, aimInputValue.x * lookSpeed);
+    private void Update() {
+        if (playerControls)
+        {
+            rotation += Time.deltaTime * new Vector2(-aimInputValue.y * lookSpeed.y, aimInputValue.x * lookSpeed.x);
+            rotation.x = Mathf.Clamp(rotation.x, -89, 89);
+            look.rotation = Quaternion.Euler(rotation.x, rotation.y, 0);
+            transform.rotation = Quaternion.Euler(0, rotation.y, 0);
+        }
     }
     private void Awake()
     {
@@ -29,6 +37,7 @@ public class ActivePlayerInputs : MonoBehaviour
 
         Debug.Log("Turning Off Player Controls");
         playerControls = false;
+        look = transform.Find("PlayerLook");
 }
 
 
@@ -76,7 +85,6 @@ public class ActivePlayerInputs : MonoBehaviour
     public Vector2 getAimValue() { return aimInputValue; }
 
     public Vector2 getMovementValue() { return movementInputValue; }
-
 
     // Rounds any vector 2 to the nearest 16th of a cardinal direction (N, NNE, NE, ENE, E, etc)
     public static Vector2 RoundVectorToDirection(Vector2 vector)
