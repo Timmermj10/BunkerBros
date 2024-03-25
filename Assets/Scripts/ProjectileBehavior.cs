@@ -16,7 +16,7 @@ public class ProjectileBehavior : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        rb.velocity = Vector3.zero;
+        if(rb != null) rb.velocity = Vector3.zero;
         //Debug.Log("Collision with " + other.gameObject.name + ": Destroying Projectile");
         Destroy(gameObject);
     }

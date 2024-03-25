@@ -289,4 +289,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timer: 200
-  value: 2
+  value: 5

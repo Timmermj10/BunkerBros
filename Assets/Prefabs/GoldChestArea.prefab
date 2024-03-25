@@ -243,6 +243,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timer: 2
   startTimer: 0
+  attackDistance: 1
   startingPosition: {x: 0, y: 0, z: 0}
   startingRotation: {x: 0, y: 0, z: 0, w: 0}
   enemyVelocityReturn: 2
@@ -368,6 +369,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timer: 2
   startTimer: 0
+  attackDistance: 1
   startingPosition: {x: 0, y: 0, z: 0}
   startingRotation: {x: 0, y: 0, z: 0, w: 0}
   enemyVelocityReturn: 2
@@ -481,6 +483,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timer: 2
   startTimer: 0
+  attackDistance: 1
   startingPosition: {x: 0, y: 0, z: 0}
   startingRotation: {x: 0, y: 0, z: 0, w: 0}
   enemyVelocityReturn: 2
@@ -717,6 +720,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timer: 2
   startTimer: 0
+  attackDistance: 1
   startingPosition: {x: 0, y: 0, z: 0}
   startingRotation: {x: 0, y: 0, z: 0, w: 0}
   enemyVelocityReturn: 2

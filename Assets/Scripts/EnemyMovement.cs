@@ -10,6 +10,7 @@ public class EnemyMovement : MonoBehaviour
     public float moveDistance = 10f;
     public float attackDistance = 1.5f;
 
+    Subscription<PlayerRespawnEvent> respawn_event_subscription;
     private GameObject objective;
     private GameObject player;
     private bool active = false;
@@ -24,8 +25,12 @@ public class EnemyMovement : MonoBehaviour
         animator = this.GetComponent<Animator>();
         rb = this.GetComponent<Rigidbody>();
         animator.speed = speed * 2;
+        respawn_event_subscription = EventBus.Subscribe<PlayerRespawnEvent>(_ResetPlayer);
     }
-
+    public void _ResetPlayer(PlayerRespawnEvent e)
+    {
+        player = e.activePlayer;
+    }
     // Update is called once per frame
     void Update()
     {
@@ -89,6 +94,10 @@ public class EnemyMovement : MonoBehaviour
         {
             //Debug.Log($"trigger exit: {gameObject.name} and {collision.gameObject.tag}");
         }
+    }
+    private void OnDestroy()
+    {
+        EventBus.Unsubscribe(respawn_event_subscription);
     }
 }
 

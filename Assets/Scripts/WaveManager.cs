@@ -20,6 +20,7 @@ public class WaveManager : MonoBehaviour
     private void Start()
     {
         EventBus.Subscribe<ObjectDestroyedEvent>(_DidEnemyDie);
+        EventBus.Publish(new WaveEndedEvent());
         EventBus.Subscribe<WaveEndedEvent>(_WaveEnd);
     }
 

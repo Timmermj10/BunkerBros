@@ -24,6 +24,6 @@ public class TetherFPV : MonoBehaviour
 
     private void _PlayerRespawn(PlayerRespawnEvent e)
     {
-        target = e.activePlayer.transform;
+        target = GameObject.Find("PlayerLook").transform;
     }
 }

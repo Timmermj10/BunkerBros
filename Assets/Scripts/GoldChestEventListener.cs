@@ -8,6 +8,7 @@ public class GoldChestEventListener : MonoBehaviour
 {
     // Subscribe to Gold Chest Events
     Subscription<GoldChestEvent> gold_chest_event_subscription;
+    Subscription<PlayerRespawnEvent> respawn_event_subscription;
 
     // Timer for when the player leaves the zone, the enemies still
     // follow for a random number of seconds between 2-4 seconds
@@ -15,6 +16,8 @@ public class GoldChestEventListener : MonoBehaviour
 
     // To determine if the timer should be running
     public bool startTimer = false;
+
+    public float attackDistance = 5f;
 
     // Enemy rigid body
     private Rigidbody enemyRB;
@@ -37,11 +40,14 @@ public class GoldChestEventListener : MonoBehaviour
     // Bool for whether the enemies are meant to follow the player
     public bool followPlayer = false;
 
+    private Animator animator;
+
     // Start is called before the first frame update
     void Start()
     {
         // Subscribe to the event
         gold_chest_event_subscription = EventBus.Subscribe<GoldChestEvent>(_TrackPlayer);
+        respawn_event_subscription = EventBus.Subscribe<PlayerRespawnEvent>(_ResetPlayer);
 
         // Get the starting position of the enemy
         startingPosition = transform.position;
@@ -54,10 +60,22 @@ public class GoldChestEventListener : MonoBehaviour
 
         // Get the rigidbody of the enemy
         enemyRB = GetComponent<Rigidbody>();
-    }
 
+        animator = GetComponent<Animator>();
+    }
+    public void _ResetPlayer(PlayerRespawnEvent e)
+    {
+        followPlayer = false;
+        playerTransform = e.activePlayer.transform;
+    }
+    private void OnDestroy()
+    {
+        EventBus.Unsubscribe(gold_chest_event_subscription);
+        EventBus.Unsubscribe(respawn_event_subscription);
+    }
     private void Update()
     {
+        animator.SetBool("walking", followPlayer);
         // If the timer is started, decrease the time
         if (startTimer && timer > 0)
         {
@@ -84,13 +102,23 @@ public class GoldChestEventListener : MonoBehaviour
             //// Update the transform to go that way
             //enemyRB.velocity = directionToPlayer * enemyVelocityChase * Time.deltaTime;
             //Debug.Log($"Velocity = {enemyRB.velocity}");
+            if(playerTransform != null)
+            {
+                Vector3 play = playerTransform.position - transform.position;
+                if(play.magnitude < attackDistance)
+                {
+                    animator.SetBool("attacking", true);
+                }
+                else
+                {
+                    animator.SetBool("attacking", false);
+                    Vector3 newLoca = play.normalized * enemyVelocityChase * Time.deltaTime;
+                    newLoca.y = 0;
 
-            Vector3 play = playerTransform.position - transform.position;
-            Vector3 newLoca = play.normalized * enemyVelocityChase * Time.deltaTime;
-            newLoca.y = 0;
-
-            transform.LookAt(transform.position + newLoca);
-            transform.position += newLoca;
+                    transform.LookAt(transform.position + newLoca);
+                    transform.position += newLoca;
+                }
+            }
         }
 
     }

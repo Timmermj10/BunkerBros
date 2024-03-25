@@ -23,7 +23,7 @@ public class PlayerInteract : MonoBehaviour
 
     [Header("Text Popups for Interactables")]
     // Camera
-    public Camera playerCam;
+    private Camera playerCam;
     public float distance = 3f;
     public LayerMask mask;
     private PlayerUI playerUI;
@@ -32,6 +32,7 @@ public class PlayerInteract : MonoBehaviour
     private void Start()
     {
         playerUI = GetComponent<PlayerUI>();
+        playerCam = GameObject.Find("PlayerCamera").GetComponent<Camera>();
     }
 
     private void Update()

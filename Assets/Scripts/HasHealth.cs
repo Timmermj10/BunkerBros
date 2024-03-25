@@ -12,7 +12,7 @@ public class HasHealth : MonoBehaviour
     public HealthBarScript healthBar;
 
     [Header("Damage Overlay")]
-    public Image overlay; // DamageOverlay GameObject
+    private Image overlay; // DamageOverlay GameObject
     public float duration; // how long the image will stay
     public float fadeSpeed; // how quickly the red will fade
 
@@ -24,16 +24,18 @@ public class HasHealth : MonoBehaviour
         currentHealth = maxHealth;
 
         // Set the health bar to max health
-        if (healthBar != null )
-        {
-            healthBar.SetMaxHealth(maxHealth);
-        }
 
-        // Set the blood to be transparent
-        if (gameObject.name is "player")
+        if (gameObject.CompareTag("Player"))
         {
+            healthBar = GameObject.Find("PlayerHealthBar").GetComponent<HealthBarScript>();
+            overlay = GameObject.Find("DamageOverlay").GetComponent<Image>();
             overlay.color = new Color(overlay.color.r, overlay.color.g, overlay.color.b, 0);
         }
+        if(healthBar != null)
+            healthBar.SetMaxHealth(maxHealth);
+
+        // Set the blood to be transparent
+        
     }
 
     private void Update()
@@ -67,14 +69,7 @@ public class HasHealth : MonoBehaviour
         }
 
         // If we are taking damage
-        if (healthChange < 0 && gameObject.name is "player")
-        {
-            durationTimer = 0;
-            overlay.color = new Color(overlay.color.r, overlay.color.g, overlay.color.b, 1);
-        }
-
-        // If we are taking damage
-        if (healthChange < 0 && gameObject.name is "player")
+        if (healthChange < 0 && gameObject.CompareTag("Player"))
         {
             durationTimer = 0;
             overlay.color = new Color(overlay.color.r, overlay.color.g, overlay.color.b, 1);

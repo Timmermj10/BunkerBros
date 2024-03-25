@@ -14,7 +14,7 @@ public class ActivePlayerInputs : MonoBehaviour
     private Vector2 rotation;
     private Rigidbody rb;
     private Transform look;
-    private bool playerControls = false;
+    private bool playerControls = true;
 
     //private bool playerControls = false;
     //private float shootingCooldown = 0.3f;
@@ -36,7 +36,6 @@ public class ActivePlayerInputs : MonoBehaviour
         EventBus.Subscribe<WaveEndedEvent>(WaveEnded);
 
         //Debug.Log("Turning Off Player Controls");
-        playerControls = false;
         look = transform.Find("PlayerLook");
 }
 
@@ -80,11 +79,7 @@ public class ActivePlayerInputs : MonoBehaviour
     // Constantly sets the value of aimInputValue to the current input on the right joystick
     private void OnAim(InputValue value)
     {
-        if (playerControls)
-        {
-            aimInputValue = value.Get<Vector2>();
-            //Debug.Log("Active Player: AimInputValue = " + aimInputValue);
-        }
+        aimInputValue = value.Get<Vector2>();
     }
 
 
