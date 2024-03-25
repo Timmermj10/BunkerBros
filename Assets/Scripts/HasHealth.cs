@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SocialPlatforms;
 using UnityEngine.UI;
-using UnityEngine.UI;
 
 public class HasHealth : MonoBehaviour
 {
