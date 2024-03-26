@@ -9,10 +9,12 @@ public class AirstrikeListener : MonoBehaviour
     public List<MissileSiloStatus> siloStatus = new List<MissileSiloStatus>();
 
     public GameObject explosionPrefab;    // Prefab for the explosion effect
-    public float nukeHeight = 2f;   // Height from which the nuke comes
-    public float blastRadius = 3f;        // Radius of the nuke's effect
+    private float blastRadius = 5f;        // Radius of the nuke's effect
     public LayerMask damageableLayer;     // Layers that can be damaged by the nuke, set up in the inspector
-    private int nukeDamage = -15;
+    private int explosionDamage = -15;    //Amount of damage for the explosion
+
+    private int nukeDamage = -25;
+    private int missileDamage = -10;
 
 
     // Subscribe to Purchase Events
@@ -21,11 +23,15 @@ public class AirstrikeListener : MonoBehaviour
     // Subscribe to Silo Loaded Events
     Subscription<SiloLoadedEvent> silo_loaded_event_subscription;
 
+    // Subscribe to AirdropLanded Events
+    Subscription<AirdropLandedEvent> airdrop_landed_subscription;
+
     // Start is called before the first frame update
     void Start()
     {
         nuke_event_subscription = EventBus.Subscribe<ItemUseEvent>(_CallNuke);
         silo_loaded_event_subscription = EventBus.Subscribe<SiloLoadedEvent>(_SiloLoadedStrike);
+        airdrop_landed_subscription = EventBus.Subscribe<AirdropLandedEvent>(_Explode);
     }
 
     void _CallNuke(ItemUseEvent e)
@@ -34,17 +40,31 @@ public class AirstrikeListener : MonoBehaviour
         if (e.itemID == 4)
         {
             //Call in an nuke at the itemLocation
-            StartCoroutine(DelayedExplosion(e.itemLocation));
+            //StartCoroutine(DelayedExplosion(e.itemLocation));
 
             // Unload the silo
             siloUnloadedStrike();
         }
     }
 
-    private IEnumerator DelayedExplosion(Vector3 position)
+    private void _Explode(AirdropLandedEvent e)
     {
-        // Wait for a delay to simulate time it takes for nuke to arrive
-        // yield return new WaitForSeconds(3f); // 3 second delay for the effect
+        if (e.itemID == 4) //nuke
+        {
+            blastRadius = 5;
+            explosionDamage = nukeDamage;
+            StartCoroutine(ExplosionEffect(e.itemLocation));
+        }
+        else if (e.itemID == 5) //missile
+        {
+            blastRadius = 1.5f;
+            explosionDamage = missileDamage;
+            StartCoroutine(ExplosionEffect(e.itemLocation));
+        }
+    }
+
+    private IEnumerator ExplosionEffect(Vector3 position)
+    {
 
         // Create the explosion effect at the height-adjusted position
         GameObject explosionEffect =  Instantiate(explosionPrefab, position, Quaternion.identity);
@@ -53,7 +73,7 @@ public class AirstrikeListener : MonoBehaviour
         ParticleSystem particles = explosionEffect.GetComponent<ParticleSystem>();
 
         //Debug.Log("Calling DamageObjectsWithinRadius");
-        DamageObjectsWithinRadius(position, blastRadius, nukeDamage);
+        DamageObjectsWithinRadius(position, blastRadius, explosionDamage);
 
 
         // Wait for the particle system to finish
@@ -78,14 +98,9 @@ public class AirstrikeListener : MonoBehaviour
             {
                 objectsToDamage.Add(hasHealth);
             }
-            // Or check for a certain component, like so:
-            // if (hitCollider.GetComponent<YourComponentType>() != null)
-            // {
-            //     nearbyObjects.Add(hitCollider.gameObject);
-            // }
         }
 
-        // Do something with the objects you found
+        // Damage each object
         foreach (HasHealth obj in objectsToDamage)
         {
             //Debug.Log("Found an object with health: " + obj.name);

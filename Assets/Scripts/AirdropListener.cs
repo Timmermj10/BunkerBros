@@ -6,11 +6,11 @@ using UnityEngine;
 public class AirdropListener : MonoBehaviour
 {
 
-    public GameObject airdropPrefab;    // Prefab for the airdrop
-    private float dropHeight = 8;       //How high above the ground the airdrop will fall from
+    public GameObject airdropPrefab;    // Prefab for the basic airdrop
+    public GameObject nukePrefab;       // Prefab for the nuke
+    public GameObject missilePrefab;    // Prefab for the missile
 
-    //Defines the speed of the airdrop as it falls
-    public AnimationCurve descentCurve;
+    private float dropHeight = 10;       //How high above the ground the airdrop will fall from
 
     Subscription<ItemUseEvent> airdrop_event_listener;
 
@@ -27,27 +27,56 @@ public class AirdropListener : MonoBehaviour
         {
             //Debug.Log("Starting Airdrop");
 
-            //get the airdrop start position
+            GameObject prefabToInstantiate;
+            Quaternion rotation;
+            GameObject airdrop;
+
+            if (e.itemID == 4) //nuke
+            {
+                prefabToInstantiate = nukePrefab;
+                rotation = Quaternion.Euler(0, 0, 180);
+                dropHeight = 15f;
+            }
+            else if (e.itemID == 5) //missile
+            {
+                prefabToInstantiate = missilePrefab;
+                rotation = Quaternion.Euler(0, 0, 180);
+                dropHeight = 10f;
+            }
+            else //any other airdrop
+            {
+                prefabToInstantiate = airdropPrefab;
+                rotation = Quaternion.identity;
+                dropHeight = 8f;
+            }
+
+            //get the airdrop start and end position
             Vector3 initialDropLocation = new Vector3(e.itemLocation.x, e.itemLocation.y + dropHeight, e.itemLocation.z);
             Vector3 finalDropLocation = initialDropLocation - new Vector3(0f, dropHeight, 0f);
 
-            GameObject airdrop = Instantiate(airdropPrefab, initialDropLocation, Quaternion.identity);
+            //Instantiate the drop
+            airdrop = Instantiate(prefabToInstantiate, initialDropLocation, rotation);
 
-            // Start the descending coroutine to apply force and maybe handle contact with the ground
-            StartCoroutine(ApplyDescendingForce(airdrop, initialDropLocation, finalDropLocation, e.itemID));
+            // Start the descending coroutine to handle contact with the ground
+            StartCoroutine(WaitForAirdropToLand(airdrop, initialDropLocation, finalDropLocation, e.itemID));
         }
     }
 
-    private IEnumerator ApplyDescendingForce(GameObject airdrop, Vector3 initialDropLocation, Vector3 finalDropLocation, int itemID)
+    private IEnumerator WaitForAirdropToLand(GameObject airdrop, Vector3 initialDropLocation, Vector3 finalDropLocation, int itemID)
     {
-        Rigidbody rb = airdrop.GetComponent<Rigidbody>();
-        Vector3 forceDirection = new Vector3(0, -9.81f, 0); // Gravity-like force
 
-        // Condition for applying force: we haven't descended dropHeight units yet
-        while (airdrop.transform.position.y > finalDropLocation.y)
+        Rigidbody rb = GetComponent<Rigidbody>();
+
+        float timeFallingBeforeStart = Mathf.Sqrt(2 * dropHeight / Physics.gravity.magnitude);
+        Vector3 initialVelocity = Physics.gravity * timeFallingBeforeStart;
+
+        // Apply the initial velocity
+        rb.velocity = Vector3.zero;
+        rb.AddForce(initialVelocity, ForceMode.VelocityChange);
+
+        while (airdrop.transform.position.y > finalDropLocation.y + 0.05)
         {
-            rb.AddForce(forceDirection, ForceMode.Force);
-            yield return new WaitForFixedUpdate(); // Wait until the next physics update to apply force again
+            yield return new WaitForFixedUpdate(); // Wait until the next physics update
         }
 
         airdrop.transform.position = initialDropLocation - new Vector3(0f, dropHeight, 0f);

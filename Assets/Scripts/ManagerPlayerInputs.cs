@@ -144,13 +144,21 @@ public class ManagerPlayerInputs : MonoBehaviour
                     //Debug.Log("Publishing itemUseEvent for turret");
                     EventBus.Publish<ItemUseEvent>(new ItemUseEvent(2, itemUsedLocation, true)); // Changed to 2 for a turret
                 }
-                else if (inventory.inventoryItems[inventory.inventoryItemsIndex] == 4 && !occupiedTiles.Contains(new Vector2(worldPositionRounded.x, worldPositionRounded.z)))
+                else if (inventory.inventoryItems[inventory.inventoryItemsIndex] == 4)
                 {
                     //get the location of the item
                     Vector3 itemUsedLocation = new Vector3(worldPositionRounded.x, worldPositionRounded.y + 0.5f, worldPositionRounded.z);
 
                     // Publish a use Event so the shop manager can update count and 
-                    EventBus.Publish<ItemUseEvent>(new ItemUseEvent(4, itemUsedLocation, false)); //id is 4 for nuke
+                    EventBus.Publish<ItemUseEvent>(new ItemUseEvent(4, itemUsedLocation, true)); //id is 4 for nuke
+                }
+                else if (inventory.inventoryItems[inventory.inventoryItemsIndex] == 5))
+                {
+                    //get the location of the item
+                    Vector3 itemUsedLocation = new Vector3(worldPositionRounded.x, worldPositionRounded.y + 0.5f, worldPositionRounded.z);
+
+                    //Debug.Log("Publishing itemUseEvent for turret");
+                    EventBus.Publish<ItemUseEvent>(new ItemUseEvent(5, itemUsedLocation, true)); // Changed to 2 for a missile
                 }
             }
         }
