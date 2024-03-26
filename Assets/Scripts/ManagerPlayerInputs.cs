@@ -152,7 +152,7 @@ public class ManagerPlayerInputs : MonoBehaviour
                     // Publish a use Event so the shop manager can update count and 
                     EventBus.Publish<ItemUseEvent>(new ItemUseEvent(4, itemUsedLocation, true)); //id is 4 for nuke
                 }
-                else if (inventory.inventoryItems[inventory.inventoryItemsIndex] == 5))
+                else if (inventory.inventoryItems[inventory.inventoryItemsIndex] == 5)
                 {
                     //get the location of the item
                     Vector3 itemUsedLocation = new Vector3(worldPositionRounded.x, worldPositionRounded.y + 0.5f, worldPositionRounded.z);
