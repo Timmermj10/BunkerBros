@@ -21,6 +21,7 @@ public class PlayerInteract : MonoBehaviour
     // Items that have been successfully picked up
     public List<GameObject> pickedUpItems = new List<GameObject>();
 
+
     [Header("Text Popups for Interactables")]
     // Camera
     private Camera playerCam;
@@ -31,7 +32,7 @@ public class PlayerInteract : MonoBehaviour
 
     private void Start()
     {
-        playerUI = GetComponent<PlayerUI>();
+        playerUI = GameObject.Find("player").GetComponent<PlayerUI>();
         playerCam = GameObject.Find("PlayerCamera").GetComponent<Camera>();
     }
 
@@ -59,6 +60,7 @@ public class PlayerInteract : MonoBehaviour
         // If we are pressing down the button and there is an item that can be pickedup
         if (buttonPressed && itemsInRange.Count > 0)
         {
+            Debug.Log("here");
             EventBus.Publish(new InteractTimerStartedEvent(timeToInteract));
 
             interactTimer -= Time.deltaTime;
@@ -80,10 +82,11 @@ public class PlayerInteract : MonoBehaviour
                         InventoryItem pickup = new InventoryItem();
 
                         // If the item is a goldchest
-                        if (item.name is "GoldChest" || item.name is "ColdChest(Clone)")
+                        if (item.name is "ChestPack" || item.name is "ChestPack(Clone)")
                         {
                             // Publish a CoinCollect event
                             EventBus.Publish<CoinCollect>(new CoinCollect(150));
+                            Debug.Log("Here");
                         }
                         else if (item.name is "MissileBox" || item.name is "MissileBox(Clone)")
                         {
@@ -133,7 +136,8 @@ public class PlayerInteract : MonoBehaviour
     // When you walk up to a pickupable item
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag is "Pickup" || other.gameObject.tag is "Interactable")
+        print(gameObject.name);
+        if ((other.gameObject.tag is "Pickup" || other.gameObject.tag is "Interactable"))
         {
             itemsInRange.Add(other.gameObject);
         }
@@ -142,7 +146,7 @@ public class PlayerInteract : MonoBehaviour
     // When you walk away from a pickupable item
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.tag is "Pickup" || other.gameObject.tag is "Interactable")
+        if ((other.gameObject.tag is "Pickup" || other.gameObject.tag is "Interactable"))
         {
             itemsInRange.Remove(other.gameObject);
         }
