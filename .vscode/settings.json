@@ -51,6 +51,6 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "eecs494-p3.sln",
+    "dotnet.defaultSolution": "494-p3.sln",
     "dotnet.preferCSharpExtension": true
 }
