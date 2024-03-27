@@ -107,15 +107,19 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: a24f8ad7482a2b7498639c3b22d37eb2,
         type: 3}
       insertIndex: -1
+      addedObject: {fileID: 3960899391514254611}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: a24f8ad7482a2b7498639c3b22d37eb2,
+        type: 3}
+      insertIndex: -1
       addedObject: {fileID: 951265468012662785}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: a24f8ad7482a2b7498639c3b22d37eb2,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 5271033098306755098}
+      addedObject: {fileID: 8426425582016773451}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: a24f8ad7482a2b7498639c3b22d37eb2,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 3960899391514254611}
+      addedObject: {fileID: 5271033098306755098}
   m_SourcePrefab: {fileID: 100100000, guid: a24f8ad7482a2b7498639c3b22d37eb2, type: 3}
 --- !u!1 &6288446085563479365 stripped
 GameObject:
@@ -131,7 +135,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6288446085563479365}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 9000000, guid: a24f8ad7482a2b7498639c3b22d37eb2, type: 3}
   m_Controller: {fileID: 9100000, guid: d02b0405d5148b546848f66420f35dc6, type: 2}
   m_CullingMode: 0
@@ -144,40 +148,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!65 &951265468012662785
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6288446085563479365}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 3.3, y: 3.3, z: 3.3}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &5271033098306755098
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6288446085563479365}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dcd7a608ec1d04c4d9ae3f5712478a62, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  promptMessage: Hold SQUARE to score big
 --- !u!54 &3960899391514254611
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -200,8 +170,63 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 126
   m_CollisionDetection: 0
+--- !u!65 &951265468012662785
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6288446085563479365}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 3.3, y: 3.3, z: 3.3}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!65 &8426425582016773451
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6288446085563479365}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &5271033098306755098
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6288446085563479365}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dcd7a608ec1d04c4d9ae3f5712478a62, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  promptMessage: Hold SQUARE to score big
