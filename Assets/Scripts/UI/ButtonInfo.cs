@@ -15,10 +15,16 @@ public class ButtonInfo : MonoBehaviour
     void Update()
     {
         // Update price text
-        priceText.text = "Price: $" + ShopManager.GetComponent<ShopManagerScript>().shopItems[itemID].itemCost.ToString();
+        if (priceText != null)
+        {
+            priceText.text = "Price: $" + ShopManager.GetComponent<ShopManagerScript>().shopItems[itemID].itemCost.ToString();
+        }
 
         // Update quantity text
-        quantityText.text = ShopManager.GetComponent<ShopManagerScript>().shopItems[itemID].itemCount.ToString();
+        if (quantityText != null)
+        {
+            quantityText.text = ShopManager.GetComponent<ShopManagerScript>().shopItems[itemID].itemCount.ToString();
+        }
     }
 }
 

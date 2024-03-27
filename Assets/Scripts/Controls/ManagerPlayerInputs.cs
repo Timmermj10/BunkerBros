@@ -28,7 +28,10 @@ public class ManagerPlayerInputs : MonoBehaviour
     {
         playerInput = GetComponent<PlayerInput>();
         moveAction = playerInput.actions.FindAction("Move");
-        inventory = GameObject.Find("Inventory").GetComponent<InventoryUI>();
+        if (GameObject.Find("Inventory") != null)
+        {
+            inventory = GameObject.Find("Inventory").GetComponent<InventoryUI>();
+        }
 
         managerCamera = GameObject.Find("ManagerCamera");
 
@@ -115,50 +118,53 @@ public class ManagerPlayerInputs : MonoBehaviour
 
             // Check to see if that tile is within the camera area
             // Debug.Log($"X: {managerCamera.transform.position.x}, Z: {managerCamera.transform.position.z}");
-            if (withinView(worldPositionRounded) && inventory.inventoryItems.Count > 0)
+            if (inventory != null)
             {
-                // Check to see if we have the Nuke Parts equipped in the inventory
-                if (inventory.inventoryItems[inventory.inventoryItemsIndex] == 0)
+                if (withinView(worldPositionRounded) && inventory.inventoryItems.Count > 0)
                 {
-                    //get the location of the item
-                    Vector3 itemUsedLocation = new Vector3(worldPositionRounded.x, worldPositionRounded.y + 0.5f, worldPositionRounded.z);
-                    occupiedTiles.Add(new Vector2(worldPositionRounded.x, worldPositionRounded.z));
+                    // Check to see if we have the Nuke Parts equipped in the inventory
+                    if (inventory.inventoryItems[inventory.inventoryItemsIndex] == 0)
+                    {
+                        //get the location of the item
+                        Vector3 itemUsedLocation = new Vector3(worldPositionRounded.x, worldPositionRounded.y + 0.5f, worldPositionRounded.z);
+                        occupiedTiles.Add(new Vector2(worldPositionRounded.x, worldPositionRounded.z));
 
-                    EventBus.Publish<ItemUseEvent>(new ItemUseEvent(0, itemUsedLocation, true)); // Changed to 0 for nuke parts
-                }
-                else if (inventory.inventoryItems[inventory.inventoryItemsIndex] == 1 && !occupiedTiles.Contains(new Vector2(worldPositionRounded.x, worldPositionRounded.z)))
-                {
-                    //get the location of the item
-                    Vector3 itemUsedLocation = new Vector3(worldPositionRounded.x, worldPositionRounded.y + 0.5f, worldPositionRounded.z);
-                    occupiedTiles.Add(new Vector2(worldPositionRounded.x, worldPositionRounded.z));
+                        EventBus.Publish<ItemUseEvent>(new ItemUseEvent(0, itemUsedLocation, true)); // Changed to 0 for nuke parts
+                    }
+                    else if (inventory.inventoryItems[inventory.inventoryItemsIndex] == 1 && !occupiedTiles.Contains(new Vector2(worldPositionRounded.x, worldPositionRounded.z)))
+                    {
+                        //get the location of the item
+                        Vector3 itemUsedLocation = new Vector3(worldPositionRounded.x, worldPositionRounded.y + 0.5f, worldPositionRounded.z);
+                        occupiedTiles.Add(new Vector2(worldPositionRounded.x, worldPositionRounded.z));
 
-                    //Debug.Log("Publishing itemUseEvent for wall");
-                    EventBus.Publish<ItemUseEvent>(new ItemUseEvent(1, itemUsedLocation, true)); // Changed to 1 for a wall
-                }
-                else if (inventory.inventoryItems[inventory.inventoryItemsIndex] == 2 && !occupiedTiles.Contains(new Vector2(worldPositionRounded.x, worldPositionRounded.z)))
-                {
-                    //get the location of the item
-                    Vector3 itemUsedLocation = new Vector3(worldPositionRounded.x, worldPositionRounded.y + 0.5f, worldPositionRounded.z);
-                    occupiedTiles.Add(new Vector2(worldPositionRounded.x, worldPositionRounded.z));
+                        //Debug.Log("Publishing itemUseEvent for wall");
+                        EventBus.Publish<ItemUseEvent>(new ItemUseEvent(1, itemUsedLocation, true)); // Changed to 1 for a wall
+                    }
+                    else if (inventory.inventoryItems[inventory.inventoryItemsIndex] == 2 && !occupiedTiles.Contains(new Vector2(worldPositionRounded.x, worldPositionRounded.z)))
+                    {
+                        //get the location of the item
+                        Vector3 itemUsedLocation = new Vector3(worldPositionRounded.x, worldPositionRounded.y + 0.5f, worldPositionRounded.z);
+                        occupiedTiles.Add(new Vector2(worldPositionRounded.x, worldPositionRounded.z));
 
-                    //Debug.Log("Publishing itemUseEvent for turret");
-                    EventBus.Publish<ItemUseEvent>(new ItemUseEvent(2, itemUsedLocation, true)); // Changed to 2 for a turret
-                }
-                else if (inventory.inventoryItems[inventory.inventoryItemsIndex] == 4)
-                {
-                    //get the location of the item
-                    Vector3 itemUsedLocation = new Vector3(worldPositionRounded.x, worldPositionRounded.y + 0.5f, worldPositionRounded.z);
+                        //Debug.Log("Publishing itemUseEvent for turret");
+                        EventBus.Publish<ItemUseEvent>(new ItemUseEvent(2, itemUsedLocation, true)); // Changed to 2 for a turret
+                    }
+                    else if (inventory.inventoryItems[inventory.inventoryItemsIndex] == 4)
+                    {
+                        //get the location of the item
+                        Vector3 itemUsedLocation = new Vector3(worldPositionRounded.x, worldPositionRounded.y + 0.5f, worldPositionRounded.z);
 
-                    // Publish a use Event so the shop manager can update count and 
-                    EventBus.Publish<ItemUseEvent>(new ItemUseEvent(4, itemUsedLocation, true)); //id is 4 for nuke
-                }
-                else if (inventory.inventoryItems[inventory.inventoryItemsIndex] == 5)
-                {
-                    //get the location of the item
-                    Vector3 itemUsedLocation = new Vector3(worldPositionRounded.x, worldPositionRounded.y + 0.5f, worldPositionRounded.z);
+                        // Publish a use Event so the shop manager can update count and 
+                        EventBus.Publish<ItemUseEvent>(new ItemUseEvent(4, itemUsedLocation, true)); //id is 4 for nuke
+                    }
+                    else if (inventory.inventoryItems[inventory.inventoryItemsIndex] == 5)
+                    {
+                        //get the location of the item
+                        Vector3 itemUsedLocation = new Vector3(worldPositionRounded.x, worldPositionRounded.y + 0.5f, worldPositionRounded.z);
 
-                    //Debug.Log("Publishing itemUseEvent for turret");
-                    EventBus.Publish<ItemUseEvent>(new ItemUseEvent(5, itemUsedLocation, true)); // Changed to 2 for a missile
+                        //Debug.Log("Publishing itemUseEvent for turret");
+                        EventBus.Publish<ItemUseEvent>(new ItemUseEvent(5, itemUsedLocation, true)); // Changed to 2 for a missile
+                    }
                 }
             }
         }
