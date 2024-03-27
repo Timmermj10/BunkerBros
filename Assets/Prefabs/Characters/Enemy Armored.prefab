@@ -1349,6 +1349,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 50
   currentHealth: 0
+  armorValue: 3
   healthBar: {fileID: 4121591326104909180}
   duration: 0
   fadeSpeed: 0

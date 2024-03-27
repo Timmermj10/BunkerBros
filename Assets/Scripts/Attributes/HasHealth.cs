@@ -8,6 +8,7 @@ public class HasHealth : MonoBehaviour
 {
     public int maxHealth = 1;
     public int currentHealth;
+    public int armorValue = 0;
 
     public HealthBarScript healthBar;
 
@@ -60,7 +61,7 @@ public class HasHealth : MonoBehaviour
     public void changeHealth(int healthChange)
     {
         // Update currentHealth
-        currentHealth += healthChange;
+        currentHealth += Mathf.Min(healthChange + armorValue, 0);
 
         // Update slider
         if (healthBar != null )
