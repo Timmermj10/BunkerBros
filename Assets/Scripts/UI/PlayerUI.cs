@@ -5,13 +5,12 @@ using UnityEngine.UI;
 
 public class PlayerUI : MonoBehaviour
 {
-    [SerializeField]
     private Text promptText;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        promptText = GameObject.Find("PromptText").GetComponent<Text>();
     }
 
     public void UpdateText(string promptMessage)
