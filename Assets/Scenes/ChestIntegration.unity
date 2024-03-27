@@ -65864,7 +65864,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   wallPrefab: {fileID: 6836581503973730888, guid: b73f1c3525d174001a5008d8146ca880,
     type: 3}
-  nukePartsPrefab: {fileID: 3684922817480610989, guid: e6216b580c6f0294bb808bf7d81b8e00,
+  nukePartsPrefab: {fileID: 3827722763254767490, guid: b577f51b3e374411cb1e05b08bb32793,
     type: 3}
   turretPrefab: {fileID: 4371438003745727299, guid: eeafb6aaef7224943875ba93c108da2d,
     type: 3}
