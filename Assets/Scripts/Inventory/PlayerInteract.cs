@@ -59,7 +59,22 @@ public class PlayerInteract : MonoBehaviour
         // If we are pressing down the button and there is an item that can be pickedup
         if (buttonPressed && itemsInRange.Count > 0)
         {
-            EventBus.Publish(new InteractTimerStartedEvent(timeToInteract));
+
+            foreach (var item in itemsInRange)
+            {
+                // If there is an item
+                if (item != null && item.tag is "Pickup")
+                {
+                    EventBus.Publish(new InteractTimerStartedEvent(timeToInteract));
+                }
+                else if (item != null && item.tag is "Interactable")
+                {
+                    if ((item.name is "MissileSilo" || item.name is "MissileSilo(Clone)") && GetComponent<ActivePlayerInventory>().itemInInventory(ActivePlayerInventory.activePlayerItems.MissileParts))
+                    {
+                        EventBus.Publish(new InteractTimerStartedEvent(timeToInteract));
+                    }
+                }
+            }
 
             interactTimer -= Time.deltaTime;
             //Debug.Log($"Attempting to interact, timer = {interactTimer}");
@@ -97,17 +112,21 @@ public class PlayerInteract : MonoBehaviour
                     }
                     else if (item != null && item.tag is "Interactable")
                     {
-                        if (item.name is "MissileSilo" || item.name is "MissileSilo(Clone)")
+                        if ((item.name is "MissileSilo" || item.name is "MissileSilo(Clone)") && GetComponent<ActivePlayerInventory>().itemInInventory(ActivePlayerInventory.activePlayerItems.MissileParts))
                         {
                             MissileSiloStatus silo = item.GetComponent<MissileSiloStatus>();
                             //Debug.Log("Attempting to load Silo");
-                            if (silo != null && !silo.isSiloLoaded() && GetComponent<ActivePlayerInventory>().itemInInventory(ActivePlayerInventory.activePlayerItems.MissileParts))
+                            if (silo != null && !silo.isSiloLoaded())
                             {
                                 //Debug.Log("Loading MissileSilo");
                                 silo.loadSilo();
 
                                 // Publish Silo Loaded Event
                                 EventBus.Publish<SiloLoadedEvent>(new SiloLoadedEvent(silo));
+
+                                //Take the parts out of the player inventory
+                                ActivePlayerInventory inventory = GetComponent<ActivePlayerInventory>();
+                                inventory.useItem(ActivePlayerInventory.activePlayerItems.MissileParts);
                             }
                             else
                             {

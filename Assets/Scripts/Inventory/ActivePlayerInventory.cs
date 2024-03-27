@@ -11,7 +11,7 @@ public class ActivePlayerInventory : MonoBehaviour
         MissileParts
     }
 
-    private List<activePlayerItems> playerInventory = new List<activePlayerItems>();
+    public List<activePlayerItems> playerInventory = new List<activePlayerItems>();
 
     void Start()
     {
@@ -28,6 +28,11 @@ public class ActivePlayerInventory : MonoBehaviour
     public bool itemInInventory(activePlayerItems itemName)
     {
         return playerInventory.Contains(itemName);
+    }
+
+    public void useItem(activePlayerItems itemName)
+    {
+        playerInventory.Remove(itemName);
     }
 
 }
