@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6630413653796528579}
   - component: {fileID: -8853600864868155137}
   m_Layer: 0
-  m_Name: NukeParts
+  m_Name: MissileBox
   m_TagString: Pickup
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
