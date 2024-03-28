@@ -23,6 +23,7 @@ public class ShopManagerScript : MonoBehaviour
         coinsText.text = "Coins: " + coins;
     }
 
+    // DON'T THINK BUY IS NECESSARY AFTER REWORK
     public void Buy()
     {
         GameObject ButtonRef = GameObject.FindGameObjectWithTag("Event").GetComponent<EventSystem>().currentSelectedGameObject;
