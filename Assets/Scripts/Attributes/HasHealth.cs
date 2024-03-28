@@ -60,6 +60,7 @@ public class HasHealth : MonoBehaviour
 
     public void changeHealth(int healthChange)
     {
+
         // Update currentHealth
         currentHealth += Mathf.Min(healthChange + armorValue, 0);
 

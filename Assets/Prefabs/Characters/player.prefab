@@ -418,8 +418,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 10
   currentHealth: 0
+  armorValue: 0
   healthBar: {fileID: 0}
-  overlay: {fileID: 0}
   duration: 2
   fadeSpeed: 1.5
 --- !u!114 &2040935900445435045
@@ -434,6 +434,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d70afb3014d04d4cab927d29c19eb9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerInventory: 
 --- !u!114 &155481110080056303
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -449,7 +450,6 @@ MonoBehaviour:
   timeToInteract: 3
   itemsInRange: []
   pickedUpItems: []
-  playerCam: {fileID: 0}
   distance: 1.5
   mask:
     serializedVersion: 2
@@ -484,7 +484,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4cfe9bb7d0d243c4b86a8ebe414d6896, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  promptText: {fileID: 0}
 --- !u!1 &2862491295029339654
 GameObject:
   m_ObjectHideFlags: 0

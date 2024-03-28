@@ -13,12 +13,20 @@ public class ChangesHealth : MonoBehaviour
     private void OnTriggerStay(Collider other)
     {
 
+        //Speed up computation: Only tagged objects have health
         if (other.gameObject.CompareTag("Untagged"))
         {
             return;
         }
 
-        //if (gameObject.layer == other.gameObject.layer)
+        //Dont let the player damage the objective
+        if (other.gameObject.CompareTag("Objective") && (gameObject.CompareTag("Projectile") || gameObject.name is "Knife"))
+        {
+            return;
+        }
+
+        //Dont let enemies damage each other
+        //if (gameObject.CompareTag("Enemy") && other.gameObject.CompareTag("Enemy"))
         //{
         //    return;
         //}
