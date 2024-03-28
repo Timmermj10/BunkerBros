@@ -62,7 +62,7 @@ public class PlayerInteract : MonoBehaviour
         // If we are pressing down the button and there is an item that can be pickedup
         if (buttonPressed && itemsInRange.Count > 0)
         {
-            Debug.Log("Button pressed and at least one interactable object in range");
+            //Debug.Log("Button pressed and at least one interactable object in range");
 
             foreach (var item in itemsInRange)
             {
@@ -73,7 +73,7 @@ public class PlayerInteract : MonoBehaviour
                 }
                 else if (item != null && item.tag is "Interactable")
                 {
-                    Debug.Log("Interactable silo, but cannot load rn");
+                    //Debug.Log("Interactable silo, but cannot load rn");
                     if ((item.name is "MissileSilo" || item.name is "MissileSilo(Clone)") && GetComponent<ActivePlayerInventory>().itemInInventory(ActivePlayerInventory.activePlayerItems.NukeParts))
                     {
                         EventBus.Publish(new InteractTimerStartedEvent(timeToInteract));
@@ -81,7 +81,7 @@ public class PlayerInteract : MonoBehaviour
                 }
                 else
                 {
-                    Debug.Log("No interactable objects");
+                    //Debug.Log("No interactable objects");
                 }
             }
 
@@ -108,11 +108,10 @@ public class PlayerInteract : MonoBehaviour
                         {
                             // Publish a CoinCollect event
                             EventBus.Publish<CoinCollect>(new CoinCollect(150));
-                            Debug.Log("Here");
                         }
                         else if (item.name is "NukeCrate" || item.name is "NukeCrate(Clone)")
                         {
-                            Debug.Log("Publishing NukeParts pickup");
+                            //Debug.Log("Publishing NukeParts pickup");
                             EventBus.Publish<PickUpEvent>(new PickUpEvent(ActivePlayerInventory.activePlayerItems.NukeParts));
                         }
 

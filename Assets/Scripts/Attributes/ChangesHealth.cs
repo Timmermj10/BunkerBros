@@ -26,12 +26,12 @@ public class ChangesHealth : MonoBehaviour
         }
 
         //Dont let enemies damage each other
-        //if (gameObject.CompareTag("Enemy") && other.gameObject.CompareTag("Enemy"))
-        //{
-        //    return;
-        //}
+        if (gameObject.layer == LayerMask.NameToLayer("Enemy") && other.gameObject.layer == LayerMask.NameToLayer("Enemy"))
+        {
+            return;
+        }
 
-        //Debug.Log($"OTS Collision: {gameObject.name} and {other.gameObject.name} with damageCooldown of {damageCooldownTimer}");
+        //Debug.Log($"OTS Collision: {gameObject.name} with tag {gameObject.tag} and {other.gameObject.name} with tag {other.gameObject.tag}");
 
         //Get the HasHealth Component of the object collided with
         HasHealth hasHealth = other.gameObject.GetComponent<HasHealth>();
