@@ -6,6 +6,9 @@ using static UnityEngine.GraphicsBuffer;
 
 public class HealthManager : MonoBehaviour
 {
+    //Shield
+    private Shield towerShield;
+
     // Health
     private HasHealth playerHealth;
     public HasHealth towerHealth;
@@ -17,6 +20,8 @@ public class HealthManager : MonoBehaviour
 
     private void Start()
     {
+        towerShield = GetComponent<Shield>();
+
         EventBus.Subscribe<PlayerRespawnEvent>(_PlayerRespawn);
 
         Transform target = GameObject.FindWithTag("Player").transform;

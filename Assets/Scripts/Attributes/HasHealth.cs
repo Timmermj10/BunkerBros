@@ -60,27 +60,35 @@ public class HasHealth : MonoBehaviour
 
     public void changeHealth(int healthChange)
     {
-
-        // Update currentHealth
-        currentHealth += Mathf.Min(healthChange + armorValue, 0);
-
-        // Update slider
-        if (healthBar != null )
+        //Check if the tower is taking damage, and if it has a shield
+        if (GetComponent<Shield>() != null && GetComponent<Shield>().protect)
         {
-            healthBar.SetHealth(currentHealth);
+            Debug.Log("Shield");
+            GetComponent<Shield>().depleteShield(healthChange);
         }
-
-        // If we are taking damage
-        if (healthChange < 0 && gameObject.CompareTag("Player"))
+        else
         {
-            durationTimer = 0;
-            overlay.color = new Color(overlay.color.r, overlay.color.g, overlay.color.b, 1);
-        }
+            // Update currentHealth
+            currentHealth += Mathf.Min(healthChange + armorValue, 0);
 
-        // If we have less than 0 health, DIE
-        if (currentHealth <= 0)
-        {
-            Die();
+            // Update slider
+            if (healthBar != null)
+            {
+                healthBar.SetHealth(currentHealth);
+            }
+
+            // If we are taking damage
+            if (healthChange < 0 && gameObject.CompareTag("Player"))
+            {
+                durationTimer = 0;
+                overlay.color = new Color(overlay.color.r, overlay.color.g, overlay.color.b, 1);
+            }
+
+            // If we have less than 0 health, DIE
+            if (currentHealth <= 0)
+            {
+                Die();
+            }
         }
     }
 

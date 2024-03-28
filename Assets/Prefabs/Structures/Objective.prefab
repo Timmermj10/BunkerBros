@@ -95,6 +95,7 @@ GameObject:
   - component: {fileID: 8131118742938539657}
   - component: {fileID: 2997319142065192431}
   - component: {fileID: 6776554893320096386}
+  - component: {fileID: 140735821532152988}
   - component: {fileID: 8810611740815429216}
   m_Layer: 13
   m_Name: Objective
@@ -139,7 +140,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0.050000012, z: 0}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!65 &2997319142065192431
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -160,7 +161,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0.050000012, z: 0}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &6776554893320096386
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -175,10 +176,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 50
   currentHealth: 0
+  armorValue: 0
   healthBar: {fileID: 0}
-  overlay: {fileID: 0}
   duration: 0
   fadeSpeed: 0
+--- !u!114 &140735821532152988
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7215493473248351806}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 203b604f71d2c4560995329a9f798cbe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &8810611740815429216
 MonoBehaviour:
   m_ObjectHideFlags: 0
