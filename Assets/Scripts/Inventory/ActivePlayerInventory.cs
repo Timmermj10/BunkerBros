@@ -5,10 +5,12 @@ using UnityEngine;
 
 public class ActivePlayerInventory : MonoBehaviour
 {
-
+    
     public enum activePlayerItems
     {
-        NukeParts
+        NukeParts,
+        HealthPack,
+        RepairKit
     }
 
     [SerializeField]
@@ -34,6 +36,21 @@ public class ActivePlayerInventory : MonoBehaviour
     public void useItem(activePlayerItems itemName)
     {
         playerInventory.Remove(itemName);
+    }
+
+    public int countItem(activePlayerItems itemName)
+    {
+        int c = 0;
+
+        foreach (var item in playerInventory)
+        {
+            if (item == itemName)
+            {
+                c++;
+            }
+        }
+
+        return c;
     }
 
 }
