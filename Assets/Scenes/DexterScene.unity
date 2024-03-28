@@ -65848,7 +65848,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 4
   m_CollisionDetection: 0
 --- !u!114 &1350505085
 MonoBehaviour:
@@ -74921,6 +74921,11 @@ PrefabInstance:
       propertyPath: healthBar
       value: 
       objectReference: {fileID: 199249722}
+    - target: {fileID: 6776554893320096386, guid: f97966fa08f7246579cb2f278c1d4909,
+        type: 3}
+      propertyPath: maxHealth
+      value: 10000
+      objectReference: {fileID: 0}
     - target: {fileID: 7215493473248351806, guid: f97966fa08f7246579cb2f278c1d4909,
         type: 3}
       propertyPath: m_Name
