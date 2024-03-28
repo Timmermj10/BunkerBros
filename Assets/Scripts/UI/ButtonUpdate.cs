@@ -47,7 +47,7 @@ public class ButtonUpdate : MonoBehaviour
         {
             GetComponent<Image>().color = Color.white;
         }
-        if (shopManager.coins <= shopManager.shopItems[buttonInfo.itemID].itemCost)
+        if (shopManager.coins < shopManager.shopItems[buttonInfo.itemID].itemCost)
         {
             GetComponent<Image>().color = Color.white;
         }
