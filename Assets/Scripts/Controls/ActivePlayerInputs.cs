@@ -33,24 +33,23 @@ public class ActivePlayerInputs : MonoBehaviour
         rb = GetComponent<Rigidbody>();
 
         EventBus.Subscribe<WaveStartedEvent>(WaveStarted);
-        EventBus.Subscribe<WaveEndedEvent>(WaveEnded);
+        //EventBus.Subscribe<WaveEndedEvent>(WaveEnded);
 
-        //Debug.Log("Turning Off Player Controls");
         look = transform.Find("PlayerLook");
 }
 
 
     private void WaveStarted(WaveStartedEvent e)
     {
-        playerControls = true;
         //Debug.Log("Turning on Player Controls");
+        playerControls = true;
     }
 
-    private void WaveEnded(WaveEndedEvent e)
-    {
-        playerControls = false;
-        //Debug.Log("Turning Off Player Controls");
-    }
+    //private void WaveEnded(WaveEndedEvent e)
+    //{
+    //    playerControls = false;
+    //    //Debug.Log("Turning Off Player Controls");
+    //}
 
 
     // Constantly sets the value of movementInputValue to the current input on the left joystick

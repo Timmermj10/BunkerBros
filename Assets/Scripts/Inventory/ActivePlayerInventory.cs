@@ -8,10 +8,11 @@ public class ActivePlayerInventory : MonoBehaviour
 
     public enum activePlayerItems
     {
-        MissileParts
+        NukeParts
     }
 
-    public List<activePlayerItems> playerInventory = new List<activePlayerItems>();
+    [SerializeField]
+    private List<activePlayerItems> playerInventory = new List<activePlayerItems>();
 
     void Start()
     {
@@ -21,7 +22,7 @@ public class ActivePlayerInventory : MonoBehaviour
 
     private void _OnPickup(PickUpEvent e)
     {
-        //Debug.Log($"Adding {e.pickedUpItem} of type {e.pickedUpItem.GetType()} to activePlayerInventory");
+        Debug.Log($"Adding {e.pickedUpItem} of type {e.pickedUpItem.GetType()} to activePlayerInventory");
         playerInventory.Add(e.pickedUpItem);
     }
 

@@ -13,17 +13,25 @@ public class ChangesHealth : MonoBehaviour
     private void OnTriggerStay(Collider other)
     {
 
+        //Speed up computation: Only tagged objects have health
         if (other.gameObject.CompareTag("Untagged"))
         {
             return;
         }
 
-        //if (gameObject.layer == other.gameObject.layer)
-        //{
-        //    return;
-        //}
+        //Dont let the player damage the objective
+        if (other.gameObject.CompareTag("Objective") && (gameObject.CompareTag("Projectile") || gameObject.name is "Knife"))
+        {
+            return;
+        }
 
-        //Debug.Log($"OTS Collision: {gameObject.name} and {other.gameObject.name} with damageCooldown of {damageCooldownTimer}");
+        //Dont let enemies damage each other
+        if (gameObject.layer == LayerMask.NameToLayer("Enemy") && other.gameObject.layer == LayerMask.NameToLayer("Enemy"))
+        {
+            return;
+        }
+
+        //Debug.Log($"OTS Collision: {gameObject.name} with tag {gameObject.tag} and {other.gameObject.name} with tag {other.gameObject.tag}");
 
         //Get the HasHealth Component of the object collided with
         HasHealth hasHealth = other.gameObject.GetComponent<HasHealth>();

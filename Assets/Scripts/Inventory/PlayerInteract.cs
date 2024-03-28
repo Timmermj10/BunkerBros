@@ -16,10 +16,12 @@ public class PlayerInteract : MonoBehaviour
     private bool buttonPressed = false;
 
     // Items that are in range to be picked up
-    public List<GameObject> itemsInRange = new List<GameObject>();
+    [SerializeField]
+    private List<GameObject> itemsInRange = new List<GameObject>();
 
     // Items that have been successfully picked up
-    public List<GameObject> pickedUpItems = new List<GameObject>();
+    [SerializeField]
+    private List<GameObject> pickedUpItems = new List<GameObject>();
 
 
     [Header("Text Popups for Interactables")]
@@ -60,6 +62,7 @@ public class PlayerInteract : MonoBehaviour
         // If we are pressing down the button and there is an item that can be pickedup
         if (buttonPressed && itemsInRange.Count > 0)
         {
+            //Debug.Log("Button pressed and at least one interactable object in range");
 
             foreach (var item in itemsInRange)
             {
@@ -70,10 +73,15 @@ public class PlayerInteract : MonoBehaviour
                 }
                 else if (item != null && item.tag is "Interactable")
                 {
-                    if ((item.name is "MissileSilo" || item.name is "MissileSilo(Clone)") && GetComponent<ActivePlayerInventory>().itemInInventory(ActivePlayerInventory.activePlayerItems.MissileParts))
+                    //Debug.Log("Interactable silo, but cannot load rn");
+                    if ((item.name is "MissileSilo" || item.name is "MissileSilo(Clone)") && GetComponent<ActivePlayerInventory>().itemInInventory(ActivePlayerInventory.activePlayerItems.NukeParts))
                     {
                         EventBus.Publish(new InteractTimerStartedEvent(timeToInteract));
                     }
+                }
+                else
+                {
+                    //Debug.Log("No interactable objects");
                 }
             }
 
@@ -100,12 +108,11 @@ public class PlayerInteract : MonoBehaviour
                         {
                             // Publish a CoinCollect event
                             EventBus.Publish<CoinCollect>(new CoinCollect(150));
-                            Debug.Log("Here");
                         }
-                        else if (item.name is "MissileBox" || item.name is "MissileBox(Clone)")
+                        else if (item.name is "NukeCrate" || item.name is "NukeCrate(Clone)")
                         {
-                            //Debug.Log("Publishing missileparts pickup");
-                            EventBus.Publish<PickUpEvent>(new PickUpEvent(ActivePlayerInventory.activePlayerItems.MissileParts));
+                            //Debug.Log("Publishing NukeParts pickup");
+                            EventBus.Publish<PickUpEvent>(new PickUpEvent(ActivePlayerInventory.activePlayerItems.NukeParts));
                         }
 
                         // Destroy the item
@@ -114,13 +121,13 @@ public class PlayerInteract : MonoBehaviour
                     }
                     else if (item != null && item.tag is "Interactable")
                     {
-                        if ((item.name is "MissileSilo" || item.name is "MissileSilo(Clone)") && GetComponent<ActivePlayerInventory>().itemInInventory(ActivePlayerInventory.activePlayerItems.MissileParts))
+                        if ((item.name is "MissileSilo" || item.name is "MissileSilo(Clone)") && GetComponent<ActivePlayerInventory>().itemInInventory(ActivePlayerInventory.activePlayerItems.NukeParts))
                         {
                             MissileSiloStatus silo = item.GetComponent<MissileSiloStatus>();
-                            //Debug.Log("Attempting to load Silo");
+                            Debug.Log("Loading Silo");
                             if (silo != null && !silo.isSiloLoaded())
                             {
-                                //Debug.Log("Loading MissileSilo");
+                                Debug.Log("Loading MissileSilo");
                                 silo.loadSilo();
 
                                 // Publish Silo Loaded Event
@@ -128,7 +135,7 @@ public class PlayerInteract : MonoBehaviour
 
                                 //Take the parts out of the player inventory
                                 ActivePlayerInventory inventory = GetComponent<ActivePlayerInventory>();
-                                inventory.useItem(ActivePlayerInventory.activePlayerItems.MissileParts);
+                                inventory.useItem(ActivePlayerInventory.activePlayerItems.NukeParts);
                             }
                             else
                             {
@@ -154,7 +161,6 @@ public class PlayerInteract : MonoBehaviour
     // When you walk up to a pickupable item
     private void OnTriggerEnter(Collider other)
     {
-        print(gameObject.name);
         if ((other.gameObject.tag is "Pickup" || other.gameObject.tag is "Interactable"))
         {
             itemsInRange.Add(other.gameObject);
