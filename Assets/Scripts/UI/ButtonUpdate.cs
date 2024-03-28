@@ -42,6 +42,16 @@ public class ButtonUpdate : MonoBehaviour
             button.interactable = true;
         }
 
+        // If we have a currently selected Game Object, reset all the image colors to white
+        if (EventSystem.current.currentSelectedGameObject)
+        {
+            GetComponent<Image>().color = Color.white;
+        }
+        if (shopManager.coins <= shopManager.shopItems[buttonInfo.itemID].itemCost)
+        {
+            GetComponent<Image>().color = Color.white;
+        }
+
         // THIS IS HOW YOU DETECT WHAT BUTTON IS SELECTED
         // THIS WILL BE USEFUL FOR PLACING THE OBJECTS AND SHOWING THE PREVIEW TO THE MANAGER
 
