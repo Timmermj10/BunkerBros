@@ -127,7 +127,7 @@ public class PlayerInteract : MonoBehaviour
                             Debug.Log("Loading Silo");
                             if (silo != null && !silo.isSiloLoaded())
                             {
-                                Debug.Log("Loading MissileSilo");
+                                //Debug.Log("Loading MissileSilo");
                                 silo.loadSilo();
 
                                 // Publish Silo Loaded Event
