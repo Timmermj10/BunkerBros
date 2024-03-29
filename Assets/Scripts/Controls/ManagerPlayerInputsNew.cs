@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using System;
+using UnityEngineInternal;
 
 public class ManagerPlayerInputsNew : MonoBehaviour
 {
@@ -14,7 +15,7 @@ public class ManagerPlayerInputsNew : MonoBehaviour
 
     InputAction moveAction;
 
-    private GameObject managerCamera;
+    public static GameObject managerCamera;
 
     private InventoryUI inventory;
 
@@ -30,6 +31,10 @@ public class ManagerPlayerInputsNew : MonoBehaviour
 
     // Most recently used item
     static public GameObject mostRecentItem;
+
+    // Public int to hold how many blocks away from center (will be used when we implement zoom)
+    public static int blockCount = 5;
+
 
     private void Start()
     {
@@ -215,7 +220,7 @@ public class ManagerPlayerInputsNew : MonoBehaviour
                 selectedObj = mostRecentItem;
             }
 
-            if (selectedObj != null)
+            if (selectedObj != null && withinView(worldPositionRounded))
             {
                 // Do something with the selected object
 
@@ -271,7 +276,8 @@ public class ManagerPlayerInputsNew : MonoBehaviour
                     EventBus.Publish<ItemUseEvent>(new ItemUseEvent(5, itemUsedLocation, true)); // Changed to 2 for a missile
                 }
 
-                if (selectedObj.transform.parent == GameObject.Find("Purchasables").transform) {
+                if (selectedObj.transform.parent == GameObject.Find("Purchasables").transform)
+                {
                     // Cost of item
                     float cost = shopManagerScript.shopItems[itemID].itemCost;
 
@@ -302,16 +308,16 @@ public class ManagerPlayerInputsNew : MonoBehaviour
         EventBus.Publish(new ManagerCycleEvent());
     }
 
-    private bool withinView(Vector3 worldPosition)
+    public static bool withinView(Vector3 worldPosition)
     {
         float worldPositionX = worldPosition.x;
         float worldPositionZ = worldPosition.z;
         float managerPositionX = Mathf.RoundToInt(managerCamera.transform.position.x);
-        float managerPositionZ = Mathf.RoundToInt(managerCamera.transform.position.z - 2);
+        float managerPositionZ = Mathf.RoundToInt(managerCamera.transform.position.z);
 
 
-        if ((managerPositionX - 6 <= worldPosition.x && worldPosition.x <= managerPositionX + 6)
-            && (managerPositionZ - 6 <= worldPosition.z && worldPosition.z <= managerPositionZ + 6))
+        if ((managerPositionX - blockCount <= worldPosition.x && worldPosition.x <= managerPositionX + blockCount)
+            && (managerPositionZ - blockCount <= worldPosition.z && worldPosition.z <= managerPositionZ + blockCount))
         {
             return true;
         }
