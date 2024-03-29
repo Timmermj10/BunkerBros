@@ -20,12 +20,16 @@ public class AmmoUI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (enable)
+        if (ammo_display != null)
         {
-            ammo_display.text = "Ammo: " + ammo.ammo_count.ToString();
-        } else
-        {
-            ammo_display.text = "";
+            if (enable)
+            {
+                ammo_display.text = "Ammo: " + ammo.ammo_count.ToString();
+            }
+            else
+            {
+                ammo_display.text = "";
+            }
         }
     }
 
