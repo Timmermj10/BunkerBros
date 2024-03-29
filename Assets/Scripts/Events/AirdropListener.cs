@@ -54,7 +54,7 @@ public class AirdropListener : MonoBehaviour
             Vector3 initialDropLocation = new Vector3(e.itemLocation.x, e.itemLocation.y + dropHeight, e.itemLocation.z);
             Vector3 finalDropLocation = initialDropLocation - new Vector3(0f, dropHeight, 0f);
 
-            Debug.Log($"Spawning airdrop with initialLocation of {initialDropLocation} and final location of {finalDropLocation}");
+            //Debug.Log($"Spawning airdrop with initialLocation of {initialDropLocation} and final location of {finalDropLocation}");
 
             //Instantiate the drop
             airdrop = Instantiate(prefabToInstantiate, initialDropLocation, rotation);

@@ -5,13 +5,20 @@ using UnityEngine.UI;
 
 public class WaveManager : MonoBehaviour
 {
+    [SerializeField]
     private int waveNumber = 1;
+    [SerializeField]
     private int maxEnemiesAtOnce = 24;
+    [SerializeField]
     private int currentEnemiesAlive = 0;
+    [SerializeField]
     private int numEnemiesToSpawnThisRound = 5;
+    [SerializeField]
     private int numEnemiesSpawnedSoFar = 0;
 
+    [SerializeField]
     private int numArmoredSpawnedSoFar = 0;
+    [SerializeField]
     private int numArmoredToSpawnThisRound = 0;
 
     [Header("Wave Button")]
@@ -67,8 +74,10 @@ public class WaveManager : MonoBehaviour
             numArmoredSpawnedSoFar++;
         }
 
+       
         numEnemiesSpawnedSoFar++;
         currentEnemiesAlive++;
+        //Debug.Log($"Enemy of type: {type} spawned. Enemies spawned this round = {numEnemiesSpawnedSoFar}");
 
         if (numEnemiesSpawnedSoFar == numEnemiesToSpawnThisRound)
         {
@@ -83,8 +92,6 @@ public class WaveManager : MonoBehaviour
         {
             yield return new WaitForEndOfFrame();
         }
-
-        yield return new WaitForSeconds(3);
 
         EventBus.Publish(new WaveEndedEvent());
     }
@@ -101,6 +108,9 @@ public class WaveManager : MonoBehaviour
 
     public void StartWave()
     {
+        //Reset the spawn count
+        numEnemiesSpawnedSoFar = 0;
+
         // Publish the start wave event
         EventBus.Publish(new WaveStartedEvent());
 
@@ -115,9 +125,6 @@ public class WaveManager : MonoBehaviour
 
         // Increment the wave number
         waveNumber += 1;
-
-        //Reset the spawn count
-        numEnemiesSpawnedSoFar = 0;
 
         // Increase the number of enemies to be spawned
         numEnemiesToSpawnThisRound = Mathf.RoundToInt(numEnemiesToSpawnThisRound * 1.5f);

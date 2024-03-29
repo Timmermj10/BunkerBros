@@ -58,12 +58,27 @@ public class HasHealth : MonoBehaviour
         }
     }
 
+    public void increaseHealth(int health_in)
+    {
+        currentHealth += health_in;
+
+        if (currentHealth > maxHealth) {
+            currentHealth = maxHealth;
+        }
+
+        // Update slider
+        if (healthBar != null)
+        {
+            healthBar.SetHealth(currentHealth);
+        }
+    }
+
     public void changeHealth(int healthChange)
     {
         //Check if the tower is taking damage, and if it has a shield
         if (GetComponent<Shield>() != null && GetComponent<Shield>().protect)
         {
-            Debug.Log("Shield");
+            //Debug.Log("Shield");
             GetComponent<Shield>().depleteShield(healthChange);
         }
         else

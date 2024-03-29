@@ -10,6 +10,9 @@ public class EnemySpawnManager : MonoBehaviour
     public GameObject ArmoredEnemyPrefab;
 
 
+    Transform playerTransform;
+
+
     public float spawnDelay = 200f;
     public float random_spawn = 10f;
     private float randomX;
@@ -28,6 +31,9 @@ public class EnemySpawnManager : MonoBehaviour
         waveManager = GameObject.FindAnyObjectByType<WaveManager>();
 
         EventBus.Subscribe<WaveStartedEvent>(WaveStarted);
+        EventBus.Subscribe<PlayerRespawnEvent>(_PlayerRespawn);
+
+        playerTransform = GameObject.Find("player").transform;
 
     }
 
@@ -57,6 +63,13 @@ public class EnemySpawnManager : MonoBehaviour
             //Make sure the maximum amount of enemies is not exceeded and the amount of enemies per wave is not exceeded
             if (spawnDelay <= 0 && waveManager.getNumEnemiesAlive() < waveManager.getMaxEnemiesAliveAtOnce())
             {
+                //if the player is currently dead
+                if (playerTransform == null)
+                {
+                    Debug.Log("Player is dead, creating dummy transform");
+                    playerTransform = transform;
+                }
+
                 // Reset the spawn timer
                 spawnDelay = initDelay;
 
@@ -70,7 +83,7 @@ public class EnemySpawnManager : MonoBehaviour
                     GameObject enemy = Instantiate(ArmoredEnemyPrefab);
 
                     // Set the enemies position
-                    enemy.transform.position = new Vector3(transform.position.x + randomX, 1f, transform.position.z + randomZ);
+                    enemy.transform.position = new Vector3(playerTransform.position.x + randomX, 1f, playerTransform.position.z + randomZ);
 
                     //Let the waveManager know an enemy has been spawned
                     waveManager.enemySpawned(EnemyType.Armored);
@@ -81,7 +94,7 @@ public class EnemySpawnManager : MonoBehaviour
                     GameObject enemy = Instantiate(BasicEnemyPrefab);
 
                     // Set the enemies position
-                    enemy.transform.position = new Vector3(transform.position.x + randomX, 1f, transform.position.z + randomZ);
+                    enemy.transform.position = new Vector3(playerTransform.position.x + randomX, 1f, playerTransform.position.z + randomZ);
 
                     //Let the waveManager know an enemy has been spawned
                     waveManager.enemySpawned(EnemyType.Basic);
@@ -97,6 +110,11 @@ public class EnemySpawnManager : MonoBehaviour
             yield return new WaitForFixedUpdate();
         }
 
+    }
+
+    private void _PlayerRespawn(PlayerRespawnEvent e)
+    {
+        playerTransform = e.activePlayer.transform;
     }
 
 }
