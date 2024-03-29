@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class AttackEvent
 {
@@ -118,6 +119,7 @@ public class InteractTimerEndedEvent
 {
 }
 
+// Event for when the silo is loaded
 public class SiloLoadedEvent
 {
     public MissileSiloStatus status;
@@ -126,6 +128,11 @@ public class SiloLoadedEvent
     {
         status = e;
     }
+}
+
+// Event for when the silo is unloaded
+public class SiloUnloadedEvent
+{
 }
 
 public class WaveEndedEvent
@@ -138,4 +145,14 @@ public class WaveStartedEvent
 
 public class ShootEvent
 {
+}
+// Event for when buttons in the Manager UI are clicked
+public class ManagerButtonClickEvent
+{
+    public Button button;
+
+    public ManagerButtonClickEvent(Button b)
+    {
+        button = b;
+    }
 }

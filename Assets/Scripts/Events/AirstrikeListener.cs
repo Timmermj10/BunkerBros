@@ -37,8 +37,9 @@ public class AirstrikeListener : MonoBehaviour
     void _CallNuke(ItemUseEvent e)
     {
         // if the id is the nukeID
-        if (e.itemID == 4)
+        if (e.itemID == 4 && siloStatus.Count > 0)
         {
+
             //Call in an nuke at the itemLocation
             //StartCoroutine(DelayedExplosion(e.itemLocation));
 
@@ -121,6 +122,9 @@ public class AirstrikeListener : MonoBehaviour
 
         // Pop the silo from the list
         siloStatus.RemoveAt(0);
+
+        // Publish that the silo was unloaded
+        EventBus.Publish<SiloUnloadedEvent>(new SiloUnloadedEvent());
     }
 
     // Update is called once per frame

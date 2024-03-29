@@ -9925,6 +9925,7 @@ GameObject:
   m_Component:
   - component: {fileID: 226248810}
   - component: {fileID: 226248809}
+  - component: {fileID: 226248811}
   m_Layer: 0
   m_Name: WaveManager
   m_TagString: Untagged
@@ -9944,6 +9945,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e74b875edecfb8b45a4cef026ad6aa13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  waveNumber: 1
+  maxEnemiesAtOnce: 24
+  currentEnemiesAlive: 0
+  numEnemiesToSpawnThisRound: 5
+  numEnemiesSpawnedSoFar: 0
+  numArmoredSpawnedSoFar: 0
+  numArmoredToSpawnThisRound: 0
   waveButton: {fileID: 557348242}
 --- !u!4 &226248810
 Transform:
@@ -9954,12 +9962,30 @@ Transform:
   m_GameObject: {fileID: 226248808}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 95.41746, y: 23.096176, z: 16.403381}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &226248811
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 226248808}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b15a336ef71a74b83818e16f491496e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BasicEnemyPrefab: {fileID: 3780342249592017795, guid: 252860dd1fe42324499501160b4fa1f8,
+    type: 3}
+  ArmoredEnemyPrefab: {fileID: 5318527134438833502, guid: f8ba1fdf2a5ff634cbad838678660568,
+    type: 3}
+  spawnDelay: 200
+  random_spawn: 10
 --- !u!1001 &227611811
 PrefabInstance:
   m_ObjectHideFlags: 0

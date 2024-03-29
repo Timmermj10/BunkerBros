@@ -27,9 +27,11 @@ public class ButtonUpdate : MonoBehaviour
         // Get a reference to the shop manager
         shopManager = GameObject.Find("ShopManager").GetComponent<ShopManagerScript>();
 
+        // Subscribe to Manager Button Click Events
+        EventBus.Subscribe<ManagerButtonClickEvent>(_ButtonClicked);
     }
 
-    // Update is called once per frame
+    // Update button colors and interactable status
     void Update()
     {
         // Check if we have enough coins to purchase the item
@@ -51,17 +53,19 @@ public class ButtonUpdate : MonoBehaviour
         {
             GetComponent<Image>().color = Color.white;
         }
+    }
 
-        // THIS IS HOW YOU DETECT WHAT BUTTON IS SELECTED
-        // THIS WILL BE USEFUL FOR PLACING THE OBJECTS AND SHOWING THE PREVIEW TO THE MANAGER
+    // Run when a button is clicked
+    public void _ButtonClicked(ManagerButtonClickEvent e)
+    {
+        // If the button clicked is not this button and it was the most recently used
+        if (button.gameObject == ManagerPlayerInputsNew.mostRecentItem && button != e.button)
+        {
+            // Update most recently used
+            ManagerPlayerInputsNew.mostRecentItem = e.button.gameObject;
 
-        // EventSystem.current holds a reference to the current event system
-        //GameObject selectedObj = EventSystem.current.currentSelectedGameObject;
-
-        //if (selectedObj != null)
-        //{
-        //    Do something with the selected object
-        //    Debug.Log("Currently selected button: " + selectedObj.name);
-        //}
+            // Update the color of this button
+            button.GetComponent<Image>().color = Color.white;
+        }
     }
 }

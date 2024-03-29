@@ -232,8 +232,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 8
   currentHealth: 0
+  armorValue: 0
   healthBar: {fileID: 0}
-  overlay: {fileID: 0}
   duration: 0
   fadeSpeed: 0
 --- !u!1 &7454894412028755868

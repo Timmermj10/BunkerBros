@@ -10,7 +10,7 @@ public class PlayerInteract : MonoBehaviour
 {
     // Time it will take to pick items up
     public float timeToInteract = 2.0f;
-    private float interactTimer = 0;
+    private float interactTimer = 2.0f;
 
     // Whether the button is pressed down
     private bool buttonPressed = false;
@@ -141,6 +141,7 @@ public class PlayerInteract : MonoBehaviour
                                 silo.loadSilo();
 
                                 // Publish Silo Loaded Event
+                                Debug.Log("Publishing Event");
                                 EventBus.Publish<SiloLoadedEvent>(new SiloLoadedEvent(silo));
 
                                 //Take the parts out of the player inventory
