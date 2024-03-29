@@ -79,6 +79,7 @@ public class PlayerInteract : MonoBehaviour
                         EventBus.Publish(new InteractTimerStartedEvent(timeToInteract));
                     }
                 }
+                //TODO: Add code for health pack and repair kits
                 else
                 {
                     //Debug.Log("No interactable objects");
@@ -114,6 +115,15 @@ public class PlayerInteract : MonoBehaviour
                             //Debug.Log("Publishing NukeParts pickup");
                             EventBus.Publish<PickUpEvent>(new PickUpEvent(ActivePlayerInventory.activePlayerItems.NukeParts));
                         }
+                        //TODO: add ammo pickup
+                        else if (item.name is "RepairKit" || item.name is "RepairKit(Clone)")
+                        {
+                            EventBus.Publish<PickUpEvent>(new PickUpEvent(ActivePlayerInventory.activePlayerItems.RepairKit));
+                        }
+                        else if (item.name is "HealthPack" || item.name is "HealthPack(Clone)")
+                        {
+                            EventBus.Publish<PickUpEvent>(new PickUpEvent(ActivePlayerInventory.activePlayerItems.HealthPack));
+                        }
 
                         // Destroy the item
                         EventBus.Publish(new ObjectDestroyedEvent(item.name, item.tag, item.transform.position));
@@ -142,7 +152,22 @@ public class PlayerInteract : MonoBehaviour
                                 //Debug.Log($"Failed to load Silo: silo status = {silo.isSiloLoaded()}, doesThePlayerHaveMissileParts = {GetComponent<ActivePlayerInventory>().itemInInventory(ActivePlayerInventory.activePlayerItems.MissileParts)}");
                             }
                         }
+                        else if ((item.name is "Objective") && GetComponent<ActivePlayerInventory>().itemInInventory(ActivePlayerInventory.activePlayerItems.RepairKit))
+                        {
+                            RepairKitUse rk = item.GetComponent<RepairKitUse>();
+
+                            if (rk != null)
+                            {
+                                Debug.Log("Using Kit");
+                                rk.UseKit();
+
+                                ActivePlayerInventory inventory = GetComponent<ActivePlayerInventory>();
+                                inventory.useItem(ActivePlayerInventory.activePlayerItems.RepairKit);
+                            }
+                        }
                     }
+
+
                 }
 
                 // Clear the items in range list
