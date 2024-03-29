@@ -40,6 +40,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "UseHeal",
+                    "type": "Value",
+                    "id": "8863d1d2-a7ba-4163-bb8d-8203421c8497",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -84,6 +93,17 @@
                     "processors": "",
                     "groups": "ControllerPlayer",
                     "action": "HoldToGet",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "35811f0b-28ee-4e10-88d9-ee30ea45de0e",
+                    "path": "<Gamepad>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "UseHeal",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
