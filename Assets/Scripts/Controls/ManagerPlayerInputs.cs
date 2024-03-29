@@ -30,7 +30,7 @@ public class ManagerPlayerInputs : MonoBehaviour
     // Most recently used item
     GameObject mostRecentItem;
 
-    private void Start()
+    void Awake()
     {
         playerInput = GetComponent<PlayerInput>();
         moveAction = playerInput.actions.FindAction("Move");
@@ -271,6 +271,7 @@ public class ManagerPlayerInputs : MonoBehaviour
                 }
 
                 // Cost of item
+                Debug.Log(shopManagerScript);
                 float cost = shopManagerScript.shopItems[itemID].itemCost;
 
                 // Update coin count

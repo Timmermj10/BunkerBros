@@ -30,7 +30,7 @@ public class MissileSiloStatus : MonoBehaviour
     {
         isLoaded = false;
 
-        //Change visual to indicate silo is loaded
+        //Change visual to indicate silo is unloaded
         Renderer renderer = GetComponent<Renderer>();
 
         // Change the material of the Renderer to the loaded material

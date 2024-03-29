@@ -131,6 +131,7 @@ public class PlayerInteract : MonoBehaviour
                                 silo.loadSilo();
 
                                 // Publish Silo Loaded Event
+                                Debug.Log("Publishing Event");
                                 EventBus.Publish<SiloLoadedEvent>(new SiloLoadedEvent(silo));
 
                                 //Take the parts out of the player inventory
