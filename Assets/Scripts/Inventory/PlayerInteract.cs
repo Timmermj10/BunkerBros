@@ -10,7 +10,7 @@ public class PlayerInteract : MonoBehaviour
 {
     // Time it will take to pick items up
     public float timeToInteract = 2.0f;
-    private float interactTimer = 0;
+    private float interactTimer = 2.0f;
 
     // Whether the button is pressed down
     private bool buttonPressed = false;

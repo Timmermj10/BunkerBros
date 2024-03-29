@@ -51,7 +51,6 @@ public class EnemyMovement : MonoBehaviour
             {
                 rb.velocity = Vector3.up * rb.velocity.y;
             }
-            player = GameObject.Find("player");
         }
         else if (objective != null)
         {

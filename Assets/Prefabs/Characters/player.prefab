@@ -260,7 +260,6 @@ GameObject:
   - component: {fileID: 2795680284881736967}
   - component: {fileID: 2040935900445435045}
   - component: {fileID: 155481110080056303}
-  - component: {fileID: 8276966918228688082}
   - component: {fileID: 8173686916934552078}
   m_Layer: 6
   m_Name: player
@@ -454,24 +453,6 @@ MonoBehaviour:
   mask:
     serializedVersion: 2
     m_Bits: 90113
---- !u!114 &8276966918228688082
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2463675146606809864}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b15a336ef71a74b83818e16f491496e2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  BasicEnemyPrefab: {fileID: 3780342249592017795, guid: 252860dd1fe42324499501160b4fa1f8,
-    type: 3}
-  ArmoredEnemyPrefab: {fileID: 5318527134438833502, guid: f8ba1fdf2a5ff634cbad838678660568,
-    type: 3}
-  spawnDelay: 200
-  random_spawn: 8
 --- !u!114 &8173686916934552078
 MonoBehaviour:
   m_ObjectHideFlags: 0

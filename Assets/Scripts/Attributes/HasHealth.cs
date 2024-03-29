@@ -63,7 +63,7 @@ public class HasHealth : MonoBehaviour
         //Check if the tower is taking damage, and if it has a shield
         if (GetComponent<Shield>() != null && GetComponent<Shield>().protect)
         {
-            Debug.Log("Shield");
+            //Debug.Log("Shield");
             GetComponent<Shield>().depleteShield(healthChange);
         }
         else

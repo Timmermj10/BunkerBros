@@ -10,6 +10,8 @@ public class PlayerManager : MonoBehaviour
     public GameObject activePlayer;
     private GameObject managerPlayer;
 
+    private bool respawningPlayer = false;
+
     void Start()
     {
 
@@ -40,8 +42,9 @@ public class PlayerManager : MonoBehaviour
 
     private void _PlayerDead(ObjectDestroyedEvent e)
     {
-        if (e.tag == "Player")
+        if (e.tag == "Player" && e.name is "player" && !respawningPlayer)
         {
+            respawningPlayer = true;
             StartCoroutine(RespawnPlayer());
         }
     }
@@ -67,6 +70,7 @@ public class PlayerManager : MonoBehaviour
         }
         EventBus.Publish(new PlayerRespawnEvent(activePlayer.transform.position, activePlayer));
 
+        respawningPlayer = false;
         yield return null;
     }
 
