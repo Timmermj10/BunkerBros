@@ -3643,36 +3643,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 699650006}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &78839364
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 78839340}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 45a200cf47106234d8ffb4a571f5fc8e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ammo_display: {fileID: 153024279}
-  ammo: {fileID: 78839365}
-  enable: 0
---- !u!114 &78839365
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 78839340}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f89c86804941e7c42b487288c5344975, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ammo_count: 10
-  reload_count: 10
-  active: 0
 --- !u!1001 &81684283
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15942,7 +15912,7 @@ MonoBehaviour:
     itemIcon: {fileID: 0}
     itemCount: 0
     oneTimePurchase: 0
-  coins: 350
+  coins: 150
   coinsText: {fileID: 734753316}
 --- !u!4 &349862697
 Transform:
@@ -32350,16 +32320,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: player
       objectReference: {fileID: 0}
-    - target: {fileID: 2916220546527835598, guid: c1cf7c557e41a435db23620016b92d83,
-        type: 3}
-      propertyPath: ammo
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 2916220546527835598, guid: c1cf7c557e41a435db23620016b92d83,
-        type: 3}
-      propertyPath: ammo_display
-      value: 
-      objectReference: {fileID: 153024279}
     - target: {fileID: 3457418052326730881, guid: c1cf7c557e41a435db23620016b92d83,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -32410,25 +32370,15 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7687879187739873612, guid: c1cf7c557e41a435db23620016b92d83,
+    - target: {fileID: 3894732518182062399, guid: c1cf7c557e41a435db23620016b92d83,
         type: 3}
-      propertyPath: ammo
+      propertyPath: ammo_display
       value: 
-      objectReference: {fileID: 78839365}
-    m_RemovedComponents:
-    - {fileID: 3314168594406259532, guid: c1cf7c557e41a435db23620016b92d83, type: 3}
-    - {fileID: 2916220546527835598, guid: c1cf7c557e41a435db23620016b92d83, type: 3}
+      objectReference: {fileID: 153024279}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 2463675146606809864, guid: c1cf7c557e41a435db23620016b92d83,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 78839365}
-    - targetCorrespondingSourceObject: {fileID: 2463675146606809864, guid: c1cf7c557e41a435db23620016b92d83,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 78839364}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c1cf7c557e41a435db23620016b92d83, type: 3}
 --- !u!1001 &709338387
 PrefabInstance:
