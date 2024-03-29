@@ -124,6 +124,10 @@ public class PlayerInteract : MonoBehaviour
                         {
                             EventBus.Publish<PickUpEvent>(new PickUpEvent(ActivePlayerInventory.activePlayerItems.HealthPack));
                         }
+                        else if (item.name is "AmmoCrate" || item.name is "AmmoCrate(Clone)")
+                        {
+                            EventBus.Publish<PickUpEvent>(new PickUpEvent(ActivePlayerInventory.activePlayerItems.AmmoKit));
+                        }
 
                         // Destroy the item
                         EventBus.Publish(new ObjectDestroyedEvent(item.name, item.tag, item.transform.position));
