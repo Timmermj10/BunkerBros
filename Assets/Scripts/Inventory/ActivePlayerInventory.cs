@@ -10,7 +10,8 @@ public class ActivePlayerInventory : MonoBehaviour
     {
         NukeParts,
         HealthPack,
-        RepairKit
+        RepairKit,
+        AmmoKit
     }
 
     [SerializeField]

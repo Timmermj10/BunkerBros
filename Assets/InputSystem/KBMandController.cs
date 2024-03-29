@@ -71,6 +71,15 @@ public partial class @KBMandController: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Swap"",
+                    ""type"": ""Value"",
+                    ""id"": ""bcda6efb-9e1c-4017-87a6-e6cf17baf3ab"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -126,6 +135,17 @@ public partial class @KBMandController: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""UseHeal"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""085f7e15-8d29-4657-8f8c-7a9c6c106a0e"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Swap"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -264,6 +284,7 @@ public partial class @KBMandController: IInputActionCollection2, IDisposable
         m_ActivePlayer_Attack = m_ActivePlayer.FindAction("Attack", throwIfNotFound: true);
         m_ActivePlayer_HoldToGet = m_ActivePlayer.FindAction("HoldToGet", throwIfNotFound: true);
         m_ActivePlayer_UseHeal = m_ActivePlayer.FindAction("UseHeal", throwIfNotFound: true);
+        m_ActivePlayer_Swap = m_ActivePlayer.FindAction("Swap", throwIfNotFound: true);
         // ManagerPlayer
         m_ManagerPlayer = asset.FindActionMap("ManagerPlayer", throwIfNotFound: true);
         m_ManagerPlayer_Move = m_ManagerPlayer.FindAction("Move", throwIfNotFound: true);
@@ -335,6 +356,7 @@ public partial class @KBMandController: IInputActionCollection2, IDisposable
     private readonly InputAction m_ActivePlayer_Attack;
     private readonly InputAction m_ActivePlayer_HoldToGet;
     private readonly InputAction m_ActivePlayer_UseHeal;
+    private readonly InputAction m_ActivePlayer_Swap;
     public struct ActivePlayerActions
     {
         private @KBMandController m_Wrapper;
@@ -344,6 +366,7 @@ public partial class @KBMandController: IInputActionCollection2, IDisposable
         public InputAction @Attack => m_Wrapper.m_ActivePlayer_Attack;
         public InputAction @HoldToGet => m_Wrapper.m_ActivePlayer_HoldToGet;
         public InputAction @UseHeal => m_Wrapper.m_ActivePlayer_UseHeal;
+        public InputAction @Swap => m_Wrapper.m_ActivePlayer_Swap;
         public InputActionMap Get() { return m_Wrapper.m_ActivePlayer; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -368,6 +391,9 @@ public partial class @KBMandController: IInputActionCollection2, IDisposable
             @UseHeal.started += instance.OnUseHeal;
             @UseHeal.performed += instance.OnUseHeal;
             @UseHeal.canceled += instance.OnUseHeal;
+            @Swap.started += instance.OnSwap;
+            @Swap.performed += instance.OnSwap;
+            @Swap.canceled += instance.OnSwap;
         }
 
         private void UnregisterCallbacks(IActivePlayerActions instance)
@@ -387,6 +413,9 @@ public partial class @KBMandController: IInputActionCollection2, IDisposable
             @UseHeal.started -= instance.OnUseHeal;
             @UseHeal.performed -= instance.OnUseHeal;
             @UseHeal.canceled -= instance.OnUseHeal;
+            @Swap.started -= instance.OnSwap;
+            @Swap.performed -= instance.OnSwap;
+            @Swap.canceled -= instance.OnSwap;
         }
 
         public void RemoveCallbacks(IActivePlayerActions instance)
@@ -491,6 +520,7 @@ public partial class @KBMandController: IInputActionCollection2, IDisposable
         void OnAttack(InputAction.CallbackContext context);
         void OnHoldToGet(InputAction.CallbackContext context);
         void OnUseHeal(InputAction.CallbackContext context);
+        void OnSwap(InputAction.CallbackContext context);
     }
     public interface IManagerPlayerActions
     {

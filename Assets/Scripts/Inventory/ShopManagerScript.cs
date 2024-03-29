@@ -44,6 +44,7 @@ public class ShopManagerScript : MonoBehaviour
 
             // Publish purchase event
             EventBus.Publish<PurchaseEvent>(new PurchaseEvent(shopItems[ButtonRef.GetComponent<ButtonInfo>().itemID]));
+            Debug.Log(shopItems[ButtonRef.GetComponent<ButtonInfo>().itemID].itemName);
         }
     }
 }

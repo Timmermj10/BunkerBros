@@ -135,3 +135,7 @@ public class WaveEndedEvent
 public class WaveStartedEvent
 {
 }
+
+public class ShootEvent
+{
+}
