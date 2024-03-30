@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class QuitGame : MonoBehaviour
 {
@@ -10,7 +11,13 @@ public class QuitGame : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            Application.Quit();
+            SceneManager.LoadSceneAsync("GameStart");
         }       
+    }
+
+    // When the quit button is clicked, close the application
+    public void OnGameQuit()
+    {
+        Application.Quit();
     }
 }
