@@ -274,6 +274,30 @@ public class ManagerPlayerInputsNew : MonoBehaviour
 
                     //Debug.Log("Publishing itemUseEvent for turret");
                     EventBus.Publish<ItemUseEvent>(new ItemUseEvent(5, itemUsedLocation, true)); // Changed to 2 for a missile
+                } else if (itemID == 6)
+                {
+                    //get the location of the item
+                    Vector3 itemUsedLocation = new Vector3(worldPositionRounded.x, worldPositionRounded.y + 0.5f, worldPositionRounded.z);
+                    occupiedTiles.Add(new Vector2(worldPositionRounded.x, worldPositionRounded.z));
+
+                    //Debug.Log("Publishing itemUseEvent for turret");
+                    EventBus.Publish<ItemUseEvent>(new ItemUseEvent(6, itemUsedLocation, true)); // Changed to 6 for a HealthPack
+                } else if (itemID == 7)
+                {
+                    //get the location of the item
+                    Vector3 itemUsedLocation = new Vector3(worldPositionRounded.x, worldPositionRounded.y + 0.5f, worldPositionRounded.z);
+                    occupiedTiles.Add(new Vector2(worldPositionRounded.x, worldPositionRounded.z));
+
+                    //Debug.Log("Publishing itemUseEvent for turret");
+                    EventBus.Publish<ItemUseEvent>(new ItemUseEvent(7, itemUsedLocation, true)); // Changed to 7 for a RepairKit
+                } else if (itemID == 8)
+                {
+                    //get the location of the item
+                    Vector3 itemUsedLocation = new Vector3(worldPositionRounded.x, worldPositionRounded.y + 0.5f, worldPositionRounded.z);
+                    occupiedTiles.Add(new Vector2(worldPositionRounded.x, worldPositionRounded.z));
+
+                    //Debug.Log("Publishing itemUseEvent for turret");
+                    EventBus.Publish<ItemUseEvent>(new ItemUseEvent(8, itemUsedLocation, true)); // Changed to 8 for a AmmoCrate
                 }
 
                 if (selectedObj.transform.parent == GameObject.Find("Purchasables").transform)

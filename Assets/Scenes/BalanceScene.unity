@@ -16060,6 +16060,24 @@ MonoBehaviour:
     itemIcon: {fileID: 0}
     itemCount: 0
     oneTimePurchase: 0
+  - itemId: 6
+    itemName: HealthPack
+    itemCost: 100
+    itemIcon: {fileID: 0}
+    itemCount: 0
+    oneTimePurchase: 0
+  - itemId: 7
+    itemName: RepairKit
+    itemCost: 150
+    itemIcon: {fileID: 0}
+    itemCount: 0
+    oneTimePurchase: 0
+  - itemId: 8
+    itemName: AmmoKit
+    itemCost: 200
+    itemIcon: {fileID: 0}
+    itemCount: 0
+    oneTimePurchase: 0
   coins: 150
   coinsText: {fileID: 734753316}
 --- !u!4 &349862697
