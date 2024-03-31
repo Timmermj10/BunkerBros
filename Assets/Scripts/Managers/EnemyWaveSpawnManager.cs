@@ -101,7 +101,7 @@ public class EnemyWaveSpawnManager : MonoBehaviour
                         }
 
                         randomSpawnPosition = new Vector3(playerTransform.position.x + randomX, 10f, playerTransform.position.z + randomZ);
-                        Debug.Log($"Checking to see of the chosen spawn position ({randomSpawnPosition}) is valid");
+                        //Debug.Log($"Checking to see of the chosen spawn position ({randomSpawnPosition}) is valid");
 
                     } while (!Physics.Raycast(randomSpawnPosition, Vector3.down, out hitInfo, Mathf.Infinity) || hitInfo.collider.gameObject.layer != LayerMask.NameToLayer("Default"));
                 } else
@@ -132,20 +132,20 @@ public class EnemyWaveSpawnManager : MonoBehaviour
                         }
 
                         randomSpawnPosition = new Vector3(transform.position.x + randomX, 10f, transform.position.z + randomZ);
-                        Debug.Log($"Checking to see of the chosen spawn position ({randomSpawnPosition}) is valid");
+                        //Debug.Log($"Checking to see of the chosen spawn position ({randomSpawnPosition}) is valid");
 
                     } while (!Physics.Raycast(randomSpawnPosition, Vector3.down, out hitInfo, Mathf.Infinity) || hitInfo.collider.gameObject.layer != LayerMask.NameToLayer("Default"));
                 }
 
                 randomSpawnPosition.y = hitInfo.point.y + 0.5f;
-                Debug.Log($"Final spawn position of {randomSpawnPosition} chosen | Raycast collided with {hitInfo.collider.gameObject.name}");
+                //Debug.Log($"Final spawn position of {randomSpawnPosition} chosen | Raycast collided with {hitInfo.collider.gameObject.name}");
 
                 //Decide on the type of enemy to spawn
                 float progressFraction = (float)(waveManager.getNumEnemiesSpawnedSoFar() + 1) / waveManager.getNumEnemiesToSpawnThisRound();
                 bool hasSpawnedEnoughEnemies = progressFraction > 0.2f;
                 bool armoredSpawnChance = Random.value < (0.8f * progressFraction); //0.8 is scaling factor to decrease spawn chance for armoredEnemies
                 bool canSpawnMoreArmored = waveManager.getNumArmoredSpawnedSoFar() < waveManager.getNumArmoredToSpawnThisRound();
-                Debug.Log($"progress fraction = {progressFraction}, hasSpawnedEnoughEnemies = {hasSpawnedEnoughEnemies}, armoredSpawnChance = {armoredSpawnChance}, canSpawnMoreArmored = {canSpawnMoreArmored}");
+                //Debug.Log($"progress fraction = {progressFraction}, hasSpawnedEnoughEnemies = {hasSpawnedEnoughEnemies}, armoredSpawnChance = {armoredSpawnChance}, canSpawnMoreArmored = {canSpawnMoreArmored}");
 
                 if (hasSpawnedEnoughEnemies && armoredSpawnChance && canSpawnMoreArmored)
                 {
@@ -156,19 +156,19 @@ public class EnemyWaveSpawnManager : MonoBehaviour
                         //Spawn a horde with a minimum of 4 enemies and a maximum of maxEnemies/6
                         //Spawn radius is maximum of 3 and waveNumber/2
                         //Horde centered on randomSpawnPosition
-                        Debug.Log($"Spawning Horde at {randomSpawnPosition}");
+                        //Debug.Log($"Spawning Horde at {randomSpawnPosition}");
                         spawnHorde(Mathf.Max(4, Mathf.RoundToInt(waveManager.getNumEnemiesToSpawnThisRound() / 6f)), Mathf.Max(3f, waveManager.getWaveNumber() / 2f), randomSpawnPosition);
                     }
                     else
                     {
                         //spawn an armored enemy
-                        Debug.Log("Spawning Armored");
+                        //Debug.Log("Spawning Armored");
                         spawnEnemy(EnemyType.Armored, randomSpawnPosition);
                     }
                 }
                 else
                 {
-                    Debug.Log("Spawning Basic");
+                    //Debug.Log("Spawning Basic");
                     spawnEnemy(EnemyType.Basic, randomSpawnPosition);
                 }
             }

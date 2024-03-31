@@ -145,19 +145,19 @@ public class WaveManager : MonoBehaviour
         waveButton.GetComponent<Button>().interactable = true;
 
         // Increment the wave number
-        waveNumber += 3; // CHANGED TO 3 FOR SPEEDY TESTING SHOULD BE 1
+        waveNumber += 1;
 
         // Increase the number of enemies to be spawned
         numEnemiesToSpawnThisRound = Mathf.RoundToInt(-0.006f * Mathf.Pow(waveNumber, 3) + 0.4f * Mathf.Pow(waveNumber, 2) + 0.8f * waveNumber + 8f);
-        Debug.Log($"Changed numEnemiesToSpawnThisRound to {numEnemiesToSpawnThisRound}");
+        //Debug.Log($"Changed numEnemiesToSpawnThisRound to {numEnemiesToSpawnThisRound}");
 
         // Increase the number of Armored Enemies to be spawned
         numArmoredToSpawnThisRound = Mathf.RoundToInt((0.02f * waveNumber - 0.025f) * (-0.006f * Mathf.Pow(waveNumber, 3) + 0.4f * Mathf.Pow(waveNumber, 2) + 0.8f * waveNumber + 8f) + waveNumber / 3f);
-        Debug.Log($"Changed numArmoredToSpawnThisRound to {numArmoredToSpawnThisRound}");
+        //Debug.Log($"Changed numArmoredToSpawnThisRound to {numArmoredToSpawnThisRound}");
 
         // Increase the number of Hordes to be spawned
         numHordesToSpawnThisRound = Mathf.Max(0, Mathf.RoundToInt(( 0.02f * waveNumber - 0.035f) * (-0.004f * Mathf.Pow(waveNumber, 3) + 0.27f * Mathf.Pow(waveNumber, 2) + 0.5f * waveNumber + 6f)));
-        Debug.Log($"Changed numHordesToSpawnThisRound to {numHordesToSpawnThisRound}");
+        //Debug.Log($"Changed numHordesToSpawnThisRound to {numHordesToSpawnThisRound}");
 
     }
 }
