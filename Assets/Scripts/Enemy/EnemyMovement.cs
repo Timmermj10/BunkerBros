@@ -7,7 +7,7 @@ public class EnemyMovement : MonoBehaviour
 {
 
     public float speed = 5f;
-    public float moveDistance = 10f;
+    //public float moveDistance = 10f;
     public float attackDistance = 1.5f;
 
     Subscription<PlayerRespawnEvent> respawn_event_subscription;
@@ -37,15 +37,14 @@ public class EnemyMovement : MonoBehaviour
         if (player == null)
         {
             Vector3 objectiveOffset = objective.transform.position - transform.position;
-            Vector3 minOffset = objectiveOffset;
-            active = minOffset.magnitude <= moveDistance;
+            active = objectiveOffset.magnitude > attackDistance;
             animator.SetBool("walking", active);
-            attacking = minOffset.magnitude <= attackDistance;
+            attacking = objectiveOffset.magnitude <= attackDistance;
             animator.SetBool("attacking", attacking);
-            transform.LookAt(transform.position + minOffset);
+            transform.LookAt(transform.position + objectiveOffset);
             if (animator.GetCurrentAnimatorStateInfo(0).IsName("walk"))
             {
-                rb.velocity = minOffset.normalized * speed + Vector3.up * rb.velocity.y;
+                rb.velocity = objectiveOffset.normalized * speed + Vector3.up * rb.velocity.y;
             }
             else
             {
@@ -58,7 +57,7 @@ public class EnemyMovement : MonoBehaviour
             Vector3 playerOffset = player.transform.position - transform.position;
             Vector3 minOffset = objectiveOffset.magnitude <= playerOffset.magnitude ? objectiveOffset : playerOffset;
             minOffset.y = 0;
-            active = minOffset.magnitude <= moveDistance;
+            active = minOffset.magnitude > attackDistance;
             animator.SetBool("walking", active);
             attacking = minOffset.magnitude <= attackDistance;
             animator.SetBool("attacking", attacking);
