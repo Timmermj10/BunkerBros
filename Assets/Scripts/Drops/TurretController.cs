@@ -11,6 +11,8 @@ public class TurretController : MonoBehaviour
     private float nextShot;
     private Transform gun;
 
+    private bool active = false;
+
     //Offset from the turret so the turret cant hit itself
     private float firingOffset = 1f;
 
@@ -22,32 +24,42 @@ public class TurretController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
-        Vector3 closest = Vector3.right * activationDistance;
-        foreach (GameObject enemy in enemies)
+        if (active)
         {
-            Vector3 toEnemy = enemy.transform.position - gun.position;
-            if(toEnemy.magnitude < closest.magnitude) {
-                closest = toEnemy;
-            }
-        }
-        if(closest.magnitude < activationDistance)
-        {
-            closest.y = 0;
-            gun.LookAt(gun.transform.position + closest);
-            if (nextShot < Time.time)
+            GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+            Vector3 closest = Vector3.right * activationDistance;
+            foreach (GameObject enemy in enemies)
             {
-                Vector2 aimDirection = new Vector2(gun.forward.x, gun.forward.z);
-                Vector3 spawnPosition = gun.position + gun.forward * firingOffset;
+                Vector3 toEnemy = enemy.transform.position - gun.position;
+                if (toEnemy.magnitude < closest.magnitude)
+                {
+                    closest = toEnemy;
+                }
+            }
+            if (closest.magnitude < activationDistance)
+            {
+                closest.y = 0;
+                gun.LookAt(gun.transform.position + closest);
+                if (nextShot < Time.time)
+                {
+                    Vector2 aimDirection = new Vector2(gun.forward.x, gun.forward.z);
+                    Vector3 spawnPosition = gun.position + gun.forward * firingOffset;
 
-                float spawnAngle = Mathf.Atan2(-aimDirection.y, aimDirection.x) * Mathf.Rad2Deg;
-                Quaternion rotation = Quaternion.Euler(0f, spawnAngle, 0f);
+                    float spawnAngle = Mathf.Atan2(-aimDirection.y, aimDirection.x) * Mathf.Rad2Deg;
+                    Quaternion rotation = Quaternion.Euler(0f, spawnAngle, 0f);
 
 
-                GameObject projectileObject = Instantiate(ProjectilePrefab.gameObject, spawnPosition, rotation);
-                projectileObject.GetComponent<ChangesHealth>().setHealthChange(-2);
-                nextShot = Time.time + cooldown;
+                    GameObject projectileObject = Instantiate(ProjectilePrefab.gameObject, spawnPosition, rotation);
+                    projectileObject.GetComponent<ChangesHealth>().setHealthChange(-2);
+                    nextShot = Time.time + cooldown;
+                }
             }
         }
+    }
+
+    public void activateTurret()
+    {
+        gameObject.tag = "Structure";
+        active = true;
     }
 }

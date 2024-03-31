@@ -74,7 +74,11 @@ public class PlayerInteract : MonoBehaviour
                 else if (item != null && item.tag is "Interactable")
                 {
                     //Debug.Log("Interactable silo, but cannot load rn");
-                    if ((item.name is "MissileSilo" || item.name is "MissileSilo(Clone)") && GetComponent<ActivePlayerInventory>().itemInInventory(ActivePlayerInventory.activePlayerItems.NukeParts))
+                    if ((item.name is "MissileSilo" || item.name is "MissileSilo(Clone)") && !GetComponent<ActivePlayerInventory>().itemInInventory(ActivePlayerInventory.activePlayerItems.NukeParts))
+                    {
+                        continue;
+                    }
+                    else
                     {
                         EventBus.Publish(new InteractTimerStartedEvent(timeToInteract));
                     }
@@ -168,6 +172,15 @@ public class PlayerInteract : MonoBehaviour
 
                                 ActivePlayerInventory inventory = GetComponent<ActivePlayerInventory>();
                                 inventory.useItem(ActivePlayerInventory.activePlayerItems.RepairKit);
+                            }
+                        }
+                        else if ((item.name is "Turret") || (item.name is "Turret(Clone)"))
+                        {
+
+                            TurretController turret = item.GetComponent<TurretController>();
+                            if (turret != null)
+                            {
+                                turret.activateTurret();
                             }
                         }
                     }
