@@ -82,6 +82,12 @@ public class PlayerInteract : MonoBehaviour
                     {
                         EventBus.Publish(new InteractTimerStartedEvent(timeToInteract));
                     }
+
+                    
+                }
+                else if (item != null && (item.name is "Objective") && GetComponent<ActivePlayerInventory>().itemInInventory(ActivePlayerInventory.activePlayerItems.RepairKit))
+                {
+                    EventBus.Publish(new InteractTimerStartedEvent(timeToInteract));
                 }
                 //TODO: Add code for health pack and repair kits
                 else
@@ -161,19 +167,7 @@ public class PlayerInteract : MonoBehaviour
                                 //Debug.Log($"Failed to load Silo: silo status = {silo.isSiloLoaded()}, doesThePlayerHaveMissileParts = {GetComponent<ActivePlayerInventory>().itemInInventory(ActivePlayerInventory.activePlayerItems.MissileParts)}");
                             }
                         }
-                        else if ((item.name is "Objective") && GetComponent<ActivePlayerInventory>().itemInInventory(ActivePlayerInventory.activePlayerItems.RepairKit))
-                        {
-                            RepairKitUse rk = item.GetComponent<RepairKitUse>();
-
-                            if (rk != null)
-                            {
-                                Debug.Log("Using Kit");
-                                rk.UseKit();
-
-                                ActivePlayerInventory inventory = GetComponent<ActivePlayerInventory>();
-                                inventory.useItem(ActivePlayerInventory.activePlayerItems.RepairKit);
-                            }
-                        }
+                        
                         else if ((item.name is "Turret") || (item.name is "Turret(Clone)"))
                         {
 
@@ -182,6 +176,19 @@ public class PlayerInteract : MonoBehaviour
                             {
                                 turret.activateTurret();
                             }
+                        }
+                    }
+                    else if (item != null && (item.name is "Objective") && GetComponent<ActivePlayerInventory>().itemInInventory(ActivePlayerInventory.activePlayerItems.RepairKit))
+                    {
+                        RepairKitUse rk = item.GetComponent<RepairKitUse>();
+
+                        if (rk != null)
+                        {
+                            Debug.Log("Using Kit");
+                            rk.UseKit();
+
+                            ActivePlayerInventory inventory = GetComponent<ActivePlayerInventory>();
+                            inventory.useItem(ActivePlayerInventory.activePlayerItems.RepairKit);
                         }
                     }
 
@@ -204,7 +211,7 @@ public class PlayerInteract : MonoBehaviour
     // When you walk up to a pickupable item
     private void OnTriggerEnter(Collider other)
     {
-        if ((other.gameObject.tag is "Pickup" || other.gameObject.tag is "Interactable"))
+        if ((other.gameObject.tag is "Pickup" || other.gameObject.tag is "Interactable" || other.gameObject.tag is "Objective"))
         {
             itemsInRange.Add(other.gameObject);
         }
@@ -213,7 +220,7 @@ public class PlayerInteract : MonoBehaviour
     // When you walk away from a pickupable item
     private void OnTriggerExit(Collider other)
     {
-        if ((other.gameObject.tag is "Pickup" || other.gameObject.tag is "Interactable"))
+        if ((other.gameObject.tag is "Pickup" || other.gameObject.tag is "Interactable" || other.gameObject.tag is "Objective"))
         {
             itemsInRange.Remove(other.gameObject);
         }
