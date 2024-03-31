@@ -27,7 +27,8 @@ public class ManagerPlayerInputsNew : MonoBehaviour
     private ShopManagerScript shopManagerScript;
 
     // Movement Speed
-    public float movementSpeed = 5.0f;
+    [SerializeField]
+    private float movementSpeed = 10.0f;
 
     // Most recently used item
     static public GameObject mostRecentItem;
@@ -200,6 +201,18 @@ public class ManagerPlayerInputsNew : MonoBehaviour
         //Ray mouseRay = mainCamera.ScreenPointToRay(screenPosition);
         RaycastHit hit;
 
+
+        /*
+        Vector2 screenPosition = Mouse.current.position.ReadValue();
+        RaycastHit hit;
+
+        //Get the position to raycast from
+        Vector3 raycastPosition = new Vector3(Mathf.RoundToInt(screenPosition.x), 10f, Mathf.RoundToInt(screenPosition.y));
+
+        //Only enter the use item loop if the selected tile is a valid tile to place an object
+        if (Physics.Raycast(raycastPosition, Vector3.down, out hit, Mathf.Infinity) && hit.collider.gameObject.layer == LayerMask.NameToLayer("Default")) 
+        */
+
         if (Physics.Raycast(mouseRay, out hit, Mathf.Infinity, LayerMask.GetMask("Default")))
         {
             // Now worldPosition contains the 3D point in world space where the mouse is pointing
@@ -306,7 +319,8 @@ public class ManagerPlayerInputsNew : MonoBehaviour
                     float cost = shopManagerScript.shopItems[itemID].itemCost;
 
                     // Update coin count
-                    shopManagerScript.coins -= cost;
+                    //shopManagerScript.coins -= cost;
+                    EventBus.Publish(new CoinCollect((int)-cost));
 
                     // Check to see if they can purchase another one
                     if (shopManagerScript.coins >= cost)
@@ -349,3 +363,4 @@ public class ManagerPlayerInputsNew : MonoBehaviour
         return false;
     }
 }
+
