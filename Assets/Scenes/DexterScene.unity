@@ -61590,6 +61590,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: MissileSilo
       objectReference: {fileID: 0}
+    - target: {fileID: 5708377699064700879, guid: ef741dbb67ea08547aa8b505995980c5,
+        type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
     - target: {fileID: 8295478891292532780, guid: ef741dbb67ea08547aa8b505995980c5,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -102366,6 +102371,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: MissileSilo
+      objectReference: {fileID: 0}
+    - target: {fileID: 5708377699064700879, guid: ef741dbb67ea08547aa8b505995980c5,
+        type: 3}
+      propertyPath: m_Layer
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 8295478891292532780, guid: ef741dbb67ea08547aa8b505995980c5,
         type: 3}

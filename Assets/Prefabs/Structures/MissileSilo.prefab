@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4347306608964324068}
   - component: {fileID: 7151162275287271179}
   - component: {fileID: 99800009423462142}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: MissileSilo
   m_TagString: Interactable
   m_Icon: {fileID: 0}

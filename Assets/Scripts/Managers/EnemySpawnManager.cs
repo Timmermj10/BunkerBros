@@ -73,11 +73,14 @@ public class EnemySpawnManager : MonoBehaviour
                 // Reset the spawn timer
                 spawnDelay = initDelay;
 
-                float randomVal = Random.Range(0f, 100f);
-
                 //Debug.Log($"Comparing {randomVal} to {60 * ((float)waveManager.getNumEnemiesSpawnedSoFar() / waveManager.getNumEnemiesToSpawnThisRound())}");
 
-                if ((((float)waveManager.getNumEnemiesSpawnedSoFar() + 1) / waveManager.getNumEnemiesToSpawnThisRound() > 0.2f) && randomVal < 80 * ((float)waveManager.getNumEnemiesSpawnedSoFar() / waveManager.getNumEnemiesToSpawnThisRound()) && waveManager.getNumArmoredSpawnedSoFar() < waveManager.getNumArmoredToSpawnThisRound())
+                float progressFraction = (float)(waveManager.getNumEnemiesSpawnedSoFar() + 1) / waveManager.getNumEnemiesToSpawnThisRound();
+                bool hasSpawnedEnoughEnemies = progressFraction > 0.2f;
+                bool armoredSpawnChance = Random.value < 0.8f * progressFraction; //0.8 is scale factor to decrease spawn chance
+                bool canSpawnMoreArmored = waveManager.getNumArmoredSpawnedSoFar() < waveManager.getNumArmoredToSpawnThisRound();
+
+                if (hasSpawnedEnoughEnemies && armoredSpawnChance && canSpawnMoreArmored)
                 {
                     // Instantiate the enemy
                     GameObject enemy = Instantiate(ArmoredEnemyPrefab);

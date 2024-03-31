@@ -10,6 +10,10 @@ public class TurretController : MonoBehaviour
     public float activationDistance = 10f;
     private float nextShot;
     private Transform gun;
+
+    //Offset from the turret so the turret cant hit itself
+    private float firingOffset = 1f;
+
     private void Awake()
     {
         nextShot = Time.time;
@@ -34,7 +38,7 @@ public class TurretController : MonoBehaviour
             if (nextShot < Time.time)
             {
                 Vector2 aimDirection = new Vector2(gun.forward.x, gun.forward.z);
-                Vector3 spawnPosition = gun.position;
+                Vector3 spawnPosition = gun.position + gun.forward * firingOffset;
 
                 float spawnAngle = Mathf.Atan2(-aimDirection.y, aimDirection.x) * Mathf.Rad2Deg;
                 Quaternion rotation = Quaternion.Euler(0f, spawnAngle, 0f);

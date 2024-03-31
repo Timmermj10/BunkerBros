@@ -156,7 +156,7 @@ GameObject:
   - component: {fileID: 7559527813248015142}
   - component: {fileID: 2184712013514366087}
   - component: {fileID: -5320866077655233272}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: GoldChest
   m_TagString: Pickup
   m_Icon: {fileID: 0}
