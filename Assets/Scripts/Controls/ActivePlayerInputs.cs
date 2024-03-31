@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Windows;
+using static UnityEngine.Rendering.DebugUI;
 
 public class ActivePlayerInputs : MonoBehaviour
 {
@@ -55,10 +56,13 @@ public class ActivePlayerInputs : MonoBehaviour
     // Constantly sets the value of movementInputValue to the current input on the left joystick
     private void OnMove(InputValue value)
     {
+            movementInputValue = value.Get<Vector2>();
+    }
+
+    private void FixedUpdate()
+    {
         if (playerControls)
         {
-            //Debug.Log("Moving the player");
-            movementInputValue = value.Get<Vector2>();
             Vector3 forward = movementInputValue.y * transform.forward;
             Vector3 right = movementInputValue.x * transform.right;
             rb.velocity = moveSpeed * (forward + right);
@@ -69,11 +73,14 @@ public class ActivePlayerInputs : MonoBehaviour
                 rb.velocity = Vector3.zero;
             }
 
-        } else
+        }
+        else
         {
             rb.velocity = Vector3.zero;
         }
     }
+
+
 
     // Constantly sets the value of aimInputValue to the current input on the right joystick
     private void OnAim(InputValue value)
@@ -85,21 +92,6 @@ public class ActivePlayerInputs : MonoBehaviour
     public Vector2 getAimValue() { return aimInputValue; }
 
     public Vector2 getMovementValue() { return movementInputValue; }
-
-    // Rounds any vector 2 to the nearest 16th of a cardinal direction (N, NNE, NE, ENE, E, etc)
-    public static Vector2 RoundVectorToDirection(Vector2 vector)
-    {
-        if (vector == Vector2.zero)
-        {
-            return vector;
-        }
-        float angle = Mathf.Atan2(vector.y, vector.x) * Mathf.Rad2Deg;
-        float roundedAngle = Mathf.Round(angle / 22.5f) * 22.5f;
-        float roundedRadians = roundedAngle * Mathf.Deg2Rad;
-
-        Vector2 roundedVector = new Vector2(Mathf.Cos(roundedRadians), Mathf.Sin(roundedRadians));
-        return roundedVector.normalized;
-    }
 
     private void OnAttack(InputValue value)
     {
