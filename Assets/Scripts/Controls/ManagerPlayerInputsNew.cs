@@ -21,8 +21,6 @@ public class ManagerPlayerInputsNew : MonoBehaviour
 
     public GameObject wallPrefab;
 
-    private HashSet<Vector2> occupiedTiles = new HashSet<Vector2>();
-
     // Reference to the ShopManager
     private ShopManagerScript shopManagerScript;
 
@@ -48,53 +46,10 @@ public class ManagerPlayerInputsNew : MonoBehaviour
 
         managerCamera = GameObject.Find("ManagerCamera");
 
-        MarkOccupiedTiles();
-
-        EventBus.Subscribe<ObjectDestroyedEvent>(_UpdateOccupiedTiles);
-
         // Get reference to the ShopManagerScript
         shopManagerScript = GameObject.Find("ShopManager").GetComponent<ShopManagerScript>();
     }
 
-    private void MarkOccupiedTiles()
-    {
-        //Debug.Log($"Looking for occupied tiles");
-        for (float i = -10; i < 10; i++)
-        {
-            for (float j = -10; j < 10; j++)
-            {
-                Vector3 rayStart = new Vector3(i, 10, j);
-                Ray ray = new Ray(rayStart, Vector3.down);
-                RaycastHit hit;
-
-                if (Physics.Raycast(ray, out hit, Mathf.Infinity, ~LayerMask.GetMask("Player")))
-                {
-                    Vector3 worldPosition = hit.point;
-
-                    //Debug.Log($"tile {i}, {j} has height {worldPosition.y}");
-
-                    if (worldPosition.y >= 1)
-                    {
-                        occupiedTiles.Add(new Vector2(Mathf.RoundToInt(i), Mathf.RoundToInt(j)));
-                    }
-                }
-                else
-                {
-                    //Debug.Log($"Raycast for tile {i}, {j} hit nothing");
-                }
-            }
-        }
-
-        foreach (Vector2 tile in occupiedTiles)
-        {
-            //Debug.Log($"Occupied Tile = {tile}");
-        }
-    }
-
-    private void _UpdateOccupiedTiles(ObjectDestroyedEvent e)
-    {
-        occupiedTiles.Remove(new Vector2(Mathf.RoundToInt(e.deathCoordinates.x), Mathf.RoundToInt(e.deathCoordinates.z)));
-    }
 
     private void FixedUpdate()
     {
@@ -197,24 +152,15 @@ public class ManagerPlayerInputsNew : MonoBehaviour
     {
 
         Vector2 screenPosition = Mouse.current.position.ReadValue();
-        Ray mouseRay = GameObject.Find("ManagerCamera").GetComponent<Camera>().ScreenPointToRay(screenPosition);
-        //Ray mouseRay = mainCamera.ScreenPointToRay(screenPosition);
-        RaycastHit hit;
-
-
-        /*
-        Vector2 screenPosition = Mouse.current.position.ReadValue();
         RaycastHit hit;
 
         //Get the position to raycast from
-        Vector3 raycastPosition = new Vector3(Mathf.RoundToInt(screenPosition.x), 10f, Mathf.RoundToInt(screenPosition.y));
+        Vector3 raycastPosition = GameObject.Find("ManagerCamera").GetComponent<Camera>().ScreenToWorldPoint(screenPosition);
+        raycastPosition.y = 10f;
 
-        //Only enter the use item loop if the selected tile is a valid tile to place an object
         if (Physics.Raycast(raycastPosition, Vector3.down, out hit, Mathf.Infinity) && hit.collider.gameObject.layer == LayerMask.NameToLayer("Default")) 
-        */
-
-        if (Physics.Raycast(mouseRay, out hit, Mathf.Infinity, LayerMask.GetMask("Default")))
         {
+            Debug.Log("Here");
             // Now worldPosition contains the 3D point in world space where the mouse is pointing
             Vector3 worldPosition = hit.point;
             Vector3 worldPositionRounded = new Vector3(Mathf.RoundToInt(worldPosition.x), worldPosition.y, Mathf.RoundToInt(worldPosition.z));
@@ -250,24 +196,21 @@ public class ManagerPlayerInputsNew : MonoBehaviour
                 {
                     //get the location of the item
                     Vector3 itemUsedLocation = new Vector3(worldPositionRounded.x, worldPositionRounded.y + 0.5f, worldPositionRounded.z);
-                    occupiedTiles.Add(new Vector2(worldPositionRounded.x, worldPositionRounded.z));
 
                     EventBus.Publish<ItemUseEvent>(new ItemUseEvent(0, itemUsedLocation, true)); // Changed to 0 for nuke parts
                 }
-                else if (itemID == 1 && !occupiedTiles.Contains(new Vector2(worldPositionRounded.x, worldPositionRounded.z)))
+                else if (itemID == 1)
                 {
                     //get the location of the item
                     Vector3 itemUsedLocation = new Vector3(worldPositionRounded.x, worldPositionRounded.y + 0.5f, worldPositionRounded.z);
-                    occupiedTiles.Add(new Vector2(worldPositionRounded.x, worldPositionRounded.z));
 
                     //Debug.Log("Publishing itemUseEvent for wall");
                     EventBus.Publish<ItemUseEvent>(new ItemUseEvent(1, itemUsedLocation, true)); // Changed to 1 for a wall
                 }
-                else if (itemID == 2 && !occupiedTiles.Contains(new Vector2(worldPositionRounded.x, worldPositionRounded.z)))
+                else if (itemID == 2)
                 {
                     //get the location of the item
                     Vector3 itemUsedLocation = new Vector3(worldPositionRounded.x, worldPositionRounded.y + 0.5f, worldPositionRounded.z);
-                    occupiedTiles.Add(new Vector2(worldPositionRounded.x, worldPositionRounded.z));
 
                     //Debug.Log("Publishing itemUseEvent for turret");
                     EventBus.Publish<ItemUseEvent>(new ItemUseEvent(2, itemUsedLocation, true)); // Changed to 2 for a turret
@@ -291,7 +234,6 @@ public class ManagerPlayerInputsNew : MonoBehaviour
                 {
                     //get the location of the item
                     Vector3 itemUsedLocation = new Vector3(worldPositionRounded.x, worldPositionRounded.y + 0.5f, worldPositionRounded.z);
-                    occupiedTiles.Add(new Vector2(worldPositionRounded.x, worldPositionRounded.z));
 
                     //Debug.Log("Publishing itemUseEvent for turret");
                     EventBus.Publish<ItemUseEvent>(new ItemUseEvent(6, itemUsedLocation, true)); // Changed to 6 for a HealthPack
@@ -299,7 +241,6 @@ public class ManagerPlayerInputsNew : MonoBehaviour
                 {
                     //get the location of the item
                     Vector3 itemUsedLocation = new Vector3(worldPositionRounded.x, worldPositionRounded.y + 0.5f, worldPositionRounded.z);
-                    occupiedTiles.Add(new Vector2(worldPositionRounded.x, worldPositionRounded.z));
 
                     //Debug.Log("Publishing itemUseEvent for turret");
                     EventBus.Publish<ItemUseEvent>(new ItemUseEvent(7, itemUsedLocation, true)); // Changed to 7 for a RepairKit
@@ -307,7 +248,6 @@ public class ManagerPlayerInputsNew : MonoBehaviour
                 {
                     //get the location of the item
                     Vector3 itemUsedLocation = new Vector3(worldPositionRounded.x, worldPositionRounded.y + 0.5f, worldPositionRounded.z);
-                    occupiedTiles.Add(new Vector2(worldPositionRounded.x, worldPositionRounded.z));
 
                     //Debug.Log("Publishing itemUseEvent for turret");
                     EventBus.Publish<ItemUseEvent>(new ItemUseEvent(8, itemUsedLocation, true)); // Changed to 8 for a AmmoCrate

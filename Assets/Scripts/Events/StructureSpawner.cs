@@ -37,15 +37,15 @@ public class StructureSpawner : MonoBehaviour
         } else if (e.itemID == 6)
         {
             //Spawn healthkit
-            Instantiate(healthPrefab, e.itemLocation + new Vector3(0, -0.4f, 0), Quaternion.identity);
+            Instantiate(healthPrefab, e.itemLocation + new Vector3(0, 0, 0), Quaternion.identity);
         } else if (e.itemID == 7)
         {
             //Spawn Repair kit
-            Instantiate(repairPrefab, e.itemLocation + new Vector3(0, -0.4f, 0), Quaternion.identity);
+            Instantiate(repairPrefab, e.itemLocation + new Vector3(0, 0, 0), Quaternion.identity);
         } else if (e.itemID == 8)
         {
             //Spawn Ammo Kit
-            Instantiate(ammoPrefab, e.itemLocation + new Vector3(0, -0.4f, 0), Quaternion.identity);
+            Instantiate(ammoPrefab, e.itemLocation + new Vector3(0, 0, 0), Quaternion.identity);
         }
     }
 }

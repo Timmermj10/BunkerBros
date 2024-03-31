@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6173008326470148063}
   - component: {fileID: 673598010817179315}
   - component: {fileID: 7957928081013404059}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: AmmoCrate
   m_TagString: Pickup
   m_Icon: {fileID: 0}
