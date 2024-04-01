@@ -48,10 +48,8 @@ public class GunText : MonoBehaviour
         {
             // Update bool
             textShowing = true;
-            Debug.Log(e.purchasedItem.itemId);
 
             // Set the text
-            Debug.Log(gameObject.GetComponent<Text>().name);
             gameObject.GetComponent<Text>().text = "Click TRIANGLE to switch between weapons";
         }
     }

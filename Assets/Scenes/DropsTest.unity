@@ -5943,7 +5943,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75680e416c0bced4ab5ae9cf76dfa352, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  previewPrefab: {fileID: 2278422487833797206, guid: 47188def40f42d84a9af8e11b13783e6,
+  previewPrefab: {fileID: 4441908323739865683, guid: 732eed84e16d74e42b19dc62b8d39de0,
     type: 3}
 --- !u!114 &124798931
 MonoBehaviour:
@@ -68478,6 +68478,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   siloStatus: []
   explosionPrefab: {fileID: 2278422487833797206, guid: 30da79b3e424b16418db2f372358f60e,
+    type: 3}
+  missleExplosionPrefab: {fileID: 2278422487833797206, guid: 3e79b8a006d233945a756564381a8b06,
     type: 3}
   damageableLayer:
     serializedVersion: 2
