@@ -14,7 +14,7 @@ public class TooltipPositioner : MonoBehaviour, IPointerEnterHandler, IPointerEx
     // Assumes tooltipPanel starts off as inactive
     public void OnPointerEnter(PointerEventData eventData)
     {
-        if (gameObject.GetComponent<Button>().enabled)
+        if (gameObject.GetComponent<Button>().interactable)
         {
             // Make sure tooltip panel is active
             tooltipPanel.SetActive(true);
