@@ -9,6 +9,6 @@ public class ButtonClicked : MonoBehaviour
     // Function for button click
     public void onButtonSelection()
     {
-        EventBus.Publish<ManagerButtonClickEvent>(new ManagerButtonClickEvent(EventSystem.current.currentSelectedGameObject.GetComponent<Button>()));
+        EventBus.Publish<ManagerButtonClickEvent>(new ManagerButtonClickEvent(gameObject.GetComponent<Button>()));
     }
 }

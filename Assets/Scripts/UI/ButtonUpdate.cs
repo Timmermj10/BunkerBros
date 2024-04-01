@@ -92,6 +92,12 @@ public class ButtonUpdate : MonoBehaviour
             // Update the color of this button
             button.GetComponent<Image>().color = Color.white;
         }
+
+        // If the button clicked is this button 
+        else if (button == e.button)
+        {
+            EventSystem.current.SetSelectedGameObject(e.button.gameObject);
+        }
     }
 
     // Run when a player is fully respawned
