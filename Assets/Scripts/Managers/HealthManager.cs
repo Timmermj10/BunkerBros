@@ -13,10 +13,6 @@ public class HealthManager : MonoBehaviour
     private HasHealth playerHealth;
     public HasHealth towerHealth;
 
-    // UI
-    public Text playerHealthUI;
-    public Text towerHealthUI;
-
 
     private void Start()
     {
