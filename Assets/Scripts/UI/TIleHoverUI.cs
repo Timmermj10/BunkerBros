@@ -13,6 +13,10 @@ public class TIleHoverUI : MonoBehaviour
     // Preview gameobject instance
     private GameObject previewInstance;
 
+    // String fields to input the cost and descriptions for the item tooltips
+    public string cost;
+    public string Description;
+
     private void Start()
     {
         EventBus.Subscribe<ItemUseEvent>(_DespawnHover);
