@@ -52,6 +52,8 @@ public class EnemyWaveSpawnManager : MonoBehaviour
 
     private void _WaveStarted(WaveStartedEvent e)
     {
+        spawnDelay -= 0.1f;
+
         StartCoroutine(SpawnEnemiesForWave());
     }
 
