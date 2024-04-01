@@ -160,7 +160,6 @@ public class ManagerPlayerInputsNew : MonoBehaviour
 
         if (Physics.Raycast(raycastPosition, Vector3.down, out hit, Mathf.Infinity) && hit.collider.gameObject.layer == LayerMask.NameToLayer("Default")) 
         {
-            Debug.Log("Here");
             // Now worldPosition contains the 3D point in world space where the mouse is pointing
             Vector3 worldPosition = hit.point;
             Vector3 worldPositionRounded = new Vector3(Mathf.RoundToInt(worldPosition.x), worldPosition.y, Mathf.RoundToInt(worldPosition.z));
@@ -262,8 +261,18 @@ public class ManagerPlayerInputsNew : MonoBehaviour
                     //shopManagerScript.coins -= cost;
                     EventBus.Publish(new CoinCollect((int)-cost));
 
-                    // Check to see if they can purchase another one
-                    if (shopManagerScript.coins >= cost)
+                    // Check to see if they can purchase another one and it's not onetime purchase
+                    if (selectedObj.GetComponent<ButtonInfo>().itemID == 3)
+                    {
+                        // If they purchased the gun
+                        // Send out the purchase event for jeremy's implementation
+                        EventBus.Publish<PurchaseEvent>(new PurchaseEvent(shopManagerScript.shopItems[3]));
+
+                        Debug.Log("here");
+
+                        Destroy(selectedObj);
+                    }
+                    else if (shopManagerScript.coins >= cost)
                     {
                         // Most recently used item
                         mostRecentItem = selectedObj;

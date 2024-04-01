@@ -33,7 +33,7 @@ public class KnifeAttack : MonoBehaviour
     }
     void _Attack(AttackEvent e)
     {
-        if(!swinging)
+        if(!swinging && gameObject.GetComponentInParent<HandInventory>().knife)
             StartCoroutine(Swing());
     }
     IEnumerator Swing()

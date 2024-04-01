@@ -19,7 +19,6 @@ public class AmmoSystem : MonoBehaviour
         shot = EventBus.Subscribe<ShootEvent>(_decrement);
     }
 
-
     private void _enable(PurchaseEvent p)
     {
         if (p.purchasedItem.itemName == "Gun")

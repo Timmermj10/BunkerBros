@@ -35,14 +35,15 @@ public class InventoryUI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        purchase_event_subscription = EventBus.Subscribe<PurchaseEvent>(_OnPurchase);
-        item_event_subscription = EventBus.Subscribe<ItemUseEvent>(_OnUse);
+        //purchase_event_subscription = EventBus.Subscribe<PurchaseEvent>(_OnPurchase);
+        //item_event_subscription = EventBus.Subscribe<ItemUseEvent>(_OnUse);
         manager_event_subscription = EventBus.Subscribe<ManagerCycleEvent>(_OnCycle);
         silo_loaded_event_subscription = EventBus.Subscribe<SiloLoadedEvent>(_SiloLoadedInventory);
         ShopManager = GameObject.Find("ShopManager");
         inventoryUI = GameObject.Find("Inventory").GetComponent<Text>();
     }
 
+    /*
     void _OnPurchase(PurchaseEvent e)
     {
         // If the item has not been purchased before and it's not one time purchasable
@@ -195,4 +196,5 @@ public class InventoryUI : MonoBehaviour
 
 
     }
+    
 }

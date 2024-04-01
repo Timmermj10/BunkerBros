@@ -22,6 +22,7 @@ public class HandInventory : MonoBehaviour
     {
         if(e.purchasedItem.itemName == "Gun")
         {
+            Debug.Log("here2");
             knife = false;
             canSwap = true;
             transform.Find("Gun").gameObject.SetActive(true);
