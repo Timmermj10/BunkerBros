@@ -271,8 +271,6 @@ public class ManagerPlayerInputsNew : MonoBehaviour
                         // Send out the purchase event for jeremy's implementation
                         EventBus.Publish<PurchaseEvent>(new PurchaseEvent(shopManagerScript.shopItems[3]));
 
-                        Debug.Log("here");
-
                         Destroy(selectedObj);
                     }
                     else if (shopManagerScript.coins >= cost)
