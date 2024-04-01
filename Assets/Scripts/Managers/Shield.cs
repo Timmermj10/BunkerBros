@@ -8,7 +8,7 @@ public class Shield : MonoBehaviour
     public int currShield;
     public int recoverRate = 1;
     public bool protect = true;
-    public bool recover = false;
+    public bool recovering = false;
 
     private float damageTime = 0;
 
@@ -18,6 +18,7 @@ public class Shield : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //Initialize to max shield
         currShield = maxShield;
 
         if (shield_ui != null) {
@@ -27,56 +28,50 @@ public class Shield : MonoBehaviour
 
     private void FixedUpdate()
     {
+        //Increase time since last damage
         damageTime += Time.deltaTime;
 
-        if (currShield == 0)
-        {
-            protect = false;
-        }
-        else
-        {
-            protect = true;
-        }
+        //Determine whether were protecting
+        protect = currShield > 0;
 
+        //Set the shield UI
         if (shield_ui != null)
         {
             shield_ui.SetShield(currShield);
         }
         
-        if (damageTime >= 5f && currShield <= maxShield)
+        //If its been more than 5s since the last damage, and were not recovering already, start recovering
+        if (damageTime >= 5f && currShield < maxShield && !recovering)
         {
+            //Debug.Log("Recovering Shield");
+            recovering = true;
             StartCoroutine(heal());
-            //currShield += recoverRate;
-        } else if (currShield >= maxShield)
-        {
-            currShield = maxShield;
-        }
+        } 
+
     }
 
     public void depleteShield(int damage)
     {
-        currShield = Mathf.Max(currShield + damage, 0);
+        //Debug.Log("Shield taking damage");
+        //Reset the time since last damage
         damageTime = 0f;
 
-        if (currShield <= 0)
-        {
-            currShield = 0;
-        }
+        //Change shield value
+        currShield = Mathf.Max(currShield + damage, 0);
     }
 
     private IEnumerator heal()
     {
-        yield return new WaitForSeconds(1);
-        if (currShield < maxShield)
+        //Debug.Log("Starting Heal");
+        //while the shield isnt taking damage and its less than max
+        while (damageTime >= 5 && currShield < maxShield)
         {
+            //wait recovery time and heal the shield
+            yield return new WaitForSeconds(0.5f);
             currShield += recoverRate;
         }
-    }
+        //Debug.Log("Ended Heal");
 
-    private IEnumerator wait_to_recover()
-    {
-        recover = false;
-        yield return new WaitForSeconds(5);
-        
+        recovering = false;
     }
 }
