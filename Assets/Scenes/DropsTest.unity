@@ -537,7 +537,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9386039}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
   m_Name: 
@@ -5852,8 +5852,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   previewPrefab: {fileID: 2278422487833797206, guid: 47188def40f42d84a9af8e11b13783e6,
     type: 3}
-  cost: 
-  Description: 
 --- !u!1001 &128128770
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8094,6 +8092,7 @@ GameObject:
   - component: {fileID: 184442848}
   - component: {fileID: 184442851}
   - component: {fileID: 184442852}
+  - component: {fileID: 184442853}
   m_Layer: 5
   m_Name: Gun
   m_TagString: Untagged
@@ -8243,6 +8242,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 318b6ea1edc16ea4886cc6042e3efe07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &184442853
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 184442846}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 886812614db7c004fa735cc71ebab39e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tooltipPanel: {fileID: 1853301884}
+  xOffset: 10
+  cost: 300 Gold
+  description: Upgrade your teammates firepower!
 --- !u!1001 &185832054
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10881,6 +10896,7 @@ GameObject:
   - component: {fileID: 232206082}
   - component: {fileID: 232206081}
   - component: {fileID: 232206083}
+  - component: {fileID: 232206084}
   m_Layer: 5
   m_Name: WALL
   m_TagString: Untagged
@@ -11044,8 +11060,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   previewPrefab: {fileID: 6836581503973730888, guid: a9a2be4f50b10be429536846f42f4d4b,
     type: 3}
-  cost: 
-  Description: 
+--- !u!114 &232206084
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 232206076}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 886812614db7c004fa735cc71ebab39e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tooltipPanel: {fileID: 1853301884}
+  xOffset: 10
+  cost: 20 Gold
+  description: Drop a barrier to help protect the entrance!
 --- !u!1001 &235814526
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15284,6 +15314,7 @@ GameObject:
   - component: {fileID: 327645077}
   - component: {fileID: 327645076}
   - component: {fileID: 327645075}
+  - component: {fileID: 327645078}
   m_Layer: 5
   m_Name: HealthKit
   m_TagString: Untagged
@@ -15304,6 +15335,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 9386040}
+  - {fileID: 416589683}
   m_Father: {fileID: 428278267}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -15387,7 +15419,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 211cbe97f4414b24b8de134a7e7d2106, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -15419,8 +15451,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   previewPrefab: {fileID: 5809042270673140842, guid: aba1ed2b14917d144af31e96ff60395b,
     type: 3}
-  cost: 
-  Description: 
 --- !u!114 &327645076
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15449,6 +15479,22 @@ MonoBehaviour:
   priceText: {fileID: 0}
   quantityText: {fileID: 0}
   ShopManager: {fileID: 349862695}
+--- !u!114 &327645078
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 327645070}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 886812614db7c004fa735cc71ebab39e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tooltipPanel: {fileID: 1853301884}
+  xOffset: 10
+  cost: 150 Gold
+  description: Assist your teammate with a health pack!
 --- !u!1001 &329364447
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19135,6 +19181,81 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 7039091810887561210}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &407581561
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 407581562}
+  - component: {fileID: 407581564}
+  - component: {fileID: 407581563}
+  m_Layer: 5
+  m_Name: Image
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &407581562
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 407581561}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 773307671}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &407581563
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 407581561}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: f7e3d97cee7a06147a1fdd1611de3b49, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &407581564
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 407581561}
+  m_CullTransparentMesh: 1
 --- !u!1001 &408682775
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19624,6 +19745,81 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 414713045}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &416589682
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 416589683}
+  - component: {fileID: 416589685}
+  - component: {fileID: 416589684}
+  m_Layer: 5
+  m_Name: Image
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &416589683
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 416589682}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 327645071}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &416589684
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 416589682}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 211cbe97f4414b24b8de134a7e7d2106, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &416589685
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 416589682}
+  m_CullTransparentMesh: 1
 --- !u!1001 &420144523
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -22183,7 +22379,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 470289882}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
   m_Name: 
@@ -34214,6 +34410,81 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 741395641}
   m_CullTransparentMesh: 1
+--- !u!1 &742132069
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 742132070}
+  - component: {fileID: 742132072}
+  - component: {fileID: 742132071}
+  m_Layer: 5
+  m_Name: Image
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &742132070
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 742132069}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1454941293}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &742132071
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 742132069}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: d8c4a4e084fd9654ebeb0c3ae2784844, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &742132072
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 742132069}
+  m_CullTransparentMesh: 1
 --- !u!1001 &742501767
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -35389,6 +35660,7 @@ GameObject:
   - component: {fileID: 773307677}
   - component: {fileID: 773307676}
   - component: {fileID: 773307675}
+  - component: {fileID: 773307678}
   m_Layer: 5
   m_Name: RepairKit
   m_TagString: Untagged
@@ -35409,6 +35681,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 470289883}
+  - {fileID: 407581562}
   m_Father: {fileID: 428278267}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -35492,7 +35765,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: f7e3d97cee7a06147a1fdd1611de3b49, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -35524,8 +35797,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   previewPrefab: {fileID: 4104005486103731197, guid: 4d773a7546347544f9f7e7473bb20229,
     type: 3}
-  cost: 
-  Description: 
 --- !u!114 &773307676
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -35554,6 +35825,22 @@ MonoBehaviour:
   priceText: {fileID: 0}
   quantityText: {fileID: 0}
   ShopManager: {fileID: 349862695}
+--- !u!114 &773307678
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 773307670}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 886812614db7c004fa735cc71ebab39e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tooltipPanel: {fileID: 1853301884}
+  xOffset: 10
+  cost: 150 Gold
+  description: Drop in a repair kit & have your teammate use it on the bunker!
 --- !u!1001 &773439324
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -36142,7 +36429,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Ammo Crate
+  m_Text: 
 --- !u!222 &784338632
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -64900,6 +65187,7 @@ GameObject:
   - component: {fileID: 1319077461}
   - component: {fileID: 1319077465}
   - component: {fileID: 1319077464}
+  - component: {fileID: 1319077466}
   m_Layer: 5
   m_Name: PlayerRespawn
   m_TagString: Untagged
@@ -65049,6 +65337,22 @@ MonoBehaviour:
   priceText: {fileID: 0}
   quantityText: {fileID: 0}
   ShopManager: {fileID: 349862695}
+--- !u!114 &1319077466
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1319077459}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 886812614db7c004fa735cc71ebab39e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tooltipPanel: {fileID: 1853301884}
+  xOffset: 10
+  cost: 25 Gold
+  description: Drop in a new robot teammate!
 --- !u!1001 &1319518484
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -71004,7 +71308,6 @@ GameObject:
   - component: {fileID: 1409508060}
   - component: {fileID: 1409508061}
   - component: {fileID: 1409508062}
-  - component: {fileID: 1409508063}
   - component: {fileID: 1409508064}
   m_Layer: 5
   m_Name: NUKE PARTS
@@ -71026,6 +71329,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1895087445}
+  - {fileID: 2003724376}
   m_Father: {fileID: 428278267}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -71109,7 +71413,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 721f774b34402dc42ad297494865c7bb, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -71169,21 +71473,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   previewPrefab: {fileID: 3827722763254767490, guid: 3559a2681db369047827011cc16a71ee,
     type: 3}
-  cost: 'Cost: 50'
-  Description: 'Description: Drop your teammate nuke parts to fill the silos!'
---- !u!114 &1409508063
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1409508054}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Delegates: []
 --- !u!114 &1409508064
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -71198,8 +71487,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tooltipPanel: {fileID: 1853301884}
   xOffset: 10
-  cost: 'Cost: 50'
-  description: 'Description: Drop your teammate nuke parts to fill the silos!'
+  cost: 50 Gold
+  description: Drop your teammate nuke parts to fill the silos!
 --- !u!1001 &1411278906
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -73256,6 +73545,7 @@ GameObject:
   - component: {fileID: 1454941299}
   - component: {fileID: 1454941298}
   - component: {fileID: 1454941297}
+  - component: {fileID: 1454941300}
   m_Layer: 5
   m_Name: AmmoCrate
   m_TagString: Untagged
@@ -73276,6 +73566,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 784338630}
+  - {fileID: 742132070}
   m_Father: {fileID: 428278267}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -73359,7 +73650,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: d8c4a4e084fd9654ebeb0c3ae2784844, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -73391,8 +73682,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   previewPrefab: {fileID: 587779552454383808, guid: f39a9e9f5341bf4498693558031f08de,
     type: 3}
-  cost: 
-  Description: 
 --- !u!114 &1454941298
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -73421,6 +73710,22 @@ MonoBehaviour:
   priceText: {fileID: 0}
   quantityText: {fileID: 0}
   ShopManager: {fileID: 349862695}
+--- !u!114 &1454941300
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1454941292}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 886812614db7c004fa735cc71ebab39e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tooltipPanel: {fileID: 1853301884}
+  xOffset: 10
+  cost: 150 Gold
+  description: Drop in ammo to help your teammate!
 --- !u!1001 &1455394945
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -78689,6 +78994,7 @@ GameObject:
   - component: {fileID: 1548825883}
   - component: {fileID: 1548825882}
   - component: {fileID: 1548825884}
+  - component: {fileID: 1548825885}
   m_Layer: 5
   m_Name: Turret
   m_TagString: Untagged
@@ -78852,8 +79158,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   previewPrefab: {fileID: 4371438003745727299, guid: 6f1fa84018317d94ea43726074e4f26d,
     type: 3}
-  cost: 
-  Description: 
+--- !u!114 &1548825885
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1548825877}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 886812614db7c004fa735cc71ebab39e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tooltipPanel: {fileID: 1853301884}
+  xOffset: 10
+  cost: 150 Gold
+  description: Drop in an automatic turret to control the zombies!
 --- !u!1001 &1549714286
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -93062,7 +93382,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1895087444}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
   m_Name: 
@@ -98831,6 +99151,81 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 2003223995}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2003724375
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2003724376}
+  - component: {fileID: 2003724378}
+  - component: {fileID: 2003724377}
+  m_Layer: 5
+  m_Name: Image
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &2003724376
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2003724375}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1409508055}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &2003724377
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2003724375}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 721f774b34402dc42ad297494865c7bb, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &2003724378
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2003724375}
+  m_CullTransparentMesh: 1
 --- !u!1001 &2005148864
 PrefabInstance:
   m_ObjectHideFlags: 0
