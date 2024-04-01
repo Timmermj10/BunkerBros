@@ -8,7 +8,7 @@ public class StoryDisplayer : MonoBehaviour
 {
 
     [SerializeField] private TMP_Text textComponent;
-    [SerializeField] private string fullText = "In a post apocalyptic world, our heros have been chased by zombies into the desert where they are stranded until reinforcements arive. They have taken shelter in a government bunker, equipped with remote controlled robots and drones to help them defend themselves. They must now survive long enough until they are able to be extracted.";
+    [SerializeField] private string fullText = "In a post apocalyptic world, our heros have been chased by zombies into the desert where they are stranded until reinforcements arrive. They have taken shelter in a government bunker, equipped with remote controlled robots and drones to help them defend themselves. They must now survive long enough until they are able to be extracted.";
     [SerializeField] private float delayBetweenCharacters = 0.03f;
     [SerializeField] private float fadeOutDuration = 3f;
 
@@ -58,6 +58,9 @@ public class StoryDisplayer : MonoBehaviour
         Color originalColor = textComponent.color;
         float timer = 0;
 
+        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync("DropsTest");
+        asyncLoad.allowSceneActivation = false;
+
         if (audioSource2 && !audioSource2.isPlaying)
         {
             audioSource2.Play();
@@ -78,7 +81,24 @@ public class StoryDisplayer : MonoBehaviour
         // Ensure text is fully transparent after the loop.
         textComponent.color = new Color(originalColor.r, originalColor.g, originalColor.b, 0);
 
-        SceneManager.LoadSceneAsync("DropsTest");
+        while (!asyncLoad.isDone)
+        {
+            // Check if the load has finished
+            if (asyncLoad.progress >= 0.9f)
+            {
+                textComponent.color = new Color(originalColor.r, originalColor.g, originalColor.b, 1);
+                textComponent.text = "press any key to continue";
+
+                if (Input.anyKey) // Or a specific key or button
+                {
+                    // Activate the scene
+                    asyncLoad.allowSceneActivation = true;
+                }
+            }
+
+            yield return null;
+        }
+
     }
 
 }
