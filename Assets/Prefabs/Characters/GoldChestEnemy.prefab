@@ -492,15 +492,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 100064, guid: 57b3b021ff1e2f14fa4c233c110e561f, type: 3}
       propertyPath: m_Name
-      value: Enemy
+      value: GoldChestEnemy
       objectReference: {fileID: 0}
     - target: {fileID: 400064, guid: 57b3b021ff1e2f14fa4c233c110e561f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400064, guid: 57b3b021ff1e2f14fa4c233c110e561f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400064, guid: 57b3b021ff1e2f14fa4c233c110e561f, type: 3}
       propertyPath: m_LocalPosition.z
@@ -535,27 +535,9 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9500000, guid: 57b3b021ff1e2f14fa4c233c110e561f, type: 3}
-      propertyPath: m_Avatar
-      value: 
-      objectReference: {fileID: 9000000, guid: a8a265b9dccbf2f49aaed662af82ef85, type: 3}
-    - target: {fileID: 9500000, guid: 57b3b021ff1e2f14fa4c233c110e561f, type: 3}
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 9b44345be1814fd4caa9cc5627f4c922, type: 2}
-    - target: {fileID: 9500000, guid: 57b3b021ff1e2f14fa4c233c110e561f, type: 3}
-      propertyPath: m_WarningMessage
-      value: "\nBinding warning: Some generic clip(s) animate transforms that are
-        already bound by a Humanoid avatar. These transforms can only be changed
-        by Humanoid clips.\n\tTransform 'bip L Finger11'\n\tTransform 'bip Neck'\n\tTransform
-        'bip L Foot'\n\tTransform 'bip Spine1'\n\tTransform 'bip R UpperArm'\n\tTransform
-        'bip R Finger11'\n\tTransform 'bip R Hand'\n\tTransform 'bip Head'\n\tTransform
-        'bip L UpperArm'\n\tTransform 'bip L Calf'\n\tand more ...\n\tFrom animation
-        clip 'Take 001'\n\tFrom animation clip 'Take 001'"
-      objectReference: {fileID: 0}
-    - target: {fileID: 9500000, guid: 57b3b021ff1e2f14fa4c233c110e561f, type: 3}
-      propertyPath: m_ApplyRootMotion
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -583,15 +565,11 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 100064, guid: 57b3b021ff1e2f14fa4c233c110e561f,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 8076349785229169728}
-    - targetCorrespondingSourceObject: {fileID: 100064, guid: 57b3b021ff1e2f14fa4c233c110e561f,
-        type: 3}
-      insertIndex: -1
       addedObject: {fileID: 5943162286850052074}
     - targetCorrespondingSourceObject: {fileID: 100064, guid: 57b3b021ff1e2f14fa4c233c110e561f,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: -79078126705231059}
+      addedObject: {fileID: 7544764683719743151}
     - targetCorrespondingSourceObject: {fileID: 100024, guid: 57b3b021ff1e2f14fa4c233c110e561f,
         type: 3}
       insertIndex: -1
@@ -630,7 +608,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -729,20 +707,6 @@ CapsuleCollider:
   m_Height: 1.7
   m_Direction: 1
   m_Center: {x: 0, y: 0.85, z: 0}
---- !u!114 &8076349785229169728
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8168291486349821993}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e24fdbbedc08f447ab21b10532aba513, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 1
-  attackDistance: 1
 --- !u!114 &5943162286850052074
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -758,28 +722,27 @@ MonoBehaviour:
   maxHealth: 10
   currentHealth: 0
   armorValue: 0
-  healthBar: {fileID: 1593780060081986440}
---- !u!95 &-79078126705231059
-Animator:
-  serializedVersion: 5
+  healthBar: {fileID: 0}
+--- !u!114 &7544764683719743151
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8168291486349821993}
   m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: d50bc44d85cad405b8bd45a2baa331cc, type: 2}
-  m_Controller: {fileID: 9100000, guid: 9b44345be1814fd4caa9cc5627f4c922, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c138b77d2101b474487cf3eec43c5ec9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timer: 2
+  startTimer: 0
+  attackDistance: 1
+  startingPosition: {x: 0, y: 0, z: 0}
+  startingRotation: {x: 0, y: 0, z: 0, w: 0}
+  enemyVelocityReturn: 2
+  enemyVelocityChase: 2
+  followPlayer: 0
 --- !u!1 &8168291486349822065 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100024, guid: 57b3b021ff1e2f14fa4c233c110e561f,
@@ -801,7 +764,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
