@@ -15,6 +15,9 @@ public class ButtonUpdate : MonoBehaviour
     // Shop Manager
     private ShopManagerScript shopManager;
 
+    // Respawning player
+    private bool respawning = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -29,19 +32,41 @@ public class ButtonUpdate : MonoBehaviour
 
         // Subscribe to Manager Button Click Events
         EventBus.Subscribe<ManagerButtonClickEvent>(_ButtonClicked);
+
+        // Listen to respawning player events
+        EventBus.Subscribe<PlayerRespawnEvent>(_respawningPlayer);
+
+        // Listen to item used events
+        EventBus.Subscribe<ItemUseEvent>(_checkRespawn);
     }
 
     // Update button colors and interactable status
     void Update()
     {
-        // Check if we have enough coins to purchase the item
-        if (shopManager.coins < shopManager.shopItems[buttonInfo.itemID].itemCost)
+        // Check if we have enough coins to purchase the item or if the player is dead for player respawn
+        if (buttonInfo.itemID != 9)
         {
-            button.interactable = false;
+            if (shopManager.coins < shopManager.shopItems[buttonInfo.itemID].itemCost)
+            {
+                button.interactable = false;
+            }
+            else
+            {
+                button.interactable = true;
+            }
         }
+        // Dealing with player respawn
         else
         {
-            button.interactable = true;
+            // If we have enough coins and the player is dead
+            if (shopManager.coins > shopManager.shopItems[buttonInfo.itemID].itemCost && GameObject.Find("player") == null && !respawning)
+            {
+                button.interactable = true;
+            }
+            else
+            {
+                button.interactable = false;
+            }
         }
 
         // If we have a currently selected Game Object, reset all the image colors to white
@@ -66,6 +91,21 @@ public class ButtonUpdate : MonoBehaviour
 
             // Update the color of this button
             button.GetComponent<Image>().color = Color.white;
+        }
+    }
+
+    // Run when a player is fully respawned
+    public void _respawningPlayer(PlayerRespawnEvent e)
+    {
+        respawning = false;
+    }
+
+    // Run when a player respawn is purchased
+    public void _checkRespawn(ItemUseEvent e)
+    {
+        if (e.itemID == 9)
+        {
+            respawning = true;
         }
     }
 }

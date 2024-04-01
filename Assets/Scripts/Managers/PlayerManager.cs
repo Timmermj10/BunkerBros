@@ -80,7 +80,7 @@ public class PlayerManager : MonoBehaviour
         if (e.itemID == 9)
         {
             respawningPlayer = true;
-            GameObject activePlayer = Instantiate(activePlayerPrefab, e.itemLocation + new Vector3(0f, 1f, 0f), Quaternion.identity);
+            GameObject activePlayer = Instantiate(activePlayerPrefab, e.itemLocation + new Vector3(0f, 0f, 0f), Quaternion.identity);
             activePlayer.name = "player";
 
             PlayerInput activePlayerInput = activePlayer.GetComponent<PlayerInput>();
