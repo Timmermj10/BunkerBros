@@ -67,12 +67,13 @@ public class HasHealth : MonoBehaviour
     public void changeHealth(int healthChange)
     {
         //Check if the tower is taking damage, and if it has a shield
-        if (GetComponent<Shield>() != null && GetComponent<Shield>().protect)
+        if (GetComponent<Shield>() != null)
         {
             //Debug.Log("Shield");
             GetComponent<Shield>().depleteShield(healthChange);
         }
-        else
+
+        if (GetComponent<Shield>() == null || !GetComponent<Shield>().protect) 
         {
             // Update currentHealth
             currentHealth += Mathf.Min(healthChange + armorValue, 0);

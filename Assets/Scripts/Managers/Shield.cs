@@ -25,30 +25,24 @@ public class Shield : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    void Update()
+    private void FixedUpdate()
     {
-        if (currShield < 0)
-        {
-            currShield = 0;
-        }
+        damageTime += Time.deltaTime;
 
         if (currShield == 0)
         {
             protect = false;
-        } else
+        }
+        else
         {
             protect = true;
         }
-    }
 
-    private void FixedUpdate()
-    {
         if (shield_ui != null)
         {
             shield_ui.SetShield(currShield);
         }
-        damageTime += Time.deltaTime;
+        
         if (damageTime >= 5f && currShield <= maxShield)
         {
             StartCoroutine(heal());
@@ -61,9 +55,9 @@ public class Shield : MonoBehaviour
 
     public void depleteShield(int damage)
     {
-        currShield += damage;
+        currShield = Mathf.Max(currShield + damage, 0);
         damageTime = 0f;
-        
+
         if (currShield <= 0)
         {
             currShield = 0;
