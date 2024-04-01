@@ -425,7 +425,7 @@ MonoBehaviour:
   currentHealth: 0
   armorValue: 0
   healthBar: {fileID: 0}
-  duration: 2
+  duration: 0.75
   fadeSpeed: 1.5
 --- !u!114 &4360294523314962802
 MonoBehaviour:

@@ -25,6 +25,7 @@ public class AirdropListener : MonoBehaviour
         //If the item used is an airdrop item
         if (e.isAirdrop)
         {
+
             //Debug.Log("Starting Airdrop");
 
             GameObject prefabToInstantiate;
@@ -58,6 +59,7 @@ public class AirdropListener : MonoBehaviour
 
             //Instantiate the drop
             airdrop = Instantiate(prefabToInstantiate, initialDropLocation, rotation);
+            EventBus.Publish(new AirDropStartedEvent(e.itemID, airdrop.transform));
 
             // Start the descending coroutine to handle contact with the ground
             StartCoroutine(WaitForAirdropToLand(airdrop, initialDropLocation, finalDropLocation, e.itemID));

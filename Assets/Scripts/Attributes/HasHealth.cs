@@ -12,13 +12,6 @@ public class HasHealth : MonoBehaviour
 
     public HealthBarScript healthBar;
 
-    [Header("Damage Overlay")]
-    private Image overlay; // DamageOverlay GameObject
-    public float duration; // how long the image will stay
-    public float fadeSpeed; // how quickly the red will fade
-
-    private float durationTimer; // timer to check against the duration
-
     private void Start()
     {
         // Set the current health to the max possible
@@ -29,8 +22,6 @@ public class HasHealth : MonoBehaviour
         if (gameObject.CompareTag("Player"))
         {
             healthBar = GameObject.Find("PlayerHealthBar").GetComponent<HealthBarScript>();
-            overlay = GameObject.Find("DamageOverlay").GetComponent<Image>();
-            overlay.color = new Color(overlay.color.r, overlay.color.g, overlay.color.b, 0);
         }
         if(healthBar != null)
             healthBar.SetMaxHealth(maxHealth);
@@ -39,24 +30,24 @@ public class HasHealth : MonoBehaviour
         
     }
 
-    private void Update()
-    {
-        if (overlay != null)
-        {
-            // Check if the blood is onscreen
-            if (overlay.color.a > 0 && gameObject.name is "player")
-            {
-                durationTimer += Time.deltaTime;
-                if (durationTimer > duration)
-                {
-                    // Fade the image
-                    float tempAlpha = overlay.color.a;
-                    tempAlpha -= Time.deltaTime * fadeSpeed;
-                    overlay.color = new Color(overlay.color.r, overlay.color.g, overlay.color.b, tempAlpha);
-                }
-            }
-        }
-    }
+    //private void Update()
+    //{
+    //    if (overlay != null)
+    //    {
+    //        // Check if the blood is onscreen
+    //        if (overlay.color.a > 0 && gameObject.name is "player")
+    //        {
+    //            durationTimer += Time.deltaTime;
+    //            if (durationTimer > duration)
+    //            {
+    //                // Fade the image
+    //                float tempAlpha = overlay.color.a;
+    //                tempAlpha -= Time.deltaTime * fadeSpeed;
+    //                overlay.color = new Color(overlay.color.r, overlay.color.g, overlay.color.b, tempAlpha);
+    //            }
+    //        }
+    //    }
+    //}
 
     public void increaseHealth(int health_in)
     {
@@ -95,8 +86,7 @@ public class HasHealth : MonoBehaviour
             // If we are taking damage
             if (healthChange < 0 && gameObject.CompareTag("Player"))
             {
-                durationTimer = 0;
-                overlay.color = new Color(overlay.color.r, overlay.color.g, overlay.color.b, 1);
+                EventBus.Publish(new PlayerDamagedEvent());
             }
 
             // If we have less than 0 health, DIE
@@ -106,6 +96,7 @@ public class HasHealth : MonoBehaviour
             }
         }
     }
+
 
     private void Die()
     {

@@ -34,27 +34,17 @@ public class EnemyMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (player == null)
+        if (objective != null)
         {
             Vector3 objectiveOffset = objective.transform.position - transform.position;
-            active = objectiveOffset.magnitude > attackDistance;
-            animator.SetBool("walking", active);
-            attacking = objectiveOffset.magnitude <= attackDistance;
-            animator.SetBool("attacking", attacking);
-            transform.LookAt(transform.position + objectiveOffset);
-            if (animator.GetCurrentAnimatorStateInfo(0).IsName("walk"))
+            Vector3 playerOffset;
+            if (player != null)
             {
-                rb.velocity = objectiveOffset.normalized * speed + Vector3.up * rb.velocity.y;
-            }
-            else
+                playerOffset = player.transform.position - transform.position;
+            } else
             {
-                rb.velocity = Vector3.up * rb.velocity.y;
+                playerOffset = new Vector3(Mathf.Infinity, Mathf.Infinity, Mathf.Infinity);
             }
-        }
-        else if (objective != null)
-        {
-            Vector3 objectiveOffset = objective.transform.position - transform.position;
-            Vector3 playerOffset = player.transform.position - transform.position;
             Vector3 minOffset = objectiveOffset.magnitude <= playerOffset.magnitude ? objectiveOffset : playerOffset;
             minOffset.y = 0;
             active = minOffset.magnitude > attackDistance;

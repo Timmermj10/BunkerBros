@@ -21,6 +21,17 @@ public class ItemUseEvent
     }
 }
 
+public class AirDropStartedEvent
+{
+    public int itemID;
+    public Transform airdropTransform;
+    public AirDropStartedEvent(int itemUsed, Transform airdropTransform)
+    {
+        this.itemID = itemUsed;
+        this.airdropTransform = airdropTransform;
+    }
+}
+
 public class AirdropLandedEvent
 {
     public int itemID;
@@ -155,4 +166,8 @@ public class ManagerButtonClickEvent
     {
         button = b;
     }
+}
+
+public class PlayerDamagedEvent
+{
 }
