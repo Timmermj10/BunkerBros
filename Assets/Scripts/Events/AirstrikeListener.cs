@@ -9,6 +9,7 @@ public class AirstrikeListener : MonoBehaviour
     public List<MissileSiloStatus> siloStatus = new List<MissileSiloStatus>();
 
     public GameObject explosionPrefab;    // Prefab for the explosion effect
+    public GameObject missleExplosionPrefab; // Prefab for the missle explosion
     private float blastRadius = 5f;        // Radius of the nuke's effect
     public LayerMask damageableLayer;     // Layers that can be damaged by the nuke, set up in the inspector
     private int explosionDamage = -40;    //Amount of damage for the explosion
@@ -54,17 +55,17 @@ public class AirstrikeListener : MonoBehaviour
         {
             blastRadius = 5;
             explosionDamage = nukeDamage;
-            StartCoroutine(ExplosionEffect(e.itemLocation));
+            StartCoroutine(ExplosionEffect(e.itemLocation, explosionPrefab));
         }
         else if (e.itemID == 5) //missile
         {
             blastRadius = 1.5f;
             explosionDamage = missileDamage;
-            StartCoroutine(ExplosionEffect(e.itemLocation));
+            StartCoroutine(ExplosionEffect(e.itemLocation, missleExplosionPrefab));
         }
     }
 
-    private IEnumerator ExplosionEffect(Vector3 position)
+    private IEnumerator ExplosionEffect(Vector3 position, GameObject explosionPrefab)
     {
 
         // Create the explosion effect at the height-adjusted position
