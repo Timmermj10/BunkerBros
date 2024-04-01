@@ -12,6 +12,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: NukePreview
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: e161d2913bca37a44a645d97c1e0c715, type: 3}
+      propertyPath: m_Layer
+      value: 18
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: e161d2913bca37a44a645d97c1e0c715, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.15

@@ -118,6 +118,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: BarbedWire
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 5f1d92d7197c54c45be02a01bb1f58da,
+        type: 3}
+      propertyPath: m_TagString
+      value: Structure
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 65702495048144492, guid: 5f1d92d7197c54c45be02a01bb1f58da, type: 3}
@@ -197,7 +202,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ada0cb034d14d4065882f6fdbed5bdd0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 10
+  maxHealth: 20
   currentHealth: 0
   armorValue: 0
   healthBar: {fileID: 0}

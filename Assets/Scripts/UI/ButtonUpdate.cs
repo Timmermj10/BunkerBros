@@ -59,7 +59,12 @@ public class ButtonUpdate : MonoBehaviour
         else
         {
             // If we have enough coins and the player is dead
-            if (shopManager.coins > shopManager.shopItems[buttonInfo.itemID].itemCost && GameObject.Find("player") == null && !respawning)
+            Debug.Log(shopManager.coins);
+            Debug.Log(shopManager.shopItems[buttonInfo.itemID].itemCost);
+            Debug.Log(GameObject.Find("player") == null);
+            Debug.Log(!respawning);
+
+            if (shopManager.coins >= shopManager.shopItems[buttonInfo.itemID].itemCost && GameObject.Find("player") == null && !respawning)
             {
                 button.interactable = true;
             }
