@@ -14,7 +14,7 @@ public class TurretController : MonoBehaviour
     private bool active = false;
 
     //Offset from the turret so the turret cant hit itself
-    private float firingOffset = 1f;
+    public float firingOffset = 1f;
 
     private void Awake()
     {
