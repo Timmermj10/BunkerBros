@@ -28,7 +28,7 @@ public class StructureSpawner : MonoBehaviour
         else if (e.itemID == 1)
         {
             //spawn wall with vertical offset for the wall being 2 blocks tall
-            Instantiate(wallPrefab, e.itemLocation + new Vector3(0, 0.5f, 0), Quaternion.identity);
+            Instantiate(wallPrefab, e.itemLocation + new Vector3(0, 0, 0), Quaternion.identity);
         }
         else if (e.itemID == 2)
         {

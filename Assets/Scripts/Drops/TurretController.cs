@@ -20,6 +20,7 @@ public class TurretController : MonoBehaviour
     {
         nextShot = Time.time;
         gun = transform.Find("gun");
+        active = true; // Delete
     }
 
     private void FixedUpdate()
