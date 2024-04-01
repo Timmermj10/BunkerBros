@@ -15,7 +15,13 @@ public class GunText : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // Subscribe to purchase events
         EventBus.Subscribe<PurchaseEvent>(_gunUse);
+
+        // Set it so they know how to shoot
+        gameObject.GetComponent<Text>().text = "Click RIGHT BUMBER to stab/shoot";
+        textShowing = true;
+
     }
 
     // Update is called once per frame
@@ -31,6 +37,7 @@ public class GunText : MonoBehaviour
                 // Reset the text
                 GetComponent<Text>().text = "";
                 textShowing = false;
+                timer = 3f;
             }
         }
     }
