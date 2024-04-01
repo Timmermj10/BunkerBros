@@ -10,6 +10,7 @@ public class TurretController : MonoBehaviour
     public float activationDistance = 10f;
     private float nextShot;
     private Transform gun;
+    private Transform bulletSpawnpoint;
 
     private bool active = false;
 
@@ -20,7 +21,11 @@ public class TurretController : MonoBehaviour
     {
         nextShot = Time.time;
         gun = transform.Find("gun");
-        active = true; // Delete
+        bulletSpawnpoint = gun.Find("BulletSpawnpoint");
+
+        // Delete both these lines when adding turret activation
+        active = true; 
+        gameObject.tag = "Structure";
     }
 
     private void FixedUpdate()
@@ -44,13 +49,13 @@ public class TurretController : MonoBehaviour
                 if (nextShot < Time.time)
                 {
                     Vector2 aimDirection = new Vector2(gun.forward.x, gun.forward.z);
-                    Vector3 spawnPosition = gun.position + gun.forward * firingOffset;
+                    Vector3 spawnPosition = bulletSpawnpoint.position + gun.forward * firingOffset;
 
                     float spawnAngle = Mathf.Atan2(-aimDirection.y, aimDirection.x) * Mathf.Rad2Deg;
                     Quaternion rotation = Quaternion.Euler(0f, spawnAngle, 0f);
 
-
                     GameObject projectileObject = Instantiate(ProjectilePrefab.gameObject, spawnPosition, rotation);
+
                     projectileObject.GetComponent<ChangesHealth>().setHealthChange(-2);
                     nextShot = Time.time + cooldown;
                 }

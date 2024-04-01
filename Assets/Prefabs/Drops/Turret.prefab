@@ -118,8 +118,40 @@ Transform:
   m_LocalScale: {x: 3.9999995, y: 4, z: 3.9999995}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 6095299195864790001}
   - {fileID: 7129989606865223220}
   m_Father: {fileID: 5596926518832400370}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &4088570653499812208
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6095299195864790001}
+  m_Layer: 0
+  m_Name: BulletSpawnpoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6095299195864790001
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4088570653499812208}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0.010384519, z: -0, w: 0.9999461}
+  m_LocalPosition: {x: 0, y: 0.40000004, z: 0.79750013}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5358244536617957745}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &5343237827763462169
 PrefabInstance:
@@ -322,6 +354,7 @@ MonoBehaviour:
   ProjectilePrefab: {fileID: 4820764227730699988, guid: 07cac96898c26b041928e90fb5d15422,
     type: 3}
   activationDistance: 5
+  firingOffset: 0.4
 --- !u!114 &3465474054156532825
 MonoBehaviour:
   m_ObjectHideFlags: 0
