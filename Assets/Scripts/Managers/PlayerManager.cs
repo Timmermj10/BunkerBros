@@ -16,6 +16,7 @@ public class PlayerManager : MonoBehaviour
     {
 
         EventBus.Subscribe<ObjectDestroyedEvent>(_PlayerDead);
+        EventBus.Subscribe<AirdropLandedEvent>(respawnPlayer);
 
         // Instantiate the player with a gamepad
         //GameObject activePlayer = Instantiate(activePlayerPrefab, new Vector3(1f, 1f, 0f), Quaternion.identity);
@@ -44,8 +45,8 @@ public class PlayerManager : MonoBehaviour
     {
         if (e.tag == "Player" && e.name is "player" && !respawningPlayer)
         {
-            respawningPlayer = true;
-            StartCoroutine(RespawnPlayer());
+            //respawningPlayer = true;
+            //StartCoroutine(RespawnPlayer());
         }
     }
 
@@ -72,6 +73,29 @@ public class PlayerManager : MonoBehaviour
 
         respawningPlayer = false;
         yield return null;
+    }
+
+    private void respawnPlayer(AirdropLandedEvent e)
+    {
+        if (e.itemID == 9)
+        {
+            respawningPlayer = true;
+            GameObject activePlayer = Instantiate(activePlayerPrefab, e.itemLocation + new Vector3(0f, 1f, 0f), Quaternion.identity);
+            activePlayer.name = "player";
+
+            PlayerInput activePlayerInput = activePlayer.GetComponent<PlayerInput>();
+            if (Gamepad.current != null)
+            {
+                activePlayerInput.SwitchCurrentControlScheme("ControllerPlayer", Gamepad.current);
+            }
+            else
+            {
+                Debug.LogError("No gamepad connected for activePlayer.");
+            }
+            EventBus.Publish(new PlayerRespawnEvent(activePlayer.transform.position, activePlayer));
+
+            respawningPlayer = false;
+        }
     }
 
 
