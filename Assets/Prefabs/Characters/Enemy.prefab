@@ -792,7 +792,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b4b0c34eccb8d147b9abc5fcfcc30c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthChange: -1
+  healthChange: -2
   damageCooldown: 1
 --- !u!1 &8168291486349821993 stripped
 GameObject:
@@ -899,7 +899,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ada0cb034d14d4065882f6fdbed5bdd0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 10
+  maxHealth: 12
   currentHealth: 0
   armorValue: 0
   healthBar: {fileID: 1593780060081986440}
@@ -963,7 +963,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b4b0c34eccb8d147b9abc5fcfcc30c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthChange: -1
+  healthChange: -2
   damageCooldown: 1
 --- !u!4 &8168291486349988873 stripped
 Transform:

@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 4820764227730699988}
   - component: {fileID: -7659446023773672524}
   m_Layer: 8
-  m_Name: Projectile
+  m_Name: TurretProjectile
   m_TagString: Projectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -159,5 +159,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b4b0c34eccb8d147b9abc5fcfcc30c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthChange: -7
+  healthChange: -5
   damageCooldown: 1

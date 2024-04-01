@@ -11,10 +11,10 @@ public class AirstrikeListener : MonoBehaviour
     public GameObject explosionPrefab;    // Prefab for the explosion effect
     private float blastRadius = 5f;        // Radius of the nuke's effect
     public LayerMask damageableLayer;     // Layers that can be damaged by the nuke, set up in the inspector
-    private int explosionDamage = -15;    //Amount of damage for the explosion
+    private int explosionDamage = -40;    //Amount of damage for the explosion
 
-    private int nukeDamage = -25;
-    private int missileDamage = -10;
+    private int nukeDamage = -40;
+    private int missileDamage = -20;
 
 
     // Subscribe to Purchase Events
@@ -68,7 +68,7 @@ public class AirstrikeListener : MonoBehaviour
     {
 
         // Create the explosion effect at the height-adjusted position
-        GameObject explosionEffect =  Instantiate(explosionPrefab, position, Quaternion.identity);
+        GameObject explosionEffect = Instantiate(explosionPrefab, position, Quaternion.identity);
 
         // Get the ParticleSystem component
         ParticleSystem particles = explosionEffect.GetComponent<ParticleSystem>();

@@ -421,12 +421,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ada0cb034d14d4065882f6fdbed5bdd0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 10
+  maxHealth: 24
   currentHealth: 0
   armorValue: 0
   healthBar: {fileID: 0}
-  duration: 0.75
-  fadeSpeed: 1.5
 --- !u!114 &4360294523314962802
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1065,7 +1063,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b4b0c34eccb8d147b9abc5fcfcc30c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthChange: -5
+  healthChange: -7
   damageCooldown: 0.2
 --- !u!114 &1616323690731639696
 MonoBehaviour:
