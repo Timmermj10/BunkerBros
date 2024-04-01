@@ -217,10 +217,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 10
   currentHealth: 0
+  armorValue: 0
   healthBar: {fileID: 0}
-  overlay: {fileID: 0}
-  duration: 0
-  fadeSpeed: 0
 --- !u!65 &5840851645559709886
 BoxCollider:
   m_ObjectHideFlags: 0

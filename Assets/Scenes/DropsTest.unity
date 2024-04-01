@@ -11308,7 +11308,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75680e416c0bced4ab5ae9cf76dfa352, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  previewPrefab: {fileID: 6836581503973730888, guid: a9a2be4f50b10be429536846f42f4d4b,
+  previewPrefab: {fileID: 8742114334103815454, guid: ff814912866e40b45b1eed4218a73cbe,
     type: 3}
 --- !u!114 &232206084
 MonoBehaviour:
@@ -68169,7 +68169,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3c293ad49e202144be2739c56a0866f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wallPrefab: {fileID: 6836581503973730888, guid: b73f1c3525d174001a5008d8146ca880,
+  wallPrefab: {fileID: 8742114334103815454, guid: 894912b9b10c841ad97fe5df541e30ed,
     type: 3}
   nukePartsPrefab: {fileID: 3827722763254767490, guid: b577f51b3e374411cb1e05b08bb32793,
     type: 3}
