@@ -120,7 +120,7 @@ public class HasHealth : MonoBehaviour
     //Only called for enemies when scaling health
     public void setHealth(int newHealth)
     {
-        Debug.Log($"Setting health to {newHealth}");
+        //Debug.Log($"Setting health to {newHealth}");
         maxHealth = newHealth;
         currentHealth = maxHealth;
         healthBar.SetMaxHealth(maxHealth);

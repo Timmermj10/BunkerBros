@@ -490,6 +490,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 100062, guid: a21249fc4024a534fb7a73b3a30363d2, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 100064, guid: a21249fc4024a534fb7a73b3a30363d2, type: 3}
       propertyPath: m_Name
       value: EnemyArmored
@@ -501,6 +505,10 @@ PrefabInstance:
     - target: {fileID: 100064, guid: a21249fc4024a534fb7a73b3a30363d2, type: 3}
       propertyPath: m_TagString
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 100066, guid: a21249fc4024a534fb7a73b3a30363d2, type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 400062, guid: a21249fc4024a534fb7a73b3a30363d2, type: 3}
       propertyPath: m_LocalScale.x
