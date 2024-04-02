@@ -19,13 +19,11 @@ public class EnemyWaveSpawnManager : MonoBehaviour
     private float randomX;
     private float randomZ;
 
-    //how far away enemies can spawn from the spawner
+    //how far away enemies can spawn from the spawner (half the width/height of the map)
     private float spawnDistanceForMap = 16f;
-    private float spawnDistanceForPlayer = 6f;
 
     //cant spawn within this distance of the spawner (spawns the zombies on the edge of the map if the spawner is in the middle)
     private int noSpawnZoneDistanceForMap = 12;
-    private int noSpawnZoneDistanceForPlayer = 3;
 
     //Wave manager reference to get wave information
     WaveManager waveManager;
@@ -74,70 +72,34 @@ public class EnemyWaveSpawnManager : MonoBehaviour
                 RaycastHit hitInfo;
 
                 //Get a random position to spawn the enemy
-                //Decide whether to spawn near the player or near the edge of the map
-                if (Random.value < 0.3f && playerTransform != null)
+                do
                 {
-                    //Debug.Log("Spawning around player chosen");
-                    do
+                    // Decide whether to spawn the enemy on the horizontal (X-axis) or vertical (Z-axis) edges
+                    if (Random.value < 0.5f)
                     {
-                        // Decide whether to spawn the enemy on the horizontal (X-axis) or vertical (Z-axis) edges
-                        if (Random.value < 0.5f)
-                        {
-                            // Spawn on the horizontal edges
-                            randomX = Random.Range(-spawnDistanceForPlayer, spawnDistanceForPlayer); // Anywhere along the horizontal edge
+                        // Spawn on the horizontal edges
+                        randomX = Random.Range(-spawnDistanceForMap, spawnDistanceForMap); // Anywhere along the horizontal edge
 
-                            randomZ = Random.Range(spawnDistanceForPlayer, noSpawnZoneDistanceForPlayer);
+                        randomZ = Random.Range(spawnDistanceForMap, noSpawnZoneDistanceForMap);
 
-                            // Top or Bottom edge
-                            if (Random.value < 0.5) randomZ *= -1;
-                        }
-                        else
-                        {
-                            // Spawn on the vertical edges
-                            randomZ = Random.Range(-spawnDistanceForPlayer, spawnDistanceForPlayer); // Anywhere along the vertical edge
-
-                            randomX = Random.Range(spawnDistanceForPlayer, noSpawnZoneDistanceForPlayer);
-
-                            // Top or Bottom edge
-                            if (Random.value < 0.5) randomX *= -1;
-                        }
-
-                        randomSpawnPosition = new Vector3(playerTransform.position.x + randomX, 10f, playerTransform.position.z + randomZ);
-                        //Debug.Log($"Checking to see of the chosen spawn position ({randomSpawnPosition}) is valid");
-
-                    } while (!Physics.Raycast(randomSpawnPosition, Vector3.down, out hitInfo, Mathf.Infinity) || hitInfo.collider.gameObject.layer != LayerMask.NameToLayer("Default"));
-                } else
-                {
-                    //Debug.Log("Spawning at map edge chosen");
-                    do
+                        // Top or Bottom edge
+                        if (Random.value < 0.5) randomZ *= -1;
+                    }
+                    else
                     {
-                        // Decide whether to spawn the enemy on the horizontal (X-axis) or vertical (Z-axis) edges
-                        if (Random.value < 0.5f)
-                        {
-                            // Spawn on the horizontal edges
-                            randomX = Random.Range(-spawnDistanceForMap, spawnDistanceForMap); // Anywhere along the horizontal edge
+                        // Spawn on the vertical edges
+                        randomZ = Random.Range(-spawnDistanceForMap, spawnDistanceForMap); // Anywhere along the vertical edge
 
-                            randomZ = Random.Range(spawnDistanceForMap, noSpawnZoneDistanceForMap);
+                        randomX = Random.Range(spawnDistanceForMap, noSpawnZoneDistanceForMap);
 
-                            // Top or Bottom edge
-                            if (Random.value < 0.5) randomZ *= -1;
-                        }
-                        else
-                        {
-                            // Spawn on the vertical edges
-                            randomZ = Random.Range(-spawnDistanceForMap, spawnDistanceForMap); // Anywhere along the vertical edge
+                        // Top or Bottom edge
+                        if (Random.value < 0.5) randomX *= -1;
+                    }
 
-                            randomX = Random.Range(spawnDistanceForMap, noSpawnZoneDistanceForMap);
+                    randomSpawnPosition = new Vector3(transform.position.x + randomX, 10f, transform.position.z + randomZ);
+                    //Debug.Log($"Checking to see of the chosen spawn position ({randomSpawnPosition}) is valid");
 
-                            // Top or Bottom edge
-                            if (Random.value < 0.5) randomX *= -1;
-                        }
-
-                        randomSpawnPosition = new Vector3(transform.position.x + randomX, 10f, transform.position.z + randomZ);
-                        //Debug.Log($"Checking to see of the chosen spawn position ({randomSpawnPosition}) is valid");
-
-                    } while (!Physics.Raycast(randomSpawnPosition, Vector3.down, out hitInfo, Mathf.Infinity) || hitInfo.collider.gameObject.layer != LayerMask.NameToLayer("Default"));
-                }
+                } while (!Physics.Raycast(randomSpawnPosition, Vector3.down, out hitInfo, Mathf.Infinity) || hitInfo.collider.gameObject.layer != LayerMask.NameToLayer("Default"));
 
                 randomSpawnPosition.y = hitInfo.point.y + 0.5f;
                 //Debug.Log($"Final spawn position of {randomSpawnPosition} chosen | Raycast collided with {hitInfo.collider.gameObject.name}");
