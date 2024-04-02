@@ -46,7 +46,7 @@ public class ButtonUpdate : MonoBehaviour
         // Check if we have enough coins to purchase the item or if the player is dead for player respawn
         if (buttonInfo.itemID != 9)
         {
-            if (shopManager.coins < shopManager.shopItems[buttonInfo.itemID].itemCost)
+            if (shopManager.gold < shopManager.shopItems[buttonInfo.itemID].itemCost)
             {
                 button.interactable = false;
             }
@@ -59,7 +59,7 @@ public class ButtonUpdate : MonoBehaviour
         else
         {
             // If we have enough coins and the player is dead
-            if (shopManager.coins >= shopManager.shopItems[buttonInfo.itemID].itemCost && GameObject.Find("player") == null && !respawning)
+            if (shopManager.gold >= shopManager.shopItems[buttonInfo.itemID].itemCost && GameObject.Find("player") == null && !respawning)
             {
                 button.interactable = true;
             }
@@ -74,7 +74,7 @@ public class ButtonUpdate : MonoBehaviour
         {
             GetComponent<Image>().color = Color.white;
         }
-        if (shopManager.coins < shopManager.shopItems[buttonInfo.itemID].itemCost)
+        if (shopManager.gold < shopManager.shopItems[buttonInfo.itemID].itemCost)
         {
             GetComponent<Image>().color = Color.white;
         }

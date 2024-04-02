@@ -273,7 +273,7 @@ public class ManagerPlayerInputsNew : MonoBehaviour
 
                         Destroy(selectedObj);
                     }
-                    else if (shopManagerScript.coins >= cost)
+                    else if (shopManagerScript.gold >= cost)
                     {
                         // Most recently used item
                         mostRecentItem = selectedObj;

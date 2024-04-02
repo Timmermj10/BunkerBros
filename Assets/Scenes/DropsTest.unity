@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.112711005, g: 0.28157306, b: 0.7091771, a: 1}
+  m_IndirectSpecularColor: {r: 0.11271046, g: 0.28158677, b: 0.709181, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -11416,7 +11416,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tooltipPanel: {fileID: 1853301884}
   xOffset: 10
-  cost: 20 Gold
+  cost: 10 Gold
   description: Drop a barrier to help protect the entrance!
 --- !u!114 &232206085
 MonoBehaviour:
@@ -15920,7 +15920,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tooltipPanel: {fileID: 1853301884}
   xOffset: 10
-  cost: 150 Gold
+  cost: 20 Gold
   description: Assist your teammate with a health pack!
 --- !u!114 &327645079
 MonoBehaviour:
@@ -17264,7 +17264,7 @@ MonoBehaviour:
     oneTimePurchase: 0
   - itemId: 1
     itemName: Wall
-    itemCost: 20
+    itemCost: 10
     itemIcon: {fileID: 0}
     itemCount: 0
     oneTimePurchase: 0
@@ -17294,30 +17294,30 @@ MonoBehaviour:
     oneTimePurchase: 0
   - itemId: 6
     itemName: HealthKit
-    itemCost: 150
+    itemCost: 20
     itemIcon: {fileID: 0}
     itemCount: 0
     oneTimePurchase: 0
   - itemId: 7
     itemName: RepairKit
-    itemCost: 150
+    itemCost: 30
     itemIcon: {fileID: 0}
     itemCount: 0
     oneTimePurchase: 0
   - itemId: 8
     itemName: AmmoCrate
-    itemCost: 150
+    itemCost: 30
     itemIcon: {fileID: 0}
     itemCount: 0
     oneTimePurchase: 0
   - itemId: 9
     itemName: PlayerRespawn
-    itemCost: 25
+    itemCost: 0
     itemIcon: {fileID: 0}
     itemCount: 0
     oneTimePurchase: 0
-  coins: 150000
-  coinsText: {fileID: 734753316}
+  gold: 150
+  goldText: {fileID: 734753316}
 --- !u!4 &349862697
 Transform:
   m_ObjectHideFlags: 0
@@ -20960,13 +20960,13 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1409508055}
   - {fileID: 232206077}
-  - {fileID: 1548825878}
   - {fileID: 327645071}
-  - {fileID: 773307671}
   - {fileID: 1454941293}
+  - {fileID: 773307671}
   - {fileID: 204320029}
+  - {fileID: 1409508055}
+  - {fileID: 1548825878}
   - {fileID: 184442847}
   m_Father: {fileID: 1527906881}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -35272,7 +35272,7 @@ GameObject:
   - component: {fileID: 734753317}
   - component: {fileID: 734753316}
   m_Layer: 5
-  m_Name: CoinsText
+  m_Name: GoldText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -36831,7 +36831,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tooltipPanel: {fileID: 1853301884}
   xOffset: 10
-  cost: 150 Gold
+  cost: 30 Gold
   description: Drop in a repair kit & have your teammate use it on the bunker!
 --- !u!114 &773307679
 MonoBehaviour:
@@ -66622,7 +66622,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tooltipPanel: {fileID: 1853301884}
   xOffset: 10
-  cost: 25 Gold
+  cost: 
   description: Drop in a new robot teammate!
 --- !u!114 &1319077467
 MonoBehaviour:
@@ -75023,7 +75023,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tooltipPanel: {fileID: 1853301884}
   xOffset: 10
-  cost: 150 Gold
+  cost: 30 Gold
   description: Drop in ammo to help your teammate!
 --- !u!114 &1454941301
 MonoBehaviour:
@@ -80351,7 +80351,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tooltipPanel: {fileID: 1853301884}
   xOffset: 10
-  cost: 150 Gold
+  cost: 250 Gold
   description: Drop in an automatic turret to control the zombies!
 --- !u!114 &1548825886
 MonoBehaviour:

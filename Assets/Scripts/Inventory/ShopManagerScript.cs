@@ -7,20 +7,20 @@ using UnityEngine.EventSystems;
 public class ShopManagerScript : MonoBehaviour
 {
     public List<InventoryItem> shopItems;
-    public float coins;
-    public Text coinsText;
-    private Subscription<CoinCollect> coin_in;
+    public float gold;
+    public Text goldText;
+    private Subscription<CoinCollect> gold_in;
 
     void Start()
     {
-        coinsText.text = "Coins: " + coins;
-        coin_in = EventBus.Subscribe<CoinCollect>(_coin);
+        goldText.text = "Gold: " + gold;
+        gold_in = EventBus.Subscribe<CoinCollect>(_gold);
     }
 
-    private void _coin(CoinCollect c)
+    private void _gold(CoinCollect c)
     {
-        coins += c.value;
-        coinsText.text = "Coins: " + coins;
+        gold += c.value;
+        goldText.text = "Gold: " + gold;
     }
 
     // DON'T THINK BUY IS NECESSARY AFTER REWORK
@@ -28,16 +28,16 @@ public class ShopManagerScript : MonoBehaviour
     {
         GameObject ButtonRef = GameObject.FindGameObjectWithTag("Event").GetComponent<EventSystem>().currentSelectedGameObject;
         
-        if (coins >= shopItems[ButtonRef.GetComponent<ButtonInfo>().itemID].itemCost)
+        if (gold >= shopItems[ButtonRef.GetComponent<ButtonInfo>().itemID].itemCost)
         {
             // Take away coins
-            coins -= shopItems[ButtonRef.GetComponent<ButtonInfo>().itemID].itemCost;
+            gold -= shopItems[ButtonRef.GetComponent<ButtonInfo>().itemID].itemCost;
 
             // Give item
             shopItems[ButtonRef.GetComponent<ButtonInfo>().itemID].itemCount++;
 
             // Update coins text
-            coinsText.text = "Coins: " + coins;
+            goldText.text = "Gold: " + gold;
 
             // Update quantity text
             ButtonRef.GetComponent<ButtonInfo>().quantityText.text = shopItems[ButtonRef.GetComponent<ButtonInfo>().itemID].ToString();
