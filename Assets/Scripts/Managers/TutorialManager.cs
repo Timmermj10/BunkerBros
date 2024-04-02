@@ -34,11 +34,9 @@ public class TutorialManager : MonoBehaviour
         bunker.GetComponent<HasHealth>().changeHealth(-10);
         bunker.GetComponent<HasHealth>().changeHealth(-50);
 
-
         Instantiate(basicEnemyPrefab, new Vector3(-2, 1, 0), Quaternion.identity);
         Instantiate(basicEnemyPrefab, new Vector3(1, 1, 1.5f), Quaternion.identity);
-        Instantiate(basicEnemyPrefab, new Vector3(1, 1, 1.5f), Quaternion.identity);
-
+        Instantiate(basicEnemyPrefab, new Vector3(1, 1, -1.5f), Quaternion.identity);
 
         yield return null;
     }
