@@ -82,8 +82,6 @@ public class PlayerInteract : MonoBehaviour
                     {
                         EventBus.Publish(new InteractTimerStartedEvent(timeToInteract));
                     }
-
-                    
                 }
                 else if (item != null && (item.name is "Objective") && GetComponent<ActivePlayerInventory>().itemInInventory(ActivePlayerInventory.activePlayerItems.RepairKit))
                 {
@@ -165,16 +163,6 @@ public class PlayerInteract : MonoBehaviour
                             else
                             {
                                 //Debug.Log($"Failed to load Silo: silo status = {silo.isSiloLoaded()}, doesThePlayerHaveMissileParts = {GetComponent<ActivePlayerInventory>().itemInInventory(ActivePlayerInventory.activePlayerItems.MissileParts)}");
-                            }
-                        }
-                        
-                        else if ((item.name is "Turret") || (item.name is "Turret(Clone)"))
-                        {
-
-                            TurretController turret = item.GetComponent<TurretController>();
-                            if (turret != null)
-                            {
-                                turret.activateTurret();
                             }
                         }
                     }

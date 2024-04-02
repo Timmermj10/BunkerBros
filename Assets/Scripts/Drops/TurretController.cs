@@ -12,26 +12,18 @@ public class TurretController : MonoBehaviour
     private Transform gun;
     private Transform bulletSpawnpoint;
 
-    private bool active = false;
-
     //Offset from the turret so the turret cant hit itself
-    public float firingOffset = 1f;
+    private float firingOffset = 0.4f;
 
     private void Awake()
     {
         nextShot = Time.time;
         gun = transform.Find("gun");
         bulletSpawnpoint = gun.Find("BulletSpawnpoint");
-
-        // Delete both these lines when adding turret activation
-        active = true; 
-        gameObject.tag = "Structure";
     }
 
     private void FixedUpdate()
     {
-        if (active)
-        {
             GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
             Vector3 closest = Vector3.right * activationDistance;
             foreach (GameObject enemy in enemies)
@@ -60,12 +52,5 @@ public class TurretController : MonoBehaviour
                     nextShot = Time.time + cooldown;
                 }
             }
-        }
-    }
-
-    public void activateTurret()
-    {
-        gameObject.tag = "Structure";
-        active = true;
     }
 }
