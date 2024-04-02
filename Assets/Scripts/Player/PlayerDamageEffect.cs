@@ -22,7 +22,10 @@ public class PlayerDamageEffect : MonoBehaviour
 
     private void _DamageIndicator(PlayerDamagedEvent e)
     {
-        StartCoroutine(playerDamageOverlay());
+        if (e.health > 0)
+        {
+            StartCoroutine(playerDamageOverlay());
+        }
     }
 
     IEnumerator playerDamageOverlay()

@@ -91,7 +91,7 @@ public class HasHealth : MonoBehaviour
             // If we are taking damage
             if (healthChange < 0 && gameObject.CompareTag("Player"))
             {
-                EventBus.Publish(new PlayerDamagedEvent());
+                EventBus.Publish(new PlayerDamagedEvent(currentHealth));
             }
 
             // If we have less than 0 health, DIE
