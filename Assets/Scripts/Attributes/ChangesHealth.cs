@@ -19,8 +19,8 @@ public class ChangesHealth : MonoBehaviour
             return;
         }
 
-        //Dont let the player damage the objective
-        if (other.gameObject.CompareTag("Objective") && (gameObject.CompareTag("Projectile") || gameObject.name is "Knife"))
+        //Dont let the player damage the objective or turrets damage structures
+        if (other.gameObject.layer == LayerMask.NameToLayer("Structure") && (gameObject.CompareTag("Projectile") || gameObject.name is "Knife"))
         {
             return;
         }

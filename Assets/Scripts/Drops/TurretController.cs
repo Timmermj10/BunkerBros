@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class TurretController : MonoBehaviour
 {
-    public float cooldown = .5f;
+    public float cooldown = 1f;
     public ProjectileBehavior ProjectilePrefab;
     public float activationDistance = 10f;
     private float nextShot;
@@ -48,7 +48,7 @@ public class TurretController : MonoBehaviour
 
                     GameObject projectileObject = Instantiate(ProjectilePrefab.gameObject, spawnPosition, rotation);
 
-                    projectileObject.GetComponent<ChangesHealth>().setHealthChange(-2);
+                    projectileObject.GetComponent<ChangesHealth>().setHealthChange(-5);
                     nextShot = Time.time + cooldown;
                 }
             }

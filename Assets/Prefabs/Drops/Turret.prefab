@@ -350,11 +350,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05f7a266e7f4a544d9488fe31038a3bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cooldown: 0.5
-  ProjectilePrefab: {fileID: 4820764227730699988, guid: 7e9b4f1ae481a3245918e702175c0a86,
+  cooldown: 1.25
+  ProjectilePrefab: {fileID: 4820764227730699988, guid: 07cac96898c26b041928e90fb5d15422,
     type: 3}
   activationDistance: 5
-  firingOffset: 0.4
 --- !u!114 &3465474054156532825
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -12,8 +12,8 @@ public class EnemyWaveSpawnManager : MonoBehaviour
     Transform playerTransform;
 
     //Time between enemy spawned
-    private float spawnDelay = 3f;
-    private float spawnTimer = 3f;
+    private float spawnDelay = 2f;
+    private float spawnTimer = 2f;
 
     //Enemy spawn offsets
     private float randomX;
@@ -121,7 +121,7 @@ public class EnemyWaveSpawnManager : MonoBehaviour
                         //Spawn radius is maximum of 3 and waveNumber/2
                         //Horde centered on randomSpawnPosition
                         //Debug.Log($"Spawning Horde at {randomSpawnPosition}");
-                        spawnHorde(Mathf.Max(4, Mathf.RoundToInt(waveManager.getNumEnemiesToSpawnThisRound() / 6f)), Mathf.Max(3f, waveManager.getWaveNumber() / 2f), randomSpawnPosition);
+                        spawnHorde(Mathf.Max(6, Mathf.RoundToInt(waveManager.getNumEnemiesToSpawnThisRound() / 6f)), Mathf.Max(3f, waveManager.getWaveNumber() / 2f), randomSpawnPosition);
                     }
                     else
                     {
@@ -152,17 +152,19 @@ public class EnemyWaveSpawnManager : MonoBehaviour
         //make sure were not exceeding number of spawns for the wave or maximum enemies alive at once
         if (waveManager.getNumEnemiesSpawnedSoFar() < waveManager.getNumEnemiesToSpawnThisRound() && waveManager.getNumEnemiesAlive() < waveManager.getMaxEnemiesAliveAtOnce())
         {
+            GameObject enemy = null;
             //Spawn the correct enemy type at the specified position
             if (type is EnemyType.Basic)
             {
-                GameObject enemy = Instantiate(BasicEnemyPrefab, position, Quaternion.identity);
+                enemy = Instantiate(BasicEnemyPrefab, position, Quaternion.identity);
             }
             else if (type is EnemyType.Armored)
             {
-                GameObject enemy = Instantiate(ArmoredEnemyPrefab, position, Quaternion.identity);
+                enemy = Instantiate(ArmoredEnemyPrefab, position, Quaternion.identity);
             }
             //let the wave manager know an enemy spawned
             waveManager.enemySpawned(type);
+            enemy.GetComponent<HasHealth>().setHealth(enemy.GetComponent<HasHealth>().getMaxHealth() + waveManager.getWaveNumber() - 1);
         }
     }
 

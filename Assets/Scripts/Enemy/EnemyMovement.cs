@@ -62,27 +62,8 @@ public class EnemyMovement : MonoBehaviour
             }
         }
     }
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.tag != "Untagged")
-        {
-            //Debug.Log($"trigger enter: {gameObject.name} and {other.tag}");
-        }
-    }
-    private void OnTriggerExit(Collider other)
-    {
-        if(other.tag != "Untagged")
-        {
-            //Debug.Log($"trigger exit: {gameObject.name} and {other.tag}");
-        }
-    }
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.tag != "Untagged")
-        {
-            //Debug.Log($"trigger exit: {gameObject.name} and {collision.gameObject.tag}");
-        }
-    }
+
+
     private void OnDestroy()
     {
         EventBus.Unsubscribe(respawn_event_subscription);

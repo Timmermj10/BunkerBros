@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class ProjectileBehavior : MonoBehaviour
 {
-    private float projectileSpeed = 10f;
+    private float projectileSpeed = 14f;
     private Rigidbody rb;
 
     float despawnTimer = 3f;

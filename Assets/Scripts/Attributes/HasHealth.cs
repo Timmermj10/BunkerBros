@@ -51,11 +51,7 @@ public class HasHealth : MonoBehaviour
 
     public void increaseHealth(int health_in)
     {
-        currentHealth += health_in;
-
-        if (currentHealth > maxHealth) {
-            currentHealth = maxHealth;
-        }
+        currentHealth = Mathf.Min(currentHealth + health_in, maxHealth);
 
         // Update slider
         if (healthBar != null)
@@ -76,7 +72,15 @@ public class HasHealth : MonoBehaviour
         if (GetComponent<Shield>() == null || !GetComponent<Shield>().protect) 
         {
             // Update currentHealth
-            currentHealth += Mathf.Min(healthChange + armorValue, 0);
+
+            if (healthChange < 0) 
+            {
+                currentHealth += Mathf.Min(healthChange + armorValue, 0);
+            }
+            else
+            {
+                currentHealth = Mathf.Min(currentHealth + healthChange, maxHealth);
+            }
 
             // Update slider
             if (healthBar != null)
@@ -108,22 +112,19 @@ public class HasHealth : MonoBehaviour
     }
 
 
-    /*
-    private void OnCollisionStay(Collision collision)
+    public int getMaxHealth()
     {
-        if (collision.gameObject.CompareTag("Enemy") && canTakeDamage)
-        {
-            TakeDamage(1);
-            StartCoroutine(DamageCooldown(3f)); // Start the cooldown coroutine
-        }
+        return maxHealth;
     }
 
-    private IEnumerator DamageCooldown(float cooldownTime)
+    //Only called for enemies when scaling health
+    public void setHealth(int newHealth)
     {
-        canTakeDamage = false;
-        yield return new WaitForSeconds(cooldownTime);
-        canTakeDamage = true;
+        Debug.Log($"Setting health to {newHealth}");
+        maxHealth = newHealth;
+        currentHealth = maxHealth;
+        healthBar.SetMaxHealth(maxHealth);
+        
     }
-    */
 }
 
