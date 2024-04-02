@@ -20,14 +20,19 @@ public class PlayerManager : MonoBehaviour
 
         // Instantiate the player with a gamepad
         //GameObject activePlayer = Instantiate(activePlayerPrefab, new Vector3(1f, 1f, 0f), Quaternion.identity);
-        PlayerInput activePlayerInput = activePlayer.GetComponent<PlayerInput>();
-        if (Gamepad.current != null)
+
+        if (activePlayer != null)
         {
-            activePlayerInput.SwitchCurrentControlScheme("ControllerPlayer", Gamepad.current);
-        }
-        else
-        {
-            Debug.LogError("No gamepad connected for activePlayer.");
+
+            PlayerInput activePlayerInput = activePlayer.GetComponent<PlayerInput>();
+            if (Gamepad.current != null)
+            {
+                activePlayerInput.SwitchCurrentControlScheme("ControllerPlayer", Gamepad.current);
+            }
+            else
+            {
+                Debug.LogError("No gamepad connected for activePlayer.");
+            }
         }
 
         //Instantiate the player with a keyboard and mouse

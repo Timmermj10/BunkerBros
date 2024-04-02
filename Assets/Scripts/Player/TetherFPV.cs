@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 
 public class TetherFPV : MonoBehaviour
@@ -25,6 +26,16 @@ public class TetherFPV : MonoBehaviour
         EventBus.Subscribe<AirdropLandedEvent>(_endDrop);
 
         cam = GetComponent<Camera>();
+        fullyRenderingCullingMask = cam.cullingMask;
+        funnlyRenderingBackgroundColor = cam.backgroundColor;
+        fullyRenderingFlags = cam.clearFlags;
+
+        if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("TutorialScene"))
+        {
+            cam.clearFlags = CameraClearFlags.SolidColor;
+            cam.backgroundColor = Color.black;
+            cam.cullingMask = 0;
+        }
     }
 
     void Update()
@@ -45,10 +56,6 @@ public class TetherFPV : MonoBehaviour
     {
         if (e.name is "player")
         {
-            fullyRenderingCullingMask = cam.cullingMask;
-            funnlyRenderingBackgroundColor = cam.backgroundColor;
-            fullyRenderingFlags = cam.clearFlags;
-
             cam.clearFlags = CameraClearFlags.SolidColor;
             cam.backgroundColor = Color.black;
             cam.cullingMask = 0;
@@ -65,9 +72,7 @@ public class TetherFPV : MonoBehaviour
             transform.rotation = Quaternion.identity;
 
             StartCoroutine(dropWithAirdrop(e.airdropTransform));
-            
         }
-
     }
 
     private void _endDrop(AirdropLandedEvent e)
