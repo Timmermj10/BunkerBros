@@ -16,7 +16,10 @@ public class ButtonUpdate : MonoBehaviour
     private ShopManagerScript shopManager;
 
     // Respawning player
-    private bool respawning = false;
+    public bool respawning = false;
+
+    // Player respawn timer
+    public float timer = 5f;
 
     // Start is called before the first frame update
     void Start()
@@ -46,7 +49,7 @@ public class ButtonUpdate : MonoBehaviour
         // Check if we have enough coins to purchase the item or if the player is dead for player respawn
         if (buttonInfo.itemID != 9)
         {
-            if (shopManager.coins < shopManager.shopItems[buttonInfo.itemID].itemCost)
+            if (shopManager.gold < shopManager.shopItems[buttonInfo.itemID].itemCost)
             {
                 button.interactable = false;
             }
@@ -58,14 +61,23 @@ public class ButtonUpdate : MonoBehaviour
         // Dealing with player respawn
         else
         {
-            // If we have enough coins and the player is dead
-            if (shopManager.coins >= shopManager.shopItems[buttonInfo.itemID].itemCost && GameObject.Find("player") == null && !respawning)
+            // If the player is alive, disable the button
+            if (GameObject.Find("player") != null && button.interactable == true)
             {
+                // Disable the button
+                button.interactable = false;
+            }
+            // If the timer has run out allow the manager to respawn the player
+            else if (timer <= 0)
+            {
+                // Enable the button
                 button.interactable = true;
             }
-            else
+            // If the timer is not zero and the player is dead
+            else if (GameObject.Find("player") == null && !respawning)
             {
-                button.interactable = false;
+                // Decrease the timer
+                timer -= Time.deltaTime;
             }
         }
 
@@ -74,7 +86,7 @@ public class ButtonUpdate : MonoBehaviour
         {
             GetComponent<Image>().color = Color.white;
         }
-        if (shopManager.coins < shopManager.shopItems[buttonInfo.itemID].itemCost)
+        if (shopManager.gold < shopManager.shopItems[buttonInfo.itemID].itemCost)
         {
             GetComponent<Image>().color = Color.white;
         }
@@ -111,7 +123,21 @@ public class ButtonUpdate : MonoBehaviour
     {
         if (e.itemID == 9)
         {
+            // Set the respawning bool
             respawning = true;
+
+            // If this button is the respawn
+            if (buttonInfo.itemID == 9)
+            {
+                // Reset the timer
+                timer = 5f;
+
+                // Make the button not interactable
+                button.interactable = false;
+
+                // Make the image white
+                button.gameObject.GetComponent<Image>().color = Color.white;
+            }
         }
     }
 }

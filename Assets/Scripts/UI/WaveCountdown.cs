@@ -6,10 +6,10 @@ using UnityEngine.UI;
 public class WaveCountDown : MonoBehaviour
 {
     // Float to hold the time variable
-    float timer = 15f;
+    float timer = 30f;
 
     // Update only on full seconds
-    int lastSecond = 15;
+    int lastSecond = 30;
 
     // Bool to hold if the timer has started
     bool timerStart = true;

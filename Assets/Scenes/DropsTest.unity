@@ -38,7 +38,11 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
+<<<<<<< HEAD
   m_IndirectSpecularColor: {r: 0.112687804, g: 0.281471, b: 0.7086788, a: 1}
+=======
+  m_IndirectSpecularColor: {r: 0.11271046, g: 0.28158677, b: 0.709181, a: 1}
+>>>>>>> d348e52c37faf39b40b695b821db808e61b92790
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -4308,6 +4312,98 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 89563024}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &92235029
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 92235030}
+  - component: {fileID: 92235032}
+  - component: {fileID: 92235031}
+  - component: {fileID: 92235033}
+  m_Layer: 5
+  m_Name: StandbyForRespawn
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &92235030
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 92235029}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 890055578}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchoredPosition: {x: 0, y: 100}
+  m_SizeDelta: {x: 960, y: 400}
+  m_Pivot: {x: 0.5, y: 0}
+--- !u!114 &92235031
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 92235029}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 100
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 0
+    m_MaxSize: 100
+    m_Alignment: 4
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: 
+--- !u!222 &92235032
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 92235029}
+  m_CullTransparentMesh: 1
+--- !u!114 &92235033
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 92235029}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33118f314fe8a9a499e413968284968c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &92931731
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8377,6 +8473,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 318b6ea1edc16ea4886cc6042e3efe07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timer: 5
 --- !u!114 &184442853
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9428,6 +9525,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 318b6ea1edc16ea4886cc6042e3efe07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timer: 5
 --- !u!114 &204320033
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11538,6 +11636,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 318b6ea1edc16ea4886cc6042e3efe07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timer: 5
 --- !u!114 &232206082
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11582,7 +11681,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tooltipPanel: {fileID: 1853301884}
   xOffset: 10
-  cost: 20 Gold
+  cost: 10 Gold
   description: Drop a barrier to help protect the entrance!
 --- !u!114 &232206085
 MonoBehaviour:
@@ -16131,6 +16230,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 318b6ea1edc16ea4886cc6042e3efe07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timer: 5
 --- !u!114 &327645077
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16161,7 +16261,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tooltipPanel: {fileID: 1853301884}
   xOffset: 10
-  cost: 150 Gold
+  cost: 20 Gold
   description: Assist your teammate with a health pack!
 --- !u!114 &327645079
 MonoBehaviour:
@@ -17505,7 +17605,7 @@ MonoBehaviour:
     oneTimePurchase: 0
   - itemId: 1
     itemName: Wall
-    itemCost: 20
+    itemCost: 10
     itemIcon: {fileID: 0}
     itemCount: 0
     oneTimePurchase: 0
@@ -17535,30 +17635,30 @@ MonoBehaviour:
     oneTimePurchase: 0
   - itemId: 6
     itemName: HealthKit
-    itemCost: 150
+    itemCost: 20
     itemIcon: {fileID: 0}
     itemCount: 0
     oneTimePurchase: 0
   - itemId: 7
     itemName: RepairKit
-    itemCost: 150
+    itemCost: 30
     itemIcon: {fileID: 0}
     itemCount: 0
     oneTimePurchase: 0
   - itemId: 8
     itemName: AmmoCrate
-    itemCost: 150
+    itemCost: 30
     itemIcon: {fileID: 0}
     itemCount: 0
     oneTimePurchase: 0
   - itemId: 9
     itemName: PlayerRespawn
-    itemCost: 25
+    itemCost: 0
     itemIcon: {fileID: 0}
     itemCount: 0
     oneTimePurchase: 0
-  coins: 150000
-  coinsText: {fileID: 734753316}
+  gold: 150
+  goldText: {fileID: 734753316}
 --- !u!4 &349862697
 Transform:
   m_ObjectHideFlags: 0
@@ -21201,13 +21301,13 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1409508055}
   - {fileID: 232206077}
-  - {fileID: 1548825878}
   - {fileID: 327645071}
-  - {fileID: 773307671}
   - {fileID: 1454941293}
+  - {fileID: 773307671}
   - {fileID: 204320029}
+  - {fileID: 1409508055}
+  - {fileID: 1548825878}
   - {fileID: 184442847}
   m_Father: {fileID: 1527906881}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -35513,7 +35613,7 @@ GameObject:
   - component: {fileID: 734753317}
   - component: {fileID: 734753316}
   m_Layer: 5
-  m_Name: CoinsText
+  m_Name: GoldText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -37121,6 +37221,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 318b6ea1edc16ea4886cc6042e3efe07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timer: 5
 --- !u!114 &773307677
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -37151,7 +37252,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tooltipPanel: {fileID: 1853301884}
   xOffset: 10
-  cost: 150 Gold
+  cost: 30 Gold
   description: Drop in a repair kit & have your teammate use it on the bunker!
 --- !u!114 &773307679
 MonoBehaviour:
@@ -42067,9 +42168,13 @@ RectTransform:
   - {fileID: 490199590}
   - {fileID: 315131060}
   - {fileID: 479901741}
+<<<<<<< HEAD
   - {fileID: 1257854914}
   - {fileID: 1480009030}
   - {fileID: 1549289292}
+=======
+  - {fileID: 92235030}
+>>>>>>> d348e52c37faf39b40b695b821db808e61b92790
   m_Father: {fileID: 1875324184}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
@@ -67163,6 +67268,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 318b6ea1edc16ea4886cc6042e3efe07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timer: 5
 --- !u!114 &1319077465
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -67193,7 +67299,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tooltipPanel: {fileID: 1853301884}
   xOffset: 10
-  cost: 25 Gold
+  cost: 
   description: Drop in a new robot teammate!
 --- !u!114 &1319077467
 MonoBehaviour:
@@ -73316,6 +73422,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 318b6ea1edc16ea4886cc6042e3efe07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timer: 5
 --- !u!114 &1409508062
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -75564,6 +75671,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 318b6ea1edc16ea4886cc6042e3efe07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timer: 5
 --- !u!114 &1454941299
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -75594,7 +75702,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tooltipPanel: {fileID: 1853301884}
   xOffset: 10
-  cost: 150 Gold
+  cost: 30 Gold
   description: Drop in ammo to help your teammate!
 --- !u!114 &1454941301
 MonoBehaviour:
@@ -80972,6 +81080,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 318b6ea1edc16ea4886cc6042e3efe07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timer: 5
 --- !u!114 &1548825883
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -81016,7 +81125,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tooltipPanel: {fileID: 1853301884}
   xOffset: 10
-  cost: 150 Gold
+  cost: 250 Gold
   description: Drop in an automatic turret to control the zombies!
 --- !u!114 &1548825886
 MonoBehaviour:

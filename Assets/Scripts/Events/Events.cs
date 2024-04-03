@@ -170,4 +170,10 @@ public class ManagerButtonClickEvent
 
 public class PlayerDamagedEvent
 {
+    public int health;
+
+    public PlayerDamagedEvent(int playerHealth)
+    {
+        health = playerHealth;
+    }
 }

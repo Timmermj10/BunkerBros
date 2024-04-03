@@ -20,22 +20,27 @@ public class HealthManager : MonoBehaviour
 
         EventBus.Subscribe<PlayerRespawnEvent>(_PlayerRespawn);
 
-        Transform target = GameObject.FindWithTag("Player").transform;
-
-        while (target.parent != null)
+        if (GameObject.FindWithTag("Player") != null)
         {
-            target = target.parent;
-            //Debug.Log(target.name);
-        }
+            Transform target = GameObject.FindWithTag("Player").transform;
+            while (target.parent != null)
+            {
+                target = target.parent;
+                //Debug.Log(target.name);
+            }
 
-        playerHealth = target.GetComponent<HasHealth>();
-        //Debug.Log(playerHealth.currentHealth);
+            playerHealth = target.GetComponent<HasHealth>();
+            //Debug.Log(playerHealth.currentHealth);
+        }
     }
 
     void Update()
     {
         // Adjust values to min out at 1
-        playerHealth.currentHealth = Mathf.Max(playerHealth.currentHealth, 0);
+        if (playerHealth != null)
+        {
+            playerHealth.currentHealth = Mathf.Max(playerHealth.currentHealth, 0);
+        }
         towerHealth.currentHealth = Mathf.Max(towerHealth.currentHealth, 0);
     }
 
