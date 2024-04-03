@@ -58,11 +58,11 @@ public class PopUpSystem : MonoBehaviour
         while (!Input.anyKey)
         {
             yield return new WaitForFixedUpdate();
+
         }
 
         popUpBox.SetActive(false);
         popUpText.text = "";
-
     }
 
     private IEnumerator FadeOutCoroutine()

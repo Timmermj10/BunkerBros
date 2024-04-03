@@ -26,7 +26,10 @@ public class StandbyTextUI : MonoBehaviour
         standbyText = gameObject.GetComponent<Text>();
 
         // Get a reference to the ButtonUpdate script on the player respawn button
-        playerRespawn = GameObject.Find("PlayerRespawn").GetComponent<ButtonUpdate>();
+        if (GameObject.Find("PlayerRespawn") != null)
+        {
+            playerRespawn = GameObject.Find("PlayerRespawn").GetComponent<ButtonUpdate>();
+        }
 
         // Subscribe to Manager Button Click Events
         EventBus.Subscribe<ManagerButtonClickEvent>(_ButtonClicked);
@@ -34,13 +37,13 @@ public class StandbyTextUI : MonoBehaviour
     void Update()
     {
         // If the player is dead and we aren't currently respawning
-        if (GameObject.Find("player") == null && !playerRespawn.respawning)
+        if (GameObject.Find("player") == null && playerRespawn != null && !playerRespawn.respawning)
         {
             // Check if the timer is up
             if (playerRespawn.timer > 0)
             {
                 // Update the text to tell the player that the manager is about to choose a location
-                standbyText.text = "Prepare for deployment in\n" + string.Format("{0:F2}", playerRespawn.timer);
+                standbyText.text = "Prepare for deployment in\n" + string.Format("{0:F1}", playerRespawn.timer);
             }
 
             // Check if the manager has the redeploy selected
@@ -68,11 +71,14 @@ public class StandbyTextUI : MonoBehaviour
                     section = 3;
                 }
             }  
-        }
-
+        } 
         // Reset the section when the player is respawned
         else
         {
+            if (GameObject.Find("PlayerRespawn") != null)
+            {
+                playerRespawn = GameObject.Find("PlayerRespawn").GetComponent<ButtonUpdate>();
+            }
             // Remove the text
             standbyText.text = "";
 

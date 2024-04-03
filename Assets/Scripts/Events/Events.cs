@@ -177,3 +177,5 @@ public class PlayerDamagedEvent
         health = playerHealth;
     }
 }
+
+public class RepairKitUsedEvent { }

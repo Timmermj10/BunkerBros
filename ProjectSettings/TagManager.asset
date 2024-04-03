@@ -13,6 +13,7 @@ TagManager:
   - Pickup
   - Interactable
   - GoldChestEnemy
+  - Boulder
   layers:
   - Default
   - TransparentFX
@@ -33,7 +34,7 @@ TagManager:
   - Interactable
   - PickupLayer
   - Preview
-  - 
+  - Map
   - 
   - 
   - 

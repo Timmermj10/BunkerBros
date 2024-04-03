@@ -7,29 +7,44 @@ public class InventoryDisplay : MonoBehaviour
 {
     public ActivePlayerInventory.activePlayerItems item_to_count;
     public Text count;
-    public int num = 0;
-    public ActivePlayerInventory inv;
+    private int num = 0;
+    private ActivePlayerInventory inv;
     private Image img;
 
     // Start is called before the first frame update
     void Start()
     {
         img = GetComponent<Image>();
+        num = 0;
+
+        if (GameObject.Find("player") != null)
+        {
+            inv = GameObject.Find("player").GetComponent<ActivePlayerInventory>();
+        }
+        EventBus.Subscribe<PlayerRespawnEvent>(_PlayerRespawn);
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        num = inv.countItem(item_to_count);
-        if (num <= 0)
+        if (inv != null)
         {
-            count.text = "";
-            img.color = new Color(img.color.r, img.color.g, img.color.b, 0f);
-        } else
-        {
+            num = inv.countItem(item_to_count);
             img.color = new Color(img.color.r, img.color.g, img.color.b, 1f);
             count.text = num.ToString();
+        } else
+        {
+            img.color = new Color(img.color.r, img.color.g, img.color.b, 0f);
+            count.text = "";
         }
 
     }
+
+    private void _PlayerRespawn(PlayerRespawnEvent e)
+    {
+        inv = e.activePlayer.GetComponent<ActivePlayerInventory>();
+    }
+
+
 }

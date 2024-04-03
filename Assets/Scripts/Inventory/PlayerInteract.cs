@@ -4,6 +4,7 @@ using System.ComponentModel;
 using Unity.Loading;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 using static UnityEngine.Rendering.DebugUI;
 
 public class PlayerInteract : MonoBehaviour
@@ -116,7 +117,15 @@ public class PlayerInteract : MonoBehaviour
                         if (item.name is "ChestPack" || item.name is "ChestPack(Clone)")
                         {
                             // Publish a CoinCollect event
-                            EventBus.Publish<CoinCollect>(new CoinCollect(150));
+
+                            if ( SceneManager.GetActiveScene() == SceneManager.GetSceneByName("TutorialScene"))
+                            {
+                                EventBus.Publish<CoinCollect>(new CoinCollect(1000));
+                            }
+                            else
+                            {
+                                EventBus.Publish<CoinCollect>(new CoinCollect(150));
+                            }
                         }
                         else if (item.name is "NukeCrate" || item.name is "NukeCrate(Clone)")
                         {
@@ -172,8 +181,10 @@ public class PlayerInteract : MonoBehaviour
 
                         if (rk != null)
                         {
-                            Debug.Log("Using Kit");
+                            //Debug.Log("Using Kit");
                             rk.UseKit();
+
+                            EventBus.Publish(new RepairKitUsedEvent());
 
                             ActivePlayerInventory inventory = GetComponent<ActivePlayerInventory>();
                             inventory.useItem(ActivePlayerInventory.activePlayerItems.RepairKit);

@@ -44,7 +44,11 @@ public class ButtonUpdateUsables : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (siloStatus.Count > 0)
+        {
+            button.interactable = true;
+            button.GetComponent<Image>().color = Color.white;
+        }
     }
 
     // Update the button for Nukes if a Silo has been loaded
@@ -54,6 +58,9 @@ public class ButtonUpdateUsables : MonoBehaviour
         if (buttonInfo.itemID == 4) 
         {
             button.interactable = true;
+
+            //Make the nuke botton selectable
+            button.GetComponent<Image>().color = Color.white;
         }
     }
 
