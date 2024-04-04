@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4593278189042420815}
   - component: {fileID: 1852559152414644979}
   - component: {fileID: 1636597280773923875}
+  - component: {fileID: -3886851626274250705}
   m_Layer: 13
   m_Name: RepairKit
   m_TagString: Pickup
@@ -119,3 +120,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   promptMessage: Hold SQUARE to pickup Repair Kit
+--- !u!114 &-3886851626274250705
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4104005486103731197}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6f2f6aae18eeb049a1a02d12710fa98, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

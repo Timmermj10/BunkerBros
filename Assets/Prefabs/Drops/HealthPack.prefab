@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2506211820783741971}
   - component: {fileID: 5463683527163751100}
   - component: {fileID: 4987339620684524023}
+  - component: {fileID: 5093240744873505865}
   m_Layer: 13
   m_Name: HealthPack
   m_TagString: Pickup
@@ -119,3 +120,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   promptMessage: Hold SQUARE to pickup, Press CIRCLE to use
+--- !u!114 &5093240744873505865
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5809042270673140842}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6f2f6aae18eeb049a1a02d12710fa98, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

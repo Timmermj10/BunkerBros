@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6538807945358558063}
   - component: {fileID: 4966172942219463527}
   - component: {fileID: 4585407230517636087}
+  - component: {fileID: -5484203367070598720}
   m_Layer: 13
   m_Name: NukeCrate
   m_TagString: Pickup
@@ -119,3 +120,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   promptMessage: Hold SQUARE to grab nuke parts
+--- !u!114 &-5484203367070598720
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3827722763254767490}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6f2f6aae18eeb049a1a02d12710fa98, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
