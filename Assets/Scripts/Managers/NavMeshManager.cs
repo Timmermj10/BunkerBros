@@ -11,10 +11,10 @@ public class NavMeshManager : MonoBehaviour
     void Start()
     {
         // Subscribe to AirDropLanded Events
-        EventBus.Subscribe<AirdropLandedEvent>(_updateSurfaceCreate);
+        //EventBus.Subscribe<AirdropLandedEvent>(_updateSurfaceCreate);
 
         // Subscribe to ObjectDestroyedEvents
-        EventBus.Subscribe<ObjectDestroyedEvent>(_updateSurfaceDestroy);
+        //EventBus.Subscribe<ObjectDestroyedEvent>(_updateSurfaceDestroy);
 
         // Grab reference to the surface
         surface = GameObject.Find("NavMesh").GetComponent<NavMeshSurface>();
@@ -29,7 +29,7 @@ public class NavMeshManager : MonoBehaviour
    {
         if (e.name != "Objective")
         {
-            surface.BuildNavMesh();
+            //surface.BuildNavMesh();
         }
    }
 }

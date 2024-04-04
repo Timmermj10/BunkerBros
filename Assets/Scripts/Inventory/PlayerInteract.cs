@@ -147,6 +147,7 @@ public class PlayerInteract : MonoBehaviour
                         }
 
                         // Destroy the item
+                        EventBus.Publish(new ObjectDestroyedEvent(item.name, item.tag, item.transform.position));
                         Destroy(item);
                     }
                     else if (item != null && item.tag is "Interactable")

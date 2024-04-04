@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4593278189042420815}
   - component: {fileID: 1852559152414644979}
   - component: {fileID: 1636597280773923875}
-  - component: {fileID: -3886851626274250705}
+  - component: {fileID: -770958601731950232}
   m_Layer: 13
   m_Name: RepairKit
   m_TagString: Pickup
@@ -120,15 +120,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   promptMessage: Hold SQUARE to pickup Repair Kit
---- !u!114 &-3886851626274250705
-MonoBehaviour:
+--- !u!208 &-770958601731950232
+NavMeshObstacle:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4104005486103731197}
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a6f2f6aae18eeb049a1a02d12710fa98, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
