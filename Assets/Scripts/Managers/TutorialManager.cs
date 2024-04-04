@@ -13,6 +13,8 @@ public class TutorialManager : MonoBehaviour
     private GameObject bunker;
 
     public GameObject basicEnemyPrefab;
+    public GameObject armoredEnemyPrefab;
+    public GameObject anchoredEnemyPrefab;
 
     private int enemiesAlive = 0;
     private bool hasDroppedRepairKit = false;
@@ -21,8 +23,8 @@ public class TutorialManager : MonoBehaviour
     private bool hasUsedRepairKit = false;
     private bool hasPickedUpNukeParts = false;
     private bool hasPickedUpHealthPack = false;
-    private bool hasPickedUpAmmo = false;
     private bool hasFoundChest = false;
+    private bool healthPackPopUpIsDone = false;
 
     private bool hasRespawnedPlayer = false;
 
@@ -76,6 +78,9 @@ public class TutorialManager : MonoBehaviour
         Nuke.SetActive(false);
         Missile.SetActive(false);
         NukeParts.SetActive(false);
+
+        //SPAWN ANCHORED ENEMIES FOR RADIO TOWER
+
 
         StartCoroutine(Tutorial());
     }
@@ -166,7 +171,43 @@ public class TutorialManager : MonoBehaviour
         }
 
         startPopUp("Manager");
-        popUpSystem.popUp("Manager", "Great work! Use some walls, turrets and missiles to defend the bunker while your partner activates the radio tower.");
+        popUpSystem.popUp("Manager", "Drop your partner in a healthpack, so they're prepared for their next fight!");
+
+        while (!hasPickedUpHealthPack)
+        {
+            yield return new WaitForFixedUpdate();
+        }
+
+        startPopUp("Player");
+        popUpSystem.popUp("Player", "You now have a health pack! Press Circle (ps5) at any time to use it!");
+
+        while (!healthPackPopUpIsDone)
+        {
+            yield return new WaitForFixedUpdate();
+        }
+
+        yield return new WaitForSeconds(1.5f);
+
+        startPopUp("Player");
+        popUpSystem.popUp("Player", "Go activate the radio tower to increase your signal strength! If you get your signal strength high enough, you can radio for an extraction team!");
+        //Ping Radio Tower Location
+
+        yield return new WaitForSeconds(10);
+
+        startPopUp("Manager");
+        popUpSystem.popUp("Manager", "Theres a zombie horde approaching from the southwest! Use some walls, turrets and missiles to defend the bunker while your partner is activating the radio tower.");
+        //Ping Zombie Location with Skull
+
+
+        Instantiate(basicEnemyPrefab, new Vector3(-9, 1, -12), Quaternion.identity);
+        Instantiate(basicEnemyPrefab, new Vector3(-9, 1, -10f), Quaternion.identity);
+        Instantiate(basicEnemyPrefab, new Vector3(-7, 1, -12f), Quaternion.identity);
+        Instantiate(basicEnemyPrefab, new Vector3(-7, 1, -10), Quaternion.identity);
+        Instantiate(basicEnemyPrefab, new Vector3(-6, 1, -11), Quaternion.identity);
+        Instantiate(basicEnemyPrefab, new Vector3(-5, 1, -11), Quaternion.identity);
+        Instantiate(armoredEnemyPrefab, new Vector3(-8, 1, -11), Quaternion.identity);
+
+        enemiesAlive = 7;
 
         yield return null;
     }
@@ -198,40 +239,38 @@ public class TutorialManager : MonoBehaviour
         Debug.Log("Turning Controls back on");
         managerActionMap.Enable();
         playerActionMap.Enable();
+        activateNum++;
 
-        if (e.player == "Manager")
+        switch (activateNum)
         {
-            activateNum++;
-
-            switch (activateNum)
-            {
-                case 1:
-                    playerRespawn.SetActive(true);
-                    break;
-                case 2:
-                    RepairKit.SetActive(true);
-                    break;
-                case 4:
-                    NukeParts.SetActive(true);
-                    break;
-                case 5:
-                    Nuke.SetActive(true);
-                    break;
-                case 6:
-                    Wall.SetActive(true);
-                    Turret.SetActive(true);
-                    Missile.SetActive(true);
-                    break;
-                case 7:
-                    Console.WriteLine("Number is 6");
-                    break;
-                case 8:
-                    Console.WriteLine("Number is 7");
-                    break;
-                case 9:
-                    Console.WriteLine("Number is 8");
-                    break;
-            }
+            case 1:
+                playerRespawn.SetActive(true);
+                break;
+            case 3:
+                RepairKit.SetActive(true);
+                break;
+            case 7:
+                NukeParts.SetActive(true);
+                break;
+            case 9:
+                Nuke.SetActive(true);
+                break;
+            case 10:
+                HealthPack.SetActive(true);
+                break;
+            case 11:
+                healthPackPopUpIsDone = true;
+                break;
+            case 13:
+                Wall.SetActive(true);
+                Turret.SetActive(true);
+                Missile.SetActive(true);
+                break;
+            case 14:
+                Console.WriteLine("Unwritten case");
+                break;
+            default:
+                break;
         }
     }
 
@@ -267,7 +306,10 @@ public class TutorialManager : MonoBehaviour
         {
             hasPickedUpNukeParts = true;
         }
-
+        else if (e.pickedUpItem == ActivePlayerInventory.activePlayerItems.HealthPack)
+        {
+            hasPickedUpHealthPack = true;
+        }
     }
 
     private void _hasUsedRepairKit(RepairKitUsedEvent e)
