@@ -11,12 +11,16 @@ public class EnemyMovement : MonoBehaviour
     public float attackDistance = 1.5f;
 
     Subscription<PlayerRespawnEvent> respawn_event_subscription;
+    Subscription<PopUpStartEvent> startpopup_subscription;
+    Subscription<PopUpEndEvent> endpopup_subscription;
     private GameObject objective;
     private GameObject player;
     private bool active = false;
     private bool attacking = false;
     private Animator animator;
     private Rigidbody rb;
+
+    private bool canMove = true;
 
     void Awake()
     {
@@ -26,15 +30,27 @@ public class EnemyMovement : MonoBehaviour
         rb = this.GetComponent<Rigidbody>();
         animator.speed = speed * 2;
         respawn_event_subscription = EventBus.Subscribe<PlayerRespawnEvent>(_ResetPlayer);
+        startpopup_subscription = EventBus.Subscribe<PopUpStartEvent>(_FreezeMovement);
+        endpopup_subscription = EventBus.Subscribe<PopUpEndEvent>(_UnfreezeMovement);
     }
     public void _ResetPlayer(PlayerRespawnEvent e)
     {
         player = e.activePlayer;
     }
-    // Update is called once per frame
+
+    private void _FreezeMovement(PopUpStartEvent e)
+    {
+        canMove = false;
+    }
+
+    private void _UnfreezeMovement(PopUpEndEvent e)
+    {
+        canMove = true;
+    }
+
     void Update()
     {
-        if (objective != null)
+        if (objective != null && canMove)
         {
             Vector3 objectiveOffset = objective.transform.position - transform.position;
             Vector3 playerOffset;
@@ -60,6 +76,9 @@ public class EnemyMovement : MonoBehaviour
             {
                 rb.velocity = Vector3.up * rb.velocity.y;
             }
+        } else
+        {
+            rb.velocity = Vector3.zero;
         }
     }
 
@@ -67,7 +86,11 @@ public class EnemyMovement : MonoBehaviour
     private void OnDestroy()
     {
         EventBus.Unsubscribe(respawn_event_subscription);
+        EventBus.Unsubscribe(startpopup_subscription);
+        EventBus.Unsubscribe(endpopup_subscription);
     }
+
+
 }
 
 

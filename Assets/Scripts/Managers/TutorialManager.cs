@@ -1,6 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
 
 public class TutorialManager : MonoBehaviour
@@ -37,10 +40,17 @@ public class TutorialManager : MonoBehaviour
     public GameObject Missile;
     public GameObject NukeParts;
 
+    [SerializeField]
+    private InputActionAsset actionAsset;
+    private InputActionMap managerActionMap;
+    private InputActionMap playerActionMap;
+
+    private int activateNum = 0;
+
 
     void Start()
     {
-
+        Debug.Log("Tutorial Manager Start");
         EventBus.Subscribe<ObjectDestroyedEvent>(_enemyDeath);
         EventBus.Subscribe<AirdropLandedEvent>(_hasDroppedItems);
         EventBus.Subscribe<PickUpEvent>(_hasPickedUpItems);
@@ -48,9 +58,13 @@ public class TutorialManager : MonoBehaviour
         EventBus.Subscribe<RepairKitUsedEvent>(_hasUsedRepairKit);
         EventBus.Subscribe<PlayerRespawnEvent>(_playerRespawn);
         EventBus.Subscribe<CoinCollect>(_hasFoundChest);
+        EventBus.Subscribe<PopUpEndEvent>(_endPopUp);
 
         popUpSystem = GameObject.Find("TutorialPopUpSystem").GetComponent<PopUpSystem>();
         bunker = GameObject.Find("Objective");
+
+        managerActionMap = actionAsset.FindActionMap("ManagerPlayer");
+        playerActionMap = actionAsset.FindActionMap("ActivePlayer");
 
         playerRespawn.SetActive(false);
         RepairKit.SetActive(false);
@@ -78,15 +92,15 @@ public class TutorialManager : MonoBehaviour
         Instantiate(basicEnemyPrefab, new Vector3(1, 1, -1.5f), Quaternion.identity);
         enemiesAlive = 3;
 
+        startPopUp("Manager");
         popUpSystem.popUp("Manager", "Your bunker is under attack! Don't let the zombies break in, your lives depend on it! Deploy your partner to handle the zombies on the surface.");
-
-        playerRespawn.SetActive(true);
 
         while (!hasRespawnedPlayer)
         {
             yield return new WaitForFixedUpdate();
         }
 
+        startPopUp("Player");
         popUpSystem.popUp("Player", "Use the left and right joysticks to move/look and use RB to attack!");
 
         while (enemiesAlive > 0)
@@ -94,9 +108,8 @@ public class TutorialManager : MonoBehaviour
             yield return new WaitForFixedUpdate();
         }
 
+        startPopUp("Manager");
         popUpSystem.popUp("Manager", "Your bunker has taken damage! Drop in a repair kit to your partner to patch it up.");
-
-        RepairKit.SetActive(true);
 
         while (!hasDroppedRepairKit)
         {
@@ -104,6 +117,7 @@ public class TutorialManager : MonoBehaviour
         }
         yield return new WaitForSeconds(1);
 
+        startPopUp("Player");
         popUpSystem.popUp("Player", "Hold square (ps5) on the repair kit to pick it up.");
 
         while (!hasPickedUpRepairKit)
@@ -111,6 +125,7 @@ public class TutorialManager : MonoBehaviour
             yield return new WaitForFixedUpdate();
         }
 
+        startPopUp("Player");
         popUpSystem.popUp("Player", "Hold square (ps5) on the bunker to repair the hatch.");
 
         while (!hasUsedRepairKit)
@@ -118,22 +133,23 @@ public class TutorialManager : MonoBehaviour
             yield return new WaitForFixedUpdate();
         }
 
-        popUpSystem.popUp("Manager", "You're low on money! Work together with your partner to find some!");
+        startPopUp("Manager");
+        popUpSystem.popUp("Manager", "You're low on money! Work together with your partner to find some! (Use WASD to move)");
 
         while (!hasFoundChest)
         {
             yield return new WaitForFixedUpdate();
         }
 
+        startPopUp("Manager");
         popUpSystem.popUp("Manager", "You and your partner need a way to get past that massive boulder blocking the way. Maybe these nuke parts could help.");
-
-        NukeParts.SetActive(true);
 
         while (!hasPickedUpNukeParts)
         {
             yield return new WaitForFixedUpdate();
         }
 
+        startPopUp("Player");
         popUpSystem.popUp("Player", "Load the nuke parts into the silo with square (ps5).");
 
         while (!hasLoadedSilo)
@@ -141,27 +157,82 @@ public class TutorialManager : MonoBehaviour
             yield return new WaitForFixedUpdate();
         }
 
+        startPopUp("Manager");
         popUpSystem.popUp("Manager", "You now have access to a nuke!");
-
-        Nuke.SetActive(true);
 
         while (!hasBlownUpBoulder)
         {
             yield return new WaitForFixedUpdate();
         }
 
+        startPopUp("Manager");
         popUpSystem.popUp("Manager", "Great work! Use some walls, turrets and missiles to defend the bunker while your partner activates the radio tower.");
 
-        Wall.SetActive(true);
-        Turret.SetActive(true);
-        Missile.SetActive(true);
-
-
-
-
-
-
         yield return null;
+    }
+
+    private void startPopUp(string playerToFreeze)
+    {
+        EventBus.Publish(new PopUpStartEvent());
+        
+        if (playerToFreeze == "Manager") 
+        {
+            Debug.Log("Disabling manager Player");
+            managerActionMap.Disable();
+        }
+        else if (playerToFreeze == "Player")
+        {
+            Debug.Log("Disabling active Player");
+            playerActionMap.Disable();
+        } 
+        else
+        {
+            Debug.Log("Disabling both players");
+            managerActionMap.Disable();
+            playerActionMap.Disable();
+        }
+    }
+
+    private void _endPopUp(PopUpEndEvent e)
+    {
+        Debug.Log("Turning Controls back on");
+        managerActionMap.Enable();
+        playerActionMap.Enable();
+
+        if (e.player == "Manager")
+        {
+            activateNum++;
+
+            switch (activateNum)
+            {
+                case 1:
+                    playerRespawn.SetActive(true);
+                    break;
+                case 2:
+                    RepairKit.SetActive(true);
+                    break;
+                case 4:
+                    NukeParts.SetActive(true);
+                    break;
+                case 5:
+                    Nuke.SetActive(true);
+                    break;
+                case 6:
+                    Wall.SetActive(true);
+                    Turret.SetActive(true);
+                    Missile.SetActive(true);
+                    break;
+                case 7:
+                    Console.WriteLine("Number is 6");
+                    break;
+                case 8:
+                    Console.WriteLine("Number is 7");
+                    break;
+                case 9:
+                    Console.WriteLine("Number is 8");
+                    break;
+            }
+        }
     }
 
     private void _enemyDeath(ObjectDestroyedEvent e)
@@ -172,7 +243,7 @@ public class TutorialManager : MonoBehaviour
             enemiesAlive--;
         }
 
-        if (e.tag is "boulder")
+        if (e.tag is "Boulder")
         {
             hasBlownUpBoulder = true;
         }

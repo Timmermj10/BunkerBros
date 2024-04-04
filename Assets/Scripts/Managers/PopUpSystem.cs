@@ -12,7 +12,6 @@ public class PopUpSystem : MonoBehaviour
     public TMP_Text popUpText;
 
     private float delayBetweenCharacters = 0.03f;
-    private float fadeOutDuration = 3f;
 
     private AudioSource audioSource;
 
@@ -29,7 +28,7 @@ public class PopUpSystem : MonoBehaviour
         {
             rectTransform.anchoredPosition = new Vector2(-480, 0);
         }
-        else
+        else if (playerType == "Player")
         {
             rectTransform.anchoredPosition = new Vector2(480, 0);
         }
@@ -37,10 +36,10 @@ public class PopUpSystem : MonoBehaviour
         popUpBox.SetActive(true);
         popUpText.text = "";
 
-        StartCoroutine(TypeWords(text));
+        StartCoroutine(TypeWords(playerType, text));
     }
 
-    private IEnumerator TypeWords(string fullText)
+    private IEnumerator TypeWords(string playerType, string fullText)
     {
 
         popUpText.text = string.Empty;
@@ -55,35 +54,15 @@ public class PopUpSystem : MonoBehaviour
             }
         }
 
+        EventBus.Publish(new PopUpEndEvent(playerType));
+        yield return new WaitForSeconds(0.5f);
+
         while (!Input.anyKey)
         {
             yield return new WaitForFixedUpdate();
-
         }
 
         popUpBox.SetActive(false);
         popUpText.text = "";
-    }
-
-    private IEnumerator FadeOutCoroutine()
-    {
-        Color originalColor = popUpText.color;
-        float timer = 0;
-
-        while (timer < fadeOutDuration)
-        {
-            // Calculate the blend factor proportionally to the time.
-            float blend = Mathf.Clamp01(timer / fadeOutDuration);
-            popUpText.color = new Color(originalColor.r, originalColor.g, originalColor.b, 1 - blend);
-
-            // Increment the timer by the time since last frame.
-            timer += Time.deltaTime;
-
-            yield return null; // Wait until next frame.
-        }
-
-        // Ensure text is fully transparent after the loop.
-        popUpText.color = new Color(originalColor.r, originalColor.g, originalColor.b, 0);
-
     }
 }
