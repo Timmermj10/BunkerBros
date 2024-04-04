@@ -22,12 +22,14 @@ public class NavMeshManager : MonoBehaviour
 
    public void _updateSurfaceCreate(AirdropLandedEvent e)
    {
-        surface.BuildNavMesh();
+        //surface.BuildNavMesh();
    }
 
    public void _updateSurfaceDestroy(ObjectDestroyedEvent e)
    {
-        surface.BuildNavMesh();
+        if (e.name != "Objective")
+        {
+            surface.BuildNavMesh();
+        }
    }
-
 }
