@@ -38,7 +38,7 @@ public class EnemyMovementNavMesh : MonoBehaviour
         if (objective != null)
         {
             // Get the objective offset
-            Vector3 objectiveOffset = objective.transform.position - transform.position;
+            Vector3 objectiveOffset = transform.position - objective.transform.position;
 
             // Initialize the player offset
             Vector3 playerOffset;
@@ -47,7 +47,7 @@ public class EnemyMovementNavMesh : MonoBehaviour
             if (player != null)
             {
                 // Set the player offset to the distance between the enemy and the player
-                playerOffset = player.transform.position - transform.position;
+                playerOffset = transform.position - player.transform.position;
             }
             else
             {
@@ -69,19 +69,44 @@ public class EnemyMovementNavMesh : MonoBehaviour
             animator.SetBool("attacking", attacking);
             // transform.LookAt(transform.position + minOffset);
 
+            // Adjust the closest point a little to make it so they all don't stack up
+            if (minDistance == Vector3.zero)
+            {
+                Vector3 direction = minOffset - minDistance;
+                float angle = Mathf.Atan2(direction.z, direction.x);
+
+                minDistance.x += 1f * Mathf.Cos(angle);
+                minDistance.z += 1f * Mathf.Sin(angle);
+            }
+
             // Debug.Log(minDistance);
 
-            // If we are currently walking
-            if (animator.GetCurrentAnimatorStateInfo(0).IsName("walk"))
+            // If the enemies are currently walking
+            if (animator.GetCurrentAnimatorStateInfo(0).IsName("walk") && minDistance != agent.destination)
             {
+                // To allow movement
+                agent.gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
+
+                // To start the agent
+                agent.isStopped = false;
+
                 // Set where they are going to move to
                 agent.SetDestination(minDistance);
             }
-            // If we are ???
+            // If the enemies are attacking
             else
             {
-                // Set where they are going to move to
-                // agent.SetDestination(minDistance);
+                // To stop the agent
+                agent.isStopped = true;
+
+                // Clear path
+                agent.ResetPath();
+
+                // To prevent movement
+                agent.gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
+
+                // Angle them towards the thing they are attacking
+                // transform.LookAt(transform.position + minOffset);
             }
         }
     }
