@@ -67,15 +67,21 @@ public class EnemyMovementNavMesh : MonoBehaviour
             animator.SetBool("walking", active);
             attacking = minOffset.magnitude <= attackDistance;
             animator.SetBool("attacking", attacking);
-            transform.LookAt(transform.position + minOffset);
+            // transform.LookAt(transform.position + minOffset);
+
+            // Debug.Log(minDistance);
+
+            // If we are currently walking
             if (animator.GetCurrentAnimatorStateInfo(0).IsName("walk"))
             {
                 // Set where they are going to move to
                 agent.SetDestination(minDistance);
             }
+            // If we are ???
             else
             {
-
+                // Set where they are going to move to
+                // agent.SetDestination(minDistance);
             }
         }
     }
