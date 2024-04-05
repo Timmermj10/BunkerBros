@@ -75,14 +75,14 @@ public class EnemyMovementNavMesh : MonoBehaviour
                 Vector3 direction = minOffset - minDistance;
                 float angle = Mathf.Atan2(direction.z, direction.x);
 
-                minDistance.x += 1f * Mathf.Cos(angle);
-                minDistance.z += 1f * Mathf.Sin(angle);
+                minDistance.x += 0.1f * Mathf.Cos(angle);
+                minDistance.z += 0.1f * Mathf.Sin(angle);
             }
 
             // Debug.Log(minDistance);
 
             // If the enemies are currently walking
-            if (animator.GetCurrentAnimatorStateInfo(0).IsName("walk") && minDistance != agent.destination)
+            if (animator.GetCurrentAnimatorStateInfo(0).IsName("walk"))
             {
                 // To allow movement
                 agent.gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
@@ -106,6 +106,10 @@ public class EnemyMovementNavMesh : MonoBehaviour
                 agent.gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
 
                 // Angle them towards the thing they are attacking
+                // Vector3 direction = minOffset - minDistance;
+                // Quaternion rotation = Quaternion.LookRotation(direction);
+
+                // transform.rotation = Quaternion.Euler(0, -rotation.eulerAngles.y, 0);
                 // transform.LookAt(transform.position + minOffset);
             }
         }
