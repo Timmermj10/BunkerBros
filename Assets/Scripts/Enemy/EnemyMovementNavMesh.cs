@@ -1,3 +1,5 @@
+using System.IO;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -22,6 +24,12 @@ public class EnemyMovementNavMesh : MonoBehaviour
 
     // NavMesh Agent
     public NavMeshAgent agent;
+
+    // True/False for if the path to the object is complete
+    private bool complete = true;
+
+    // GameObject to hold the closest GameObject infront of the zombie
+    private GameObject closestObject;
 
 
     private void Awake()
@@ -89,6 +97,15 @@ public class EnemyMovementNavMesh : MonoBehaviour
 
                 // To start the agent
                 agent.isStopped = false;
+
+                // Need to determine if the path is complete
+
+                // If the path is not complete we need to set the path to the nearest object blocking the path
+
+                // Do this by sending out a raycast from the feet of the zombie toward the objective
+                // Whatever it hits first, set this to the closestObject game object to be considered in the minOffset calculation
+
+                // If the path is complete
 
                 // Set where they are going to move to
                 agent.SetDestination(minDistance);
