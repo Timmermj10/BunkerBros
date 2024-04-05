@@ -75,8 +75,8 @@ public class EnemyMovementNavMesh : MonoBehaviour
                 Vector3 direction = minOffset - minDistance;
                 float angle = Mathf.Atan2(direction.z, direction.x);
 
-                minDistance.x += 0.1f * Mathf.Cos(angle);
-                minDistance.z += 0.1f * Mathf.Sin(angle);
+                minDistance.x += 0.5f * Mathf.Cos(angle);
+                minDistance.z += 0.5f * Mathf.Sin(angle);
             }
 
             // Debug.Log(minDistance);
