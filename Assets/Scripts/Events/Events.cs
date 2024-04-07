@@ -204,3 +204,13 @@ public class DamageEffectEvent
         this.blood = blood;
     }
 }
+
+public class TutorialEndedEvent
+{
+
+}
+
+public class RadioTowerActivatedEvent
+{
+
+}
