@@ -98,6 +98,7 @@ public class TutorialManager : MonoBehaviour
 
         startPopUp("Manager");
         popUpSystem.popUp("Manager", "Your bunker is under attack! Don't let the zombies break in, your lives depend on it! Deploy your partner to handle the zombies on the surface.");
+        playerRespawn.SetActive(true);
 
         while (!hasRespawnedPlayer)
         {
@@ -242,9 +243,6 @@ public class TutorialManager : MonoBehaviour
 
         switch (activateNum)
         {
-            case 1:
-                playerRespawn.SetActive(true);
-                break;
             case 3:
                 RepairKit.SetActive(true);
                 break;
