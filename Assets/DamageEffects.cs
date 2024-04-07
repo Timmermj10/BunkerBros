@@ -22,9 +22,9 @@ public class DamageEffects : MonoBehaviour
             // Instantiate blood effect at the position of the other GameObject
             GameObject bloodEffect = Instantiate(bloodEffectPrefab, e.zombie.transform.position, Quaternion.identity);
             bloodEffect.transform.SetParent(e.zombie.transform);
-            bloodEffect.transform.localPosition = new Vector3(0, 1.5f, 0);
+            bloodEffect.transform.localPosition = new Vector3(0, 1.25f, 0);
 
-            StartCoroutine(DestroyEffectAfterDelay(bloodEffect, 1f));
+            StartCoroutine(DestroyEffectAfterDelay(bloodEffect, 0.5f));
         }
     }
 
