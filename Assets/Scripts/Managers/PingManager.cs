@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class PingManager : MonoBehaviour
 {
-    public GameObject soloPing;
+    public GameObject playerPingPrefab;
+    public GameObject managerPingPrefab;
     public GameObject warnPing;
     public float managerBuffer = .2f;
 
