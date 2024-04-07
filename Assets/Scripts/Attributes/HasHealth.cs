@@ -76,21 +76,23 @@ public class HasHealth : MonoBehaviour
             if (healthChange < 0) 
             {
                 // Publish a damage effect event
-                if (gameObject.name != "player")
+                if (gameObject.tag == "Enemy")
                 {
-                    EventBus.Publish<DamageEffectEvent>(new DamageEffectEvent(gameObject, true));
+                    if (healthChange + armorValue < 0)
+                    {
+                        EventBus.Publish<DamageEffectEvent>(new DamageEffectEvent(gameObject, true));
+                    }
+                    // Publish a damage effect event
+                    else
+                    {
+                        EventBus.Publish<DamageEffectEvent>(new DamageEffectEvent(gameObject, false));
+                    }
                 }
 
                 currentHealth += Mathf.Min(healthChange + armorValue, 0);
             }
             else
             {
-                // Publish a damage effect event
-                if (gameObject.name != "player")
-                {
-                    EventBus.Publish<DamageEffectEvent>(new DamageEffectEvent(gameObject, false));
-                }
-
                 currentHealth = Mathf.Min(currentHealth + healthChange, maxHealth);
             }
 
