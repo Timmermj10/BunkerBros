@@ -949,8 +949,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 1
-  attackDistance: 1.5
+  attackDistance: 0.75
   agent: {fileID: 2973412359881747354}
+  possibleLocations: []
 --- !u!1 &8168291486349822065 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100024, guid: 57b3b021ff1e2f14fa4c233c110e561f,
