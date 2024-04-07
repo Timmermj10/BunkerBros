@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class PingManager : MonoBehaviour
 {
-    public GameObject soloPing;
+    public GameObject playerPingPrefab;
+    public GameObject managerPingPrefab;
     public GameObject warnPing;
     public float managerBuffer = .2f;
 
@@ -24,8 +25,8 @@ public class PingManager : MonoBehaviour
         {
             pings.Add(ping.transform);
         }
-        playerPing = Instantiate(soloPing);
-        managerPing = Instantiate(soloPing);
+        playerPing = Instantiate(playerPingPrefab);
+        managerPing = Instantiate(managerPingPrefab);
         playerHasPing = playerPing.GetComponentInChildren<HasPing>();
         managerHasPing = managerPing.GetComponentInChildren<HasPing>();
         pings.Add(playerPing.transform.Find("spotted"));
