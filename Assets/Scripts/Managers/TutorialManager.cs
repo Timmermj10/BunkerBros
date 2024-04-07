@@ -51,7 +51,7 @@ public class TutorialManager : MonoBehaviour
 
     void Start()
     {
-        Debug.Log("Tutorial Manager Start");
+        //Debug.Log("Tutorial Manager Start");
         EventBus.Subscribe<ObjectDestroyedEvent>(_enemyDeath);
         EventBus.Subscribe<AirdropLandedEvent>(_hasDroppedItems);
         EventBus.Subscribe<PickUpEvent>(_hasPickedUpItems);

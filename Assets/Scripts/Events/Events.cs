@@ -191,3 +191,16 @@ public class PopUpEndEvent
         this.player = player;
     }
 }
+
+// Class for the spark and blood animations
+public class DamageEffectEvent
+{
+    public GameObject zombie;
+    public bool blood;
+
+    public DamageEffectEvent(GameObject zombie, bool blood)
+    {
+        this.zombie = zombie;
+        this.blood = blood;
+    }
+}

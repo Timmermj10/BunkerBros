@@ -25,8 +25,8 @@ public class PingManager : MonoBehaviour
         {
             pings.Add(ping.transform);
         }
-        playerPing = Instantiate(playerPingPrefab);
-        managerPing = Instantiate(managerPingPrefab);
+        playerPing = Instantiate(playerPing);
+        managerPing = Instantiate(managerPing);
         playerHasPing = playerPing.GetComponentInChildren<HasPing>();
         managerHasPing = managerPing.GetComponentInChildren<HasPing>();
         pings.Add(playerPing.transform.Find("spotted"));
