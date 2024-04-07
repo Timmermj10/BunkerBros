@@ -17,7 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/GameEnd.unity
     guid: 395798b878a225044b926d4731bc03c5
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/BalanceScene.unity
     guid: 630cd09bc3b736e498d485ee1253679c
   m_configObjects: {}

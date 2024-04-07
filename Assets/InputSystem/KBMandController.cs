@@ -80,6 +80,15 @@ public partial class @KBMandController: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Ping"",
+                    ""type"": ""Button"",
+                    ""id"": ""d54154b7-8aa9-449b-b4c9-8ce8432d222e"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -148,6 +157,17 @@ public partial class @KBMandController: IInputActionCollection2, IDisposable
                     ""action"": ""Swap"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b60275c3-4f0e-49f6-8c07-976c269e9a87"",
+                    ""path"": ""<Gamepad>/leftStickPress"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""ControllerPlayer"",
+                    ""action"": ""Ping"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -177,6 +197,15 @@ public partial class @KBMandController: IInputActionCollection2, IDisposable
                     ""name"": ""Cycle"",
                     ""type"": ""Button"",
                     ""id"": ""a84d88f8-9606-41b5-a91f-c3bc258f5930"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Ping"",
+                    ""type"": ""Button"",
+                    ""id"": ""79739e92-c6fe-42f2-a949-d7d15892974d"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -260,6 +289,17 @@ public partial class @KBMandController: IInputActionCollection2, IDisposable
                     ""action"": ""Cycle"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0ce70e47-3e1e-4faf-beb0-af3d270c5221"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KBMPlayer"",
+                    ""action"": ""Ping"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -285,11 +325,13 @@ public partial class @KBMandController: IInputActionCollection2, IDisposable
         m_ActivePlayer_HoldToGet = m_ActivePlayer.FindAction("HoldToGet", throwIfNotFound: true);
         m_ActivePlayer_UseHeal = m_ActivePlayer.FindAction("UseHeal", throwIfNotFound: true);
         m_ActivePlayer_Swap = m_ActivePlayer.FindAction("Swap", throwIfNotFound: true);
+        m_ActivePlayer_Ping = m_ActivePlayer.FindAction("Ping", throwIfNotFound: true);
         // ManagerPlayer
         m_ManagerPlayer = asset.FindActionMap("ManagerPlayer", throwIfNotFound: true);
         m_ManagerPlayer_Move = m_ManagerPlayer.FindAction("Move", throwIfNotFound: true);
         m_ManagerPlayer_Interact = m_ManagerPlayer.FindAction("Interact", throwIfNotFound: true);
         m_ManagerPlayer_Cycle = m_ManagerPlayer.FindAction("Cycle", throwIfNotFound: true);
+        m_ManagerPlayer_Ping = m_ManagerPlayer.FindAction("Ping", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -357,6 +399,7 @@ public partial class @KBMandController: IInputActionCollection2, IDisposable
     private readonly InputAction m_ActivePlayer_HoldToGet;
     private readonly InputAction m_ActivePlayer_UseHeal;
     private readonly InputAction m_ActivePlayer_Swap;
+    private readonly InputAction m_ActivePlayer_Ping;
     public struct ActivePlayerActions
     {
         private @KBMandController m_Wrapper;
@@ -367,6 +410,7 @@ public partial class @KBMandController: IInputActionCollection2, IDisposable
         public InputAction @HoldToGet => m_Wrapper.m_ActivePlayer_HoldToGet;
         public InputAction @UseHeal => m_Wrapper.m_ActivePlayer_UseHeal;
         public InputAction @Swap => m_Wrapper.m_ActivePlayer_Swap;
+        public InputAction @Ping => m_Wrapper.m_ActivePlayer_Ping;
         public InputActionMap Get() { return m_Wrapper.m_ActivePlayer; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -394,6 +438,9 @@ public partial class @KBMandController: IInputActionCollection2, IDisposable
             @Swap.started += instance.OnSwap;
             @Swap.performed += instance.OnSwap;
             @Swap.canceled += instance.OnSwap;
+            @Ping.started += instance.OnPing;
+            @Ping.performed += instance.OnPing;
+            @Ping.canceled += instance.OnPing;
         }
 
         private void UnregisterCallbacks(IActivePlayerActions instance)
@@ -416,6 +463,9 @@ public partial class @KBMandController: IInputActionCollection2, IDisposable
             @Swap.started -= instance.OnSwap;
             @Swap.performed -= instance.OnSwap;
             @Swap.canceled -= instance.OnSwap;
+            @Ping.started -= instance.OnPing;
+            @Ping.performed -= instance.OnPing;
+            @Ping.canceled -= instance.OnPing;
         }
 
         public void RemoveCallbacks(IActivePlayerActions instance)
@@ -440,6 +490,7 @@ public partial class @KBMandController: IInputActionCollection2, IDisposable
     private readonly InputAction m_ManagerPlayer_Move;
     private readonly InputAction m_ManagerPlayer_Interact;
     private readonly InputAction m_ManagerPlayer_Cycle;
+    private readonly InputAction m_ManagerPlayer_Ping;
     public struct ManagerPlayerActions
     {
         private @KBMandController m_Wrapper;
@@ -447,6 +498,7 @@ public partial class @KBMandController: IInputActionCollection2, IDisposable
         public InputAction @Move => m_Wrapper.m_ManagerPlayer_Move;
         public InputAction @Interact => m_Wrapper.m_ManagerPlayer_Interact;
         public InputAction @Cycle => m_Wrapper.m_ManagerPlayer_Cycle;
+        public InputAction @Ping => m_Wrapper.m_ManagerPlayer_Ping;
         public InputActionMap Get() { return m_Wrapper.m_ManagerPlayer; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -465,6 +517,9 @@ public partial class @KBMandController: IInputActionCollection2, IDisposable
             @Cycle.started += instance.OnCycle;
             @Cycle.performed += instance.OnCycle;
             @Cycle.canceled += instance.OnCycle;
+            @Ping.started += instance.OnPing;
+            @Ping.performed += instance.OnPing;
+            @Ping.canceled += instance.OnPing;
         }
 
         private void UnregisterCallbacks(IManagerPlayerActions instance)
@@ -478,6 +533,9 @@ public partial class @KBMandController: IInputActionCollection2, IDisposable
             @Cycle.started -= instance.OnCycle;
             @Cycle.performed -= instance.OnCycle;
             @Cycle.canceled -= instance.OnCycle;
+            @Ping.started -= instance.OnPing;
+            @Ping.performed -= instance.OnPing;
+            @Ping.canceled -= instance.OnPing;
         }
 
         public void RemoveCallbacks(IManagerPlayerActions instance)
@@ -521,11 +579,13 @@ public partial class @KBMandController: IInputActionCollection2, IDisposable
         void OnHoldToGet(InputAction.CallbackContext context);
         void OnUseHeal(InputAction.CallbackContext context);
         void OnSwap(InputAction.CallbackContext context);
+        void OnPing(InputAction.CallbackContext context);
     }
     public interface IManagerPlayerActions
     {
         void OnMove(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
         void OnCycle(InputAction.CallbackContext context);
+        void OnPing(InputAction.CallbackContext context);
     }
 }

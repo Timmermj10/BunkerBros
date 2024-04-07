@@ -8,7 +8,6 @@ using UnityEngine.UIElements;
 
 public class TutorialManager : MonoBehaviour
 {
-
     private PopUpSystem popUpSystem;
     private GameObject bunker;
 
@@ -62,7 +61,7 @@ public class TutorialManager : MonoBehaviour
         EventBus.Subscribe<CoinCollect>(_hasFoundChest);
         EventBus.Subscribe<PopUpEndEvent>(_endPopUp);
 
-        popUpSystem = GameObject.Find("TutorialPopUpSystem").GetComponent<PopUpSystem>();
+        popUpSystem = GameObject.Find("GameManager").GetComponent<PopUpSystem>();
         bunker = GameObject.Find("Objective");
 
         managerActionMap = actionAsset.FindActionMap("ManagerPlayer");

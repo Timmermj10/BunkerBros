@@ -34,6 +34,8 @@ public class ManagerPlayerInputsNew : MonoBehaviour
     // Public int to hold how many blocks away from center (will be used when we implement zoom)
     public static int blockCount = 5;
 
+    private PingManager pingManager;
+
 
     private void Start()
     {
@@ -47,7 +49,8 @@ public class ManagerPlayerInputsNew : MonoBehaviour
         managerCamera = GameObject.Find("ManagerCamera");
 
         // Get reference to the ShopManagerScript
-        shopManagerScript = GameObject.Find("ShopManager").GetComponent<ShopManagerScript>();
+        shopManagerScript = GameObject.Find("GameManager").GetComponent<ShopManagerScript>();
+        pingManager = GameObject.Find("GameManager").GetComponent<PingManager>();
     }
 
 
@@ -294,6 +297,21 @@ public class ManagerPlayerInputsNew : MonoBehaviour
     private void OnCycle(InputValue value)
     {
         EventBus.Publish(new ManagerCycleEvent());
+    }
+
+    private void OnPing(InputValue value)
+    {
+        Vector2 screenPosition = Mouse.current.position.ReadValue();
+        Vector3 raycastPosition = GameObject.Find("ManagerCamera").GetComponent<Camera>().ScreenToWorldPoint(screenPosition);
+        RaycastHit hit;
+        if (Physics.Raycast(raycastPosition, Vector3.down, out hit, Mathf.Infinity))
+        {
+            HasPing hasPing = hit.transform.gameObject.GetComponent<HasPing>();
+            if (hasPing)
+                hasPing.TogglePing();
+            else
+                pingManager.ManagerPing(hit.point);
+        }
     }
 
     public static bool withinView(Vector3 worldPosition)

@@ -210,8 +210,8 @@ public class PlayerInteract : MonoBehaviour
     // When you walk up to a pickupable item
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log(gameObject.name);
-        Debug.Log(other.name);
+        //Debug.Log(gameObject.name);
+        //Debug.Log(other.name);
         if ((other.gameObject.tag is "Pickup" || other.gameObject.tag is "Interactable" || other.gameObject.tag is "Objective"))
         {
             itemsInRange.Add(other.gameObject);
