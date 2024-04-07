@@ -14,4 +14,24 @@ public class HasPing : MonoBehaviour
             }
         }
     }
+    public void UnPing()
+    {
+        foreach (Transform x in transform)
+        {
+            if (x.CompareTag("Ping"))
+            {
+                x.gameObject.SetActive(false);
+            }
+        }
+    }
+    public void TogglePing()
+    {
+        foreach (Transform x in transform)
+        {
+            if (x.CompareTag("Ping"))
+            {
+                x.gameObject.SetActive(!x.gameObject.activeSelf);
+            }
+        }
+    }
 }
