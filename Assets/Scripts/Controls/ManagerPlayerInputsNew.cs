@@ -47,7 +47,7 @@ public class ManagerPlayerInputsNew : MonoBehaviour
         managerCamera = GameObject.Find("ManagerCamera");
 
         // Get reference to the ShopManagerScript
-        shopManagerScript = GameObject.Find("ShopManager").GetComponent<ShopManagerScript>();
+        shopManagerScript = GameObject.Find("GameManager").GetComponent<ShopManagerScript>();
     }
 
 

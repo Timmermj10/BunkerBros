@@ -14,6 +14,9 @@ TagManager:
   - Interactable
   - GoldChestEnemy
   - Boulder
+  - PlayerCam
+  - ManagerCam
+  - Ping
   layers:
   - Default
   - TransparentFX
@@ -24,8 +27,8 @@ TagManager:
   - Player
   - Manager
   - Projectile
-  - 
-  - 
+  - PlayerPing
+  - ManagerPing
   - Enemy
   - Explosion
   - Structure
