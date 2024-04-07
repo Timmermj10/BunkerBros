@@ -9,7 +9,7 @@ public class ParticleManager : MonoBehaviour
 
     static ParticleManager instance;
 
-    private void Start()
+    private void Awake()
     {
         if(instance == null)
         {

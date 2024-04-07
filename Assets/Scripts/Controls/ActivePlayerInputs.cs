@@ -9,6 +9,8 @@ public class ActivePlayerInputs : MonoBehaviour
 {
     public float moveSpeed = 5f;
     public Vector2 lookSpeed = new Vector2(90, 90);
+    public float pingDistance = 100f;
+    public LayerMask ignore;
 
     private Vector2 movementInputValue;
     private Vector2 aimInputValue;
@@ -16,11 +18,20 @@ public class ActivePlayerInputs : MonoBehaviour
     private Rigidbody rb;
     private Transform look;
     private bool playerControls = true;
+    private PingManager pingManager;
 
-    //private bool playerControls = false;
-    //private float shootingCooldown = 0.3f;
-    //private float shootingTimer = 0f;
-    private void Update() {
+    private void Awake()
+    {
+        EventBus.Subscribe<WaveStartedEvent>(WaveStarted);
+        rb = GetComponent<Rigidbody>();
+        look = transform.Find("PlayerLook");
+        pingManager = GameObject.Find("GameManager").GetComponent<PingManager>();
+    }
+
+    private void FixedUpdate() {
+        Vector3 forward = movementInputValue.y * transform.forward;
+        Vector3 right = movementInputValue.x * transform.right;
+        rb.velocity = rb.velocity.y * Vector3.up + moveSpeed * (forward + right);
         if (playerControls)
         {
             rotation += Time.deltaTime * new Vector2(-aimInputValue.y * lookSpeed.y, aimInputValue.x * lookSpeed.x);
@@ -29,15 +40,6 @@ public class ActivePlayerInputs : MonoBehaviour
             transform.rotation = Quaternion.Euler(0, rotation.y, 0);
         }
     }
-    private void Awake()
-    {
-        rb = GetComponent<Rigidbody>();
-
-        EventBus.Subscribe<WaveStartedEvent>(WaveStarted);
-        //EventBus.Subscribe<WaveEndedEvent>(WaveEnded);
-
-        look = transform.Find("PlayerLook");
-}
 
 
     private void WaveStarted(WaveStartedEvent e)
@@ -56,42 +58,14 @@ public class ActivePlayerInputs : MonoBehaviour
     // Constantly sets the value of movementInputValue to the current input on the left joystick
     private void OnMove(InputValue value)
     {
-            movementInputValue = value.Get<Vector2>();
+        movementInputValue = value.Get<Vector2>();
     }
-
-    private void FixedUpdate()
-    {
-        if (playerControls)
-        {
-            Vector3 forward = movementInputValue.y * transform.forward;
-            Vector3 right = movementInputValue.x * transform.right;
-            rb.velocity = moveSpeed * (forward + right);
-            //Debug.Log("Active Player: MovementInputValue = " + movementInputValue);
-
-            if (movementInputValue == Vector2.zero)
-            {
-                rb.velocity = Vector3.zero;
-            }
-
-        }
-        else
-        {
-            rb.velocity = Vector3.zero;
-        }
-    }
-
-
 
     // Constantly sets the value of aimInputValue to the current input on the right joystick
     private void OnAim(InputValue value)
     {
         aimInputValue = value.Get<Vector2>();
     }
-
-
-    public Vector2 getAimValue() { return aimInputValue; }
-
-    public Vector2 getMovementValue() { return movementInputValue; }
 
     private void OnAttack(InputValue value)
     {
@@ -101,4 +75,43 @@ public class ActivePlayerInputs : MonoBehaviour
             EventBus.Publish(new AttackEvent());
         }
     }
+
+    private void OnPing(InputValue value)
+    {
+        RaycastHit hit;
+        if(Physics.Raycast(look.position, look.forward, out hit, 100f, ~ignore))
+        {
+            HasPing hasPing = hit.transform.gameObject.GetComponent<HasPing>();
+            if (hasPing)
+            {
+                Debug.Log(hit.transform.gameObject.layer + ": activating ping");
+                hasPing.Ping();
+            }
+            else
+            {
+                Debug.Log(hit.transform.gameObject.layer + ": spawning ping");
+                pingManager.PlayerPing(hit.point);
+            }
+        }
+        else
+        {
+            Debug.Log("ping missed");
+        }
+    }
+
+    private void OnADS(InputValue value)
+    {
+        Debug.Log("ADS");
+    }
+
+    private void OnJump(InputValue value)
+    {
+        Debug.Log("jump");
+    }
+
+    public Vector2 getAimValue() { return aimInputValue; }
+
+    public Vector2 getMovementValue() { return movementInputValue; }
+
+    
 }

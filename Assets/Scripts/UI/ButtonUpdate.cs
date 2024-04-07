@@ -31,7 +31,7 @@ public class ButtonUpdate : MonoBehaviour
         buttonInfo = GetComponent<ButtonInfo>();
 
         // Get a reference to the shop manager
-        shopManager = GameObject.Find("ShopManager").GetComponent<ShopManagerScript>();
+        shopManager = GameObject.Find("GameManager").GetComponent<ShopManagerScript>();
 
         // Subscribe to Manager Button Click Events
         EventBus.Subscribe<ManagerButtonClickEvent>(_ButtonClicked);

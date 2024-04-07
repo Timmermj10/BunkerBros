@@ -18,7 +18,7 @@ public class TetherFPV : MonoBehaviour
     private bool dropping = false;
 
 
-    private void Start()
+    private void Awake()
     {
         EventBus.Subscribe<PlayerRespawnEvent>(_PlayerRespawn);
         EventBus.Subscribe<ObjectDestroyedEvent>(_CheckPlayerDeath);
@@ -38,7 +38,7 @@ public class TetherFPV : MonoBehaviour
         }
     }
 
-    void Update()
+    void LateUpdate()
     {
         if (target)
         {

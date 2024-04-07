@@ -62,7 +62,7 @@ public class TutorialManager : MonoBehaviour
         EventBus.Subscribe<CoinCollect>(_hasFoundChest);
         EventBus.Subscribe<PopUpEndEvent>(_endPopUp);
 
-        popUpSystem = GameObject.Find("TutorialPopUpSystem").GetComponent<PopUpSystem>();
+        popUpSystem = GetComponent<PopUpSystem>();
         bunker = GameObject.Find("Objective");
 
         managerActionMap = actionAsset.FindActionMap("ManagerPlayer");
