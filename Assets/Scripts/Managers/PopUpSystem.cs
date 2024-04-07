@@ -13,7 +13,7 @@ public class PopUpSystem : MonoBehaviour
 
     public void popUp(string playerType, string text)
     {
-        Debug.Log("PopUpCalled");
+        //Debug.Log("PopUpCalled");
         popUpBox = Instantiate(popUpBoxPrefab);
         PopUpPrefabController prefab = popUpBox.GetComponent<PopUpPrefabController>();
         prefab.printText(playerType, text);

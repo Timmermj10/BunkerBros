@@ -85,7 +85,7 @@ public class ManagerPlayerInputsNew : MonoBehaviour
         managerCamera.GetComponent<Camera>().orthographicSize = originalSize + localScale;
         pingCamera.GetComponent<Camera>().orthographicSize = pingOriginalSize + localScale;
         blockCount = origBlockCount + Mathf.RoundToInt(localScale);
-        Debug.Log("BlockCount is " + blockCount.ToString());
+        //Debug.Log("BlockCount is " + blockCount.ToString());
         // Set the velocity
         //if (localScale == originalSize)
         //{
