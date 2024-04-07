@@ -96,6 +96,7 @@ public class ManagerPlayerInputsNew : MonoBehaviour
         Vector3 pos = transform.position += move;
         pos.x = Mathf.Clamp(pos.x, minX, maxX);
         pos.z = Mathf.Clamp(pos.z, minY, MaxY);
+        pos.y = 20;
         transform.position = pos;
 
         //Debug.Log("Zoom Max is " + Mathf.Max(.1f, (2f - zoomSpeed)));
