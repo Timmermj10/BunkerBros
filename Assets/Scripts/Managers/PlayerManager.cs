@@ -7,7 +7,7 @@ public class PlayerManager : MonoBehaviour
 {
     public GameObject activePlayerPrefab;
 
-    public GameObject activePlayer;
+    private GameObject activePlayer;
     private GameObject managerPlayer;
 
     private bool respawningPlayer = false;
