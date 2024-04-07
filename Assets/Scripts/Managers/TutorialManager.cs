@@ -24,8 +24,8 @@ public class TutorialManager : MonoBehaviour
     private bool hasPickedUpHealthPack = false;
     private bool hasFoundChest = false;
     private bool healthPackPopUpIsDone = false;
-
     private bool hasRespawnedPlayer = false;
+    private bool hasActivatedRadioTower = false;
 
     private bool hasLoadedSilo = false;
     private bool hasBlownUpBoulder = false;
@@ -60,6 +60,7 @@ public class TutorialManager : MonoBehaviour
         EventBus.Subscribe<PlayerRespawnEvent>(_playerRespawn);
         EventBus.Subscribe<CoinCollect>(_hasFoundChest);
         EventBus.Subscribe<PopUpEndEvent>(_endPopUp);
+        EventBus.Subscribe<RadioTowerActivatedEvent>(_radioTowerActivated);
 
         popUpSystem = GameObject.Find("GameManager").GetComponent<PopUpSystem>();
         bunker = GameObject.Find("Objective");
@@ -139,7 +140,7 @@ public class TutorialManager : MonoBehaviour
         }
 
         startPopUp("Manager");
-        popUpSystem.popUp("Manager", "You're low on money! Work together with your partner to find some! (Use WASD to move)");
+        popUpSystem.popUp("Manager", "You're low on gold! Work together with your partner to find some! (Use WASD to move)");
 
         while (!hasFoundChest)
         {
@@ -147,7 +148,7 @@ public class TutorialManager : MonoBehaviour
         }
 
         startPopUp("Manager");
-        popUpSystem.popUp("Manager", "You and your partner need a way to get past that massive boulder blocking the way. Maybe these nuke parts could help.");
+        popUpSystem.popUp("Manager", "You and your partner need a way to destroy that massive boulder blocking the way. Maybe these nuke parts could help.");
 
         while (!hasPickedUpNukeParts)
         {
@@ -192,22 +193,32 @@ public class TutorialManager : MonoBehaviour
         popUpSystem.popUp("Player", "Go activate the radio tower to increase your signal strength! If you get your signal strength high enough, you can radio for an extraction team!");
         //Ping Radio Tower Location
 
-        yield return new WaitForSeconds(10);
 
         startPopUp("Manager");
         popUpSystem.popUp("Manager", "Theres a zombie horde approaching from the southwest! Use some walls, turrets and missiles to defend the bunker while your partner is activating the radio tower.");
         //Ping Zombie Location with Skull
 
 
-        Instantiate(basicEnemyPrefab, new Vector3(-9, 1, -12), Quaternion.identity);
-        Instantiate(basicEnemyPrefab, new Vector3(-9, 1, -10f), Quaternion.identity);
-        Instantiate(basicEnemyPrefab, new Vector3(-7, 1, -12f), Quaternion.identity);
-        Instantiate(basicEnemyPrefab, new Vector3(-7, 1, -10), Quaternion.identity);
-        Instantiate(basicEnemyPrefab, new Vector3(-6, 1, -11), Quaternion.identity);
-        Instantiate(basicEnemyPrefab, new Vector3(-5, 1, -11), Quaternion.identity);
-        Instantiate(armoredEnemyPrefab, new Vector3(-8, 1, -11), Quaternion.identity);
-
+        Instantiate(basicEnemyPrefab, new Vector3(-6, 1, -23), Quaternion.identity);
+        Instantiate(basicEnemyPrefab, new Vector3(-6, 1, -21f), Quaternion.identity);
+        Instantiate(basicEnemyPrefab, new Vector3(-4, 1, -23f), Quaternion.identity);
+        Instantiate(basicEnemyPrefab, new Vector3(-4, 1, -21), Quaternion.identity);
+        Instantiate(basicEnemyPrefab, new Vector3(-3, 1, -21), Quaternion.identity);
+        Instantiate(basicEnemyPrefab, new Vector3(-3, 1, -23), Quaternion.identity);
+        Instantiate(armoredEnemyPrefab, new Vector3(-5, 1, -22), Quaternion.identity);
         enemiesAlive = 7;
+
+        while (enemiesAlive > 0)
+        {
+            yield return new WaitForFixedUpdate();
+        }
+
+        startPopUp("Manager");
+        popUpSystem.popUp("Manager", "Great work! Here are some more supplies to help your partner. Drop them in a gun and ammo when you get enough gold to help them survive and thrive.");
+        Gun.SetActive(true);
+        AmmoCrate.SetActive(true);
+
+        EventBus.Publish(new TutorialEndedEvent());
 
         yield return null;
     }
@@ -262,9 +273,6 @@ public class TutorialManager : MonoBehaviour
                 Wall.SetActive(true);
                 Turret.SetActive(true);
                 Missile.SetActive(true);
-                break;
-            case 14:
-                Console.WriteLine("Unwritten case");
                 break;
             default:
                 break;
@@ -330,6 +338,17 @@ public class TutorialManager : MonoBehaviour
     private void _playerRespawn(PlayerRespawnEvent e)
     {
         hasRespawnedPlayer = true;
+    }
+
+    private void _radioTowerActivated(RadioTowerActivatedEvent e)
+    {
+        if (!hasActivatedRadioTower)
+        {
+            startPopUp("Player");
+            popUpSystem.popUp("Player", "Good job activating the radio tower! If you activate the rest and get your signal strength high enough you can radio for help!");
+            startPopUp("Manager");
+            popUpSystem.popUp("Manager", "Great work! Keep working together with your partner to defend the bunker and activate all the radio towers and maybe you guys will survive long enough to make it out of here!");
+        }
     }
 
 }

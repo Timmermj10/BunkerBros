@@ -69,14 +69,10 @@ public class AirdropListener : MonoBehaviour
     private IEnumerator WaitForAirdropToLand(GameObject airdrop, Vector3 initialDropLocation, Vector3 finalDropLocation, int itemID)
     {
 
-        Rigidbody rb = GetComponent<Rigidbody>();
+        Rigidbody rb = airdrop.transform.GetComponent<Rigidbody>();
 
-        float timeFallingBeforeStart = Mathf.Sqrt(2 * dropHeight / Physics.gravity.magnitude);
-        Vector3 initialVelocity = Physics.gravity * timeFallingBeforeStart;
-
-        // Apply the initial velocity
+        // Set initial velocity to 0
         rb.velocity = Vector3.zero;
-        rb.AddForce(initialVelocity, ForceMode.VelocityChange);
 
         while (airdrop.transform.position.y > finalDropLocation.y + 0.05)
         {
