@@ -201,6 +201,15 @@ public partial class @KBMandController: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Ping"",
+                    ""type"": ""Button"",
+                    ""id"": ""79739e92-c6fe-42f2-a949-d7d15892974d"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -280,6 +289,17 @@ public partial class @KBMandController: IInputActionCollection2, IDisposable
                     ""action"": ""Cycle"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0ce70e47-3e1e-4faf-beb0-af3d270c5221"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KBMPlayer"",
+                    ""action"": ""Ping"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -311,6 +331,7 @@ public partial class @KBMandController: IInputActionCollection2, IDisposable
         m_ManagerPlayer_Move = m_ManagerPlayer.FindAction("Move", throwIfNotFound: true);
         m_ManagerPlayer_Interact = m_ManagerPlayer.FindAction("Interact", throwIfNotFound: true);
         m_ManagerPlayer_Cycle = m_ManagerPlayer.FindAction("Cycle", throwIfNotFound: true);
+        m_ManagerPlayer_Ping = m_ManagerPlayer.FindAction("Ping", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -469,6 +490,7 @@ public partial class @KBMandController: IInputActionCollection2, IDisposable
     private readonly InputAction m_ManagerPlayer_Move;
     private readonly InputAction m_ManagerPlayer_Interact;
     private readonly InputAction m_ManagerPlayer_Cycle;
+    private readonly InputAction m_ManagerPlayer_Ping;
     public struct ManagerPlayerActions
     {
         private @KBMandController m_Wrapper;
@@ -476,6 +498,7 @@ public partial class @KBMandController: IInputActionCollection2, IDisposable
         public InputAction @Move => m_Wrapper.m_ManagerPlayer_Move;
         public InputAction @Interact => m_Wrapper.m_ManagerPlayer_Interact;
         public InputAction @Cycle => m_Wrapper.m_ManagerPlayer_Cycle;
+        public InputAction @Ping => m_Wrapper.m_ManagerPlayer_Ping;
         public InputActionMap Get() { return m_Wrapper.m_ManagerPlayer; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -494,6 +517,9 @@ public partial class @KBMandController: IInputActionCollection2, IDisposable
             @Cycle.started += instance.OnCycle;
             @Cycle.performed += instance.OnCycle;
             @Cycle.canceled += instance.OnCycle;
+            @Ping.started += instance.OnPing;
+            @Ping.performed += instance.OnPing;
+            @Ping.canceled += instance.OnPing;
         }
 
         private void UnregisterCallbacks(IManagerPlayerActions instance)
@@ -507,6 +533,9 @@ public partial class @KBMandController: IInputActionCollection2, IDisposable
             @Cycle.started -= instance.OnCycle;
             @Cycle.performed -= instance.OnCycle;
             @Cycle.canceled -= instance.OnCycle;
+            @Ping.started -= instance.OnPing;
+            @Ping.performed -= instance.OnPing;
+            @Ping.canceled -= instance.OnPing;
         }
 
         public void RemoveCallbacks(IManagerPlayerActions instance)
@@ -557,5 +586,6 @@ public partial class @KBMandController: IInputActionCollection2, IDisposable
         void OnMove(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
         void OnCycle(InputAction.CallbackContext context);
+        void OnPing(InputAction.CallbackContext context);
     }
 }

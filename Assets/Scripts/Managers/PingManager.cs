@@ -13,8 +13,8 @@ public class PingManager : MonoBehaviour
     List<Transform> pings = new();
     GameObject playerPing;
     GameObject managerPing;
-    float playerPingDeactivate;
-    float managerPingDeactivate;
+    HasPing playerHasPing;
+    HasPing managerHasPing;
 
     void Awake()
     {
@@ -26,24 +26,14 @@ public class PingManager : MonoBehaviour
         }
         playerPing = Instantiate(soloPing);
         managerPing = Instantiate(soloPing);
-        playerPing.SetActive(false);
-        managerPing.SetActive(false);
+        playerHasPing = playerPing.GetComponentInChildren<HasPing>();
+        managerHasPing = managerPing.GetComponentInChildren<HasPing>();
         pings.Add(playerPing.transform.Find("spotted"));
-        pings.Add(playerPing.transform.Find("spotted"));
+        pings.Add(managerPing.transform.Find("spotted"));
     }
 
     void Update()
     {
-        if (Time.time > playerPingDeactivate)
-        {
-            playerPing.SetActive(false);
-            playerPingDeactivate = float.MaxValue;
-        }
-        if (Time.time > managerPingDeactivate)
-        {
-            managerPing.SetActive(false);
-            managerPingDeactivate = float.MaxValue;
-        }
         foreach (Transform ping in pings)
         {
             Transform playerView = ping.Find("playerView");
@@ -69,9 +59,14 @@ public class PingManager : MonoBehaviour
 
     public void PlayerPing(Vector3 location)
     {
-        playerPing.SetActive(true);
         playerPing.transform.position = location;
-        playerPingDeactivate = Time.time + 3;
+        playerHasPing.Ping();
+    }
+
+    public void ManagerPing(Vector3 location)
+    {
+        managerPing.transform.position = location;
+        managerHasPing.Ping();
     }
 
     public IEnumerator Warn(Vector3 pos, float time)

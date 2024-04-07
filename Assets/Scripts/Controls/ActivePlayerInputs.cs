@@ -83,15 +83,9 @@ public class ActivePlayerInputs : MonoBehaviour
         {
             HasPing hasPing = hit.transform.gameObject.GetComponent<HasPing>();
             if (hasPing)
-            {
-                Debug.Log(hit.transform.gameObject.layer + ": activating ping");
-                hasPing.Ping();
-            }
+                hasPing.TogglePing();
             else
-            {
-                Debug.Log(hit.transform.gameObject.layer + ": spawning ping");
                 pingManager.PlayerPing(hit.point);
-            }
         }
         else
         {
