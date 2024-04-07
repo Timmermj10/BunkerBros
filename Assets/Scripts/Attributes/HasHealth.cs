@@ -75,7 +75,6 @@ public class HasHealth : MonoBehaviour
 
             if (healthChange < 0) 
             {
-                Debug.Log("here2");
                 // Publish a damage effect event
                 EventBus.Publish<DamageEffectEvent>(new DamageEffectEvent(gameObject, true));
                 currentHealth += Mathf.Min(healthChange + armorValue, 0);

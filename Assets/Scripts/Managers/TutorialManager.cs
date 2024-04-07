@@ -217,17 +217,17 @@ public class TutorialManager : MonoBehaviour
         
         if (playerToFreeze == "Manager") 
         {
-            Debug.Log("Disabling manager Player");
+            //Debug.Log("Disabling manager Player");
             managerActionMap.Disable();
         }
         else if (playerToFreeze == "Player")
         {
-            Debug.Log("Disabling active Player");
+            //Debug.Log("Disabling active Player");
             playerActionMap.Disable();
         } 
         else
         {
-            Debug.Log("Disabling both players");
+            //Debug.Log("Disabling both players");
             managerActionMap.Disable();
             playerActionMap.Disable();
         }
@@ -235,7 +235,7 @@ public class TutorialManager : MonoBehaviour
 
     private void _endPopUp(PopUpEndEvent e)
     {
-        Debug.Log("Turning Controls back on");
+        //Debug.Log("Turning Controls back on");
         managerActionMap.Enable();
         playerActionMap.Enable();
         activateNum++;

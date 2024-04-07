@@ -54,7 +54,7 @@ public class PopUpPrefabController : MonoBehaviour
         }
         popUpText.text = string.Empty;
 
-        Debug.Log("Playing Sound");
+        //Debug.Log("Playing Sound");
         audioSource.Play();
 
         foreach (char letter in fullText.ToCharArray())
@@ -64,7 +64,7 @@ public class PopUpPrefabController : MonoBehaviour
             yield return new WaitForSeconds(delayBetweenCharacters);
         }
 
-        Debug.Log("Stopping Sound");
+        //Debug.Log("Stopping Sound");
         audioSource.Stop();
 
         EventBus.Publish(new PopUpEndEvent(playerType));
