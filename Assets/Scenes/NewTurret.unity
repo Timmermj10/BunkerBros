@@ -8248,6 +8248,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 318b6ea1edc16ea4886cc6042e3efe07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  respawning: 0
+  timer: 5
 --- !u!114 &184442853
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9286,6 +9288,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 318b6ea1edc16ea4886cc6042e3efe07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  respawning: 0
+  timer: 5
 --- !u!114 &204320033
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11308,6 +11312,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 318b6ea1edc16ea4886cc6042e3efe07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  respawning: 0
+  timer: 5
 --- !u!114 &232206082
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15741,6 +15747,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 318b6ea1edc16ea4886cc6042e3efe07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  respawning: 0
+  timer: 5
 --- !u!114 &327645077
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17161,8 +17169,8 @@ MonoBehaviour:
     itemIcon: {fileID: 0}
     itemCount: 0
     oneTimePurchase: 0
-  coins: 1500
-  coinsText: {fileID: 734753316}
+  gold: 0
+  goldText: {fileID: 0}
 --- !u!4 &349862697
 Transform:
   m_ObjectHideFlags: 0
@@ -36428,6 +36436,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 318b6ea1edc16ea4886cc6042e3efe07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  respawning: 0
+  timer: 5
 --- !u!114 &773307677
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -66011,6 +66021,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 318b6ea1edc16ea4886cc6042e3efe07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  respawning: 0
+  timer: 5
 --- !u!114 &1319077465
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -68093,6 +68105,7 @@ MonoBehaviour:
   siloStatus: []
   explosionPrefab: {fileID: 2278422487833797206, guid: 30da79b3e424b16418db2f372358f60e,
     type: 3}
+  missleExplosionPrefab: {fileID: 0}
   damageableLayer:
     serializedVersion: 2
     m_Bits: 0
@@ -72149,6 +72162,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 318b6ea1edc16ea4886cc6042e3efe07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  respawning: 0
+  timer: 5
 --- !u!114 &1409508062
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -74384,6 +74399,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 318b6ea1edc16ea4886cc6042e3efe07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  respawning: 0
+  timer: 5
 --- !u!114 &1454941299
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -79698,6 +79715,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 318b6ea1edc16ea4886cc6042e3efe07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  respawning: 0
+  timer: 5
 --- !u!114 &1548825883
 MonoBehaviour:
   m_ObjectHideFlags: 0
