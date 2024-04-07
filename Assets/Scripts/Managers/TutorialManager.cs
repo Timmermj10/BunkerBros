@@ -140,7 +140,7 @@ public class TutorialManager : MonoBehaviour
         }
 
         startPopUp("Manager");
-        popUpSystem.popUp("Manager", "You're low on money! Work together with your partner to find some! (Use WASD to move)");
+        popUpSystem.popUp("Manager", "You're low on gold! Work together with your partner to find some! (Use WASD to move)");
 
         while (!hasFoundChest)
         {
@@ -214,10 +214,11 @@ public class TutorialManager : MonoBehaviour
         }
 
         startPopUp("Manager");
-        popUpSystem.popUp("Manager", "Great work! Here are some more supplies to help your partner. Drop them in a gun and ammo to help them survive and thrive.");
+        popUpSystem.popUp("Manager", "Great work! Here are some more supplies to help your partner. Drop them in a gun and ammo when you get enough gold to help them survive and thrive.");
         Gun.SetActive(true);
         AmmoCrate.SetActive(true);
 
+        EventBus.Publish(new TutorialEndedEvent());
 
         yield return null;
     }
@@ -346,10 +347,8 @@ public class TutorialManager : MonoBehaviour
             startPopUp("Player");
             popUpSystem.popUp("Player", "Good job activating the radio tower! If you activate the rest and get your signal strength high enough you can radio for help!");
             startPopUp("Manager");
-            popUpSystem.popUp("Manager", "Great work! Work together with your partner to defend the bunker and activate all the radio towers and maybe you guys will survive long enough to make it out of here!");
+            popUpSystem.popUp("Manager", "Great work! Keep working together with your partner to defend the bunker and activate all the radio towers and maybe you guys will survive long enough to make it out of here!");
         }
     }
-
-
 
 }
