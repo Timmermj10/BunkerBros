@@ -30,12 +30,9 @@ public class TetherFPV : MonoBehaviour
         funnlyRenderingBackgroundColor = cam.backgroundColor;
         fullyRenderingFlags = cam.clearFlags;
 
-        if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("TutorialScene"))
-        {
-            cam.clearFlags = CameraClearFlags.SolidColor;
-            cam.backgroundColor = Color.black;
-            cam.cullingMask = 0;
-        }
+        // cam.clearFlags = CameraClearFlags.SolidColor;
+        // cam.backgroundColor = Color.black;
+        // cam.cullingMask = 0;
     }
 
     void LateUpdate()

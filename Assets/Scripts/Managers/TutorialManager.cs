@@ -24,8 +24,8 @@ public class TutorialManager : MonoBehaviour
     private bool hasPickedUpHealthPack = false;
     private bool hasFoundChest = false;
     private bool healthPackPopUpIsDone = false;
-
     private bool hasRespawnedPlayer = false;
+    private bool hasActivatedRadioTower = false;
 
     private bool hasLoadedSilo = false;
     private bool hasBlownUpBoulder = false;
@@ -51,7 +51,7 @@ public class TutorialManager : MonoBehaviour
 
     void Start()
     {
-        Debug.Log("Tutorial Manager Start");
+        //Debug.Log("Tutorial Manager Start");
         EventBus.Subscribe<ObjectDestroyedEvent>(_enemyDeath);
         EventBus.Subscribe<AirdropLandedEvent>(_hasDroppedItems);
         EventBus.Subscribe<PickUpEvent>(_hasPickedUpItems);
@@ -60,6 +60,7 @@ public class TutorialManager : MonoBehaviour
         EventBus.Subscribe<PlayerRespawnEvent>(_playerRespawn);
         EventBus.Subscribe<CoinCollect>(_hasFoundChest);
         EventBus.Subscribe<PopUpEndEvent>(_endPopUp);
+        EventBus.Subscribe<RadioTowerActivatedEvent>(_radioTowerActivated);
 
         popUpSystem = GameObject.Find("GameManager").GetComponent<PopUpSystem>();
         bunker = GameObject.Find("Objective");
@@ -98,6 +99,7 @@ public class TutorialManager : MonoBehaviour
 
         startPopUp("Manager");
         popUpSystem.popUp("Manager", "Your bunker is under attack! Don't let the zombies break in, your lives depend on it! Deploy your partner to handle the zombies on the surface.");
+        playerRespawn.SetActive(true);
 
         while (!hasRespawnedPlayer)
         {
@@ -138,7 +140,7 @@ public class TutorialManager : MonoBehaviour
         }
 
         startPopUp("Manager");
-        popUpSystem.popUp("Manager", "You're low on money! Work together with your partner to find some! (Use WASD to move)");
+        popUpSystem.popUp("Manager", "You're low on gold! Work together with your partner to find some! (Use WASD to move)");
 
         while (!hasFoundChest)
         {
@@ -146,7 +148,7 @@ public class TutorialManager : MonoBehaviour
         }
 
         startPopUp("Manager");
-        popUpSystem.popUp("Manager", "You and your partner need a way to get past that massive boulder blocking the way. Maybe these nuke parts could help.");
+        popUpSystem.popUp("Manager", "You and your partner need a way to destroy that massive boulder blocking the way. Maybe these nuke parts could help.");
 
         while (!hasPickedUpNukeParts)
         {
@@ -191,22 +193,32 @@ public class TutorialManager : MonoBehaviour
         popUpSystem.popUp("Player", "Go activate the radio tower to increase your signal strength! If you get your signal strength high enough, you can radio for an extraction team!");
         //Ping Radio Tower Location
 
-        yield return new WaitForSeconds(10);
 
         startPopUp("Manager");
         popUpSystem.popUp("Manager", "Theres a zombie horde approaching from the southwest! Use some walls, turrets and missiles to defend the bunker while your partner is activating the radio tower.");
         //Ping Zombie Location with Skull
 
 
-        Instantiate(basicEnemyPrefab, new Vector3(-9, 1, -12), Quaternion.identity);
-        Instantiate(basicEnemyPrefab, new Vector3(-9, 1, -10f), Quaternion.identity);
-        Instantiate(basicEnemyPrefab, new Vector3(-7, 1, -12f), Quaternion.identity);
-        Instantiate(basicEnemyPrefab, new Vector3(-7, 1, -10), Quaternion.identity);
-        Instantiate(basicEnemyPrefab, new Vector3(-6, 1, -11), Quaternion.identity);
-        Instantiate(basicEnemyPrefab, new Vector3(-5, 1, -11), Quaternion.identity);
-        Instantiate(armoredEnemyPrefab, new Vector3(-8, 1, -11), Quaternion.identity);
-
+        Instantiate(basicEnemyPrefab, new Vector3(-6, 1, -23), Quaternion.identity);
+        Instantiate(basicEnemyPrefab, new Vector3(-6, 1, -21f), Quaternion.identity);
+        Instantiate(basicEnemyPrefab, new Vector3(-4, 1, -23f), Quaternion.identity);
+        Instantiate(basicEnemyPrefab, new Vector3(-4, 1, -21), Quaternion.identity);
+        Instantiate(basicEnemyPrefab, new Vector3(-3, 1, -21), Quaternion.identity);
+        Instantiate(basicEnemyPrefab, new Vector3(-3, 1, -23), Quaternion.identity);
+        Instantiate(armoredEnemyPrefab, new Vector3(-5, 1, -22), Quaternion.identity);
         enemiesAlive = 7;
+
+        while (enemiesAlive > 0)
+        {
+            yield return new WaitForFixedUpdate();
+        }
+
+        startPopUp("Manager");
+        popUpSystem.popUp("Manager", "Great work! Here are some more supplies to help your partner. Drop them in a gun and ammo when you get enough gold to help them survive and thrive.");
+        Gun.SetActive(true);
+        AmmoCrate.SetActive(true);
+
+        EventBus.Publish(new TutorialEndedEvent());
 
         yield return null;
     }
@@ -217,17 +229,17 @@ public class TutorialManager : MonoBehaviour
         
         if (playerToFreeze == "Manager") 
         {
-            Debug.Log("Disabling manager Player");
+            //Debug.Log("Disabling manager Player");
             managerActionMap.Disable();
         }
         else if (playerToFreeze == "Player")
         {
-            Debug.Log("Disabling active Player");
+            //Debug.Log("Disabling active Player");
             playerActionMap.Disable();
         } 
         else
         {
-            Debug.Log("Disabling both players");
+            //Debug.Log("Disabling both players");
             managerActionMap.Disable();
             playerActionMap.Disable();
         }
@@ -235,16 +247,13 @@ public class TutorialManager : MonoBehaviour
 
     private void _endPopUp(PopUpEndEvent e)
     {
-        Debug.Log("Turning Controls back on");
+        //Debug.Log("Turning Controls back on");
         managerActionMap.Enable();
         playerActionMap.Enable();
         activateNum++;
 
         switch (activateNum)
         {
-            case 1:
-                playerRespawn.SetActive(true);
-                break;
             case 3:
                 RepairKit.SetActive(true);
                 break;
@@ -264,9 +273,6 @@ public class TutorialManager : MonoBehaviour
                 Wall.SetActive(true);
                 Turret.SetActive(true);
                 Missile.SetActive(true);
-                break;
-            case 14:
-                Console.WriteLine("Unwritten case");
                 break;
             default:
                 break;
@@ -332,6 +338,17 @@ public class TutorialManager : MonoBehaviour
     private void _playerRespawn(PlayerRespawnEvent e)
     {
         hasRespawnedPlayer = true;
+    }
+
+    private void _radioTowerActivated(RadioTowerActivatedEvent e)
+    {
+        if (!hasActivatedRadioTower)
+        {
+            startPopUp("Player");
+            popUpSystem.popUp("Player", "Good job activating the radio tower! If you activate the rest and get your signal strength high enough you can radio for help!");
+            startPopUp("Manager");
+            popUpSystem.popUp("Manager", "Great work! Keep working together with your partner to defend the bunker and activate all the radio towers and maybe you guys will survive long enough to make it out of here!");
+        }
     }
 
 }
