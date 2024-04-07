@@ -3792,6 +3792,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bloodEffectPrefab: {fileID: 1304907618977585962, guid: c5ade474eb7e2544c84d0a938d77b5c1,
     type: 3}
+  sparkEffectPrefab: {fileID: 1304907618977585962, guid: cf7506feb7456e746bf898309c4f9ef8,
+    type: 3}
 --- !u!1001 &81684283
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17626,7 +17628,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: a2a39e8fd10bfdf41bc4f5de1a342e48, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ce34cfd668cdbe2478d33cc9dbccc9b9, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -78730,6 +78732,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Enabled
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5943162286850052074, guid: 65078e9a045f2cf44af4bbb027eb5210,
+        type: 3}
+      propertyPath: armorValue
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 8050013008087558027, guid: 65078e9a045f2cf44af4bbb027eb5210,
         type: 3}

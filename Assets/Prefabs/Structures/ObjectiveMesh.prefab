@@ -31,7 +31,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: e0eaa85e7a5be47b2b7663bbef683933,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e0eaa85e7a5be47b2b7663bbef683933,
         type: 3}
@@ -217,7 +217,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ada0cb034d14d4065882f6fdbed5bdd0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 50
+  maxHealth: 1000
   currentHealth: 0
   armorValue: 0
   healthBar: {fileID: 0}
@@ -233,7 +233,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 203b604f71d2c4560995329a9f798cbe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxShield: 20
+  maxShield: 10
   currShield: 0
   recoverRate: 1
   protect: 1
@@ -251,7 +251,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0490ef3e1a21446b383d89f83b034d74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  repair_value: 5
+  repair_value: 10
 --- !u!114 &7623199274428333772
 MonoBehaviour:
   m_ObjectHideFlags: 0
