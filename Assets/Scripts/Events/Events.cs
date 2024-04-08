@@ -209,3 +209,8 @@ public class DamageEffectEvent
 public class RadioTowerActivatedEvent
 {
 }
+
+public class TutorialEndedEvent
+{
+
+}
