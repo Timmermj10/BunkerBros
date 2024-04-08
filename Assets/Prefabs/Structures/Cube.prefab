@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: -7286203415946162652}
   m_Layer: 0
   m_Name: Cube
-  m_TagString: Untagged
+  m_TagString: Boulder
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -31,7 +31,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 114.013916, y: 92.067154, z: 81.09733}
+  m_LocalScale: {x: 131.41245, y: 151.81874, z: 126.37397}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
