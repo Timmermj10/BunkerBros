@@ -80,7 +80,7 @@ public class PingManager : MonoBehaviour
         managerHasPing.Ping();
     }
 
-    public IEnumerator Ping(Vector3 pos, float time, PingType type = PingType.INVESTIGATE)
+    private IEnumerator PingCoroutine(Vector3 pos, float time, PingType type = PingType.INVESTIGATE)
     {
         GameObject ping;
         if(type == PingType.INVESTIGATE) ping = Instantiate(investigatePing, pos, Quaternion.identity);
@@ -91,6 +91,11 @@ public class PingManager : MonoBehaviour
         yield return new WaitForSeconds(time);
         pings.Remove(ping.transform);
         Destroy(ping);
+    }
+
+    public void Ping(Vector3 pos, float time, PingType type = PingType.INVESTIGATE)
+    {
+        StartCoroutine(PingCoroutine(pos, time, type));
     }
 }
 

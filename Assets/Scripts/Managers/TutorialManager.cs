@@ -55,7 +55,7 @@ public class TutorialManager : MonoBehaviour
 
     void Start()
     {
-        Debug.Log("Running tutorialManager start");
+        //Debug.Log("Running tutorialManager start");
         EventBus.Subscribe<ObjectDestroyedEvent>(_enemyDeath);
         EventBus.Subscribe<AirdropLandedEvent>(_hasDroppedItems);
         EventBus.Subscribe<PickUpEvent>(_hasPickedUpItems);
@@ -221,10 +221,7 @@ public class TutorialManager : MonoBehaviour
         Wall.GetComponent<Button>().interactable = true;
         Turret.GetComponent<Button>().interactable = true;
         HealthPack.GetComponent<Button>().interactable = true;
-        Nuke.GetComponent<Button>().interactable = true;
         Missile.GetComponent<Button>().interactable = true;
-        NukeParts.GetComponent<Button>().interactable = true;
-        EvacuationButton.GetComponent<Button>().interactable = true;
 
         EventBus.Publish(new TutorialEndedEvent());
 
@@ -275,10 +272,10 @@ public class TutorialManager : MonoBehaviour
                 NukeParts.SetActive(true);
                 break;
             case 8:
-                StartCoroutine(pingManager.Ping(new Vector3(10, 1, 1), 10, PingType.INVESTIGATE));
+                pingManager.Ping(new Vector3(10, 1, 1), 10, PingType.INVESTIGATE);
                 break;
             case 9:
-                StartCoroutine(pingManager.Ping(new Vector3(-11, 2, -2), 10));
+                pingManager.Ping(new Vector3(-11, 2, -2), 10);
                 Nuke.SetActive(true);
                 break;
             case 10:
@@ -288,10 +285,10 @@ public class TutorialManager : MonoBehaviour
                 healthPackPopUpIsDone = true;
                 break;
             case 12:
-                StartCoroutine(pingManager.Ping(new Vector3(-24, 5, -3), 10));
+                pingManager.Ping(new Vector3(-24, 5, -3), 10);
                 break;
             case 13:
-                StartCoroutine(pingManager.Ping(new Vector3(-5, 1, -22), 10, PingType.ENEMY));
+                pingManager.Ping(new Vector3(-5, 1, -22), 10, PingType.ENEMY);
                 Instantiate(basicEnemyPrefab, new Vector3(-6, 1, -23), Quaternion.identity);
                 Instantiate(basicEnemyPrefab, new Vector3(-6, 1, -21f), Quaternion.identity);
                 Instantiate(basicEnemyPrefab, new Vector3(-4, 1, -23f), Quaternion.identity);
@@ -388,17 +385,17 @@ public class TutorialManager : MonoBehaviour
             case 0:
                 NukeParts.GetComponent<Button>().interactable = false;
                 EventSystem.current.SetSelectedGameObject(null);
-                Debug.Log("Setting Selected Object to null");
+                //Debug.Log("Setting Selected Object to null");
                 break;
             case 6:
                 HealthPack.GetComponent<Button>().interactable = false;
                 EventSystem.current.SetSelectedGameObject(null);
-                Debug.Log("Setting Selected Object to null");
+                //Debug.Log("Setting Selected Object to null");
                 break;
             case 7:
                 RepairKit.GetComponent<Button>().interactable = false;
                 EventSystem.current.SetSelectedGameObject(null);
-                Debug.Log("Setting Selected Object to null");
+                //Debug.Log("Setting Selected Object to null");
                 break;
             default:
                 break;

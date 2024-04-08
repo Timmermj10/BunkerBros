@@ -8,8 +8,10 @@ public class EnemyWaveSpawnManager : MonoBehaviour
     public GameObject BasicEnemyPrefab;
     public GameObject ArmoredEnemyPrefab;
 
-    //List of spawnpoints
+    //Reference to the pingManager to send prewave pings
+    private PingManager pingManager;
 
+    //List of spawnpoints
     private List<Vector3> spawnpoints = new List<Vector3>();
 
     //Time between enemy spawned
@@ -23,6 +25,7 @@ public class EnemyWaveSpawnManager : MonoBehaviour
     //how far away enemies can spawn from the spawner (half the width/height of the map)
     private float spawnDistance = 4f;
     private int spawnIndex = 0;
+    private Vector3 spawnpointForWave;
 
     //Wave manager reference to get wave information
     WaveManager waveManager;
@@ -36,6 +39,7 @@ public class EnemyWaveSpawnManager : MonoBehaviour
         waveManager = FindAnyObjectByType<WaveManager>();
 
         EventBus.Subscribe<WaveStartedEvent>(_WaveStarted);
+        EventBus.Subscribe<WaveEndedEvent>(_WaveEnded);
 
         spawnpoints.Add(new Vector3(-3, 1, -21)); //Bottom Left;
         spawnpoints.Add(new Vector3(5, 1, -21)); //Bottom Right
@@ -43,18 +47,21 @@ public class EnemyWaveSpawnManager : MonoBehaviour
         spawnpoints.Add(new Vector3(21, 1, 21)); //Top Right
         //Debug.Log($"spawnpoints length = {spawnpoints.Count}");
 
+        pingManager = GameObject.Find("GameManager").GetComponent<PingManager>();
+
+    }
+
+    private void _WaveEnded(WaveEndedEvent e)
+    {
+        spawnIndex = Random.Range(0, spawnpoints.Count);
+        spawnpointForWave = spawnpoints[spawnIndex];
+        pingManager.Ping(spawnpointForWave, 30, PingType.ENEMY);
+        Debug.Log($"Wave Ended, spawn position for next wave = {spawnpointForWave}");
     }
 
     private void _WaveStarted(WaveStartedEvent e)
     {
         spawnDelay -= 0.1f;
-
-        spawnIndex = Random.Range(0, spawnpoints.Count);
-
-        Vector3 spawnpointForWave = spawnpoints[spawnIndex];
-
-        //Debug.Log($"spawnpointForWave of {spawnpointForWave} chosen, because of index {spawnIndex}");
-
         StartCoroutine(SpawnEnemiesForWave(spawnpointForWave));
     }
 

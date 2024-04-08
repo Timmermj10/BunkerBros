@@ -32,7 +32,6 @@ public class WaveManager : MonoBehaviour
     private void Start()
     {
         EventBus.Subscribe<ObjectDestroyedEvent>(_DidEnemyDie);
-        EventBus.Publish(new WaveEndedEvent());
         EventBus.Subscribe<WaveEndedEvent>(_WaveEnd);
         EventBus.Subscribe<TutorialEndedEvent>(_TutorialEnd);
     }
@@ -140,20 +139,20 @@ public class WaveManager : MonoBehaviour
     public void _WaveEnd(WaveEndedEvent e)
     {
         // Increment the wave number
-        //Debug.Log($"Incrementing WaveNumber to {waveNumber}");
+        Debug.Log($"Incrementing WaveNumber to {waveNumber}");
         waveNumber += 1;
 
         // Increase the number of enemies to be spawned
         numEnemiesToSpawnThisRound =  Mathf.RoundToInt(1.8f * (-0.006f * Mathf.Pow(waveNumber, 3) + 0.4f * Mathf.Pow(waveNumber, 2) + 0.8f * waveNumber + 8f));
-        //Debug.Log($"Changed numEnemiesToSpawnThisRound to {numEnemiesToSpawnThisRound}");
+        Debug.Log($"Changed numEnemiesToSpawnThisRound to {numEnemiesToSpawnThisRound}");
 
         // Increase the number of Armored Enemies to be spawned
         numArmoredToSpawnThisRound = Mathf.RoundToInt(2.3f * ((0.02f * waveNumber - 0.025f) * (-0.006f * Mathf.Pow(waveNumber, 3) + 0.4f * Mathf.Pow(waveNumber, 2) + 0.8f * waveNumber + 8f) + waveNumber / 3f));
-        //Debug.Log($"Changed numArmoredToSpawnThisRound to {numArmoredToSpawnThisRound}");
+        Debug.Log($"Changed numArmoredToSpawnThisRound to {numArmoredToSpawnThisRound}");
 
         // Increase the number of Hordes to be spawned
         numHordesToSpawnThisRound = Mathf.Max(0, Mathf.RoundToInt(2.3f * (( 0.02f * waveNumber - 0.035f) * (-0.004f * Mathf.Pow(waveNumber, 3) + 0.27f * Mathf.Pow(waveNumber, 2) + 0.5f * waveNumber + 6f))));
-        //Debug.Log($"Changed numHordesToSpawnThisRound to {numHordesToSpawnThisRound}");
+        Debug.Log($"Changed numHordesToSpawnThisRound to {numHordesToSpawnThisRound}");
 
     }
 

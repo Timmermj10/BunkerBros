@@ -163,14 +163,14 @@ public class PlayerInteract : MonoBehaviour
                         if ((item.name is "MissileSilo" || item.name is "MissileSilo(Clone)") && GetComponent<ActivePlayerInventory>().itemInInventory(ActivePlayerInventory.activePlayerItems.NukeParts))
                         {
                             MissileSiloStatus silo = item.GetComponent<MissileSiloStatus>();
-                            Debug.Log("Loading Silo");
+                            //Debug.Log("Loading Silo");
                             if (silo != null && !silo.isSiloLoaded())
                             {
                                 //Debug.Log("Loading MissileSilo");
                                 silo.loadSilo();
 
                                 // Publish Silo Loaded Event
-                                Debug.Log("Publishing Event");
+                                //Debug.Log("Publishing Event");
                                 EventBus.Publish<SiloLoadedEvent>(new SiloLoadedEvent(silo));
 
                                 //Take the parts out of the player inventory
