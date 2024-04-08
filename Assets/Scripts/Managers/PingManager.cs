@@ -10,6 +10,8 @@ public class PingManager : MonoBehaviour
     public GameObject warnPing;
     public GameObject enemyPing;
     public float managerBuffer = .2f;
+    public float vw;
+    public float vh;
 
     Transform managerCam;
     Transform playerCam;
@@ -18,6 +20,8 @@ public class PingManager : MonoBehaviour
     GameObject managerPing;
     HasPing playerHasPing;
     HasPing managerHasPing;
+
+    private Camera managerCamera;
 
     void Awake()
     {
@@ -33,6 +37,7 @@ public class PingManager : MonoBehaviour
         managerHasPing = managerPing.GetComponentInChildren<HasPing>();
         pings.Add(playerPing.transform.Find("spotted"));
         pings.Add(managerPing.transform.Find("spotted"));
+        managerCamera = GameObject.FindGameObjectWithTag("ManagerCam").GetComponent<Camera>();
     }
 
     void Update()
@@ -42,9 +47,12 @@ public class PingManager : MonoBehaviour
             Transform playerView = ping.Find("playerView");
             playerView.LookAt(playerCam.position);
             Transform managerView = ping.Find("managerView");
-            float vw = 5-managerBuffer, vh = 5-managerBuffer;
+            //vw = 5 - managerBuffer;
+            //vh = 5-managerBuffer;
+            vw = managerCamera.orthographicSize - managerBuffer;
+            vh = managerCamera.orthographicSize - managerBuffer;
             Vector3 offset = ping.position - managerCam.position;
-            offset.y = 0;
+            
             Vector3 clamped = new(Mathf.Clamp(offset.x, -vw, vw), offset.y, Mathf.Clamp(offset.z, -vh, vh));
             if (clamped == offset)
             {

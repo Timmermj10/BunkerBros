@@ -16,6 +16,9 @@ public class PlayerInteract : MonoBehaviour
     // Whether the button is pressed down
     private bool buttonPressed = false;
 
+    // Reference to shop manager script
+    private ShopManagerScript shopManagerScript;
+
     // Items that are in range to be picked up
     [SerializeField]
     private List<GameObject> itemsInRange = new List<GameObject>();
@@ -37,6 +40,7 @@ public class PlayerInteract : MonoBehaviour
     {
         playerUI = GameObject.Find("player").GetComponent<PlayerUI>();
         playerCam = GameObject.Find("PlayerCamera").GetComponent<Camera>();
+        shopManagerScript = GameObject.Find("GameManager").GetComponent<ShopManagerScript>();
     }
 
     private void Update()
@@ -144,6 +148,10 @@ public class PlayerInteract : MonoBehaviour
                         else if (item.name is "AmmoCrate" || item.name is "AmmoCrate(Clone)")
                         {
                             EventBus.Publish<PickUpEvent>(new PickUpEvent(ActivePlayerInventory.activePlayerItems.AmmoKit));
+                        }
+                        else if (item.name is "GunCrate" || item.name is "GunCrate(Clone)")
+                        {
+                            EventBus.Publish<PurchaseEvent>(new PurchaseEvent(shopManagerScript.shopItems[3]));
                         }
 
                         // Destroy the item

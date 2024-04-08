@@ -297,6 +297,14 @@ public class ManagerPlayerInputsNew : MonoBehaviour
                     //Debug.Log("Publishing itemUseEvent for turret");
                     EventBus.Publish<ItemUseEvent>(new ItemUseEvent(2, itemUsedLocation, true)); // Changed to 2 for a turret
                 }
+                else if (itemID == 3)
+                {
+                    //get the location of the item
+                    Vector3 itemUsedLocation = new Vector3(worldPositionRounded.x, worldPositionRounded.y + 0.5f, worldPositionRounded.z);
+
+                    //Debug.Log("Publishing itemUseEvent for turret");
+                    EventBus.Publish<ItemUseEvent>(new ItemUseEvent(3, itemUsedLocation, true)); // Changed to 3 for a gun
+                }
                 else if (itemID == 4)
                 {
                     //get the location of the item
@@ -353,7 +361,7 @@ public class ManagerPlayerInputsNew : MonoBehaviour
                     {
                         // If they purchased the gun
                         // Send out the purchase event for jeremy's implementation
-                        EventBus.Publish<PurchaseEvent>(new PurchaseEvent(shopManagerScript.shopItems[3]));
+                        // EventBus.Publish<PurchaseEvent>(new PurchaseEvent(shopManagerScript.shopItems[3]));
 
                         Destroy(selectedObj);
                     }

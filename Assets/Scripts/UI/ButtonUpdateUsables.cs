@@ -14,6 +14,7 @@ public class ButtonUpdateUsables : MonoBehaviour
     ButtonInfo buttonInfo;
 
     // Get reference to the list of silos
+    [SerializeField]
     List<MissileSiloStatus> siloStatus;
 
     // Start is called before the first frame update
@@ -67,6 +68,7 @@ public class ButtonUpdateUsables : MonoBehaviour
     // Update the button for Nukes if a nuke was launched
     public void _NukeLaunched(SiloUnloadedEvent e)
     {
+        Debug.Log("here");
         // If we are working with the nuke button
         if (buttonInfo.itemID == 4)
         {

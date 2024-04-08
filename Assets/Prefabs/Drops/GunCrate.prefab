@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 8030776103703199438}
   - component: {fileID: -8307366648449832993}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: GunCrate
-  m_TagString: Untagged
+  m_TagString: Pickup
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -53,8 +53,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 0, z: 1}
-  m_Center: {x: 0, y: 0, z: 0.07}
+  m_Size: {x: 1.5, y: 0, z: 1.5}
+  m_Center: {x: 0, y: -0.1, z: 0.07}
 --- !u!1 &4228814423353030281
 GameObject:
   m_ObjectHideFlags: 0
@@ -66,7 +66,7 @@ GameObject:
   - component: {fileID: 7248989338037147668}
   - component: {fileID: 3316228540938977854}
   - component: {fileID: 1744190423958613017}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Object_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -149,7 +149,7 @@ GameObject:
   - component: {fileID: 8078897780881545401}
   - component: {fileID: 7757233529542468648}
   - component: {fileID: 2930480256803199736}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Object_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
