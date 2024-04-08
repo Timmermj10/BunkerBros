@@ -43,6 +43,7 @@ public class TutorialManager : MonoBehaviour
     public GameObject Nuke;
     public GameObject Missile;
     public GameObject NukeParts;
+    public GameObject EvacuationButton;
 
     [SerializeField]
     private InputActionAsset actionAsset;
@@ -83,6 +84,7 @@ public class TutorialManager : MonoBehaviour
         Nuke.SetActive(false);
         Missile.SetActive(false);
         NukeParts.SetActive(false);
+        EvacuationButton.SetActive(false);
 
         //SPAWN ANCHORED ENEMIES FOR RADIO TOWER
 
@@ -217,6 +219,22 @@ public class TutorialManager : MonoBehaviour
         AmmoCrate.SetActive(true);
 
         EventBus.Publish(new TutorialEndedEvent());
+
+        //turn on the evac button
+        EvacuationButton.SetActive(true);
+
+        //Make all buttons interactable again
+        playerRespawn.GetComponent<Button>().interactable = true;
+        RepairKit.GetComponent<Button>().interactable = true;
+        AmmoCrate.GetComponent<Button>().interactable = true;
+        Gun.GetComponent<Button>().interactable = true;
+        Wall.GetComponent<Button>().interactable = true;
+        Turret.GetComponent<Button>().interactable = true;
+        HealthPack.GetComponent<Button>().interactable = true;
+        Nuke.GetComponent<Button>().interactable = true;
+        Missile.GetComponent<Button>().interactable = true;
+        NukeParts.GetComponent<Button>().interactable = true;
+        EvacuationButton.GetComponent<Button>().interactable = true;
 
         yield return null;
     }
