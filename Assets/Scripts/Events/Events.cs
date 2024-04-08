@@ -144,6 +144,12 @@ public class SiloLoadedEvent
 // Event for when the silo is unloaded
 public class SiloUnloadedEvent
 {
+    public MissileSiloStatus status;
+
+    public SiloUnloadedEvent(MissileSiloStatus e)
+    {
+        status = e;
+    }
 }
 
 public class WaveEndedEvent
