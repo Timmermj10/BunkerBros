@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class AmmoSystem : MonoBehaviour
 {
-    public int ammo_count = 10;
-    public int reload_count = 10;
+    public int ammo_count = 60;
+    public int reload_count = 60;
 
     public bool active = false;
     private Subscription<PurchaseEvent> purchase;
