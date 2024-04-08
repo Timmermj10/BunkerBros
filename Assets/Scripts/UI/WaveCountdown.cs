@@ -6,10 +6,13 @@ using UnityEngine.UI;
 public class WaveCountDown : MonoBehaviour
 {
     // Float to hold the time variable
-    float timer = 10f;
+    float timer = 30f;
 
     // Update only on full seconds
-    int lastSecond = 10;
+    int lastSecond = 30;
+
+    //The amount of time between waves
+    private float timeBetweenRounds = 30f;
 
     // Bool to hold if the timer has started
     bool timerStart = false;
@@ -43,6 +46,9 @@ public class WaveCountDown : MonoBehaviour
         // Get reference to the wavemanager
         waveManager = GameObject.Find("GameManager").GetComponent<WaveManager>();
         //Debug.Log($"WaveManager is {waveManager}");
+
+        timer = timeBetweenRounds;
+        lastSecond = (int)timeBetweenRounds;
     }
 
     private void Update()
@@ -90,7 +96,7 @@ public class WaveCountDown : MonoBehaviour
         timerStart = false;
 
         // Reset the clock
-        timer = 10f;
+        timer = timeBetweenRounds;
 
         // Update the text
         roundCountdown.text = "";
