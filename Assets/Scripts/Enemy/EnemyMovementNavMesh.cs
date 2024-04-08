@@ -107,9 +107,6 @@ public class EnemyMovementNavMesh : MonoBehaviour
             // If the enemies are currently walking
             if (animator.GetCurrentAnimatorStateInfo(0).IsName("walk"))
             {
-                // To allow movement
-                agent.gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
-
                 // To start the agent
                 agent.isStopped = false;
 
@@ -134,9 +131,6 @@ public class EnemyMovementNavMesh : MonoBehaviour
 
                 // Clear path
                 agent.ResetPath();
-
-                // To prevent movement
-                agent.gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
 
                 // Angle them towards the thing they are attacking
                 // Vector3 direction = minOffset - minDistance;
