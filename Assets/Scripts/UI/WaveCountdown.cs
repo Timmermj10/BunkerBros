@@ -6,19 +6,22 @@ using UnityEngine.UI;
 public class WaveCountDown : MonoBehaviour
 {
     // Float to hold the time variable
-    float timer = 30f;
+    float timer = 10f;
 
     // Update only on full seconds
-    int lastSecond = 30;
+    int lastSecond = 10;
 
     // Bool to hold if the timer has started
-    bool timerStart = true;
+    bool timerStart = false;
 
     // UI element for the timer
     Text roundCountdown;
 
     // Wave manager instance
     WaveManager waveManager;
+
+    //Boolean for if we are in the tutorial
+    private bool inTutorial = true;
 
     // Start is called before the first frame update
     void Start()
@@ -29,11 +32,17 @@ public class WaveCountDown : MonoBehaviour
         // Listen for wave started events
         EventBus.Subscribe<WaveStartedEvent>(_endCountdown);
 
+        // Listen for tutorial end events
+        EventBus.Subscribe<TutorialEndedEvent>(_endTutorial);
+
         // Grab the round countdown
         roundCountdown = GameObject.Find("WaveCountdown").GetComponent<Text>();
+        //Debug.Log($"roundCountdown is {roundCountdown}");
+        roundCountdown.text = "";
 
         // Get reference to the wavemanager
-        waveManager = GameObject.Find("WaveManager").GetComponent<WaveManager>();
+        waveManager = GameObject.Find("GameManager").GetComponent<WaveManager>();
+        //Debug.Log($"WaveManager is {waveManager}");
     }
 
     private void Update()
@@ -66,8 +75,13 @@ public class WaveCountDown : MonoBehaviour
 
     public void _startCountdown(WaveEndedEvent e)
     {
-        // Start the clock
-        timerStart = true;
+
+        if (!inTutorial)
+        {
+            // Start the clock
+            timerStart = true;
+            //Debug.Log("Starting wave countdown timer");
+        }
     }
 
     public void _endCountdown(WaveStartedEvent e)
@@ -76,9 +90,14 @@ public class WaveCountDown : MonoBehaviour
         timerStart = false;
 
         // Reset the clock
-        timer = 15f;
+        timer = 10f;
 
         // Update the text
         roundCountdown.text = "";
+    }
+
+    private void _endTutorial(TutorialEndedEvent e)
+    {
+        inTutorial = false;
     }
 }

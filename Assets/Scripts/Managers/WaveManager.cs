@@ -27,9 +27,6 @@ public class WaveManager : MonoBehaviour
     [SerializeField]
     private int numHordesToSpawnThisRound = 0;
 
-    [Header("Wave Button")]
-    public GameObject waveButton;
-
     private bool inTutorial = true;
 
     private void Start()
@@ -134,24 +131,20 @@ public class WaveManager : MonoBehaviour
     {
         //Reset the spawn count
         numEnemiesSpawnedSoFar = 0;
+        currentEnemiesAlive = 0;
 
         // Publish the start wave event
         EventBus.Publish(new WaveStartedEvent());
-
-        // Make the button not interactable
-        waveButton.GetComponent<Button>().interactable = false;
     }
 
     public void _WaveEnd(WaveEndedEvent e)
     {
-        // Make the button interactable
-        waveButton.GetComponent<Button>().interactable = true;
-
         // Increment the wave number
+        //Debug.Log($"Incrementing WaveNumber to {waveNumber}");
         waveNumber += 1;
 
         // Increase the number of enemies to be spawned
-        numEnemiesToSpawnThisRound =  Mathf.RoundToInt(2.3f * (-0.006f * Mathf.Pow(waveNumber, 3) + 0.4f * Mathf.Pow(waveNumber, 2) + 0.8f * waveNumber + 8f));
+        numEnemiesToSpawnThisRound =  Mathf.RoundToInt(1.8f * (-0.006f * Mathf.Pow(waveNumber, 3) + 0.4f * Mathf.Pow(waveNumber, 2) + 0.8f * waveNumber + 8f));
         //Debug.Log($"Changed numEnemiesToSpawnThisRound to {numEnemiesToSpawnThisRound}");
 
         // Increase the number of Armored Enemies to be spawned
@@ -167,7 +160,6 @@ public class WaveManager : MonoBehaviour
     private void _TutorialEnd(TutorialEndedEvent e)
     {
         inTutorial = false;
-        EventBus.Publish(new WaveEndedEvent());
     }
 
 }

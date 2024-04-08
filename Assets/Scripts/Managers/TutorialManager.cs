@@ -109,7 +109,7 @@ public class TutorialManager : MonoBehaviour
         }
 
         startPopUp("Player");
-        popUpSystem.popUp("Player", "Use the left and right joysticks to move/look and use RB to attack!");
+        popUpSystem.popUp("Player", "Use the left and right joysticks to move/look and use RT to attack!");
 
         while (enemiesAlive > 0)
         {
@@ -182,7 +182,7 @@ public class TutorialManager : MonoBehaviour
         }
 
         startPopUp("Player");
-        popUpSystem.popUp("Player", "You now have a health pack! Press Circle (ps5) at any time to use it!");
+        popUpSystem.popUp("Player", "You now have a health pack! Press LB at any time to use it!");
 
         while (!healthPackPopUpIsDone)
         {
@@ -210,8 +210,6 @@ public class TutorialManager : MonoBehaviour
         Gun.SetActive(true);
         AmmoCrate.SetActive(true);
 
-        EventBus.Publish(new TutorialEndedEvent());
-
         //turn on the evac button
         EvacuationButton.SetActive(true);
 
@@ -227,6 +225,8 @@ public class TutorialManager : MonoBehaviour
         Missile.GetComponent<Button>().interactable = true;
         NukeParts.GetComponent<Button>().interactable = true;
         EvacuationButton.GetComponent<Button>().interactable = true;
+
+        EventBus.Publish(new TutorialEndedEvent());
 
         yield return null;
     }
@@ -302,6 +302,9 @@ public class TutorialManager : MonoBehaviour
                 Wall.SetActive(true);
                 Turret.SetActive(true);
                 Missile.SetActive(true);
+                break;
+            case 14:
+                EventBus.Publish(new WaveEndedEvent());
                 break;
             default:
                 break;
