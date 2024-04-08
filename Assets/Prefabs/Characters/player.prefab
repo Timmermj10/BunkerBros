@@ -168,7 +168,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   knife: 1
-  canSwap: 1
+  canSwap: 0
 --- !u!1 &1532122942738014198
 GameObject:
   m_ObjectHideFlags: 0

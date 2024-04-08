@@ -11,7 +11,7 @@ public class ProjectileBehavior : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        rb.velocity = projectileSpeed * transform.right;
+        rb.velocity = projectileSpeed * transform.forward;
     }
 
     private void OnTriggerEnter(Collider other)

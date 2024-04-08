@@ -27,8 +27,9 @@ public class GunAttack : MonoBehaviour
         if (ammo.ammo_count > 0)
         {
             Debug.DrawRay(transform.position + look.forward * firingOffset, look.forward, Color.magenta);
+            Debug.Log(look.forward);
 
-            GameObject projectileObject = Instantiate(ProjectilePrefab.gameObject, transform.position + look.forward * firingOffset, Quaternion.Euler(look.forward));
+            GameObject projectileObject = Instantiate(ProjectilePrefab.gameObject, transform.position + look.forward * firingOffset, Quaternion.LookRotation(look.forward));
             //Debug.Log("Gun Attacking");
             EventBus.Publish<ShootEvent>(new ShootEvent());
         }
