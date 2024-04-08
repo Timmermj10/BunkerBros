@@ -49,8 +49,8 @@ public class PingManager : MonoBehaviour
             Transform managerView = ping.Find("managerView");
             //vw = 5 - managerBuffer;
             //vh = 5-managerBuffer;
-            vw = managerCamera.orthographicSize;
-            vh = managerCamera.orthographicSize;
+            vw = managerCamera.orthographicSize - managerBuffer;
+            vh = managerCamera.orthographicSize - managerBuffer;
             Vector3 offset = ping.position - managerCam.position;
             
             Vector3 clamped = new(Mathf.Clamp(offset.x, -vw, vw), offset.y, Mathf.Clamp(offset.z, -vh, vh));
