@@ -4,3 +4,9 @@ Interactable text: https://www.youtube.com/watch?v=gPPGnpV1Y1c&ab_channel=NattyG
 Blood End Scene: <a href="https://www.freepik.com/free-psd/red-paint-splash-isolated-transparent-background_94887756.htm#query=blood%20splatter%20png&position=4&from_view=keyword&track=ais&uuid=78a20de5-2dd9-4596-b11d-721e22b85c38">Image by Vectonauta</a> on Freepik
 Zombies: mixamo.com
 Turrets: https://assetstore.unity.com/packages/3d/environments/sci-fi/sci-fi-turret-02-246911
+Missile Silo: https://sketchfab.com/3d-models/missile-silo-low-poly-8f19a60d4d8a44efa42eea3d781dda19
+Radio Tower: https://sketchfab.com/3d-models/sm-radio-tower-by-google-poly-0b168196d835416d89d89302548273c1
+Briefcase/Gun Drop - https://sketchfab.com/3d-models/briefcase-29964902fe14478bb5738fec1be69636
+Pixel Font: https://assetstore.unity.com/packages/2d/fonts/free-pixel-font-thaleah-140059
+WIFI Icon: https://www.iconfinder.com/icons/925808/wifi_icon
+Blood Splash VFX: https://www.youtube.com/watch?v=lQkLtr63_cM&ab_channel=AqsaNadeem
