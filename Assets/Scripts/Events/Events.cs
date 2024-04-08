@@ -204,3 +204,8 @@ public class DamageEffectEvent
         this.blood = blood;
     }
 }
+
+// Class for turning on the radio towers
+public class RadioTowerActivatedEvent
+{
+}
