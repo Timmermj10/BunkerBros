@@ -214,3 +214,8 @@ public class RadioTowerActivatedEvent
 {
 
 }
+
+public class FirstTutorialWaveEvent
+{
+
+}

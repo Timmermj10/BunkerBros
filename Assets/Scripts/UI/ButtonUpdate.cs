@@ -21,9 +21,14 @@ public class ButtonUpdate : MonoBehaviour
     // Player respawn timer
     public float timer = 5f;
 
+    private bool isInTutorial = true;
+
     // Start is called before the first frame update
     void Start()
     {
+        //Subscribe to the tutorial ended event
+        EventBus.Subscribe<TutorialEndedEvent>(_tutorialEnded);
+
         // Get a reference to the button itself
         button = GetComponent<Button>();
 
@@ -46,50 +51,53 @@ public class ButtonUpdate : MonoBehaviour
     // Update button colors and interactable status
     void Update()
     {
-        // Check if we have enough coins to purchase the item or if the player is dead for player respawn
-        if (buttonInfo.itemID != 9)
+        if (!isInTutorial)
         {
-            if (shopManager.gold < shopManager.shopItems[buttonInfo.itemID].itemCost)
+            // Check if we have enough coins to purchase the item or if the player is dead for player respawn
+            if (buttonInfo.itemID != 9)
             {
-                button.interactable = false;
+                if (shopManager.gold < shopManager.shopItems[buttonInfo.itemID].itemCost)
+                {
+                    button.interactable = false;
+                }
+                else
+                {
+                    button.interactable = true;
+                }
             }
+            // Dealing with player respawn
             else
             {
-                button.interactable = true;
-            }
-        }
-        // Dealing with player respawn
-        else
-        {
-            // If the player is alive, disable the button
-            if (GameObject.Find("player") != null && button.interactable == true)
-            {
-                // Disable the button
-                button.interactable = false;
-            }
-            // If the timer has run out allow the manager to respawn the player
-            else if (timer <= 0)
-            {
-                // Enable the button
-                button.interactable = true;
-            }
-            // If the timer is not zero and the player is dead
-            else if (GameObject.Find("player") == null && !respawning)
-            {
-                // Decrease the timer
-                timer -= Time.deltaTime;
+                // If the player is alive, disable the button
+                if (GameObject.Find("player") != null && button.interactable == true)
+                {
+                    // Disable the button
+                    button.interactable = false;
+                }
+                // If the timer has run out allow the manager to respawn the player
+                else if (timer <= 0)
+                {
+                    // Enable the button
+                    button.interactable = true;
+                }
+                // If the timer is not zero and the player is dead
+                else if (GameObject.Find("player") == null && !respawning)
+                {
+                    // Decrease the timer
+                    timer -= Time.deltaTime;
+                }
             }
         }
 
-        // If we have a currently selected Game Object, reset all the image colors to white
-        if (EventSystem.current.currentSelectedGameObject)
-        {
-            GetComponent<Image>().color = Color.white;
-        }
-        if (shopManager.gold < shopManager.shopItems[buttonInfo.itemID].itemCost)
-        {
-            GetComponent<Image>().color = Color.white;
-        }
+            // If we have a currently selected Game Object, reset all the image colors to white
+            if (EventSystem.current.currentSelectedGameObject)
+            {
+                GetComponent<Image>().color = Color.white;
+            }
+            if (shopManager.gold < shopManager.shopItems[buttonInfo.itemID].itemCost)
+            {
+                GetComponent<Image>().color = Color.white;
+            }
     }
 
     // Run when a button is clicked
@@ -109,6 +117,7 @@ public class ButtonUpdate : MonoBehaviour
         else if (button == e.button)
         {
             EventSystem.current.SetSelectedGameObject(e.button.gameObject);
+            Debug.Log($"Setting Selected Gameobject to {EventSystem.current.currentSelectedGameObject}");
         }
     }
 
@@ -139,5 +148,10 @@ public class ButtonUpdate : MonoBehaviour
                 button.gameObject.GetComponent<Image>().color = Color.white;
             }
         }
+    }
+
+    private void _tutorialEnded(TutorialEndedEvent e)
+    {
+        isInTutorial = false;
     }
 }

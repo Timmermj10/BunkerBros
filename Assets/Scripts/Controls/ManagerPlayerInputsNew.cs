@@ -19,6 +19,8 @@ public class ManagerPlayerInputsNew : MonoBehaviour
     public float zoomScale = 2;
     private float originalSize;
 
+    private bool canPlaceMultipleItemsInARow = false;
+
     PlayerInput playerInput;
 
     InputAction moveAction;
@@ -67,6 +69,9 @@ public class ManagerPlayerInputsNew : MonoBehaviour
         {
             inventory = GameObject.Find("Inventory").GetComponent<InventoryUI>();
         }
+
+        //Subscribe to the tutorial ended event
+        EventBus.Subscribe<FirstTutorialWaveEvent>(_tutorialDefense);
 
         managerCamera = GameObject.Find("ManagerCamera");
         
@@ -244,13 +249,16 @@ public class ManagerPlayerInputsNew : MonoBehaviour
 
             // EventSystem.current holds a reference to the current event system
             GameObject selectedObj = EventSystem.current.currentSelectedGameObject;
+            
+
 
             // If there isn't a selected object, 
-            if (selectedObj == null)
+            if (selectedObj == null && canPlaceMultipleItemsInARow)
             {
                 // Set the selected object to most recently used
                 selectedObj = mostRecentItem;
             }
+            Debug.Log($"Selected Gameobject is {selectedObj} and canPlaceMultipleItemsInARow = {canPlaceMultipleItemsInARow}");
 
             if (selectedObj != null && withinView(worldPositionRounded))
             {
@@ -400,6 +408,11 @@ public class ManagerPlayerInputsNew : MonoBehaviour
         }
 
         return false;
+    }
+
+    private void _tutorialDefense(FirstTutorialWaveEvent e)
+    {
+        canPlaceMultipleItemsInARow = true;
     }
 }
 
