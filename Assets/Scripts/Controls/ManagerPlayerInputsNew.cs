@@ -36,7 +36,7 @@ public class ManagerPlayerInputsNew : MonoBehaviour
 
     // Movement Speed
     [SerializeField]
-    private float movementSpeed = 10.0f;
+    public float movementSpeed = 10.0f;
 
     // Most recently used item
     static public GameObject mostRecentItem;
@@ -81,6 +81,7 @@ public class ManagerPlayerInputsNew : MonoBehaviour
 
     private void FixedUpdate()
     {
+        movementSpeed = 10 * zoomSpeed;
         // Set the size
         managerCamera.GetComponent<Camera>().orthographicSize = originalSize + localScale;
         pingCamera.GetComponent<Camera>().orthographicSize = pingOriginalSize + localScale;
