@@ -283,7 +283,7 @@ public class TutorialManager : MonoBehaviour
                 NukeParts.SetActive(true);
                 break;
             case 9:
-                StartCoroutine(pingManager.Warn(new Vector3(-11, 2, -2), 10));
+                // StartCoroutine(pingManager.Warn(new Vector3(-11, 2, -2), 10));
                 Nuke.SetActive(true);
                 break;
             case 10:
@@ -293,7 +293,7 @@ public class TutorialManager : MonoBehaviour
                 healthPackPopUpIsDone = true;
                 break;
             case 13:
-                StartCoroutine(pingManager.Warn(new Vector3(-5, 1, -22), 10));
+                // StartCoroutine(pingManager.Warn(new Vector3(-5, 1, -22), 10));
                 Wall.SetActive(true);
                 Turret.SetActive(true);
                 Missile.SetActive(true);
