@@ -29,7 +29,7 @@ public class TIleHoverUI : MonoBehaviour
         {
             // Now worldPosition contains the 3D point in world space where the mouse is pointing
             Vector3 worldPosition = hit.point;
-            Vector3 worldPositionRounded = new Vector3(Mathf.RoundToInt(worldPosition.x), worldPosition.y, Mathf.RoundToInt(worldPosition.z));
+            Vector3 worldPositionRounded = new Vector3(Mathf.RoundToInt(worldPosition.x), worldPosition.y + 1, Mathf.RoundToInt(worldPosition.z));
 
             // EventSystem.current holds a reference to the current event system
             GameObject selectedObj = EventSystem.current.currentSelectedGameObject;

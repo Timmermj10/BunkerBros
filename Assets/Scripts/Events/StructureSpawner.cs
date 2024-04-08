@@ -11,6 +11,7 @@ public class StructureSpawner : MonoBehaviour
     public GameObject healthPrefab;
     public GameObject repairPrefab;
     public GameObject ammoPrefab;
+    public GameObject gunPrefab;
 
     void Start()
     {
@@ -34,7 +35,12 @@ public class StructureSpawner : MonoBehaviour
         {
             //spawn turret
             Instantiate(turretPrefab, e.itemLocation + new Vector3(0, -0.4f, 0), Quaternion.identity);
-        } else if (e.itemID == 6)
+        }
+        else if (e.itemID == 3)
+        {
+            //spawn turret
+            Instantiate(gunPrefab, e.itemLocation + new Vector3(0, -0.4f, 0), Quaternion.identity);
+        }else if (e.itemID == 6)
         {
             //Spawn healthkit
             Instantiate(healthPrefab, e.itemLocation + new Vector3(0, 0, 0), Quaternion.identity);
