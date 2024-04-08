@@ -506,7 +506,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7f1449df7ff61b489eaf3a3fc52401f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeToInteract: 3
+  timeToInteract: 2
   itemsInRange: []
   pickedUpItems: []
   distance: 1.5
