@@ -26,7 +26,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 085e5eab42cb443edb508cb6c46a01e8,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -20
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 085e5eab42cb443edb508cb6c46a01e8,
         type: 3}
@@ -36,7 +36,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 085e5eab42cb443edb508cb6c46a01e8,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -10
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 085e5eab42cb443edb508cb6c46a01e8,
         type: 3}
@@ -136,12 +136,12 @@ PrefabInstance:
     - target: {fileID: 6200400032267151648, guid: 085e5eab42cb443edb508cb6c46a01e8,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.00005936476
+      value: -0.000059366343
       objectReference: {fileID: 0}
     - target: {fileID: 6200400032267151648, guid: 085e5eab42cb443edb508cb6c46a01e8,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.0018842499
+      value: -0.0018842503
       objectReference: {fileID: 0}
     - target: {fileID: 6200400032267151648, guid: 085e5eab42cb443edb508cb6c46a01e8,
         type: 3}
@@ -151,22 +151,22 @@ PrefabInstance:
     - target: {fileID: 6200400032267151648, guid: 085e5eab42cb443edb508cb6c46a01e8,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.044106107
+      value: 0.04410633
       objectReference: {fileID: 0}
     - target: {fileID: 6200400032267151648, guid: 085e5eab42cb443edb508cb6c46a01e8,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.03892795
+      value: -0.03892818
       objectReference: {fileID: 0}
     - target: {fileID: 6200400032267151648, guid: 085e5eab42cb443edb508cb6c46a01e8,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.7202869
+      value: 0.7202871
       objectReference: {fileID: 0}
     - target: {fileID: 6200400032267151648, guid: 085e5eab42cb443edb508cb6c46a01e8,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.6911773
+      value: -0.6911771
       objectReference: {fileID: 0}
     - target: {fileID: 6200400032267151648, guid: 085e5eab42cb443edb508cb6c46a01e8,
         type: 3}
@@ -261,11 +261,15 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 085e5eab42cb443edb508cb6c46a01e8,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 2250544718756218989}
+      addedObject: {fileID: 8598456629051187005}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 085e5eab42cb443edb508cb6c46a01e8,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 8598456629051187005}
+      addedObject: {fileID: 8828181367337287099}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 085e5eab42cb443edb508cb6c46a01e8,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3213741880590943268}
   m_SourcePrefab: {fileID: 100100000, guid: 085e5eab42cb443edb508cb6c46a01e8, type: 3}
 --- !u!1 &6916646215944604867 stripped
 GameObject:
@@ -342,7 +346,22 @@ MonoBehaviour:
   m_IgnoreFromBuild: 0
   m_ApplyToChildren: 1
   m_AffectedAgents: ffffffff
---- !u!95 &2250544718756218989
+--- !u!114 &8598456629051187005
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6916646215944604867}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b2d717ee74381a4f96a2d935603a2f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  left: {fileID: 0}
+  right: {fileID: 0}
+  duration: 1
+--- !u!95 &8828181367337287099
 Animator:
   serializedVersion: 5
   m_ObjectHideFlags: 0
@@ -363,7 +382,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &8598456629051187005
+--- !u!114 &3213741880590943268
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
