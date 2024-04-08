@@ -21,9 +21,14 @@ public class ButtonUpdate : MonoBehaviour
     // Player respawn timer
     public float timer = 5f;
 
+    private bool isInTutorial = true;
+
     // Start is called before the first frame update
     void Start()
     {
+        //Subscribe to the tutorial ended event
+        EventBus.Subscribe<TutorialEndedEvent>(_tutorialEnded);
+
         // Get a reference to the button itself
         button = GetComponent<Button>();
 
@@ -47,19 +52,28 @@ public class ButtonUpdate : MonoBehaviour
     void Update()
     {
         // Check if we have enough coins to purchase the item or if the player is dead for player respawn
-        if (buttonInfo.itemID != 9)
+        if (buttonInfo.itemID != 9 && buttonInfo.itemID != 10)
         {
-            if (shopManager.gold < shopManager.shopItems[buttonInfo.itemID].itemCost)
+            // Check if we have enough coins to purchase the item or if the player is dead for player respawn
+            if (buttonInfo.itemID != 9)
             {
-                button.interactable = false;
+                if (shopManager.gold < shopManager.shopItems[buttonInfo.itemID].itemCost)
+                {
+                    button.interactable = false;
+                }
+                else if (!isInTutorial)
+                {
+                    button.interactable = true;
+                }
             }
+            // Dealing with player respawn
             else
             {
                 button.interactable = true;
             }
         }
         // Dealing with player respawn
-        else
+        else if (buttonInfo.itemID != 10)
         {
             // If the player is alive, disable the button
             if (GameObject.Find("player") != null && button.interactable == true)
@@ -109,6 +123,7 @@ public class ButtonUpdate : MonoBehaviour
         else if (button == e.button)
         {
             EventSystem.current.SetSelectedGameObject(e.button.gameObject);
+            Debug.Log($"Setting Selected Gameobject to {EventSystem.current.currentSelectedGameObject}");
         }
     }
 
@@ -139,5 +154,10 @@ public class ButtonUpdate : MonoBehaviour
                 button.gameObject.GetComponent<Image>().color = Color.white;
             }
         }
+    }
+
+    private void _tutorialEnded(TutorialEndedEvent e)
+    {
+        isInTutorial = false;
     }
 }

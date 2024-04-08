@@ -31,7 +31,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: e0eaa85e7a5be47b2b7663bbef683933,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e0eaa85e7a5be47b2b7663bbef683933,
         type: 3}
@@ -193,11 +193,15 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: e0eaa85e7a5be47b2b7663bbef683933,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 2632234388881305186}
+      addedObject: {fileID: 8937767718818008308}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: e0eaa85e7a5be47b2b7663bbef683933,
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 4105830099084366108}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: e0eaa85e7a5be47b2b7663bbef683933,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3481952776156138018}
   m_SourcePrefab: {fileID: 100100000, guid: e0eaa85e7a5be47b2b7663bbef683933, type: 3}
 --- !u!1 &2427874756075972652 stripped
 GameObject:
@@ -217,7 +221,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ada0cb034d14d4065882f6fdbed5bdd0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 50
+  maxHealth: 1000
   currentHealth: 0
   armorValue: 0
   healthBar: {fileID: 0}
@@ -233,8 +237,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 203b604f71d2c4560995329a9f798cbe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxShield: 20
-  currShield: 0
+  maxShield: 10
+  currShield: 10
   recoverRate: 1
   protect: 1
   recovering: 0
@@ -251,7 +255,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0490ef3e1a21446b383d89f83b034d74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  repair_value: 5
+  repair_value: 10
 --- !u!114 &7623199274428333772
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -265,7 +269,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   promptMessage: Protect the objective with your life!
---- !u!136 &2632234388881305186
+--- !u!136 &8937767718818008308
 CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -285,9 +289,9 @@ CapsuleCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 1
-  m_Height: 1.75
+  m_Height: 1.5
   m_Direction: 1
-  m_Center: {x: 0, y: 0.55, z: 0}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!136 &4105830099084366108
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -308,6 +312,29 @@ CapsuleCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 1
-  m_Height: 1.75
+  m_Height: 1.5
   m_Direction: 1
-  m_Center: {x: 0, y: 0.55, z: 0}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!136 &3481952776156138018
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2427874756075972652}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 256
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.5, z: 0}

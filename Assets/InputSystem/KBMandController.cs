@@ -290,6 +290,15 @@ public partial class @KBMandController: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Zoom"",
+                    ""type"": ""Value"",
+                    ""id"": ""cd493a75-06fd-406c-884f-7ed611163781"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": ""NormalizeVector2"",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -380,6 +389,17 @@ public partial class @KBMandController: IInputActionCollection2, IDisposable
                     ""action"": ""Ping"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e6067caa-6518-42eb-b523-daa6f536c026"",
+                    ""path"": ""<Mouse>/scroll"",
+                    ""interactions"": """",
+                    ""processors"": ""NormalizeVector2"",
+                    ""groups"": ""KBMPlayer"",
+                    ""action"": ""Zoom"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -416,6 +436,7 @@ public partial class @KBMandController: IInputActionCollection2, IDisposable
         m_ManagerPlayer_Interact = m_ManagerPlayer.FindAction("Interact", throwIfNotFound: true);
         m_ManagerPlayer_Cycle = m_ManagerPlayer.FindAction("Cycle", throwIfNotFound: true);
         m_ManagerPlayer_Ping = m_ManagerPlayer.FindAction("Ping", throwIfNotFound: true);
+        m_ManagerPlayer_Zoom = m_ManagerPlayer.FindAction("Zoom", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -607,6 +628,7 @@ public partial class @KBMandController: IInputActionCollection2, IDisposable
     private readonly InputAction m_ManagerPlayer_Interact;
     private readonly InputAction m_ManagerPlayer_Cycle;
     private readonly InputAction m_ManagerPlayer_Ping;
+    private readonly InputAction m_ManagerPlayer_Zoom;
     public struct ManagerPlayerActions
     {
         private @KBMandController m_Wrapper;
@@ -615,6 +637,7 @@ public partial class @KBMandController: IInputActionCollection2, IDisposable
         public InputAction @Interact => m_Wrapper.m_ManagerPlayer_Interact;
         public InputAction @Cycle => m_Wrapper.m_ManagerPlayer_Cycle;
         public InputAction @Ping => m_Wrapper.m_ManagerPlayer_Ping;
+        public InputAction @Zoom => m_Wrapper.m_ManagerPlayer_Zoom;
         public InputActionMap Get() { return m_Wrapper.m_ManagerPlayer; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -636,6 +659,9 @@ public partial class @KBMandController: IInputActionCollection2, IDisposable
             @Ping.started += instance.OnPing;
             @Ping.performed += instance.OnPing;
             @Ping.canceled += instance.OnPing;
+            @Zoom.started += instance.OnZoom;
+            @Zoom.performed += instance.OnZoom;
+            @Zoom.canceled += instance.OnZoom;
         }
 
         private void UnregisterCallbacks(IManagerPlayerActions instance)
@@ -652,6 +678,9 @@ public partial class @KBMandController: IInputActionCollection2, IDisposable
             @Ping.started -= instance.OnPing;
             @Ping.performed -= instance.OnPing;
             @Ping.canceled -= instance.OnPing;
+            @Zoom.started -= instance.OnZoom;
+            @Zoom.performed -= instance.OnZoom;
+            @Zoom.canceled -= instance.OnZoom;
         }
 
         public void RemoveCallbacks(IManagerPlayerActions instance)
@@ -707,5 +736,6 @@ public partial class @KBMandController: IInputActionCollection2, IDisposable
         void OnInteract(InputAction.CallbackContext context);
         void OnCycle(InputAction.CallbackContext context);
         void OnPing(InputAction.CallbackContext context);
+        void OnZoom(InputAction.CallbackContext context);
     }
 }

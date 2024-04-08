@@ -9,13 +9,25 @@ using UnityEngineInternal;
 
 public class ManagerPlayerInputsNew : MonoBehaviour
 {
+    //private KBMandController kb;
+    private InputAction zoom;
+
     private Vector2 movementInputValue;
+    private Vector2 zoomScroll;
+    public float zoomSpeed = 1;
+    private float localScale = 0;
+    public float zoomScale = 2;
+    private float originalSize;
+
+    private bool canPlaceMultipleItemsInARow = false;
 
     PlayerInput playerInput;
 
     InputAction moveAction;
 
     public static GameObject managerCamera;
+    public GameObject pingCamera;
+    private float pingOriginalSize;
 
     private InventoryUI inventory;
 
@@ -26,27 +38,45 @@ public class ManagerPlayerInputsNew : MonoBehaviour
 
     // Movement Speed
     [SerializeField]
-    private float movementSpeed = 10.0f;
+    public float movementSpeed = 10.0f;
 
     // Most recently used item
     static public GameObject mostRecentItem;
 
     // Public int to hold how many blocks away from center (will be used when we implement zoom)
     public static int blockCount = 5;
+    public int origBlockCount;
 
     private PingManager pingManager;
+    public float minX, maxX, minY, MaxY;
 
+    //private void Awake()
+    //{
+    //    kb = new KBMandController();
+    //    zoom = kb.ManagerPlayer.Zoom;
+    //    zoom.performed += ScrollZoom;
+    //}
 
     private void Start()
     {
         playerInput = GetComponent<PlayerInput>();
+
+        origBlockCount = blockCount;
+        //zoomSpeed = 1;
+        zoom = playerInput.actions.FindAction("Zoom");
         moveAction = playerInput.actions.FindAction("Move");
         if (GameObject.Find("Inventory") != null)
         {
             inventory = GameObject.Find("Inventory").GetComponent<InventoryUI>();
         }
 
+        //Subscribe to the tutorial ended event
+        EventBus.Subscribe<FirstTutorialWaveEvent>(_tutorialDefense);
+
         managerCamera = GameObject.Find("ManagerCamera");
+        
+        originalSize = managerCamera.GetComponent<Camera>().orthographicSize;
+        pingOriginalSize = pingCamera.GetComponent<Camera>().orthographicSize;
 
         // Get reference to the ShopManagerScript
         shopManagerScript = GameObject.Find("GameManager").GetComponent<ShopManagerScript>();
@@ -56,8 +86,55 @@ public class ManagerPlayerInputsNew : MonoBehaviour
 
     private void FixedUpdate()
     {
+        movementSpeed = 10 * zoomSpeed;
+        // Set the size
+        managerCamera.GetComponent<Camera>().orthographicSize = originalSize + localScale;
+        pingCamera.GetComponent<Camera>().orthographicSize = pingOriginalSize + localScale;
+        blockCount = origBlockCount + Mathf.RoundToInt(localScale);
+        //Debug.Log("BlockCount is " + blockCount.ToString());
         // Set the velocity
-        managerCamera.GetComponent<Rigidbody>().velocity = new Vector3(movementInputValue[0], 0, movementInputValue[1]) * movementSpeed;
+        //if (localScale == originalSize)
+        //{
+        //    zoomSpeed = 1;
+        //}
+        Vector3 velo = new Vector3(movementInputValue[0], 0, movementInputValue[1]) * movementSpeed * Mathf.Max(.5f, (2.5f - zoomSpeed));
+        Vector3 move = velo * Time.deltaTime;
+        Vector3 pos = transform.position += move;
+        pos.x = Mathf.Clamp(pos.x, minX, maxX);
+        pos.z = Mathf.Clamp(pos.z, minY, MaxY);
+        pos.y = 20;
+        transform.position = pos;
+
+        //Debug.Log("Zoom Max is " + Mathf.Max(.1f, (2f - zoomSpeed)));
+
+    }
+
+    private void OnZoom(InputValue value)
+    {
+        zoomScroll = value.Get<Vector2>();
+        
+        //Debug.Log("Zoom is" + zoomScroll.ToString());
+        //Up scroll is *, -1
+        //Down scroll is *, +1
+        if (zoomScroll.y < 0) //If scrolling up, zoom in
+        {
+            localScale = localScale - 0.1f;
+            zoomSpeed -= .1f;
+            if (localScale <= zoomScale * -1)
+            {
+                zoomSpeed = .5f;
+                localScale = zoomScale * -1;
+            }
+        } else if (zoomScroll.y > 0) //Scrolling down, zoom out
+        {
+            localScale += .1f;
+            zoomSpeed += .1f;
+            if (localScale >= zoomScale)
+            {
+                zoomSpeed = 2;
+                localScale = zoomScale;
+            }
+        }
     }
 
 
@@ -173,13 +250,16 @@ public class ManagerPlayerInputsNew : MonoBehaviour
 
             // EventSystem.current holds a reference to the current event system
             GameObject selectedObj = EventSystem.current.currentSelectedGameObject;
+            
+
 
             // If there isn't a selected object, 
-            if (selectedObj == null)
+            if (selectedObj == null && canPlaceMultipleItemsInARow)
             {
                 // Set the selected object to most recently used
                 selectedObj = mostRecentItem;
             }
+            //Debug.Log($"Selected Gameobject is {selectedObj} and canPlaceMultipleItemsInARow = {canPlaceMultipleItemsInARow}");
 
             if (selectedObj != null && withinView(worldPositionRounded))
             {
@@ -258,6 +338,7 @@ public class ManagerPlayerInputsNew : MonoBehaviour
                     EventBus.Publish<ItemUseEvent>(new ItemUseEvent(9, itemUsedLocation, true)); // Changed to 9 for a playerRespawn
                 }
 
+
                 if (selectedObj.transform.parent == GameObject.Find("Purchasables").transform)
                 {
                     // Cost of item
@@ -329,6 +410,11 @@ public class ManagerPlayerInputsNew : MonoBehaviour
         }
 
         return false;
+    }
+
+    private void _tutorialDefense(FirstTutorialWaveEvent e)
+    {
+        canPlaceMultipleItemsInARow = true;
     }
 }
 

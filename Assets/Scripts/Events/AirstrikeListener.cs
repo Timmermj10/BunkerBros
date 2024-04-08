@@ -118,14 +118,15 @@ public class AirstrikeListener : MonoBehaviour
 
     void siloUnloadedStrike()
     {
+        MissileSiloStatus silo = siloStatus[0];
         // Unload silo for the first silo in list
         siloStatus[0].unloadSilo();
 
+        // Publish that the silo was unloaded
+        EventBus.Publish<SiloUnloadedEvent>(new SiloUnloadedEvent(silo));
+
         // Pop the silo from the list
         siloStatus.RemoveAt(0);
-
-        // Publish that the silo was unloaded
-        EventBus.Publish<SiloUnloadedEvent>(new SiloUnloadedEvent());
     }
 
     // Update is called once per frame

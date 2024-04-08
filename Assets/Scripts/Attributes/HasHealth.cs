@@ -15,7 +15,10 @@ public class HasHealth : MonoBehaviour
     private void Start()
     {
         // Set the current health to the max possible
-        currentHealth = maxHealth;
+        if (gameObject.name != "SignalStrength")
+        {
+            currentHealth = maxHealth;
+        }
 
         // Set the health bar to max health
 
@@ -24,10 +27,13 @@ public class HasHealth : MonoBehaviour
             healthBar = GameObject.Find("PlayerHealthBar").GetComponent<HealthBarScript>();
         }
         if(healthBar != null)
+        {
             healthBar.SetMaxHealth(maxHealth);
+            healthBar.SetHealth(currentHealth);
+        }
 
         // Set the blood to be transparent
-        
+
     }
 
     //private void Update()
@@ -75,6 +81,20 @@ public class HasHealth : MonoBehaviour
 
             if (healthChange < 0) 
             {
+                // Publish a damage effect event
+                if (gameObject.tag == "Enemy")
+                {
+                    if (healthChange + armorValue < 0)
+                    {
+                        EventBus.Publish<DamageEffectEvent>(new DamageEffectEvent(gameObject, true));
+                    }
+                    // Publish a damage effect event
+                    else
+                    {
+                        EventBus.Publish<DamageEffectEvent>(new DamageEffectEvent(gameObject, false));
+                    }
+                }
+
                 currentHealth += Mathf.Min(healthChange + armorValue, 0);
             }
             else
