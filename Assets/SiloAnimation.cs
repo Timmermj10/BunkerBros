@@ -4,10 +4,6 @@ using UnityEngine;
 
 public class SiloAnimation : MonoBehaviour
 {
-    // Hold the hatches
-    public GameObject left;
-    public GameObject right;
-
     // Duration of the rotation
     public float duration = 1.0f;
 
