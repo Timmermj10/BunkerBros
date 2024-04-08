@@ -37,10 +37,28 @@ public partial class @KBMandController: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""Aim"",
+                    ""name"": ""Run"",
+                    ""type"": ""Button"",
+                    ""id"": ""c8e347f1-b8a8-4387-90b8-90a0dc10dfb9"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Look"",
                     ""type"": ""Value"",
                     ""id"": ""65bfea7d-320f-41a2-9a69-b17bef38263a"",
                     ""expectedControlType"": ""Stick"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Aim"",
+                    ""type"": ""Value"",
+                    ""id"": ""a6d3b826-fe87-4bd3-b38b-e9ff7991f778"",
+                    ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
@@ -55,7 +73,7 @@ public partial class @KBMandController: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""HoldToGet"",
+                    ""name"": ""Interact"",
                     ""type"": ""Value"",
                     ""id"": ""1208abd1-2b87-4e20-9e08-0fea7551bd64"",
                     ""expectedControlType"": ""Button"",
@@ -64,7 +82,7 @@ public partial class @KBMandController: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""UseHeal"",
+                    ""name"": ""Heal"",
                     ""type"": ""Value"",
                     ""id"": ""8863d1d2-a7ba-4163-bb8d-8203421c8497"",
                     ""expectedControlType"": """",
@@ -85,6 +103,24 @@ public partial class @KBMandController: IInputActionCollection2, IDisposable
                     ""name"": ""Ping"",
                     ""type"": ""Button"",
                     ""id"": ""d54154b7-8aa9-449b-b4c9-8ce8432d222e"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Jump"",
+                    ""type"": ""Button"",
+                    ""id"": ""032f4b9e-a5fa-426c-b380-751b666e3d3f"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Crouch"",
+                    ""type"": ""Button"",
+                    ""id"": ""d2855d0e-5fbe-4fda-abc9-33bba4ed97f0"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -110,14 +146,14 @@ public partial class @KBMandController: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""ControllerPlayer"",
-                    ""action"": ""Aim"",
+                    ""action"": ""Look"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
                     ""id"": ""d1e24edf-0331-46b4-84cf-d8879a670008"",
-                    ""path"": ""<Gamepad>/rightShoulder"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""ControllerPlayer"",
@@ -132,18 +168,18 @@ public partial class @KBMandController: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""ControllerPlayer"",
-                    ""action"": ""HoldToGet"",
+                    ""action"": ""Interact"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
                     ""id"": ""35811f0b-28ee-4e10-88d9-ee30ea45de0e"",
-                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""UseHeal"",
+                    ""groups"": ""ControllerPlayer"",
+                    ""action"": ""Heal"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -153,7 +189,7 @@ public partial class @KBMandController: IInputActionCollection2, IDisposable
                     ""path"": ""<Gamepad>/buttonNorth"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""ControllerPlayer"",
                     ""action"": ""Swap"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -161,11 +197,55 @@ public partial class @KBMandController: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""b60275c3-4f0e-49f6-8c07-976c269e9a87"",
-                    ""path"": ""<Gamepad>/leftStickPress"",
+                    ""path"": ""<Gamepad>/dpad/up"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""ControllerPlayer"",
                     ""action"": ""Ping"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""dfb730ba-7319-4fb6-84d0-6cb95294f103"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""ControllerPlayer"",
+                    ""action"": ""Aim"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1d1eae53-70a1-48b9-a80e-734366dd0fd2"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""ControllerPlayer"",
+                    ""action"": ""Jump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1a4314a2-73ad-41be-9607-45446ca6c08f"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Crouch"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8c029f3b-5ff6-43fc-b114-980ce30759ff"",
+                    ""path"": ""<Gamepad>/leftStickPress"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""ControllerPlayer"",
+                    ""action"": ""Run"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -320,12 +400,16 @@ public partial class @KBMandController: IInputActionCollection2, IDisposable
         // ActivePlayer
         m_ActivePlayer = asset.FindActionMap("ActivePlayer", throwIfNotFound: true);
         m_ActivePlayer_Move = m_ActivePlayer.FindAction("Move", throwIfNotFound: true);
+        m_ActivePlayer_Run = m_ActivePlayer.FindAction("Run", throwIfNotFound: true);
+        m_ActivePlayer_Look = m_ActivePlayer.FindAction("Look", throwIfNotFound: true);
         m_ActivePlayer_Aim = m_ActivePlayer.FindAction("Aim", throwIfNotFound: true);
         m_ActivePlayer_Attack = m_ActivePlayer.FindAction("Attack", throwIfNotFound: true);
-        m_ActivePlayer_HoldToGet = m_ActivePlayer.FindAction("HoldToGet", throwIfNotFound: true);
-        m_ActivePlayer_UseHeal = m_ActivePlayer.FindAction("UseHeal", throwIfNotFound: true);
+        m_ActivePlayer_Interact = m_ActivePlayer.FindAction("Interact", throwIfNotFound: true);
+        m_ActivePlayer_Heal = m_ActivePlayer.FindAction("Heal", throwIfNotFound: true);
         m_ActivePlayer_Swap = m_ActivePlayer.FindAction("Swap", throwIfNotFound: true);
         m_ActivePlayer_Ping = m_ActivePlayer.FindAction("Ping", throwIfNotFound: true);
+        m_ActivePlayer_Jump = m_ActivePlayer.FindAction("Jump", throwIfNotFound: true);
+        m_ActivePlayer_Crouch = m_ActivePlayer.FindAction("Crouch", throwIfNotFound: true);
         // ManagerPlayer
         m_ManagerPlayer = asset.FindActionMap("ManagerPlayer", throwIfNotFound: true);
         m_ManagerPlayer_Move = m_ManagerPlayer.FindAction("Move", throwIfNotFound: true);
@@ -394,23 +478,31 @@ public partial class @KBMandController: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_ActivePlayer;
     private List<IActivePlayerActions> m_ActivePlayerActionsCallbackInterfaces = new List<IActivePlayerActions>();
     private readonly InputAction m_ActivePlayer_Move;
+    private readonly InputAction m_ActivePlayer_Run;
+    private readonly InputAction m_ActivePlayer_Look;
     private readonly InputAction m_ActivePlayer_Aim;
     private readonly InputAction m_ActivePlayer_Attack;
-    private readonly InputAction m_ActivePlayer_HoldToGet;
-    private readonly InputAction m_ActivePlayer_UseHeal;
+    private readonly InputAction m_ActivePlayer_Interact;
+    private readonly InputAction m_ActivePlayer_Heal;
     private readonly InputAction m_ActivePlayer_Swap;
     private readonly InputAction m_ActivePlayer_Ping;
+    private readonly InputAction m_ActivePlayer_Jump;
+    private readonly InputAction m_ActivePlayer_Crouch;
     public struct ActivePlayerActions
     {
         private @KBMandController m_Wrapper;
         public ActivePlayerActions(@KBMandController wrapper) { m_Wrapper = wrapper; }
         public InputAction @Move => m_Wrapper.m_ActivePlayer_Move;
+        public InputAction @Run => m_Wrapper.m_ActivePlayer_Run;
+        public InputAction @Look => m_Wrapper.m_ActivePlayer_Look;
         public InputAction @Aim => m_Wrapper.m_ActivePlayer_Aim;
         public InputAction @Attack => m_Wrapper.m_ActivePlayer_Attack;
-        public InputAction @HoldToGet => m_Wrapper.m_ActivePlayer_HoldToGet;
-        public InputAction @UseHeal => m_Wrapper.m_ActivePlayer_UseHeal;
+        public InputAction @Interact => m_Wrapper.m_ActivePlayer_Interact;
+        public InputAction @Heal => m_Wrapper.m_ActivePlayer_Heal;
         public InputAction @Swap => m_Wrapper.m_ActivePlayer_Swap;
         public InputAction @Ping => m_Wrapper.m_ActivePlayer_Ping;
+        public InputAction @Jump => m_Wrapper.m_ActivePlayer_Jump;
+        public InputAction @Crouch => m_Wrapper.m_ActivePlayer_Crouch;
         public InputActionMap Get() { return m_Wrapper.m_ActivePlayer; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -423,24 +515,36 @@ public partial class @KBMandController: IInputActionCollection2, IDisposable
             @Move.started += instance.OnMove;
             @Move.performed += instance.OnMove;
             @Move.canceled += instance.OnMove;
+            @Run.started += instance.OnRun;
+            @Run.performed += instance.OnRun;
+            @Run.canceled += instance.OnRun;
+            @Look.started += instance.OnLook;
+            @Look.performed += instance.OnLook;
+            @Look.canceled += instance.OnLook;
             @Aim.started += instance.OnAim;
             @Aim.performed += instance.OnAim;
             @Aim.canceled += instance.OnAim;
             @Attack.started += instance.OnAttack;
             @Attack.performed += instance.OnAttack;
             @Attack.canceled += instance.OnAttack;
-            @HoldToGet.started += instance.OnHoldToGet;
-            @HoldToGet.performed += instance.OnHoldToGet;
-            @HoldToGet.canceled += instance.OnHoldToGet;
-            @UseHeal.started += instance.OnUseHeal;
-            @UseHeal.performed += instance.OnUseHeal;
-            @UseHeal.canceled += instance.OnUseHeal;
+            @Interact.started += instance.OnInteract;
+            @Interact.performed += instance.OnInteract;
+            @Interact.canceled += instance.OnInteract;
+            @Heal.started += instance.OnHeal;
+            @Heal.performed += instance.OnHeal;
+            @Heal.canceled += instance.OnHeal;
             @Swap.started += instance.OnSwap;
             @Swap.performed += instance.OnSwap;
             @Swap.canceled += instance.OnSwap;
             @Ping.started += instance.OnPing;
             @Ping.performed += instance.OnPing;
             @Ping.canceled += instance.OnPing;
+            @Jump.started += instance.OnJump;
+            @Jump.performed += instance.OnJump;
+            @Jump.canceled += instance.OnJump;
+            @Crouch.started += instance.OnCrouch;
+            @Crouch.performed += instance.OnCrouch;
+            @Crouch.canceled += instance.OnCrouch;
         }
 
         private void UnregisterCallbacks(IActivePlayerActions instance)
@@ -448,24 +552,36 @@ public partial class @KBMandController: IInputActionCollection2, IDisposable
             @Move.started -= instance.OnMove;
             @Move.performed -= instance.OnMove;
             @Move.canceled -= instance.OnMove;
+            @Run.started -= instance.OnRun;
+            @Run.performed -= instance.OnRun;
+            @Run.canceled -= instance.OnRun;
+            @Look.started -= instance.OnLook;
+            @Look.performed -= instance.OnLook;
+            @Look.canceled -= instance.OnLook;
             @Aim.started -= instance.OnAim;
             @Aim.performed -= instance.OnAim;
             @Aim.canceled -= instance.OnAim;
             @Attack.started -= instance.OnAttack;
             @Attack.performed -= instance.OnAttack;
             @Attack.canceled -= instance.OnAttack;
-            @HoldToGet.started -= instance.OnHoldToGet;
-            @HoldToGet.performed -= instance.OnHoldToGet;
-            @HoldToGet.canceled -= instance.OnHoldToGet;
-            @UseHeal.started -= instance.OnUseHeal;
-            @UseHeal.performed -= instance.OnUseHeal;
-            @UseHeal.canceled -= instance.OnUseHeal;
+            @Interact.started -= instance.OnInteract;
+            @Interact.performed -= instance.OnInteract;
+            @Interact.canceled -= instance.OnInteract;
+            @Heal.started -= instance.OnHeal;
+            @Heal.performed -= instance.OnHeal;
+            @Heal.canceled -= instance.OnHeal;
             @Swap.started -= instance.OnSwap;
             @Swap.performed -= instance.OnSwap;
             @Swap.canceled -= instance.OnSwap;
             @Ping.started -= instance.OnPing;
             @Ping.performed -= instance.OnPing;
             @Ping.canceled -= instance.OnPing;
+            @Jump.started -= instance.OnJump;
+            @Jump.performed -= instance.OnJump;
+            @Jump.canceled -= instance.OnJump;
+            @Crouch.started -= instance.OnCrouch;
+            @Crouch.performed -= instance.OnCrouch;
+            @Crouch.canceled -= instance.OnCrouch;
         }
 
         public void RemoveCallbacks(IActivePlayerActions instance)
@@ -574,12 +690,16 @@ public partial class @KBMandController: IInputActionCollection2, IDisposable
     public interface IActivePlayerActions
     {
         void OnMove(InputAction.CallbackContext context);
+        void OnRun(InputAction.CallbackContext context);
+        void OnLook(InputAction.CallbackContext context);
         void OnAim(InputAction.CallbackContext context);
         void OnAttack(InputAction.CallbackContext context);
-        void OnHoldToGet(InputAction.CallbackContext context);
-        void OnUseHeal(InputAction.CallbackContext context);
+        void OnInteract(InputAction.CallbackContext context);
+        void OnHeal(InputAction.CallbackContext context);
         void OnSwap(InputAction.CallbackContext context);
         void OnPing(InputAction.CallbackContext context);
+        void OnJump(InputAction.CallbackContext context);
+        void OnCrouch(InputAction.CallbackContext context);
     }
     public interface IManagerPlayerActions
     {

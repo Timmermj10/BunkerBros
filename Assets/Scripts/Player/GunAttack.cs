@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class GunAttack : MonoBehaviour
 {
     public AmmoSystem ammo;
     public ProjectileBehavior ProjectilePrefab;
+    public Animator anim;
 
     private float firingOffset = 0.5f;
 

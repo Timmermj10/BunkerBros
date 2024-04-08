@@ -20,7 +20,7 @@ public class HealthPackUse : MonoBehaviour
         inv = GetComponent<ActivePlayerInventory>();
         kb = new KBMandController();
 
-        heal = kb.ActivePlayer.UseHeal;
+        heal = kb.ActivePlayer.Heal;
         heal.performed += usePack;
     }
 

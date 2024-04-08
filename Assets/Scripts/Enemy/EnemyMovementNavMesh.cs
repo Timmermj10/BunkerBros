@@ -95,7 +95,7 @@ public class EnemyMovementNavMesh : MonoBehaviour
             //}
 
             DefinePossibleLocations();
-            Debug.Log(target);
+            // Debug.Log(target);
 
             active = minOffset.magnitude > attackDistance;
             animator.SetBool("walking", active);
