@@ -9,16 +9,14 @@ public class KnifeAttack : MonoBehaviour
 {
     public Animator anim;
 
-    Subscription<AttackEvent> sub = null;
-
-    void Awake()
-    {
-        sub = EventBus.Subscribe<AttackEvent>(_Attack);
-    }
+    private Subscription<AttackEvent> sub;
     private void OnDisable()
     {
         EventBus.Unsubscribe(sub);
-        sub = null;
+    }
+    private void OnEnable()
+    {
+        sub = EventBus.Subscribe<AttackEvent>(_Attack);
     }
     void _Attack(AttackEvent e)
     {

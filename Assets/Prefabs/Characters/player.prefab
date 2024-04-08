@@ -168,7 +168,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   knife: 1
-  canSwap: 0
+  canSwap: 1
 --- !u!1 &1532122942738014198
 GameObject:
   m_ObjectHideFlags: 0
@@ -217,6 +217,7 @@ MonoBehaviour:
   ProjectilePrefab: {fileID: 4820764227730699988, guid: 07cac96898c26b041928e90fb5d15422,
     type: 3}
   anim: {fileID: 8555320606884907261}
+  look: {fileID: 4101018519296265025}
 --- !u!1 &2422488895765723781
 GameObject:
   m_ObjectHideFlags: 0
