@@ -231,7 +231,7 @@ public class PlayerInteract : MonoBehaviour
         }
     }
 
-    void OnHoldToGet(InputValue value)
+    void OnInteract(InputValue value)
     {
         buttonPressed = value.isPressed;
     }

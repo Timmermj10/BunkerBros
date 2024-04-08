@@ -15,10 +15,28 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "Aim",
+                    "name": "Run",
+                    "type": "Button",
+                    "id": "c8e347f1-b8a8-4387-90b8-90a0dc10dfb9",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Look",
                     "type": "Value",
                     "id": "65bfea7d-320f-41a2-9a69-b17bef38263a",
                     "expectedControlType": "Stick",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "Aim",
+                    "type": "Value",
+                    "id": "a6d3b826-fe87-4bd3-b38b-e9ff7991f778",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
@@ -33,7 +51,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "HoldToGet",
+                    "name": "Interact",
                     "type": "Value",
                     "id": "1208abd1-2b87-4e20-9e08-0fea7551bd64",
                     "expectedControlType": "Button",
@@ -42,7 +60,7 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "UseHeal",
+                    "name": "Heal",
                     "type": "Value",
                     "id": "8863d1d2-a7ba-4163-bb8d-8203421c8497",
                     "expectedControlType": "",
@@ -63,6 +81,24 @@
                     "name": "Ping",
                     "type": "Button",
                     "id": "d54154b7-8aa9-449b-b4c9-8ce8432d222e",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Jump",
+                    "type": "Button",
+                    "id": "032f4b9e-a5fa-426c-b380-751b666e3d3f",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Crouch",
+                    "type": "Button",
+                    "id": "d2855d0e-5fbe-4fda-abc9-33bba4ed97f0",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -88,14 +124,14 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "ControllerPlayer",
-                    "action": "Aim",
+                    "action": "Look",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
                     "id": "d1e24edf-0331-46b4-84cf-d8879a670008",
-                    "path": "<Gamepad>/rightShoulder",
+                    "path": "<Gamepad>/rightTrigger",
                     "interactions": "",
                     "processors": "",
                     "groups": "ControllerPlayer",
@@ -110,18 +146,18 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "ControllerPlayer",
-                    "action": "HoldToGet",
+                    "action": "Interact",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
                     "id": "35811f0b-28ee-4e10-88d9-ee30ea45de0e",
-                    "path": "<Gamepad>/buttonEast",
+                    "path": "<Gamepad>/leftShoulder",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
-                    "action": "UseHeal",
+                    "groups": "ControllerPlayer",
+                    "action": "Heal",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -131,7 +167,7 @@
                     "path": "<Gamepad>/buttonNorth",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "ControllerPlayer",
                     "action": "Swap",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -139,11 +175,55 @@
                 {
                     "name": "",
                     "id": "b60275c3-4f0e-49f6-8c07-976c269e9a87",
-                    "path": "<Gamepad>/leftStickPress",
+                    "path": "<Gamepad>/dpad/up",
                     "interactions": "",
                     "processors": "",
                     "groups": "ControllerPlayer",
                     "action": "Ping",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "dfb730ba-7319-4fb6-84d0-6cb95294f103",
+                    "path": "<Gamepad>/leftTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "ControllerPlayer",
+                    "action": "Aim",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "1d1eae53-70a1-48b9-a80e-734366dd0fd2",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "ControllerPlayer",
+                    "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "1a4314a2-73ad-41be-9607-45446ca6c08f",
+                    "path": "<Gamepad>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Crouch",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "8c029f3b-5ff6-43fc-b114-980ce30759ff",
+                    "path": "<Gamepad>/leftStickPress",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "ControllerPlayer",
+                    "action": "Run",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
