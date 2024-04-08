@@ -47,7 +47,7 @@ public class ButtonUpdate : MonoBehaviour
     void Update()
     {
         // Check if we have enough coins to purchase the item or if the player is dead for player respawn
-        if (buttonInfo.itemID != 9)
+        if (buttonInfo.itemID != 9 && buttonInfo.itemID != 10)
         {
             if (shopManager.gold < shopManager.shopItems[buttonInfo.itemID].itemCost)
             {
@@ -57,6 +57,11 @@ public class ButtonUpdate : MonoBehaviour
             {
                 button.interactable = true;
             }
+        }
+        // Dealing with the call for evacuation
+        else if (buttonInfo.itemID == 10)
+        {
+            
         }
         // Dealing with player respawn
         else

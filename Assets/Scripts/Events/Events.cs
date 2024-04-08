@@ -214,3 +214,9 @@ public class TutorialEndedEvent
 {
 
 }
+
+
+// Event to show that the next wave should be the last
+public class LastWaveEvent
+{
+}

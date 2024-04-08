@@ -329,6 +329,7 @@ public class ManagerPlayerInputsNew : MonoBehaviour
                     EventBus.Publish<ItemUseEvent>(new ItemUseEvent(9, itemUsedLocation, true)); // Changed to 9 for a playerRespawn
                 }
 
+
                 if (selectedObj.transform.parent == GameObject.Find("Purchasables").transform)
                 {
                     // Cost of item
