@@ -12,9 +12,6 @@ public class EnemyWaveSpawnManager : MonoBehaviour
 
     private List<Vector3> spawnpoints = new List<Vector3>();
 
-    //Transform of the player so we can spawn enemies arounf the player
-    Transform playerTransform;
-
     //Time between enemy spawned
     private float spawnDelay = 2f;
     private float spawnTimer = 2f;
@@ -25,6 +22,7 @@ public class EnemyWaveSpawnManager : MonoBehaviour
 
     //how far away enemies can spawn from the spawner (half the width/height of the map)
     private float spawnDistance = 4f;
+    private int spawnIndex = 0;
 
     //Wave manager reference to get wave information
     WaveManager waveManager;
@@ -38,33 +36,31 @@ public class EnemyWaveSpawnManager : MonoBehaviour
         waveManager = FindAnyObjectByType<WaveManager>();
 
         EventBus.Subscribe<WaveStartedEvent>(_WaveStarted);
-        EventBus.Subscribe<PlayerRespawnEvent>(_PlayerRespawn);
-
-        playerTransform = GameObject.Find("player").transform;
 
         spawnpoints.Add(new Vector3(-3, 1, -21)); //Bottom Left;
         spawnpoints.Add(new Vector3(5, 1, -21)); //Bottom Right
         spawnpoints.Add(new Vector3(-2, 1, 32)); //Top Left
         spawnpoints.Add(new Vector3(21, 1, 21)); //Top Right
+        //Debug.Log($"spawnpoints length = {spawnpoints.Count}");
 
-    }
-
-    private void _PlayerRespawn(PlayerRespawnEvent e)
-    {
-        playerTransform = e.activePlayer.transform;
     }
 
     private void _WaveStarted(WaveStartedEvent e)
     {
         spawnDelay -= 0.1f;
 
-        Vector3 spawnpointForWave = spawnpoints[Random.Range(0, spawnpoints.Count)];
+        spawnIndex = Random.Range(0, spawnpoints.Count);
+
+        Vector3 spawnpointForWave = spawnpoints[spawnIndex];
+
+        //Debug.Log($"spawnpointForWave of {spawnpointForWave} chosen, because of index {spawnIndex}");
 
         StartCoroutine(SpawnEnemiesForWave(spawnpointForWave));
     }
 
     IEnumerator SpawnEnemiesForWave(Vector3 spawnpointForWave)
     {
+        //Debug.Log("Spawning Enemies For Wave");
         while (waveManager.getNumEnemiesSpawnedSoFar() < waveManager.getNumEnemiesToSpawnThisRound())
         {
 
@@ -104,7 +100,7 @@ public class EnemyWaveSpawnManager : MonoBehaviour
                         if (Random.value < 0.5) randomX *= -1;
                     }
 
-                    randomSpawnPosition = new Vector3(transform.position.x + randomX, 10f, transform.position.z + randomZ);
+                    randomSpawnPosition = new Vector3(spawnpointForWave.x + randomX, 10f, spawnpointForWave.z + randomZ);
                     //Debug.Log($"Checking to see of the chosen spawn position ({randomSpawnPosition}) is valid");
 
                 } while (!Physics.Raycast(randomSpawnPosition, Vector3.down, out hitInfo, Mathf.Infinity) || hitInfo.collider.gameObject.layer != LayerMask.NameToLayer("Default"));

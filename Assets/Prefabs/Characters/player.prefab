@@ -536,8 +536,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f89c86804941e7c42b487288c5344975, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ammo_count: 20
-  reload_count: 10
+  ammo_count: 60
+  reload_count: 60
   active: 0
 --- !u!114 &3894732518182062399
 MonoBehaviour:
@@ -551,7 +551,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45a200cf47106234d8ffb4a571f5fc8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ammo_display: {fileID: 0}
   ammo: {fileID: 5975604464621813633}
   enable: 0
 --- !u!95 &8555320606884907261

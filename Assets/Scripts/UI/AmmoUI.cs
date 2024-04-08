@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class AmmoUI : MonoBehaviour
 {
-    public Text ammo_display;
+    private Text ammo_display;
     public AmmoSystem ammo;
     public bool enable = false;
 
@@ -15,6 +15,12 @@ public class AmmoUI : MonoBehaviour
     void Awake()
     {
         purchase = EventBus.Subscribe<PurchaseEvent>(_enable_text);
+        ammo_display = GameObject.Find("Ammo").GetComponentInChildren<Text>();
+
+        if(ammo_display != null)
+        {
+            Debug.Log("Ammo UI Text Found");
+        }
     }
 
     // Update is called once per frame
