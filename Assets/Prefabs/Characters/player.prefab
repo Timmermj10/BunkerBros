@@ -439,10 +439,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60b288124d5da844292bf9aa92a56623, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  crouchSpeed: 2.5
+  crouchSpeed: 3
   walkSpeed: 5
-  runSpeed: 7.5
-  jumpHeight: 5
+  runSpeed: 7
+  jumpHeight: 3
   slideTime: 1
   lookSpeed: {x: 180, y: 90}
   pingDistance: 100
