@@ -76,7 +76,7 @@ public class PingManager : MonoBehaviour
     {
         GameObject ping;
         if(type == PingType.INVESTIGATE) ping = Instantiate(investigatePing, pos, Quaternion.identity);
-        if(type == PingType.WARN) ping = Instantiate(warnPing, pos, Quaternion.identity);
+        else if(type == PingType.WARN) ping = Instantiate(warnPing, pos, Quaternion.identity);
         else ping = Instantiate(enemyPing, pos, Quaternion.identity);
 
         pings.Add(ping.transform);

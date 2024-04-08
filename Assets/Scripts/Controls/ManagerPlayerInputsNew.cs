@@ -259,7 +259,7 @@ public class ManagerPlayerInputsNew : MonoBehaviour
                 // Set the selected object to most recently used
                 selectedObj = mostRecentItem;
             }
-            Debug.Log($"Selected Gameobject is {selectedObj} and canPlaceMultipleItemsInARow = {canPlaceMultipleItemsInARow}");
+            //Debug.Log($"Selected Gameobject is {selectedObj} and canPlaceMultipleItemsInARow = {canPlaceMultipleItemsInARow}");
 
             if (selectedObj != null && withinView(worldPositionRounded))
             {

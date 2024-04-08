@@ -55,6 +55,7 @@ public class TutorialManager : MonoBehaviour
 
     void Start()
     {
+        Debug.Log("Running tutorialManager start");
         EventBus.Subscribe<ObjectDestroyedEvent>(_enemyDeath);
         EventBus.Subscribe<AirdropLandedEvent>(_hasDroppedItems);
         EventBus.Subscribe<PickUpEvent>(_hasPickedUpItems);
@@ -192,20 +193,11 @@ public class TutorialManager : MonoBehaviour
 
         startPopUp("Player");
         popUpSystem.popUp("Player", "Go activate the radio tower to increase your signal strength! If you get your signal strength high enough, you can radio for an extraction team!");
-        pingManager.ManagerPing(new Vector3(-24, 5, -3));
 
 
         startPopUp("Manager");
         popUpSystem.popUp("Manager", "Theres a zombie horde approaching from the southwest! Use some walls, turrets and missiles to defend the bunker while your partner is activating the radio tower.");
         EventBus.Publish(new FirstTutorialWaveEvent());
-
-        Instantiate(basicEnemyPrefab, new Vector3(-6, 1, -23), Quaternion.identity);
-        Instantiate(basicEnemyPrefab, new Vector3(-6, 1, -21f), Quaternion.identity);
-        Instantiate(basicEnemyPrefab, new Vector3(-4, 1, -23f), Quaternion.identity);
-        Instantiate(basicEnemyPrefab, new Vector3(-4, 1, -21), Quaternion.identity);
-        Instantiate(basicEnemyPrefab, new Vector3(-3, 1, -21), Quaternion.identity);
-        Instantiate(basicEnemyPrefab, new Vector3(-3, 1, -23), Quaternion.identity);
-        Instantiate(armoredEnemyPrefab, new Vector3(-5, 1, -22), Quaternion.identity);
         enemiesAlive = 7;
 
         while (enemiesAlive > 0)
@@ -282,8 +274,11 @@ public class TutorialManager : MonoBehaviour
             case 7:
                 NukeParts.SetActive(true);
                 break;
+            case 8:
+                StartCoroutine(pingManager.Ping(new Vector3(10, 1, 1), 10, PingType.INVESTIGATE));
+                break;
             case 9:
-                // StartCoroutine(pingManager.Warn(new Vector3(-11, 2, -2), 10));
+                StartCoroutine(pingManager.Ping(new Vector3(-11, 2, -2), 10));
                 Nuke.SetActive(true);
                 break;
             case 10:
@@ -292,8 +287,18 @@ public class TutorialManager : MonoBehaviour
             case 11:
                 healthPackPopUpIsDone = true;
                 break;
+            case 12:
+                StartCoroutine(pingManager.Ping(new Vector3(-24, 5, -3), 10));
+                break;
             case 13:
-                // StartCoroutine(pingManager.Warn(new Vector3(-5, 1, -22), 10));
+                StartCoroutine(pingManager.Ping(new Vector3(-5, 1, -22), 10, PingType.ENEMY));
+                Instantiate(basicEnemyPrefab, new Vector3(-6, 1, -23), Quaternion.identity);
+                Instantiate(basicEnemyPrefab, new Vector3(-6, 1, -21f), Quaternion.identity);
+                Instantiate(basicEnemyPrefab, new Vector3(-4, 1, -23f), Quaternion.identity);
+                Instantiate(basicEnemyPrefab, new Vector3(-4, 1, -21), Quaternion.identity);
+                Instantiate(basicEnemyPrefab, new Vector3(-3, 1, -21), Quaternion.identity);
+                Instantiate(basicEnemyPrefab, new Vector3(-3, 1, -23), Quaternion.identity);
+                Instantiate(armoredEnemyPrefab, new Vector3(-5, 1, -22), Quaternion.identity);
                 Wall.SetActive(true);
                 Turret.SetActive(true);
                 Missile.SetActive(true);
@@ -370,8 +375,6 @@ public class TutorialManager : MonoBehaviour
         {
             startPopUp("Player");
             popUpSystem.popUp("Player", "Good job activating the radio tower! If you activate the rest and get your signal strength high enough you can radio for help!");
-            startPopUp("Manager");
-            popUpSystem.popUp("Manager", "Great work! Keep working together with your partner to defend the bunker and activate all the radio towers and maybe you guys will survive long enough to make it out of here!");
         }
     }
 

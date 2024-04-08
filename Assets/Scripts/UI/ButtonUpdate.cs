@@ -51,50 +51,47 @@ public class ButtonUpdate : MonoBehaviour
     // Update button colors and interactable status
     void Update()
     {
-        if (!isInTutorial)
+        // Check if we have enough coins to purchase the item or if the player is dead for player respawn
+        if (buttonInfo.itemID != 9 && buttonInfo.itemID != 10)
         {
             // Check if we have enough coins to purchase the item or if the player is dead for player respawn
-            if (buttonInfo.itemID != 9 && buttonInfo.itemID != 10)
+            if (buttonInfo.itemID != 9)
             {
-                // Check if we have enough coins to purchase the item or if the player is dead for player respawn
-                if (buttonInfo.itemID != 9)
+                if (shopManager.gold < shopManager.shopItems[buttonInfo.itemID].itemCost)
                 {
-                    if (shopManager.gold < shopManager.shopItems[buttonInfo.itemID].itemCost)
-                    {
-                        button.interactable = false;
-                    }
-                    else
-                    {
-                        button.interactable = true;
-                    }
+                    button.interactable = false;
                 }
-                // Dealing with player respawn
-                else
+                else if (!isInTutorial)
                 {
                     button.interactable = true;
                 }
             }
             // Dealing with player respawn
-            else if (buttonInfo.itemID != 10)
+            else
             {
-                // If the player is alive, disable the button
-                if (GameObject.Find("player") != null && button.interactable == true)
-                {
-                    // Disable the button
-                    button.interactable = false;
-                }
-                // If the timer has run out allow the manager to respawn the player
-                else if (timer <= 0)
-                {
-                    // Enable the button
-                    button.interactable = true;
-                }
-                // If the timer is not zero and the player is dead
-                else if (GameObject.Find("player") == null && !respawning)
-                {
-                    // Decrease the timer
-                    timer -= Time.deltaTime;
-                }
+                button.interactable = true;
+            }
+        }
+        // Dealing with player respawn
+        else if (buttonInfo.itemID != 10)
+        {
+            // If the player is alive, disable the button
+            if (GameObject.Find("player") != null && button.interactable == true)
+            {
+                // Disable the button
+                button.interactable = false;
+            }
+            // If the timer has run out allow the manager to respawn the player
+            else if (timer <= 0)
+            {
+                // Enable the button
+                button.interactable = true;
+            }
+            // If the timer is not zero and the player is dead
+            else if (GameObject.Find("player") == null && !respawning)
+            {
+                // Decrease the timer
+                timer -= Time.deltaTime;
             }
         }
 
