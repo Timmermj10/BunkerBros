@@ -64,7 +64,7 @@ public class EnemyWaveSpawnManager : MonoBehaviour
         spawnIndex = Random.Range(0, spawnpoints.Count);
         spawnpointForWave = spawnpoints[spawnIndex];
         pingManager.Ping(spawnpointForWave, 30, PingType.ENEMY);
-        Debug.Log($"Wave Ended, spawn position for next wave = {spawnpointForWave}");
+        //Debug.Log($"Wave Ended, spawn position for next wave = {spawnpointForWave}");
     }
 
     private void _WaveStarted(WaveStartedEvent e)
@@ -115,7 +115,7 @@ public class EnemyWaveSpawnManager : MonoBehaviour
                         if (Random.value < 0.5) randomX *= -1;
                     }
 
-                    randomSpawnPosition = new Vector3(spawnpointForWave.x + randomX, 10f, spawnpointForWave.z + randomZ);
+                    randomSpawnPosition = new Vector3(spawnpointForWave.x + randomX, 30f, spawnpointForWave.z + randomZ);
                     //Debug.Log($"Checking to see of the chosen spawn position ({randomSpawnPosition}) is valid");
 
                 } while (!Physics.Raycast(randomSpawnPosition, Vector3.down, out hitInfo, Mathf.Infinity) || hitInfo.collider.gameObject.layer != LayerMask.NameToLayer("Default"));

@@ -373,6 +373,7 @@ public class TutorialManager : MonoBehaviour
         {
             startPopUp("Player");
             popUpSystem.popUp("Player", "Good job activating the radio tower! If you activate the rest and get your signal strength high enough you can radio for help!");
+            hasActivatedRadioTower = true;
         }
     }
 
