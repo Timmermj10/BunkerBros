@@ -63,7 +63,7 @@ public class TIleHoverUI : MonoBehaviour
             }
         }
         // If we collide with something that isn't the prefab
-        else if (previewInstance != null && hit.collider.gameObject.name != previewInstance.name)
+        else if (previewInstance != null && (hit.collider == null || hit.collider.gameObject.name != previewInstance.name))
         {
             // Destroy or deactivate the preview instance when not hovering over a tile
             Destroy(previewInstance);

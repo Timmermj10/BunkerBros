@@ -218,9 +218,12 @@ public class RadioTowerActivatedEvent
 
 public class TutorialEndedEvent
 {
-
 }
 
+//Event to indicate when the tutorial wave starts
+public class FirstTutorialWaveEvent
+{
+}
 
 // Event to show that the next wave should be the last
 public class LastWaveEvent

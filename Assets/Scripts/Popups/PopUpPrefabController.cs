@@ -67,13 +67,8 @@ public class PopUpPrefabController : MonoBehaviour
         //Debug.Log("Stopping Sound");
         audioSource.Stop();
 
+        yield return new WaitForSeconds(1.2f);
         EventBus.Publish(new PopUpEndEvent(playerType));
-        yield return new WaitForSeconds(0.5f);
-
-        while (!Input.anyKey)
-        {
-            yield return new WaitForFixedUpdate();
-        }
 
         Destroy(gameObject);
     }
