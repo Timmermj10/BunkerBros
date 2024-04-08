@@ -40,13 +40,8 @@ public class TurretController : MonoBehaviour
                 gun.LookAt(gun.transform.position + closest);
                 if (nextShot < Time.time)
                 {
-                    Vector2 aimDirection = new Vector2(gun.forward.x, gun.forward.z);
                     Vector3 spawnPosition = bulletSpawnpoint.position + gun.forward * firingOffset;
-
-                    float spawnAngle = Mathf.Atan2(-aimDirection.y, aimDirection.x) * Mathf.Rad2Deg;
-                    Quaternion rotation = Quaternion.Euler(0f, spawnAngle, 0f);
-
-                    GameObject projectileObject = Instantiate(ProjectilePrefab.gameObject, spawnPosition, rotation);
+                    GameObject projectileObject = Instantiate(ProjectilePrefab.gameObject, spawnPosition, Quaternion.LookRotation(bulletSpawnpoint.forward));
 
                     projectileObject.GetComponent<ChangesHealth>().setHealthChange(-5);
                     nextShot = Time.time + cooldown;
