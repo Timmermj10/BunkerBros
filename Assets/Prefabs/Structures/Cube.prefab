@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5851176931323125957}
   - component: {fileID: 2536329671260031168}
   - component: {fileID: -2111528149542191115}
+  - component: {fileID: -7286203415946162652}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -29,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 7997654759928138051}
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0.8, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 114.013916, y: 92.067154, z: 81.09733}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -121,4 +122,20 @@ MonoBehaviour:
   maxHealth: 1
   currentHealth: 0
   armorValue: 19
+  healthBar: {fileID: 0}
+--- !u!114 &-7286203415946162652
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7997654759928138051}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ada0cb034d14d4065882f6fdbed5bdd0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 1
+  currentHealth: 0
+  armorValue: 39
   healthBar: {fileID: 0}
