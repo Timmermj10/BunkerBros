@@ -111,7 +111,7 @@ public class ManagerPlayerInputsNew : MonoBehaviour
 
     private void OnZoom(InputValue value)
     {
-        zoomScroll = value.Get<Vector2>();
+        zoomScroll = -1 * value.Get<Vector2>();
         
         //Debug.Log("Zoom is" + zoomScroll.ToString());
         //Up scroll is *, -1

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.IO.MemoryMappedFiles;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -8,25 +9,26 @@ public class GunAttack : MonoBehaviour
     public AmmoSystem ammo;
     public ProjectileBehavior ProjectilePrefab;
     public Animator anim;
+    public Transform look;
 
+    private Subscription<AttackEvent> sub;
     private float firingOffset = 0.5f;
 
-    void Awake()
+    private void OnDisable()
     {
-        EventBus.Subscribe<AttackEvent>(_Attack);
+        EventBus.Unsubscribe(sub);
+    }
+    private void OnEnable()
+    {
+        sub = EventBus.Subscribe<AttackEvent>(_Attack);
     }
     void _Attack(AttackEvent e)
     {
-        if (ammo.ammo_count > 0 && (GetComponentInParent<HandInventory>() != null) && !GetComponentInParent<HandInventory>().knife)
+        if (ammo.ammo_count > 0)
         {
-            Vector2 aimDirection = new Vector2(transform.forward.x, transform.forward.z);
-            Vector3 spawnPosition = transform.position + transform.forward * firingOffset;
+            Debug.DrawRay(transform.position + look.forward * firingOffset, look.forward, Color.magenta);
 
-            float spawnAngle = Mathf.Atan2(-aimDirection.y, aimDirection.x) * Mathf.Rad2Deg;
-            Quaternion rotation = Quaternion.Euler(0f, spawnAngle, 0f);
-
-
-            GameObject projectileObject = Instantiate(ProjectilePrefab.gameObject, spawnPosition, rotation);
+            GameObject projectileObject = Instantiate(ProjectilePrefab.gameObject, transform.position + look.forward * firingOffset, Quaternion.Euler(look.forward));
             //Debug.Log("Gun Attacking");
             EventBus.Publish<ShootEvent>(new ShootEvent());
         }
