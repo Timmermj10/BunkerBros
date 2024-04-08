@@ -40,15 +40,23 @@ public class EnemyWaveSpawnManager : MonoBehaviour
 
         EventBus.Subscribe<WaveStartedEvent>(_WaveStarted);
         EventBus.Subscribe<WaveEndedEvent>(_WaveEnded);
+        EventBus.Subscribe<ObjectDestroyedEvent>(_boulderDestroyed);
 
-        spawnpoints.Add(new Vector3(-3, 1, -21)); //Bottom Left;
+        spawnpoints.Add(new Vector3(-2, 1, -21)); //Bottom Left;
         spawnpoints.Add(new Vector3(5, 1, -21)); //Bottom Right
-        spawnpoints.Add(new Vector3(-2, 1, 32)); //Top Left
         spawnpoints.Add(new Vector3(21, 1, 21)); //Top Right
         //Debug.Log($"spawnpoints length = {spawnpoints.Count}");
 
         pingManager = GameObject.Find("GameManager").GetComponent<PingManager>();
 
+    }
+
+    private void _boulderDestroyed(ObjectDestroyedEvent e)
+    {
+        if (e.tag == "Boulder" && e.deathCoordinates == new Vector3(0, 1.5f, 19.5f))
+        {
+            spawnpoints.Add(new Vector3(-2, 1, 32)); //Top Left
+        }
     }
 
     private void _WaveEnded(WaveEndedEvent e)
