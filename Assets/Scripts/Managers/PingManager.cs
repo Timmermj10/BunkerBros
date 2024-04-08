@@ -6,7 +6,9 @@ public class PingManager : MonoBehaviour
 {
     public GameObject playerPingPrefab;
     public GameObject managerPingPrefab;
+    public GameObject investigatePing;
     public GameObject warnPing;
+    public GameObject enemyPing;
     public float managerBuffer = .2f;
 
     Transform managerCam;
@@ -70,12 +72,23 @@ public class PingManager : MonoBehaviour
         managerHasPing.Ping();
     }
 
-    public IEnumerator Warn(Vector3 pos, float time)
+    public IEnumerator Ping(Vector3 pos, float time, PingType type = PingType.INVESTIGATE)
     {
-        GameObject warning = Instantiate(warnPing, pos, Quaternion.identity);
-        pings.Add(warning.transform);
+        GameObject ping;
+        if(type == PingType.INVESTIGATE) ping = Instantiate(investigatePing, pos, Quaternion.identity);
+        if(type == PingType.WARN) ping = Instantiate(warnPing, pos, Quaternion.identity);
+        else ping = Instantiate(enemyPing, pos, Quaternion.identity);
+
+        pings.Add(ping.transform);
         yield return new WaitForSeconds(time);
-        pings.Remove(warning.transform);
-        Destroy(warning);
+        pings.Remove(ping.transform);
+        Destroy(ping);
     }
+}
+
+public enum PingType
+{
+    WARN,
+    INVESTIGATE,
+    ENEMY
 }
