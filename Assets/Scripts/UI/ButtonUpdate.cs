@@ -123,7 +123,7 @@ public class ButtonUpdate : MonoBehaviour
         else if (button == e.button)
         {
             EventSystem.current.SetSelectedGameObject(e.button.gameObject);
-            Debug.Log($"Setting Selected Gameobject to {EventSystem.current.currentSelectedGameObject}");
+            //Debug.Log($"Setting Selected Gameobject to {EventSystem.current.currentSelectedGameObject}");
         }
     }
 

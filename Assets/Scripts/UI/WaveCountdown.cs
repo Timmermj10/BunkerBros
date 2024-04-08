@@ -76,7 +76,7 @@ public class WaveCountDown : MonoBehaviour
         timerStart = false;
 
         // Reset the clock
-        timer = 15f;
+        timer = 30f;
 
         // Update the text
         roundCountdown.text = "";

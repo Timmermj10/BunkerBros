@@ -55,7 +55,7 @@ public class TutorialManager : MonoBehaviour
 
     void Start()
     {
-        Debug.Log("Running tutorialManager start");
+        //Debug.Log("Running tutorialManager start");
         EventBus.Subscribe<ObjectDestroyedEvent>(_enemyDeath);
         EventBus.Subscribe<AirdropLandedEvent>(_hasDroppedItems);
         EventBus.Subscribe<PickUpEvent>(_hasPickedUpItems);
@@ -210,8 +210,6 @@ public class TutorialManager : MonoBehaviour
         Gun.SetActive(true);
         AmmoCrate.SetActive(true);
 
-        EventBus.Publish(new TutorialEndedEvent());
-
         //turn on the evac button
         EvacuationButton.SetActive(true);
 
@@ -227,6 +225,9 @@ public class TutorialManager : MonoBehaviour
         Missile.GetComponent<Button>().interactable = true;
         NukeParts.GetComponent<Button>().interactable = true;
         EvacuationButton.GetComponent<Button>().interactable = true;
+
+        EventBus.Publish(new TutorialEndedEvent());
+        EventBus.Publish(new WaveEndedEvent());
 
         yield return null;
     }
