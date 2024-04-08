@@ -55,7 +55,7 @@ public class TutorialManager : MonoBehaviour
 
     void Start()
     {
-        //Debug.Log("Running tutorialManager start");
+        Debug.Log("Running tutorialManager start");
         EventBus.Subscribe<ObjectDestroyedEvent>(_enemyDeath);
         EventBus.Subscribe<AirdropLandedEvent>(_hasDroppedItems);
         EventBus.Subscribe<PickUpEvent>(_hasPickedUpItems);
@@ -109,7 +109,7 @@ public class TutorialManager : MonoBehaviour
         }
 
         startPopUp("Player");
-        popUpSystem.popUp("Player", "Use the left and right joysticks to move/look and use RB to attack!");
+        popUpSystem.popUp("Player", "Use the left and right joysticks to move/look and use RT to attack!");
 
         while (enemiesAlive > 0)
         {
@@ -182,7 +182,7 @@ public class TutorialManager : MonoBehaviour
         }
 
         startPopUp("Player");
-        popUpSystem.popUp("Player", "You now have a health pack! Press Circle (ps5) at any time to use it!");
+        popUpSystem.popUp("Player", "You now have a health pack! Press LB at any time to use it!");
 
         while (!healthPackPopUpIsDone)
         {
@@ -227,7 +227,6 @@ public class TutorialManager : MonoBehaviour
         EvacuationButton.GetComponent<Button>().interactable = true;
 
         EventBus.Publish(new TutorialEndedEvent());
-        EventBus.Publish(new WaveEndedEvent());
 
         yield return null;
     }
@@ -303,6 +302,9 @@ public class TutorialManager : MonoBehaviour
                 Wall.SetActive(true);
                 Turret.SetActive(true);
                 Missile.SetActive(true);
+                break;
+            case 14:
+                EventBus.Publish(new WaveEndedEvent());
                 break;
             default:
                 break;
