@@ -18,12 +18,13 @@ public class MissileSiloStatus : MonoBehaviour
     public void loadSilo()
     {
         isLoaded = true;
+        Debug.Log("Loaded Silo");
 
         //Change visual to indicate silo is loaded
-        Renderer renderer = GetComponent<Renderer>();
+        // Renderer renderer = GetComponent<Renderer>();
 
         // Change the material of the Renderer to the loaded material
-        renderer.material = loadedMaterial;
+        // renderer.material = loadedMaterial;
     }
 
     public void unloadSilo()
@@ -31,9 +32,9 @@ public class MissileSiloStatus : MonoBehaviour
         isLoaded = false;
 
         //Change visual to indicate silo is unloaded
-        Renderer renderer = GetComponent<Renderer>();
+        // Renderer renderer = GetComponent<Renderer>();
 
         // Change the material of the Renderer to the loaded material
-        renderer.material = unloadedMaterial;
+        // renderer.material = unloadedMaterial;
     }
 }
