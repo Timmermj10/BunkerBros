@@ -169,10 +169,14 @@ public class PlayerInteract : MonoBehaviour
                                 ActivePlayerInventory inventory = GetComponent<ActivePlayerInventory>();
                                 inventory.useItem(ActivePlayerInventory.activePlayerItems.NukeParts);
                             }
-                            else
-                            {
-                                //Debug.Log($"Failed to load Silo: silo status = {silo.isSiloLoaded()}, doesThePlayerHaveMissileParts = {GetComponent<ActivePlayerInventory>().itemInInventory(ActivePlayerInventory.activePlayerItems.MissileParts)}");
-                            }
+                        }
+                        else if (item.name is "RadioTower" || item.name is "RadioTower(Clone)")
+                        {
+                            // Make it so you can not use the same radio tower
+                            item.tag = "Untagged";
+
+                            // Publish a radio tower event
+                            EventBus.Publish<RadioTowerActivatedEvent>(new RadioTowerActivatedEvent());
                         }
                     }
                     else if (item != null && (item.name is "Objective") && GetComponent<ActivePlayerInventory>().itemInInventory(ActivePlayerInventory.activePlayerItems.RepairKit))

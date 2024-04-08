@@ -54,19 +54,28 @@ public class ButtonUpdate : MonoBehaviour
         if (!isInTutorial)
         {
             // Check if we have enough coins to purchase the item or if the player is dead for player respawn
-            if (buttonInfo.itemID != 9)
+            if (buttonInfo.itemID != 9 && buttonInfo.itemID != 10)
             {
-                if (shopManager.gold < shopManager.shopItems[buttonInfo.itemID].itemCost)
+                // Check if we have enough coins to purchase the item or if the player is dead for player respawn
+                if (buttonInfo.itemID != 9)
                 {
-                    button.interactable = false;
+                    if (shopManager.gold < shopManager.shopItems[buttonInfo.itemID].itemCost)
+                    {
+                        button.interactable = false;
+                    }
+                    else
+                    {
+                        button.interactable = true;
+                    }
                 }
+                // Dealing with player respawn
                 else
                 {
                     button.interactable = true;
                 }
             }
             // Dealing with player respawn
-            else
+            else if (buttonInfo.itemID != 10)
             {
                 // If the player is alive, disable the button
                 if (GameObject.Find("player") != null && button.interactable == true)
@@ -89,15 +98,15 @@ public class ButtonUpdate : MonoBehaviour
             }
         }
 
-            // If we have a currently selected Game Object, reset all the image colors to white
-            if (EventSystem.current.currentSelectedGameObject)
-            {
-                GetComponent<Image>().color = Color.white;
-            }
-            if (shopManager.gold < shopManager.shopItems[buttonInfo.itemID].itemCost)
-            {
-                GetComponent<Image>().color = Color.white;
-            }
+        // If we have a currently selected Game Object, reset all the image colors to white
+        if (EventSystem.current.currentSelectedGameObject)
+        {
+            GetComponent<Image>().color = Color.white;
+        }
+        if (shopManager.gold < shopManager.shopItems[buttonInfo.itemID].itemCost)
+        {
+            GetComponent<Image>().color = Color.white;
+        }
     }
 
     // Run when a button is clicked
