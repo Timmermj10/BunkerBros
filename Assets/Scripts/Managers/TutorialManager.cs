@@ -224,6 +224,7 @@ public class TutorialManager : MonoBehaviour
         Missile.GetComponent<Button>().interactable = true;
 
         EventBus.Publish(new TutorialEndedEvent());
+        EventBus.Publish(new WaveEndedEvent());
 
         yield return null;
     }
@@ -299,9 +300,6 @@ public class TutorialManager : MonoBehaviour
                 Wall.SetActive(true);
                 Turret.SetActive(true);
                 Missile.SetActive(true);
-                break;
-            case 14:
-                EventBus.Publish(new WaveEndedEvent());
                 break;
             default:
                 break;
