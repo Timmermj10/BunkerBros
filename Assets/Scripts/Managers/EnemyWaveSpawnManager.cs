@@ -8,6 +8,10 @@ public class EnemyWaveSpawnManager : MonoBehaviour
     public GameObject BasicEnemyPrefab;
     public GameObject ArmoredEnemyPrefab;
 
+    //List of spawnpoints
+
+    private List<Vector3> spawnpoints = new List<Vector3>();
+
     //Transform of the player so we can spawn enemies arounf the player
     Transform playerTransform;
 
@@ -20,10 +24,7 @@ public class EnemyWaveSpawnManager : MonoBehaviour
     private float randomZ;
 
     //how far away enemies can spawn from the spawner (half the width/height of the map)
-    private float spawnDistanceForMap = 16f;
-
-    //cant spawn within this distance of the spawner (spawns the zombies on the edge of the map if the spawner is in the middle)
-    private int noSpawnZoneDistanceForMap = 12;
+    private float spawnDistance = 4f;
 
     //Wave manager reference to get wave information
     WaveManager waveManager;
@@ -41,6 +42,11 @@ public class EnemyWaveSpawnManager : MonoBehaviour
 
         playerTransform = GameObject.Find("player").transform;
 
+        spawnpoints.Add(new Vector3(-3, 1, -21)); //Bottom Left;
+        spawnpoints.Add(new Vector3(5, 1, -21)); //Bottom Right
+        spawnpoints.Add(new Vector3(-2, 1, 32)); //Top Left
+        spawnpoints.Add(new Vector3(21, 1, 21)); //Top Right
+
     }
 
     private void _PlayerRespawn(PlayerRespawnEvent e)
@@ -52,10 +58,12 @@ public class EnemyWaveSpawnManager : MonoBehaviour
     {
         spawnDelay -= 0.1f;
 
-        StartCoroutine(SpawnEnemiesForWave());
+        Vector3 spawnpointForWave = spawnpoints[Random.Range(0, spawnpoints.Count)];
+
+        StartCoroutine(SpawnEnemiesForWave(spawnpointForWave));
     }
 
-    IEnumerator SpawnEnemiesForWave()
+    IEnumerator SpawnEnemiesForWave(Vector3 spawnpointForWave)
     {
         while (waveManager.getNumEnemiesSpawnedSoFar() < waveManager.getNumEnemiesToSpawnThisRound())
         {
@@ -78,9 +86,9 @@ public class EnemyWaveSpawnManager : MonoBehaviour
                     if (Random.value < 0.5f)
                     {
                         // Spawn on the horizontal edges
-                        randomX = Random.Range(-spawnDistanceForMap, spawnDistanceForMap); // Anywhere along the horizontal edge
+                        randomX = Random.Range(-spawnDistance, spawnDistance); // Anywhere along the horizontal edge
 
-                        randomZ = Random.Range(spawnDistanceForMap, noSpawnZoneDistanceForMap);
+                        randomZ = Random.Range(0, spawnDistance);
 
                         // Top or Bottom edge
                         if (Random.value < 0.5) randomZ *= -1;
@@ -88,9 +96,9 @@ public class EnemyWaveSpawnManager : MonoBehaviour
                     else
                     {
                         // Spawn on the vertical edges
-                        randomZ = Random.Range(-spawnDistanceForMap, spawnDistanceForMap); // Anywhere along the vertical edge
+                        randomZ = Random.Range(-spawnDistance, spawnDistance); // Anywhere along the vertical edge
 
-                        randomX = Random.Range(spawnDistanceForMap, noSpawnZoneDistanceForMap);
+                        randomX = Random.Range(0, spawnDistance);
 
                         // Top or Bottom edge
                         if (Random.value < 0.5) randomX *= -1;
