@@ -50,9 +50,8 @@ public class PingManager : MonoBehaviour
             //vw = 5 - managerBuffer;
             //vh = 5-managerBuffer;
             vw = managerCamera.orthographicSize - managerBuffer;
-            vh = managerCamera.orthographicSize - managerBuffer;
+            vh = vw;
             Vector3 offset = ping.position - managerCam.position;
-            
             Vector3 clamped = new(Mathf.Clamp(offset.x, -vw, vw), offset.y, Mathf.Clamp(offset.z, -vh, vh));
             if (clamped == offset)
             {

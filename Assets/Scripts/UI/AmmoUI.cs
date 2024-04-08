@@ -19,7 +19,7 @@ public class AmmoUI : MonoBehaviour
 
         if(ammo_display != null)
         {
-            Debug.Log("Ammo UI Text Found");
+            // Debug.Log("Ammo UI Text Found");
         }
     }
 

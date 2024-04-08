@@ -6,6 +6,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using System;
 using UnityEngineInternal;
+using System.Net.NetworkInformation;
 
 public class ManagerPlayerInputsNew : MonoBehaviour
 {
@@ -111,7 +112,7 @@ public class ManagerPlayerInputsNew : MonoBehaviour
 
     private void OnZoom(InputValue value)
     {
-        zoomScroll = value.Get<Vector2>();
+        zoomScroll = -1 * value.Get<Vector2>();
         
         //Debug.Log("Zoom is" + zoomScroll.ToString());
         //Up scroll is *, -1
@@ -405,19 +406,31 @@ public class ManagerPlayerInputsNew : MonoBehaviour
 
     public static bool withinView(Vector3 worldPosition)
     {
-        float worldPositionX = worldPosition.x;
-        float worldPositionZ = worldPosition.z;
-        float managerPositionX = Mathf.RoundToInt(managerCamera.transform.position.x);
-        float managerPositionZ = Mathf.RoundToInt(managerCamera.transform.position.z);
+        float vw = managerCamera.GetComponent<Camera>().orthographicSize;
+        float vh = managerCamera.GetComponent<Camera>().orthographicSize;
+        Vector3 offset = worldPosition - managerCamera.transform.position;
 
-
-        if ((managerPositionX - blockCount <= worldPosition.x && worldPosition.x <= managerPositionX + blockCount)
-            && (managerPositionZ - blockCount <= worldPosition.z && worldPosition.z <= managerPositionZ + blockCount))
+        Vector3 clamped = new(Mathf.Clamp(offset.x, -vw, vw), offset.y, Mathf.Clamp(offset.z, -vh, vh));
+        if (clamped == offset)
         {
             return true;
         }
 
         return false;
+
+        //float worldPositionX = worldPosition.x;
+        //float worldPositionZ = worldPosition.z;
+        //float managerPositionX = Mathf.RoundToInt(managerCamera.transform.position.x);
+        //float managerPositionZ = Mathf.RoundToInt(managerCamera.transform.position.z);
+
+
+        //if ((managerPositionX - blockCount <= worldPosition.x && worldPosition.x <= managerPositionX + blockCount)
+        //    && (managerPositionZ - blockCount <= worldPosition.z && worldPosition.z <= managerPositionZ + blockCount))
+        //{
+        //    return true;
+        //}
+
+        //return false;
     }
 
     private void _tutorialDefense(FirstTutorialWaveEvent e)

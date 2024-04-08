@@ -217,6 +217,7 @@ MonoBehaviour:
   ProjectilePrefab: {fileID: 4820764227730699988, guid: 07cac96898c26b041928e90fb5d15422,
     type: 3}
   anim: {fileID: 8555320606884907261}
+  look: {fileID: 4101018519296265025}
 --- !u!1 &2422488895765723781
 GameObject:
   m_ObjectHideFlags: 0
@@ -438,10 +439,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60b288124d5da844292bf9aa92a56623, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  crouchSpeed: 2.5
+  crouchSpeed: 3
   walkSpeed: 5
-  runSpeed: 7.5
-  jumpHeight: 5
+  runSpeed: 7
+  jumpHeight: 3
   slideTime: 1
   lookSpeed: {x: 180, y: 90}
   pingDistance: 100
