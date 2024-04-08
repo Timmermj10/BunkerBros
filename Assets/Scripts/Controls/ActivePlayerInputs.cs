@@ -7,10 +7,15 @@ using static UnityEngine.Rendering.DebugUI;
 
 public class ActivePlayerInputs : MonoBehaviour
 {
-    public float moveSpeed = 5f;
+    public float crouchSpeed = 2.5f;
+    public float walkSpeed = 5f;
+    public float runSpeed = 7.5f;
+    public float jumpHeight = 5f;
+    public float slideTime = 1f;
     public Vector2 lookSpeed = new Vector2(90, 90);
     public float pingDistance = 100f;
     public LayerMask ignore;
+    public LayerMask ground;
 
     private Vector2 movementInputValue;
     private Vector2 aimInputValue;
@@ -19,19 +24,31 @@ public class ActivePlayerInputs : MonoBehaviour
     private Transform look;
     private bool playerControls = true;
     private PingManager pingManager;
+    private Animator anim;
 
+    bool willCrouch = false;
     private void Awake()
     {
         EventBus.Subscribe<WaveStartedEvent>(WaveStarted);
         rb = GetComponent<Rigidbody>();
         look = transform.Find("PlayerLook");
         pingManager = GameObject.Find("GameManager").GetComponent<PingManager>();
+        anim = GetComponent<Animator>();
     }
 
     private void FixedUpdate() {
+        bool running = anim.GetBool("running");
+        bool crouched = anim.GetBool("crouching");
+        bool ads = anim.GetBool("ads");
+        bool knife = anim.GetBool("knife");
+        /*Debug.Log(anim.GetCurrentAnimatorClipInfo(0)[0].clip.name + "\n" +
+            "running: " + running + "\t" +
+            "crouched: " + crouched + "\t" +
+            "ads: " + ads + "\t" +
+            "knife: " + knife);*/
         Vector3 forward = movementInputValue.y * transform.forward;
         Vector3 right = movementInputValue.x * transform.right;
-        rb.velocity = rb.velocity.y * Vector3.up + moveSpeed * (forward + right);
+        rb.velocity = rb.velocity.y * Vector3.up + (running ? runSpeed : (crouched ? crouchSpeed : walkSpeed)) * (forward + right);
         if (playerControls)
         {
             rotation += Time.deltaTime * new Vector2(-aimInputValue.y * lookSpeed.y, aimInputValue.x * lookSpeed.x);
@@ -39,6 +56,16 @@ public class ActivePlayerInputs : MonoBehaviour
             look.rotation = Quaternion.Euler(rotation.x, rotation.y, 0);
             transform.rotation = Quaternion.Euler(0, rotation.y, 0);
         }
+        if (Grounded() && !crouched && willCrouch)
+            if(running)
+            {
+                Slide();
+            }
+            else
+            {
+                running = false;
+                Crouch();
+            }
     }
 
 
@@ -59,14 +86,24 @@ public class ActivePlayerInputs : MonoBehaviour
     private void OnMove(InputValue value)
     {
         movementInputValue = value.Get<Vector2>();
+        if (movementInputValue == Vector2.zero)
+            anim.SetBool("running", false);
     }
+    private void OnRun(InputValue value)
+    {
+        if (Grounded())
+            anim.SetBool("running", true);
 
+    }
     // Constantly sets the value of aimInputValue to the current input on the right joystick
-    private void OnAim(InputValue value)
+    private void OnLook(InputValue value)
     {
         aimInputValue = value.Get<Vector2>();
     }
-
+    private void OnAim(InputValue value)
+    {
+        anim.SetBool("ads", value.Get<float>() > 0);
+    }
     private void OnAttack(InputValue value)
     {
         if (playerControls)
@@ -74,6 +111,17 @@ public class ActivePlayerInputs : MonoBehaviour
             //Debug.Log("Active Player: Player Attacked");
             EventBus.Publish(new AttackEvent());
         }
+    }
+    private void OnJump(InputValue value)
+    {
+        if (Grounded())
+            rb.velocity = new(rb.velocity.x, jumpHeight, rb.velocity.y);
+    }
+    private void OnCrouch(InputValue value)
+    {
+        bool crouched = anim.GetBool("crouching");
+        if (crouched) anim.SetBool("crouching", false);
+        else willCrouch = true;
     }
 
     private void OnPing(InputValue value)
@@ -93,19 +141,28 @@ public class ActivePlayerInputs : MonoBehaviour
         }
     }
 
-    private void OnADS(InputValue value)
-    {
-        Debug.Log("ADS");
-    }
-
-    private void OnJump(InputValue value)
-    {
-        Debug.Log("jump");
-    }
-
     public Vector2 getAimValue() { return aimInputValue; }
 
     public Vector2 getMovementValue() { return movementInputValue; }
 
-    
+    bool Grounded()
+    {
+        CapsuleCollider coll = GetComponentInChildren<CapsuleCollider>();
+        return Physics.Raycast(transform.position, Vector3.down, coll.bounds.extents.y + .05f, ground);
+    }
+    private void Crouch()
+    {
+        willCrouch = false;
+        anim.SetBool("crouching", true);
+    }
+    private void Stand()
+    {
+        anim.SetBool("crouching", false);
+    }
+    public IEnumerator Slide()
+    {
+        Crouch();
+        yield return new WaitForSeconds(1f);
+        Stand();
+    }
 }
