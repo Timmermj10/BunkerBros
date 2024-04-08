@@ -3,11 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
-using UnityEngine.UIElements;
+using UnityEngine.UI;
 
 public class TutorialManager : MonoBehaviour
 {
+
+    private PingManager pingManager;
     private PopUpSystem popUpSystem;
     private GameObject bunker;
 
@@ -40,6 +43,7 @@ public class TutorialManager : MonoBehaviour
     public GameObject Nuke;
     public GameObject Missile;
     public GameObject NukeParts;
+    public GameObject EvacuationButton;
 
     [SerializeField]
     private InputActionAsset actionAsset;
@@ -51,7 +55,6 @@ public class TutorialManager : MonoBehaviour
 
     void Start()
     {
-        //Debug.Log("Tutorial Manager Start");
         EventBus.Subscribe<ObjectDestroyedEvent>(_enemyDeath);
         EventBus.Subscribe<AirdropLandedEvent>(_hasDroppedItems);
         EventBus.Subscribe<PickUpEvent>(_hasPickedUpItems);
@@ -61,7 +64,10 @@ public class TutorialManager : MonoBehaviour
         EventBus.Subscribe<CoinCollect>(_hasFoundChest);
         EventBus.Subscribe<PopUpEndEvent>(_endPopUp);
         EventBus.Subscribe<RadioTowerActivatedEvent>(_radioTowerActivated);
+        EventBus.Subscribe<ItemUseEvent>(_ItemPurchased);
 
+
+        pingManager = GameObject.Find("GameManager").GetComponent<PingManager>();
         popUpSystem = GameObject.Find("GameManager").GetComponent<PopUpSystem>();
         bunker = GameObject.Find("Objective");
 
@@ -78,9 +84,9 @@ public class TutorialManager : MonoBehaviour
         Nuke.SetActive(false);
         Missile.SetActive(false);
         NukeParts.SetActive(false);
+        EvacuationButton.SetActive(false);
 
         //SPAWN ANCHORED ENEMIES FOR RADIO TOWER
-
 
         StartCoroutine(Tutorial());
     }
@@ -91,11 +97,6 @@ public class TutorialManager : MonoBehaviour
 
         bunker.GetComponent<HasHealth>().changeHealth(-10);
         bunker.GetComponent<HasHealth>().changeHealth(-50);
-
-        Instantiate(basicEnemyPrefab, new Vector3(-2, 1, 0), Quaternion.identity);
-        Instantiate(basicEnemyPrefab, new Vector3(1, 1, 1.5f), Quaternion.identity);
-        Instantiate(basicEnemyPrefab, new Vector3(1, 1, -1.5f), Quaternion.identity);
-        enemiesAlive = 3;
 
         startPopUp("Manager");
         popUpSystem.popUp("Manager", "Your bunker is under attack! Don't let the zombies break in, your lives depend on it! Deploy your partner to handle the zombies on the surface.");
@@ -191,13 +192,12 @@ public class TutorialManager : MonoBehaviour
 
         startPopUp("Player");
         popUpSystem.popUp("Player", "Go activate the radio tower to increase your signal strength! If you get your signal strength high enough, you can radio for an extraction team!");
-        //Ping Radio Tower Location
+        pingManager.ManagerPing(new Vector3(-24, 5, -3));
 
 
         startPopUp("Manager");
         popUpSystem.popUp("Manager", "Theres a zombie horde approaching from the southwest! Use some walls, turrets and missiles to defend the bunker while your partner is activating the radio tower.");
-        //Ping Zombie Location with Skull
-
+        EventBus.Publish(new FirstTutorialWaveEvent());
 
         Instantiate(basicEnemyPrefab, new Vector3(-6, 1, -23), Quaternion.identity);
         Instantiate(basicEnemyPrefab, new Vector3(-6, 1, -21f), Quaternion.identity);
@@ -219,6 +219,22 @@ public class TutorialManager : MonoBehaviour
         AmmoCrate.SetActive(true);
 
         EventBus.Publish(new TutorialEndedEvent());
+
+        //turn on the evac button
+        EvacuationButton.SetActive(true);
+
+        //Make all buttons interactable again
+        playerRespawn.GetComponent<Button>().interactable = true;
+        RepairKit.GetComponent<Button>().interactable = true;
+        AmmoCrate.GetComponent<Button>().interactable = true;
+        Gun.GetComponent<Button>().interactable = true;
+        Wall.GetComponent<Button>().interactable = true;
+        Turret.GetComponent<Button>().interactable = true;
+        HealthPack.GetComponent<Button>().interactable = true;
+        Nuke.GetComponent<Button>().interactable = true;
+        Missile.GetComponent<Button>().interactable = true;
+        NukeParts.GetComponent<Button>().interactable = true;
+        EvacuationButton.GetComponent<Button>().interactable = true;
 
         yield return null;
     }
@@ -254,6 +270,12 @@ public class TutorialManager : MonoBehaviour
 
         switch (activateNum)
         {
+            case 1:
+                Instantiate(basicEnemyPrefab, new Vector3(-2, 1, 0), Quaternion.identity);
+                Instantiate(basicEnemyPrefab, new Vector3(1, 1, 1.5f), Quaternion.identity);
+                Instantiate(basicEnemyPrefab, new Vector3(1, 1, -1.5f), Quaternion.identity);
+                enemiesAlive = 3;
+                break;
             case 3:
                 RepairKit.SetActive(true);
                 break;
@@ -261,6 +283,7 @@ public class TutorialManager : MonoBehaviour
                 NukeParts.SetActive(true);
                 break;
             case 9:
+                // StartCoroutine(pingManager.Warn(new Vector3(-11, 2, -2), 10));
                 Nuke.SetActive(true);
                 break;
             case 10:
@@ -270,6 +293,7 @@ public class TutorialManager : MonoBehaviour
                 healthPackPopUpIsDone = true;
                 break;
             case 13:
+                // StartCoroutine(pingManager.Warn(new Vector3(-5, 1, -22), 10));
                 Wall.SetActive(true);
                 Turret.SetActive(true);
                 Missile.SetActive(true);
@@ -348,6 +372,30 @@ public class TutorialManager : MonoBehaviour
             popUpSystem.popUp("Player", "Good job activating the radio tower! If you activate the rest and get your signal strength high enough you can radio for help!");
             startPopUp("Manager");
             popUpSystem.popUp("Manager", "Great work! Keep working together with your partner to defend the bunker and activate all the radio towers and maybe you guys will survive long enough to make it out of here!");
+        }
+    }
+
+    private void _ItemPurchased(ItemUseEvent e)
+    {
+        switch (e.itemID)
+        {
+            case 0:
+                NukeParts.GetComponent<Button>().interactable = false;
+                EventSystem.current.SetSelectedGameObject(null);
+                Debug.Log("Setting Selected Object to null");
+                break;
+            case 6:
+                HealthPack.GetComponent<Button>().interactable = false;
+                EventSystem.current.SetSelectedGameObject(null);
+                Debug.Log("Setting Selected Object to null");
+                break;
+            case 7:
+                RepairKit.GetComponent<Button>().interactable = false;
+                EventSystem.current.SetSelectedGameObject(null);
+                Debug.Log("Setting Selected Object to null");
+                break;
+            default:
+                break;
         }
     }
 

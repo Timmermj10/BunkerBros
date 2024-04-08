@@ -144,6 +144,12 @@ public class SiloLoadedEvent
 // Event for when the silo is unloaded
 public class SiloUnloadedEvent
 {
+    public MissileSiloStatus status;
+
+    public SiloUnloadedEvent(MissileSiloStatus e)
+    {
+        status = e;
+    }
 }
 
 public class WaveEndedEvent
@@ -212,9 +218,12 @@ public class RadioTowerActivatedEvent
 
 public class TutorialEndedEvent
 {
-
 }
 
+//Event to indicate when the tutorial wave starts
+public class FirstTutorialWaveEvent
+{
+}
 
 // Event to show that the next wave should be the last
 public class LastWaveEvent

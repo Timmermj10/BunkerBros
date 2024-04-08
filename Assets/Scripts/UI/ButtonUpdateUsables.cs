@@ -108,5 +108,10 @@ public class ButtonUpdateUsables : MonoBehaviour
             // Update the color of this button
             button.GetComponent<Image>().color = Color.white;
         }
+        else if (button == e.button)
+        {
+            EventSystem.current.SetSelectedGameObject(e.button.gameObject);
+            Debug.Log($"Setting Selected Gameobject to {EventSystem.current.currentSelectedGameObject}");
+        }
     }
 }
