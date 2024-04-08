@@ -19,9 +19,7 @@ public class GunText : MonoBehaviour
         EventBus.Subscribe<PurchaseEvent>(_gunUse);
 
         // Set it so they know how to shoot
-        gameObject.GetComponent<Text>().text = "Click RIGHT BUMBER to stab/shoot";
         textShowing = true;
-
     }
 
     // Update is called once per frame
@@ -50,7 +48,7 @@ public class GunText : MonoBehaviour
             textShowing = true;
 
             // Set the text
-            gameObject.GetComponent<Text>().text = "Click TRIANGLE to switch between weapons";
+            gameObject.GetComponent<Text>().text = "Click TRIANGLE to switch between weapons & LT to ADS";
         }
     }
 }
