@@ -58,7 +58,7 @@ public class StoryDisplayer : MonoBehaviour
         Color originalColor = textComponent.color;
         float timer = 0;
 
-        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync("DropsTest");
+        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync("Main");
         asyncLoad.allowSceneActivation = false;
 
         if (audioSource2 && !audioSource2.isPlaying)
