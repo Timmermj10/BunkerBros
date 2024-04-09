@@ -10,6 +10,8 @@ public class HasHealth : MonoBehaviour
     public int currentHealth;
     public int armorValue = 0;
 
+    private bool inFirstStageTutorial = false;
+
     public HealthBarScript healthBar;
 
     private void Start()
@@ -32,28 +34,18 @@ public class HasHealth : MonoBehaviour
             healthBar.SetHealth(currentHealth);
         }
 
-        // Set the blood to be transparent
+        if (gameObject.CompareTag("Objective"))
+        {
+            inFirstStageTutorial = true;
+            EventBus.Subscribe<FirstTutorialWaveEvent>(_FirstTutorialWaveEnded);
+        }
 
     }
 
-    //private void Update()
-    //{
-    //    if (overlay != null)
-    //    {
-    //        // Check if the blood is onscreen
-    //        if (overlay.color.a > 0 && gameObject.name is "player")
-    //        {
-    //            durationTimer += Time.deltaTime;
-    //            if (durationTimer > duration)
-    //            {
-    //                // Fade the image
-    //                float tempAlpha = overlay.color.a;
-    //                tempAlpha -= Time.deltaTime * fadeSpeed;
-    //                overlay.color = new Color(overlay.color.r, overlay.color.g, overlay.color.b, tempAlpha);
-    //            }
-    //        }
-    //    }
-    //}
+    private void _FirstTutorialWaveEnded(FirstTutorialWaveEvent e)
+    {
+        inFirstStageTutorial = false;
+    }
 
     public void increaseHealth(int health_in)
     {
@@ -77,10 +69,18 @@ public class HasHealth : MonoBehaviour
 
         if (GetComponent<Shield>() == null || !GetComponent<Shield>().protect) 
         {
-            // Update currentHealth
+            
+            //If the objective has tken enough damage in the tutorial, dont let it take more
+            if (GetComponent<Shield>() != null && currentHealth < (maxHealth - (RepairKitUse.repair_value + 5)) && inFirstStageTutorial)
+            {
+                return;
+            }
 
+            // Update currentHealth
             if (healthChange < 0) 
             {
+                Debug.Log($"{gameObject.name} taking damage");
+
                 // Publish a damage effect event
                 if (gameObject.tag == "Enemy")
                 {

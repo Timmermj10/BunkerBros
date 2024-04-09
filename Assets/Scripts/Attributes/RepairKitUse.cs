@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class RepairKitUse : MonoBehaviour
 {
-    public int repair_value = 5;
+    public static int repair_value = 25;
 
     public void UseKit()
     {

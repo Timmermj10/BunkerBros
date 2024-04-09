@@ -19,7 +19,7 @@ public class ChangesHealth : MonoBehaviour
             return;
         }
 
-        //Dont let the player or turrets damage structures
+        //Dont let the player or turrets damage structures (removed)
 
         //Debug.Log($"{other.gameObject.layer}, {gameObject.tag}, {gameObject.name}");
         if (other.gameObject.layer == LayerMask.NameToLayer("Structure") && gameObject.CompareTag("Projectile"))
