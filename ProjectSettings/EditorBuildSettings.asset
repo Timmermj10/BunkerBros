@@ -12,14 +12,17 @@ EditorBuildSettings:
     path: Assets/Scenes/StoryScene.unity
     guid: 0551d4fbba76de24bae5db6a3473c2d3
   - enabled: 1
-    path: Assets/Scenes/DropsTest.unity
-    guid: 4cb2ae870407bbd47ab730708e05ca18
+    path: Assets/Scenes/Main.unity
+    guid: 0199be7c20d3f544d8e84fa4af81df54
   - enabled: 1
     path: Assets/Scenes/GameEnd.unity
     guid: 395798b878a225044b926d4731bc03c5
   - enabled: 1
     path: Assets/Scenes/GameWin.unity
     guid: 99552f0db1296764d8c6ba5cc7f0df0f
+  - enabled: 0
+    path: Assets/Scenes/DropsTest.unity
+    guid: 4cb2ae870407bbd47ab730708e05ca18
   - enabled: 0
     path: Assets/Scenes/BalanceScene.unity
     guid: 630cd09bc3b736e498d485ee1253679c

@@ -1,13 +1,13 @@
 using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class StoryDisplayer : MonoBehaviour
 {
 
-    [SerializeField] private TMP_Text textComponent;
+    [SerializeField] private TMP_Text text;
     [SerializeField] private string fullText = "In a post apocalyptic world, our heros have been chased by zombies into the desert where they are stranded until reinforcements arrive. They have taken shelter in a government bunker, equipped with remote controlled robots and drones to help them defend themselves. They must now survive long enough until they are able to be extracted.";
     [SerializeField] private float delayBetweenCharacters = 0.03f;
     [SerializeField] private float fadeOutDuration = 3f;
@@ -18,9 +18,20 @@ public class StoryDisplayer : MonoBehaviour
     private AudioSource audioSource1;
     private AudioSource audioSource2;
 
+    private bool storyDone = false;
+
+    private bool player1Confirmed = false;
+    private bool player2Confirmed = false;
+
+    public GameObject managerConfirmation;
+    public GameObject playerConfirmation;
+
+    public GameObject managerPrompt;
+    public GameObject playerPrompt;
+
     private void Start()
     {
-        textComponent = GetComponent<TMP_Text>();
+        text = GetComponent<TMP_Text>();
 
         audioSource1 = gameObject.AddComponent<AudioSource>();
         audioSource2 = gameObject.AddComponent<AudioSource>();
@@ -30,17 +41,17 @@ public class StoryDisplayer : MonoBehaviour
 
         audioSource1.volume = 0.7f;
 
-        textComponent.text = string.Empty;
+        text.text = string.Empty;
         StartCoroutine(TypeWords());
     }
 
     private IEnumerator TypeWords()
     {
 
-        textComponent.text = string.Empty;
+        text.text = string.Empty;
         foreach (char letter in fullText.ToCharArray())
         {
-            textComponent.text += letter;
+            text.text += letter;
             yield return new WaitForSeconds(delayBetweenCharacters);
 
             if (audioSource1 && !audioSource1.isPlaying)
@@ -50,10 +61,10 @@ public class StoryDisplayer : MonoBehaviour
         }
 
         yield return new WaitForSeconds(2f);
-        StartCoroutine(FadeOutCoroutine());
+        StartCoroutine(TextFadeOutCoroutine(text));
     }
 
-    private IEnumerator FadeOutCoroutine()
+    private IEnumerator TextFadeOutCoroutine(TMP_Text textComponent)
     {
         Color originalColor = textComponent.color;
         float timer = 0;
@@ -81,24 +92,97 @@ public class StoryDisplayer : MonoBehaviour
         // Ensure text is fully transparent after the loop.
         textComponent.color = new Color(originalColor.r, originalColor.g, originalColor.b, 0);
 
-        while (!asyncLoad.isDone)
+        storyDone = true;
+
+        playerPrompt.SetActive(true);
+        managerPrompt.SetActive(true);
+
+        Debug.Log("Waiting for player confirmation");
+        while (!player1Confirmed || !player2Confirmed)
         {
-            // Check if the load has finished
-            if (asyncLoad.progress >= 0.9f)
-            {
-                textComponent.color = new Color(originalColor.r, originalColor.g, originalColor.b, 1);
-                textComponent.text = "press any key to continue";
-
-                if (Input.anyKey) // Or a specific key or button
-                {
-                    // Activate the scene
-                    asyncLoad.allowSceneActivation = true;
-                }
-            }
-
             yield return null;
         }
 
+        StartCoroutine(TextFadeOut(managerPrompt.GetComponent<TMP_Text>()));
+        StartCoroutine(TextFadeOut(playerPrompt.GetComponent<TMP_Text>()));
+        StartCoroutine(ImageFadeOut(playerConfirmation));
+        StartCoroutine(ImageFadeOut(managerConfirmation));
+
+        yield return new WaitForSeconds(3);
+
+        asyncLoad.allowSceneActivation = true;
+
     }
 
+    private IEnumerator TextFadeOut(TMP_Text textComponent)
+    {
+        Color originalColor = textComponent.color;
+        float timer = 0;
+
+        while (timer < fadeOutDuration)
+        {
+            // Calculate the blend factor proportionally to the time.
+            float blend = Mathf.Clamp01(timer / fadeOutDuration);
+            textComponent.color = new Color(originalColor.r, originalColor.g, originalColor.b, 1 - blend);
+
+            // Increment the timer by the time since last frame.
+            timer += Time.deltaTime;
+
+            yield return null; // Wait until next frame.
+        }
+
+        // Ensure text is fully transparent after the loop.
+        textComponent.color = new Color(originalColor.r, originalColor.g, originalColor.b, 0);
+        yield return null;
+    }
+
+    private IEnumerator ImageFadeOut(GameObject image)
+    {
+
+        Image imageToFade = image.GetComponent<Image>();
+        Color originalColor = imageToFade.color;
+        float timer = 0;
+
+        while (timer <= fadeOutDuration)
+        {
+            // Calculate alpha value proportionally to the elapsed time
+            float alpha = Mathf.Lerp(1f, 0f, timer / fadeOutDuration);
+
+            // Set the new color with the new alpha value
+            imageToFade.color = new Color(originalColor.r, originalColor.g, originalColor.b, alpha);
+
+            // Increment the timer by the time since last frame
+            timer += Time.deltaTime;
+
+            // Wait for the next frame
+            yield return null;
+        }
+
+        // Ensure the image is fully transparent after the loop
+        imageToFade.color = new Color(originalColor.r, originalColor.g, originalColor.b, 0);
+
+        // Optionally deactivate the image game object after fading out
+        imageToFade.gameObject.SetActive(false);
+    }
+
+
+    public void player1Confirm()
+    {
+        if (!player1Confirmed && storyDone)
+        {
+            player1Confirmed = true;
+            playerConfirmation.SetActive(true);
+            Debug.Log("Player 1 has confirmed.");
+        }
+    }
+
+    public void player2Confirm()
+    {
+        if (!player2Confirmed && storyDone)
+        {
+            player2Confirmed = true;
+            managerConfirmation.SetActive(true);
+            Debug.Log("Player 2 has confirmed.");
+        }
+    }
 }

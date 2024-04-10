@@ -380,6 +380,54 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "StorySceneConfirms",
+            "id": "5de4e98a-c35b-4439-822b-51b17cbec564",
+            "actions": [
+                {
+                    "name": "GamepadConfirm",
+                    "type": "Button",
+                    "id": "96dba6c7-e198-4a48-a110-e512a1a5fc62",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "MouseConfirm",
+                    "type": "Button",
+                    "id": "9a86cd0b-4d9d-48ac-b73b-16ef6f4e7587",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "c79a7e02-0be9-4726-9a4e-8b459bc026cd",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "ControllerPlayer;KBMPlayer",
+                    "action": "GamepadConfirm",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "24bc5a85-29e6-4a0b-b88b-a9fb2e1b5360",
+                    "path": "<Keyboard>/enter",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KBMPlayer;ControllerPlayer",
+                    "action": "MouseConfirm",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": [
