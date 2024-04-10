@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Net;
 using Unity.Loading;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -14,7 +15,7 @@ public class PlayerInteract : MonoBehaviour
     private float interactTimer = 2.0f;
 
     // Whether the button is pressed down
-    private bool buttonPressed = false;
+    public static bool buttonPressed = false;
 
     // Reference to shop manager script
     private ShopManagerScript shopManagerScript;
@@ -23,9 +24,8 @@ public class PlayerInteract : MonoBehaviour
     [SerializeField]
     private List<GameObject> itemsInRange = new List<GameObject>();
 
-    // Items that have been successfully picked up
-    [SerializeField]
-    private List<GameObject> pickedUpItems = new List<GameObject>();
+    //Reference to player
+    GameObject player;
 
 
     [Header("Text Popups for Interactables")]
@@ -41,6 +41,8 @@ public class PlayerInteract : MonoBehaviour
         playerUI = GameObject.Find("player").GetComponent<PlayerUI>();
         playerCam = GameObject.Find("PlayerCamera").GetComponent<Camera>();
         shopManagerScript = GameObject.Find("GameManager").GetComponent<ShopManagerScript>();
+
+        player = GameObject.Find("player");
     }
 
     private void Update()
@@ -64,43 +66,30 @@ public class PlayerInteract : MonoBehaviour
     // Update is called once per frame
     private void FixedUpdate()
     {
+
         // If we are pressing down the button and there is an item that can be pickedup
         if (buttonPressed && itemsInRange.Count > 0)
         {
-            //Debug.Log("Button pressed and at least one interactable object in range");
+            GameObject item = itemsInRange[0];
 
-            foreach (var item in itemsInRange)
+            //If the timer not already going, start it
+            if (interactTimer >= timeToInteract)
             {
-                // If there is an item
-                if (item != null && item.tag is "Pickup")
+                if (itemsInRange.Count > 0 && canInteractWithObject(item))
                 {
                     EventBus.Publish(new InteractTimerStartedEvent(timeToInteract));
+                    //Debug.Log("Starting Timer");
                 }
-                else if (item != null && item.tag is "Interactable")
-                {
-                    //Debug.Log("Interactable silo, but cannot load rn");
-                    if ((item.name is "MissileSilo" || item.name is "MissileSilo(Clone)") && !GetComponent<ActivePlayerInventory>().itemInInventory(ActivePlayerInventory.activePlayerItems.NukeParts))
-                    {
-                        continue;
-                    }
-                    else
-                    {
-                        EventBus.Publish(new InteractTimerStartedEvent(timeToInteract));
-                    }
-                }
-                else if (item != null && (item.name is "Objective") && GetComponent<ActivePlayerInventory>().itemInInventory(ActivePlayerInventory.activePlayerItems.RepairKit))
-                {
-                    EventBus.Publish(new InteractTimerStartedEvent(timeToInteract));
-                }
-                //TODO: Add code for health pack and repair kits
                 else
                 {
-                    //Debug.Log("No interactable objects");
+                    itemsInRange.Remove(item);
+                    //Debug.Log($"removing item to range. count = {itemsInRange.Count}");
+                    EventBus.Publish(new itemRemovedFromPickupRangeEvent(itemsInRange.Count));
                 }
             }
 
+            //Decrease interact timer
             interactTimer -= Time.deltaTime;
-            //Debug.Log($"Attempting to interact, timer = {interactTimer}");
 
             // Check if we have reached the end of the timer
             if (interactTimer <= 0)
@@ -108,106 +97,104 @@ public class PlayerInteract : MonoBehaviour
                 interactTimer = timeToInteract;
                 EventBus.Publish(new InteractTimerEndedEvent());
 
-                // For each item within range
-                foreach (var item in itemsInRange)
+                // If there is an item
+                if (item != null && item.tag is "Pickup")
                 {
-                    // If there is an item
-                    if (item != null && item.tag is "Pickup")
+                    // Define a pickup InventoryItem
+                    InventoryItem pickup = new InventoryItem();
+
+                    // If the item is a goldchest
+                    if (item.name is "ChestPack" || item.name is "ChestPack(Clone)")
                     {
-                        // Define a pickup InventoryItem
-                        InventoryItem pickup = new InventoryItem();
+                        // Publish a CoinCollect event
 
-                        // If the item is a goldchest
-                        if (item.name is "ChestPack" || item.name is "ChestPack(Clone)")
+                        if ( SceneManager.GetActiveScene() == SceneManager.GetSceneByName("TutorialScene"))
                         {
-                            // Publish a CoinCollect event
-
-                            if ( SceneManager.GetActiveScene() == SceneManager.GetSceneByName("TutorialScene"))
-                            {
-                                EventBus.Publish<CoinCollect>(new CoinCollect(1000));
-                            }
-                            else
-                            {
-                                EventBus.Publish<CoinCollect>(new CoinCollect(150));
-                            }
+                            EventBus.Publish<CoinCollect>(new CoinCollect(1000));
                         }
-                        else if (item.name is "NukeCrate" || item.name is "NukeCrate(Clone)")
+                        else
                         {
-                            //Debug.Log("Publishing NukeParts pickup");
-                            EventBus.Publish<PickUpEvent>(new PickUpEvent(ActivePlayerInventory.activePlayerItems.NukeParts));
-                        }
-                        //TODO: add ammo pickup
-                        else if (item.name is "RepairKit" || item.name is "RepairKit(Clone)")
-                        {
-                            EventBus.Publish<PickUpEvent>(new PickUpEvent(ActivePlayerInventory.activePlayerItems.RepairKit));
-                        }
-                        else if (item.name is "HealthPack" || item.name is "HealthPack(Clone)")
-                        {
-                            EventBus.Publish<PickUpEvent>(new PickUpEvent(ActivePlayerInventory.activePlayerItems.HealthPack));
-                        }
-                        else if (item.name is "AmmoCrate" || item.name is "AmmoCrate(Clone)")
-                        {
-                            EventBus.Publish<PickUpEvent>(new PickUpEvent(ActivePlayerInventory.activePlayerItems.AmmoKit));
-                        }
-                        else if (item.name is "GunCrate" || item.name is "GunCrate(Clone)")
-                        {
-                            EventBus.Publish<PurchaseEvent>(new PurchaseEvent(shopManagerScript.shopItems[3]));
-                        }
-
-                        // Destroy the item
-                        EventBus.Publish(new ObjectDestroyedEvent(item.name, item.tag, item.transform.position));
-                        Destroy(item);
-                    }
-                    else if (item != null && item.tag is "Interactable")
-                    {
-                        if ((item.name is "MissileSilo" || item.name is "MissileSilo(Clone)") && GetComponent<ActivePlayerInventory>().itemInInventory(ActivePlayerInventory.activePlayerItems.NukeParts))
-                        {
-                            MissileSiloStatus silo = item.GetComponent<MissileSiloStatus>();
-                            //Debug.Log("Loading Silo");
-                            if (silo != null && !silo.isSiloLoaded())
-                            {
-                                //Debug.Log("Loading MissileSilo");
-                                silo.loadSilo();
-
-                                // Publish Silo Loaded Event
-                                //Debug.Log("Publishing Event");
-                                EventBus.Publish<SiloLoadedEvent>(new SiloLoadedEvent(silo));
-
-                                //Take the parts out of the player inventory
-                                ActivePlayerInventory inventory = GetComponent<ActivePlayerInventory>();
-                                inventory.useItem(ActivePlayerInventory.activePlayerItems.NukeParts);
-                            }
-                        }
-                        else if (item.name is "RadioTower" || item.name is "RadioTower(Clone)")
-                        {
-                            // Make it so you can not use the same radio tower
-                            item.tag = "Untagged";
-
-                            // Publish a radio tower event
-                            EventBus.Publish<RadioTowerActivatedEvent>(new RadioTowerActivatedEvent());
+                            EventBus.Publish<CoinCollect>(new CoinCollect(150));
                         }
                     }
-                    else if (item != null && (item.name is "Objective") && GetComponent<ActivePlayerInventory>().itemInInventory(ActivePlayerInventory.activePlayerItems.RepairKit))
+                    else if (item.name is "NukeCrate" || item.name is "NukeCrate(Clone)")
                     {
-                        RepairKitUse rk = item.GetComponent<RepairKitUse>();
-
-                        if (rk != null)
-                        {
-                            //Debug.Log("Using Kit");
-                            rk.UseKit();
-
-                            EventBus.Publish(new RepairKitUsedEvent());
-
-                            ActivePlayerInventory inventory = GetComponent<ActivePlayerInventory>();
-                            inventory.useItem(ActivePlayerInventory.activePlayerItems.RepairKit);
-                        }
+                        //Debug.Log("Publishing NukeParts pickup");
+                        EventBus.Publish<PickUpEvent>(new PickUpEvent(ActivePlayerInventory.activePlayerItems.NukeParts));
+                    }
+                    //TODO: add ammo pickup
+                    else if (item.name is "RepairKit" || item.name is "RepairKit(Clone)")
+                    {
+                        EventBus.Publish<PickUpEvent>(new PickUpEvent(ActivePlayerInventory.activePlayerItems.RepairKit));
+                    }
+                    else if (item.name is "HealthPack" || item.name is "HealthPack(Clone)")
+                    {
+                        EventBus.Publish<PickUpEvent>(new PickUpEvent(ActivePlayerInventory.activePlayerItems.HealthPack));
+                    }
+                    else if (item.name is "AmmoCrate" || item.name is "AmmoCrate(Clone)")
+                    {
+                        EventBus.Publish<PickUpEvent>(new PickUpEvent(ActivePlayerInventory.activePlayerItems.AmmoKit));
+                    }
+                    else if (item.name is "GunCrate" || item.name is "GunCrate(Clone)")
+                    {
+                        EventBus.Publish<PurchaseEvent>(new PurchaseEvent(shopManagerScript.shopItems[3]));
                     }
 
+                    // Destroy the item
+                    EventBus.Publish(new ObjectDestroyedEvent(item.name, item.tag, item.transform.position));
+                    itemsInRange.Remove(item);
+                    Destroy(item);
+                    //Let the timer know the count has been updated
+                    //Debug.Log($"Publishing itemRemovedEvent with count = {itemsInRange.Count}");
+                    EventBus.Publish(new itemRemovedFromPickupRangeEvent(itemsInRange.Count));
+                }
+                else if (item != null && item.tag is "Interactable")
+                {
+                    if ((item.name is "MissileSilo" || item.name is "MissileSilo(Clone)") && player.GetComponent<ActivePlayerInventory>().itemInInventory(ActivePlayerInventory.activePlayerItems.NukeParts))
+                    {
+                        MissileSiloStatus silo = item.GetComponent<MissileSiloStatus>();
+                        //Debug.Log("Loading Silo");
+                        if (silo != null && !silo.isSiloLoaded())
+                        {
+                            //Debug.Log("Loading MissileSilo");
+                            silo.loadSilo();
 
+                            // Publish Silo Loaded Event
+                            //Debug.Log("Publishing Event");
+                            EventBus.Publish<SiloLoadedEvent>(new SiloLoadedEvent(silo));
+
+                            //Take the parts out of the player inventory
+                            ActivePlayerInventory inventory = player.GetComponent<ActivePlayerInventory>();
+                            inventory.useItem(ActivePlayerInventory.activePlayerItems.NukeParts);
+
+
+                        }
+                    }
+                    else if (item.name is "RadioTower" || item.name is "RadioTower(Clone)")
+                    {
+                        // Make it so you can not use the same radio tower
+                        item.tag = "Untagged";
+
+                        // Publish a radio tower event
+                        EventBus.Publish<RadioTowerActivatedEvent>(new RadioTowerActivatedEvent());
+                    }
+                }
+                else if (item != null && (item.name is "Objective") && player.GetComponent<ActivePlayerInventory>().itemInInventory(ActivePlayerInventory.activePlayerItems.RepairKit))
+                {
+                    RepairKitUse rk = item.GetComponent<RepairKitUse>();
+
+                    if (rk != null)
+                    {
+                        //Debug.Log("Using Kit");
+                        rk.UseKit();
+
+                        EventBus.Publish(new RepairKitUsedEvent());
+
+                        ActivePlayerInventory inventory = player.GetComponent<ActivePlayerInventory>();
+                        inventory.useItem(ActivePlayerInventory.activePlayerItems.RepairKit);
+                    }
                 }
 
-                // Clear the items in range list
-                itemsInRange.Clear();
             }
         }
 
@@ -224,23 +211,53 @@ public class PlayerInteract : MonoBehaviour
     {
         //Debug.Log(gameObject.name);
         //Debug.Log(other.name);
-        if ((other.gameObject.tag is "Pickup" || other.gameObject.tag is "Interactable" || other.gameObject.tag is "Objective"))
+
+        //Debug.Log($"tag = {other.gameObject.tag}, canInteractWithObject = {canInteractWithObject(other.gameObject)}");
+
+        if ((other.gameObject.tag is "Pickup" || other.gameObject.tag is "Interactable" || other.gameObject.tag is "Objective") && !itemsInRange.Contains(other.gameObject) && canInteractWithObject(other.gameObject))
         {
             itemsInRange.Add(other.gameObject);
+            //Debug.Log($"Adding item {other.gameObject.name} to range. count = {itemsInRange.Count}");
+            EventBus.Publish(new newItemInPickupRangeEvent(itemsInRange.Count));
         }
     }
 
     // When you walk away from a pickupable item
     private void OnTriggerExit(Collider other)
     {
-        if ((other.gameObject.tag is "Pickup" || other.gameObject.tag is "Interactable" || other.gameObject.tag is "Objective"))
+        if ((other.gameObject.tag is "Pickup" || other.gameObject.tag is "Interactable" || other.gameObject.tag is "Objective") && itemsInRange.Contains(other.gameObject))
         {
             itemsInRange.Remove(other.gameObject);
+            //Debug.Log($"removing item to range. count = {itemsInRange.Count}");
+            EventBus.Publish(new itemRemovedFromPickupRangeEvent(itemsInRange.Count));
         }
     }
 
     void OnInteract(InputValue value)
     {
         buttonPressed = value.isPressed;
+    }
+
+    private bool canInteractWithObject(GameObject item)
+    {
+        // If there is an item
+        if (item != null && item.tag is "Pickup")
+        {
+            return true;
+        }
+        else if (item != null && item.tag is "Interactable")
+        {
+            //Debug.Log("Interactable silo, but cannot load rn");
+            if ( !((item.name is "MissileSilo" || item.name is "MissileSilo(Clone)") && !player.GetComponent<ActivePlayerInventory>().itemInInventory(ActivePlayerInventory.activePlayerItems.NukeParts)))
+            {
+                return true;
+            }
+        }
+        else if (item != null && (item.name is "Objective") && player.GetComponent<ActivePlayerInventory>().itemInInventory(ActivePlayerInventory.activePlayerItems.RepairKit))
+        {
+            return true;
+        }
+
+        return false;
     }
 }

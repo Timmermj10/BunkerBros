@@ -77,6 +77,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7152806202423172224}
   - component: {fileID: 5475018752801013744}
+  - component: {fileID: 3373565378977372686}
   m_Layer: 6
   m_Name: PickupArea
   m_TagString: Untagged
@@ -118,8 +119,27 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.2, y: 0.2, z: 1.5}
-  m_Center: {x: 0, y: 0.25, z: 1.5}
+  m_Size: {x: 0.2, y: 0.5, z: 1.5}
+  m_Center: {x: 0, y: 0, z: 1.5}
+--- !u!114 &3373565378977372686
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 978218093018061303}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7f1449df7ff61b489eaf3a3fc52401f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeToInteract: 2
+  itemsInRange: []
+  pickedUpItems: []
+  distance: 3
+  mask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1 &1146948152980202626
 GameObject:
   m_ObjectHideFlags: 0
@@ -317,7 +337,6 @@ GameObject:
   - component: {fileID: 2795680284881736967}
   - component: {fileID: 4360294523314962802}
   - component: {fileID: 2040935900445435045}
-  - component: {fileID: 155481110080056303}
   - component: {fileID: 2972291016970772470}
   - component: {fileID: 5975604464621813633}
   - component: {fileID: 3894732518182062399}
@@ -494,25 +513,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerInventory: 
---- !u!114 &155481110080056303
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2463675146606809864}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b7f1449df7ff61b489eaf3a3fc52401f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timeToInteract: 2
-  itemsInRange: []
-  pickedUpItems: []
-  distance: 1.5
-  mask:
-    serializedVersion: 2
-    m_Bits: 90113
 --- !u!114 &2972291016970772470
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -141,6 +141,11 @@ public class ActivePlayerInputs : MonoBehaviour
         }
     }
 
+    void OnInteract(InputValue value)
+    {
+        PlayerInteract.buttonPressed = value.isPressed;
+    }
+
     public Vector2 getAimValue() { return aimInputValue; }
 
     public Vector2 getMovementValue() { return movementInputValue; }

@@ -68,7 +68,6 @@ public class ButtonUpdateUsables : MonoBehaviour
     // Update the button for Nukes if a nuke was launched
     public void _NukeLaunched(SiloUnloadedEvent e)
     {
-        Debug.Log("here");
         // If we are working with the nuke button
         if (buttonInfo.itemID == 4)
         {

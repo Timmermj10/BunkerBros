@@ -181,7 +181,7 @@ GameObject:
   - component: {fileID: 3084314039027567051}
   m_Layer: 14
   m_Name: Gold
-  m_TagString: Pickup
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

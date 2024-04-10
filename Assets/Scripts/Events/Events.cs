@@ -229,3 +229,23 @@ public class FirstTutorialWaveEvent
 public class LastWaveEvent
 {
 }
+
+public class newItemInPickupRangeEvent
+{
+    public int numItemsInRange;
+
+    public newItemInPickupRangeEvent(int numItemsInRange)
+    {
+        this.numItemsInRange = numItemsInRange;
+    }
+}
+
+public class itemRemovedFromPickupRangeEvent
+{
+    public int numItemsInRange;
+
+    public itemRemovedFromPickupRangeEvent(int numItemsInRange)
+    {
+        this.numItemsInRange = numItemsInRange;
+    }
+}
