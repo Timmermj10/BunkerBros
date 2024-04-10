@@ -31,6 +31,17 @@ public class SiloAnimation : MonoBehaviour
         if (e.status.gameObject == gameObject)
         {
             animator.SetBool("Open", false);
+
+            ChangeMaterial changeMaterialScript = e.status.gameObject.GetComponent<ChangeMaterial>();
+
+            if (changeMaterialScript != null)
+            {
+                changeMaterialScript.ChangeKnobMaterial(e.status.gameObject, false);
+            }
+            else
+            {
+                Debug.LogWarning("ChangeMaterial script not found on item: " + e.status.gameObject.name);
+            }
         }
     }
 }
