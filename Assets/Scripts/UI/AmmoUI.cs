@@ -61,7 +61,7 @@ public class AmmoUI : MonoBehaviour
             else
             {
                 ammo_display.text = "";
-                ammo_image.SetActive(false);
+                if (ammo_image != null) ammo_image.SetActive(false);
             }
         }
     }

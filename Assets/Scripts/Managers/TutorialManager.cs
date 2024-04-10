@@ -44,6 +44,7 @@ public class TutorialManager : MonoBehaviour
     public GameObject Missile;
     public GameObject NukeParts;
     public GameObject EvacuationButton;
+    public float buttonFlashDuration = 0.3f;
 
     [SerializeField]
     private InputActionAsset actionAsset;
@@ -101,7 +102,6 @@ public class TutorialManager : MonoBehaviour
 
         startPopUp("Manager");
         popUpSystem.popUp("Manager", "Your bunker is under attack! Don't let the zombies break in, your lives depend on it! Deploy your partner to handle the zombies on the surface.");
-        playerRespawn.SetActive(true);
 
         while (!hasRespawnedPlayer)
         {
@@ -207,8 +207,6 @@ public class TutorialManager : MonoBehaviour
 
         startPopUp("Manager");
         popUpSystem.popUp("Manager", "Great work! Here are some more supplies to help your partner. Drop them in a gun and ammo when you get enough gold to help them survive and thrive.");
-        Gun.SetActive(true);
-        AmmoCrate.SetActive(true);
 
         //turn on the evac button
         EvacuationButton.SetActive(true);
@@ -265,12 +263,17 @@ public class TutorialManager : MonoBehaviour
                 Instantiate(basicEnemyPrefab, new Vector3(1, 1, 1.5f), Quaternion.identity);
                 Instantiate(basicEnemyPrefab, new Vector3(1, 1, -1.5f), Quaternion.identity);
                 enemiesAlive = 3;
+
+                playerRespawn.SetActive(true);
+                StartCoroutine(ButtonFlashRoutine(playerRespawn));
                 break;
             case 3:
                 RepairKit.SetActive(true);
+                StartCoroutine(ButtonFlashRoutine(RepairKit));
                 break;
             case 7:
                 NukeParts.SetActive(true);
+                StartCoroutine(ButtonFlashRoutine(NukeParts));
                 break;
             case 8:
                 pingManager.Ping(new Vector3(10, 1, 1), 10, PingType.INVESTIGATE);
@@ -278,9 +281,11 @@ public class TutorialManager : MonoBehaviour
             case 9:
                 pingManager.Ping(new Vector3(-11, 2, -2), 10);
                 Nuke.SetActive(true);
+                StartCoroutine(ButtonFlashRoutine(Nuke));
                 break;
             case 10:
                 HealthPack.SetActive(true);
+                StartCoroutine(ButtonFlashRoutine(HealthPack));
                 break;
             case 11:
                 healthPackPopUpIsDone = true;
@@ -297,9 +302,25 @@ public class TutorialManager : MonoBehaviour
                 Instantiate(basicEnemyPrefab, new Vector3(-3, 1, -21), Quaternion.identity);
                 Instantiate(basicEnemyPrefab, new Vector3(-3, 1, -23), Quaternion.identity);
                 Instantiate(armoredEnemyPrefab, new Vector3(-5, 1, -22), Quaternion.identity);
+                
+                //Show the buttons
                 Wall.SetActive(true);
                 Turret.SetActive(true);
                 Missile.SetActive(true);
+
+                //Flash the buttons
+                StartCoroutine(ButtonFlashRoutine(Wall));
+                StartCoroutine(ButtonFlashRoutine(Turret));
+                StartCoroutine(ButtonFlashRoutine(Missile));
+                break;
+            case 14:
+                //Show the buttons
+                Gun.SetActive(true);
+                AmmoCrate.SetActive(true);
+
+                //Flash the buttons
+                StartCoroutine(ButtonFlashRoutine(Gun));
+                StartCoroutine(ButtonFlashRoutine(AmmoCrate));
                 break;
             default:
                 break;
@@ -398,6 +419,32 @@ public class TutorialManager : MonoBehaviour
                 break;
             default:
                 break;
+        }
+    }
+
+
+    private IEnumerator ButtonFlashRoutine(GameObject buttonGameObject)
+    {
+        Button buttonToFlash = buttonGameObject.GetComponent<Button>();
+
+        if (buttonToFlash != null)
+        {
+            Color originalColor = Color.white;
+
+            for (int i = 0; i < 3; i++)
+            {
+                // Change the button color to green
+                buttonToFlash.image.color = Color.green;
+
+                // Wait for flashDuration to end
+                yield return new WaitForSeconds(buttonFlashDuration);
+
+                // Change the button color back to original color
+                buttonToFlash.image.color = originalColor;
+
+                // Wait for flashDuration to end
+                yield return new WaitForSeconds(buttonFlashDuration);
+            }
         }
     }
 
