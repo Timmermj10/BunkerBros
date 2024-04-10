@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class AmmoUI : MonoBehaviour
 {
     private Text ammo_display;
+    private GameObject ammo_image;
     public AmmoSystem ammo;
     public bool enable = false;
 
@@ -16,6 +17,7 @@ public class AmmoUI : MonoBehaviour
     {
         purchase = EventBus.Subscribe<PurchaseEvent>(_enable_text);
         ammo_display = GameObject.Find("Ammo").GetComponentInChildren<Text>();
+        ammo_image = GameObject.Find("AmmoImage");
 
         if(ammo_display != null)
         {
@@ -30,11 +32,12 @@ public class AmmoUI : MonoBehaviour
         {
             if (enable)
             {
-                ammo_display.text = "Ammo: " + ammo.ammo_count.ToString();
+                ammo_display.text = ammo.ammo_count.ToString();
             }
             else
             {
                 ammo_display.text = "";
+                ammo_image.SetActive(false);
             }
         }
     }
