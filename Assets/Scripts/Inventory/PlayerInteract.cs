@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Net;
 using Unity.Loading;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -107,15 +108,7 @@ public class PlayerInteract : MonoBehaviour
                     if (item.name is "ChestPack" || item.name is "ChestPack(Clone)")
                     {
                         // Publish a CoinCollect event
-
-                        if ( SceneManager.GetActiveScene() == SceneManager.GetSceneByName("TutorialScene"))
-                        {
-                            EventBus.Publish<CoinCollect>(new CoinCollect(1000));
-                        }
-                        else
-                        {
-                            EventBus.Publish<CoinCollect>(new CoinCollect(150));
-                        }
+                        EventBus.Publish<CoinCollect>(new CoinCollect(150));
                     }
                     else if (item.name is "NukeCrate" || item.name is "NukeCrate(Clone)")
                     {
