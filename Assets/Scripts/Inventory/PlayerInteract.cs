@@ -145,6 +145,17 @@ public class PlayerInteract : MonoBehaviour
                 {
                     if ((item.name is "MissileSilo" || item.name is "MissileSilo(Clone)") && player.GetComponent<ActivePlayerInventory>().itemInInventory(ActivePlayerInventory.activePlayerItems.NukeParts))
                     {
+                        ChangeMaterial changeMaterialScript = item.GetComponent<ChangeMaterial>();
+                        bool enable = true;
+                        if (changeMaterialScript != null)
+                        {
+                            changeMaterialScript.ChangeKnobMaterial(item, enable);
+                        }
+                        else
+                        {
+                            Debug.LogWarning("ChangeMaterial script not found on item: " + item.name);
+                        }
+
                         MissileSiloStatus silo = item.GetComponent<MissileSiloStatus>();
                         //Debug.Log("Loading Silo");
                         if (silo != null && !silo.isSiloLoaded())
@@ -165,6 +176,16 @@ public class PlayerInteract : MonoBehaviour
                     }
                     else if (item.name is "RadioTower" || item.name is "RadioTower(Clone)")
                     {
+                        ChangeMaterial changeMaterialScript = item.GetComponent<ChangeMaterial>();
+                        bool enable = true;
+                        if (changeMaterialScript != null)
+                        {
+                            changeMaterialScript.ChangeKnobMaterial(item, enable);
+                        }
+                        else
+                        {
+                            Debug.LogWarning("ChangeMaterial script not found on item: " + item.name);
+                        }
                         // Make it so you can not use the same radio tower
                         item.tag = "Untagged";
 
