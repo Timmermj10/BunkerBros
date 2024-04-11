@@ -28,6 +28,9 @@ public class PlayerInteract : MonoBehaviour
     //Reference to player
     GameObject player;
 
+    // Is there a radio tower currently being activated
+    private bool radioTowerInteract = false;
+
 
     [Header("Text Popups for Interactables")]
     // Camera
@@ -44,6 +47,10 @@ public class PlayerInteract : MonoBehaviour
         shopManagerScript = GameObject.Find("GameManager").GetComponent<ShopManagerScript>();
 
         player = GameObject.Find("player");
+
+        EventBus.Subscribe<RadioTowerActivatedPlayerEvent>(playerStartedTower);
+        EventBus.Subscribe<RadioTowerActivatedManagerEvent>(managerEndedTower);
+
     }
 
     private void Update()
@@ -266,6 +273,10 @@ public class PlayerInteract : MonoBehaviour
             {
                 return true;
             }
+            else if ((item.transform.parent.name is "RadioTower" || item.transform.parent.name is "RadioTower(Clone)") && !radioTowerInteract)
+            {
+                return true;
+            }
             //if ( !((item.transform.parent.name is "MissileSilo" || item.transform.parent.name is "MissileSilo(Clone)") && !item.transform.parent.GetComponent<MissileSiloStatus>().isSiloLoaded() && !player.GetComponent<ActivePlayerInventory>().itemInInventory(ActivePlayerInventory.activePlayerItems.NukeParts)))
             //{
             //    return true;
@@ -277,5 +288,17 @@ public class PlayerInteract : MonoBehaviour
         }
 
         return false;
+    }
+
+    // For when the player starts a tower
+    public void playerStartedTower(RadioTowerActivatedPlayerEvent e)
+    {
+        radioTowerInteract = true;
+    }
+
+    // For when the manager completes the minigame
+    public void managerEndedTower(RadioTowerActivatedManagerEvent e)
+    {
+        radioTowerInteract = false;
     }
 }
