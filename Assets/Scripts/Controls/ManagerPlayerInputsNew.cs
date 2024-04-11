@@ -239,7 +239,7 @@ public class ManagerPlayerInputsNew : MonoBehaviour
         Vector3 raycastPosition = GameObject.Find("ManagerCamera").GetComponent<Camera>().ScreenToWorldPoint(screenPosition);
         raycastPosition.y = 10f;
 
-        if (Physics.Raycast(raycastPosition, Vector3.down, out hit, Mathf.Infinity, ~LayerMask.GetMask("Enemy", "Player")) && hit.collider.gameObject.layer == LayerMask.NameToLayer("Default")) 
+        if (Physics.Raycast(raycastPosition, Vector3.down, out hit, Mathf.Infinity, ~LayerMask.GetMask("Enemy", "Player", "Pickup")) && hit.collider.gameObject.layer == LayerMask.NameToLayer("Default")) 
         {
             // Now worldPosition contains the 3D point in world space where the mouse is pointing
             Vector3 worldPosition = hit.point;

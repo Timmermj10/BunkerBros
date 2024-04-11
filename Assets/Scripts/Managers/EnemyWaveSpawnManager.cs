@@ -145,7 +145,7 @@ public class EnemyWaveSpawnManager : MonoBehaviour
                         randomSpawnPosition = new Vector3(spawnpointForWave.x + randomX, 30f, spawnpointForWave.z + randomZ);
                         //Debug.Log($"Checking to see of the chosen spawn position ({randomSpawnPosition}) is valid");
 
-                    } while (!Physics.Raycast(randomSpawnPosition, Vector3.down, out hitInfo, Mathf.Infinity) || hitInfo.collider.gameObject.layer != LayerMask.NameToLayer("Default"));
+                    } while (!Physics.Raycast(randomSpawnPosition, Vector3.down, out hitInfo, Mathf.Infinity, ~LayerMask.GetMask("Pickup")) || hitInfo.collider.gameObject.layer != LayerMask.NameToLayer("Default"));
 
                     randomSpawnPosition.y = hitInfo.point.y + 0.5f;
                     //Debug.Log($"Final spawn position of {randomSpawnPosition} chosen | Raycast collided with {hitInfo.collider.gameObject.name}");
