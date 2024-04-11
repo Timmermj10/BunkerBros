@@ -417,7 +417,7 @@ public partial class @KBMandController: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""MouseConfirm"",
+                    ""name"": ""EnterConfirm"",
                     ""type"": ""Button"",
                     ""id"": ""9a86cd0b-4d9d-48ac-b73b-16ef6f4e7587"",
                     ""expectedControlType"": ""Button"",
@@ -430,7 +430,7 @@ public partial class @KBMandController: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""c79a7e02-0be9-4726-9a4e-8b459bc026cd"",
-                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""path"": ""<Gamepad>/buttonWest"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""ControllerPlayer;KBMPlayer"",
@@ -445,7 +445,7 @@ public partial class @KBMandController: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""KBMPlayer;ControllerPlayer"",
-                    ""action"": ""MouseConfirm"",
+                    ""action"": ""EnterConfirm"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -488,7 +488,7 @@ public partial class @KBMandController: IInputActionCollection2, IDisposable
         // StorySceneConfirms
         m_StorySceneConfirms = asset.FindActionMap("StorySceneConfirms", throwIfNotFound: true);
         m_StorySceneConfirms_GamepadConfirm = m_StorySceneConfirms.FindAction("GamepadConfirm", throwIfNotFound: true);
-        m_StorySceneConfirms_MouseConfirm = m_StorySceneConfirms.FindAction("MouseConfirm", throwIfNotFound: true);
+        m_StorySceneConfirms_EnterConfirm = m_StorySceneConfirms.FindAction("EnterConfirm", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -755,13 +755,13 @@ public partial class @KBMandController: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_StorySceneConfirms;
     private List<IStorySceneConfirmsActions> m_StorySceneConfirmsActionsCallbackInterfaces = new List<IStorySceneConfirmsActions>();
     private readonly InputAction m_StorySceneConfirms_GamepadConfirm;
-    private readonly InputAction m_StorySceneConfirms_MouseConfirm;
+    private readonly InputAction m_StorySceneConfirms_EnterConfirm;
     public struct StorySceneConfirmsActions
     {
         private @KBMandController m_Wrapper;
         public StorySceneConfirmsActions(@KBMandController wrapper) { m_Wrapper = wrapper; }
         public InputAction @GamepadConfirm => m_Wrapper.m_StorySceneConfirms_GamepadConfirm;
-        public InputAction @MouseConfirm => m_Wrapper.m_StorySceneConfirms_MouseConfirm;
+        public InputAction @EnterConfirm => m_Wrapper.m_StorySceneConfirms_EnterConfirm;
         public InputActionMap Get() { return m_Wrapper.m_StorySceneConfirms; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -774,9 +774,9 @@ public partial class @KBMandController: IInputActionCollection2, IDisposable
             @GamepadConfirm.started += instance.OnGamepadConfirm;
             @GamepadConfirm.performed += instance.OnGamepadConfirm;
             @GamepadConfirm.canceled += instance.OnGamepadConfirm;
-            @MouseConfirm.started += instance.OnMouseConfirm;
-            @MouseConfirm.performed += instance.OnMouseConfirm;
-            @MouseConfirm.canceled += instance.OnMouseConfirm;
+            @EnterConfirm.started += instance.OnEnterConfirm;
+            @EnterConfirm.performed += instance.OnEnterConfirm;
+            @EnterConfirm.canceled += instance.OnEnterConfirm;
         }
 
         private void UnregisterCallbacks(IStorySceneConfirmsActions instance)
@@ -784,9 +784,9 @@ public partial class @KBMandController: IInputActionCollection2, IDisposable
             @GamepadConfirm.started -= instance.OnGamepadConfirm;
             @GamepadConfirm.performed -= instance.OnGamepadConfirm;
             @GamepadConfirm.canceled -= instance.OnGamepadConfirm;
-            @MouseConfirm.started -= instance.OnMouseConfirm;
-            @MouseConfirm.performed -= instance.OnMouseConfirm;
-            @MouseConfirm.canceled -= instance.OnMouseConfirm;
+            @EnterConfirm.started -= instance.OnEnterConfirm;
+            @EnterConfirm.performed -= instance.OnEnterConfirm;
+            @EnterConfirm.canceled -= instance.OnEnterConfirm;
         }
 
         public void RemoveCallbacks(IStorySceneConfirmsActions instance)
@@ -847,6 +847,6 @@ public partial class @KBMandController: IInputActionCollection2, IDisposable
     public interface IStorySceneConfirmsActions
     {
         void OnGamepadConfirm(InputAction.CallbackContext context);
-        void OnMouseConfirm(InputAction.CallbackContext context);
+        void OnEnterConfirm(InputAction.CallbackContext context);
     }
 }

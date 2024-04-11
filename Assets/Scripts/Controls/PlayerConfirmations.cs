@@ -36,9 +36,9 @@ public class PlayerConfirmations : MonoBehaviour
     }
 
 
-    private void OnMouseConfirm()
+    private void OnEnterConfirm()
     {
-        Debug.Log("OnMouseConfirm called");
+        Debug.Log("OnEnterConfirm called");
         storyDisplayer.player1Confirm();
     }
 
