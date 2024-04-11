@@ -27,15 +27,14 @@ public class HandInventory : MonoBehaviour
         swap = kb.ActivePlayer.Swap;
         swap.performed += swapWeapons;
 
-<<<<<<< HEAD
+
         empt = EventBus.Subscribe<EmptyAmmo>(_EmptyAmmo);
-=======
+
         GameObject knifeImage = GameObject.Find("KnifeImage");
         GameObject gunImage = GameObject.Find("GunImage");
 
         if (knifeImage != null) knifeImageRenderer = knifeImage.GetComponent<RawImage>();
         if (gunImage != null) gunImageRenderer = gunImage.GetComponent<RawImage>();
->>>>>>> 1a19664dfc785c5afd42a9eca938d474147131f3
     }
 
     void _Purchase(PurchaseEvent e)
