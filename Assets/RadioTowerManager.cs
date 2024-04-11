@@ -9,18 +9,37 @@ public class RadioTowerManager : MonoBehaviour
     void Start()
     {
         // Subscribe to radio tower activation events
-        EventBus.Subscribe<RadioTowerActivatedEvent>(radioTowerStrength);
+        EventBus.Subscribe<RadioTowerActivatedPlayerEvent>(miniGameStart);
+        EventBus.Subscribe<RadioTowerActivatedManagerEvent>(radioTowerStrength);
     }
 
-    public void radioTowerStrength(RadioTowerActivatedEvent e)
+    public void miniGameStart(RadioTowerActivatedPlayerEvent e)
     {
-        // Update the number of active radio towers
-        GetComponent<HasHealth>().changeHealth(1);
-
-        // Check if the radio strength is at it's max
-        if (GetComponent<HasHealth>().currentHealth == GetComponent<HasHealth>().maxHealth)
+        if (gameObject.name is "MiniGame")
         {
-            GameObject.Find("Evacuation").GetComponent<Button>().interactable = true;
+            gameObject.transform.Find("BlueBackground").gameObject.SetActive(true);
+        }
+    }
+
+
+    public void radioTowerStrength(RadioTowerActivatedManagerEvent e)
+    {
+        // If we are working with signal strength
+        if (gameObject.name is "SignalStrength")
+        {
+            // Update the number of active radio towers
+            GetComponent<HasHealth>().changeHealth(1);
+
+            // Check if the radio strength is at it's max
+            if (GetComponent<HasHealth>().currentHealth == GetComponent<HasHealth>().maxHealth)
+            {
+                GameObject.Find("Evacuation").GetComponent<Button>().interactable = true;
+            }
+        }
+        // If we are working with the minigame
+        else
+        {
+            gameObject.transform.Find("BlueBackground").gameObject.SetActive(false);
         }
     }
 }

@@ -79,7 +79,7 @@ public class HasHealth : MonoBehaviour
             // Update currentHealth
             if (healthChange < 0) 
             {
-                Debug.Log($"{gameObject.name} taking damage");
+                //Debug.Log($"{gameObject.name} taking damage");
 
                 // Publish a damage effect event
                 if (gameObject.tag == "Enemy")

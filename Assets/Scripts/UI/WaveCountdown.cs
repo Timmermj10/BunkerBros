@@ -12,7 +12,7 @@ public class WaveCountDown : MonoBehaviour
     int lastSecond = 30;
 
     //The amount of time between waves
-    private float timeBetweenRounds = 30f;
+    public float timeBetweenRounds = 30f;
 
     // Bool to hold if the timer has started
     bool timerStart = false;

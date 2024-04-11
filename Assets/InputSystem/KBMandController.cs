@@ -402,6 +402,54 @@ public partial class @KBMandController: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""StorySceneConfirms"",
+            ""id"": ""5de4e98a-c35b-4439-822b-51b17cbec564"",
+            ""actions"": [
+                {
+                    ""name"": ""GamepadConfirm"",
+                    ""type"": ""Button"",
+                    ""id"": ""96dba6c7-e198-4a48-a110-e512a1a5fc62"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""EnterConfirm"",
+                    ""type"": ""Button"",
+                    ""id"": ""9a86cd0b-4d9d-48ac-b73b-16ef6f4e7587"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""c79a7e02-0be9-4726-9a4e-8b459bc026cd"",
+                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""ControllerPlayer;KBMPlayer"",
+                    ""action"": ""GamepadConfirm"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""24bc5a85-29e6-4a0b-b88b-a9fb2e1b5360"",
+                    ""path"": ""<Keyboard>/enter"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KBMPlayer;ControllerPlayer"",
+                    ""action"": ""EnterConfirm"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
@@ -437,6 +485,10 @@ public partial class @KBMandController: IInputActionCollection2, IDisposable
         m_ManagerPlayer_Cycle = m_ManagerPlayer.FindAction("Cycle", throwIfNotFound: true);
         m_ManagerPlayer_Ping = m_ManagerPlayer.FindAction("Ping", throwIfNotFound: true);
         m_ManagerPlayer_Zoom = m_ManagerPlayer.FindAction("Zoom", throwIfNotFound: true);
+        // StorySceneConfirms
+        m_StorySceneConfirms = asset.FindActionMap("StorySceneConfirms", throwIfNotFound: true);
+        m_StorySceneConfirms_GamepadConfirm = m_StorySceneConfirms.FindAction("GamepadConfirm", throwIfNotFound: true);
+        m_StorySceneConfirms_EnterConfirm = m_StorySceneConfirms.FindAction("EnterConfirm", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -698,6 +750,60 @@ public partial class @KBMandController: IInputActionCollection2, IDisposable
         }
     }
     public ManagerPlayerActions @ManagerPlayer => new ManagerPlayerActions(this);
+
+    // StorySceneConfirms
+    private readonly InputActionMap m_StorySceneConfirms;
+    private List<IStorySceneConfirmsActions> m_StorySceneConfirmsActionsCallbackInterfaces = new List<IStorySceneConfirmsActions>();
+    private readonly InputAction m_StorySceneConfirms_GamepadConfirm;
+    private readonly InputAction m_StorySceneConfirms_EnterConfirm;
+    public struct StorySceneConfirmsActions
+    {
+        private @KBMandController m_Wrapper;
+        public StorySceneConfirmsActions(@KBMandController wrapper) { m_Wrapper = wrapper; }
+        public InputAction @GamepadConfirm => m_Wrapper.m_StorySceneConfirms_GamepadConfirm;
+        public InputAction @EnterConfirm => m_Wrapper.m_StorySceneConfirms_EnterConfirm;
+        public InputActionMap Get() { return m_Wrapper.m_StorySceneConfirms; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(StorySceneConfirmsActions set) { return set.Get(); }
+        public void AddCallbacks(IStorySceneConfirmsActions instance)
+        {
+            if (instance == null || m_Wrapper.m_StorySceneConfirmsActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_StorySceneConfirmsActionsCallbackInterfaces.Add(instance);
+            @GamepadConfirm.started += instance.OnGamepadConfirm;
+            @GamepadConfirm.performed += instance.OnGamepadConfirm;
+            @GamepadConfirm.canceled += instance.OnGamepadConfirm;
+            @EnterConfirm.started += instance.OnEnterConfirm;
+            @EnterConfirm.performed += instance.OnEnterConfirm;
+            @EnterConfirm.canceled += instance.OnEnterConfirm;
+        }
+
+        private void UnregisterCallbacks(IStorySceneConfirmsActions instance)
+        {
+            @GamepadConfirm.started -= instance.OnGamepadConfirm;
+            @GamepadConfirm.performed -= instance.OnGamepadConfirm;
+            @GamepadConfirm.canceled -= instance.OnGamepadConfirm;
+            @EnterConfirm.started -= instance.OnEnterConfirm;
+            @EnterConfirm.performed -= instance.OnEnterConfirm;
+            @EnterConfirm.canceled -= instance.OnEnterConfirm;
+        }
+
+        public void RemoveCallbacks(IStorySceneConfirmsActions instance)
+        {
+            if (m_Wrapper.m_StorySceneConfirmsActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(IStorySceneConfirmsActions instance)
+        {
+            foreach (var item in m_Wrapper.m_StorySceneConfirmsActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_StorySceneConfirmsActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public StorySceneConfirmsActions @StorySceneConfirms => new StorySceneConfirmsActions(this);
     private int m_ControllerPlayerSchemeIndex = -1;
     public InputControlScheme ControllerPlayerScheme
     {
@@ -737,5 +843,10 @@ public partial class @KBMandController: IInputActionCollection2, IDisposable
         void OnCycle(InputAction.CallbackContext context);
         void OnPing(InputAction.CallbackContext context);
         void OnZoom(InputAction.CallbackContext context);
+    }
+    public interface IStorySceneConfirmsActions
+    {
+        void OnGamepadConfirm(InputAction.CallbackContext context);
+        void OnEnterConfirm(InputAction.CallbackContext context);
     }
 }

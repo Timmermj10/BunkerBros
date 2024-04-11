@@ -18,7 +18,7 @@ public class MissileSiloStatus : MonoBehaviour
     public void loadSilo()
     {
         isLoaded = true;
-        Debug.Log("Loaded Silo");
+        //Debug.Log("Loaded Silo");
 
         //Change visual to indicate silo is loaded
         // Renderer renderer = GetComponent<Renderer>();

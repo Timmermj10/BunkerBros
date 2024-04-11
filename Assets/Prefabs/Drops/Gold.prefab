@@ -111,7 +111,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2, y: 1, z: 2}
+  m_LocalScale: {x: 1.2, y: 1.2, z: 1.2}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3531007373914557020}
@@ -183,7 +183,7 @@ GameObject:
   - component: {fileID: 5752369396051349760}
   m_Layer: 14
   m_Name: Gold
-  m_TagString: Pickup
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -290,8 +290,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af4fcc8ad45064a5f9a746fe8fe59360, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timer: 600
-  value: 5
+  value: 10
   playerView: {fileID: 1737651482596591318}
   managerView: {fileID: 2524308120126907875}
 --- !u!54 &5826699885281461816

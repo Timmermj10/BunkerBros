@@ -212,7 +212,17 @@ public class DamageEffectEvent
 }
 
 // Class for turning on the radio towers
-public class RadioTowerActivatedEvent
+public class RadioTowerActivatedPlayerEvent
+{
+    public List<int> code;
+
+    public RadioTowerActivatedPlayerEvent(List<int> code)
+    {
+        this.code = code;
+    }
+}
+
+public class RadioTowerActivatedManagerEvent
 {
 }
 
@@ -230,6 +240,28 @@ public class LastWaveEvent
 {
 }
 
+<<<<<<< HEAD
 //Event to trigger swap into knife and sound
 public class EmptyAmmo
 { }
+=======
+public class newItemInPickupRangeEvent
+{
+    public int numItemsInRange;
+
+    public newItemInPickupRangeEvent(int numItemsInRange)
+    {
+        this.numItemsInRange = numItemsInRange;
+    }
+}
+
+public class itemRemovedFromPickupRangeEvent
+{
+    public int numItemsInRange;
+
+    public itemRemovedFromPickupRangeEvent(int numItemsInRange)
+    {
+        this.numItemsInRange = numItemsInRange;
+    }
+}
+>>>>>>> 1a19664dfc785c5afd42a9eca938d474147131f3

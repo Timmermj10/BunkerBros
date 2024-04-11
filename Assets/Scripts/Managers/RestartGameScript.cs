@@ -7,6 +7,6 @@ public class RestartGameScript : MonoBehaviour
 {
     public void OnGameRestart()
     {
-        SceneManager.LoadSceneAsync("DropsTest");
+        SceneManager.LoadSceneAsync("Main");
     }
 }

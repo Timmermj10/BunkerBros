@@ -14,22 +14,37 @@ public class InteractTimer : MonoBehaviour
 
         slider = GetComponent<Slider>();
         gameObject.SetActive(false);
-        EventBus.Subscribe<InteractTimerStartedEvent>(StartTimer);
-        EventBus.Subscribe<InteractTimerEndedEvent>(EndTimer);
+        EventBus.Subscribe<InteractTimerStartedEvent>(_StartTimer);
+        EventBus.Subscribe<InteractTimerEndedEvent>(_EndTimer);
+
+        EventBus.Subscribe<newItemInPickupRangeEvent>(_DisplayTimer);
+        EventBus.Subscribe<itemRemovedFromPickupRangeEvent>(_UpdateTimerDisplay);
     }
 
+    private void _DisplayTimer(newItemInPickupRangeEvent e)
+    {
+        //Debug.Log("Showing interact timer");
+        gameObject.SetActive(true);
+    }
 
-    private void StartTimer(InteractTimerStartedEvent e)
+    private void _UpdateTimerDisplay(itemRemovedFromPickupRangeEvent e)
+    {
+        //Debug.Log($"Hiding interact timer. Count = {e.numItemsInRange}");
+        if (e.numItemsInRange <= 0) gameObject.SetActive(false);
+    }
+
+    private void _StartTimer(InteractTimerStartedEvent e)
     {
         gameObject.SetActive(true);
         timerActive = true;
         StartCoroutine(incrementTimer(e.duration));
     }
 
-    private void EndTimer(InteractTimerEndedEvent e)
+    private void _EndTimer(InteractTimerEndedEvent e)
     {
         timerActive = false;
-        gameObject.SetActive(false);
+        slider.value = 0f;
+        //gameObject.SetActive(false);
     }
 
     IEnumerator incrementTimer(float duration)
@@ -47,7 +62,8 @@ public class InteractTimer : MonoBehaviour
 
             yield return null;
         }
-        gameObject.SetActive(false);
+        slider.value = 0f;
+        //gameObject.SetActive(false);
 
         yield return null;
     }

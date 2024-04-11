@@ -27,13 +27,10 @@ public class WaveManager : MonoBehaviour
     [SerializeField]
     private int numHordesToSpawnThisRound = 0;
 
-    private bool inTutorial = true;
-
     private void Start()
     {
         EventBus.Subscribe<ObjectDestroyedEvent>(_DidEnemyDie);
         EventBus.Subscribe<WaveEndedEvent>(_WaveEnd);
-        EventBus.Subscribe<TutorialEndedEvent>(_TutorialEnd);
     }
 
     public void setMaxEnemiesAtOnce(int newNumEnemies)
@@ -154,11 +151,6 @@ public class WaveManager : MonoBehaviour
         numHordesToSpawnThisRound = Mathf.Max(0, Mathf.RoundToInt(2.3f * (( 0.02f * waveNumber - 0.035f) * (-0.004f * Mathf.Pow(waveNumber, 3) + 0.27f * Mathf.Pow(waveNumber, 2) + 0.5f * waveNumber + 6f))));
         Debug.Log($"Changed numHordesToSpawnThisRound to {numHordesToSpawnThisRound}");
 
-    }
-
-    private void _TutorialEnd(TutorialEndedEvent e)
-    {
-        inTutorial = false;
     }
 
 }

@@ -781,9 +781,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ada0cb034d14d4065882f6fdbed5bdd0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 30
+  maxHealth: 15
   currentHealth: 0
-  armorValue: 3
+  armorValue: 6
   healthBar: {fileID: 2420283044746190754}
 --- !u!95 &6012456874918098655
 Animator:

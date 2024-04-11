@@ -28,7 +28,7 @@ public class EnemyMovementNavMesh : MonoBehaviour
     public NavMeshAgent agent;
 
     // True/False for if the path to the object is complete
-    private bool complete = true;
+    //private bool complete = true;
 
     // GameObject to hold the closest GameObject infront of the zombie
     private GameObject closestObject;

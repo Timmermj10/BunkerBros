@@ -1,13 +1,20 @@
 using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class PopUpPrefabController : MonoBehaviour
 {
     private TMP_Text popUpText;
     private AudioSource audioSource;
     private float delayBetweenCharacters = 0.03f;
+
+    private GameObject managerConfirm;
+    private GameObject playerConfirm;
+    private GameObject confirmBorder;
+
+    private bool hasConfirmed = false;
 
     void Start()
     {
@@ -16,10 +23,41 @@ public class PopUpPrefabController : MonoBehaviour
         {
             transform.SetParent(canvasParent.transform, false);
         }
+
+        confirmBorder = transform.Find("PopUpBackground/GreenConfirmationBorder").gameObject;
+        managerConfirm = confirmBorder.transform.Find("ManagerConfirm").gameObject;
+        playerConfirm = confirmBorder.transform.Find("PlayerConfirm").gameObject;
+
+        confirmBorder.SetActive(false);
+        managerConfirm.SetActive(false);
+        playerConfirm.SetActive(false);
+
+        Debug.Log("PopUpBoxCreated");
     }
 
     public void printText(string playerType, string text)
     {
+        PlayerInput playerInputs = GetComponent<PlayerInput>();
+
+        if (playerInputs != null && playerType is "Player")
+        {
+            if (Gamepad.current != null)
+            {
+                playerInputs.SwitchCurrentControlScheme("ControllerPlayer", Gamepad.current);
+            }
+            else
+            {
+                Debug.LogError("No gamepad connected for activePlayer.");
+            }
+        }
+
+        if (playerInputs != null && playerType is "Manager")
+        {
+            if (playerInputs != null)
+            {
+                playerInputs.SwitchCurrentControlScheme("KBMPlayer", Keyboard.current, Mouse.current);
+            }
+        }
 
         popUpText = GetComponentInChildren<TMP_Text>();
         RectTransform rectTransform = transform.GetComponent<RectTransform>();
@@ -67,9 +105,37 @@ public class PopUpPrefabController : MonoBehaviour
         //Debug.Log("Stopping Sound");
         audioSource.Stop();
 
-        yield return new WaitForSeconds(1.2f);
+        confirmBorder.SetActive(true);
+        if (playerType is "Manager")
+        {
+            managerConfirm.SetActive(true);
+        }
+        else if (playerType is "Player")
+        {
+            playerConfirm.SetActive(true);
+        }
+
+        while (!hasConfirmed)
+        {
+            yield return null;
+        }
+
+
         EventBus.Publish(new PopUpEndEvent(playerType));
 
         Destroy(gameObject);
     }
+
+    private void OnEnterConfirm()
+    {
+        Debug.Log("OnEnterConfirm called");
+        hasConfirmed = true;
+    }
+
+    private void OnGamepadConfirm()
+    {
+        Debug.Log("OnGamepadConfirm called");
+        hasConfirmed = true;
+    }
+
 }
