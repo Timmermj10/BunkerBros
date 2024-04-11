@@ -143,20 +143,22 @@ public class PlayerInteract : MonoBehaviour
                 }
                 else if (item != null && item.tag is "Interactable")
                 {
-                    if ((item.name is "MissileSilo" || item.name is "MissileSilo(Clone)") && player.GetComponent<ActivePlayerInventory>().itemInInventory(ActivePlayerInventory.activePlayerItems.NukeParts))
+                    if ((item.transform.parent.name is "MissileSilo" || item.transform.parent.name is "MissileSilo(Clone)") && !item.transform.parent.GetComponent<MissileSiloStatus>().isSiloLoaded() && player.GetComponent<ActivePlayerInventory>().itemInInventory(ActivePlayerInventory.activePlayerItems.NukeParts))
                     {
-                        ChangeMaterial changeMaterialScript = item.GetComponent<ChangeMaterial>();
+                        ChangeMaterial changeMaterialScript = item.transform.parent.GetComponent<ChangeMaterial>();
                         bool enable = true;
                         if (changeMaterialScript != null)
                         {
-                            changeMaterialScript.ChangeKnobMaterial(item, enable);
+                            changeMaterialScript.ChangeKnobMaterial(item.transform.parent.gameObject, enable);
                         }
                         else
                         {
                             Debug.LogWarning("ChangeMaterial script not found on item: " + item.name);
                         }
+                        // Make it so you can not use the same silo until it is unloaded
+                        // item.tag = "Untagged";
 
-                        MissileSiloStatus silo = item.GetComponent<MissileSiloStatus>();
+                        MissileSiloStatus silo = item.transform.parent.GetComponent<MissileSiloStatus>();
                         //Debug.Log("Loading Silo");
                         if (silo != null && !silo.isSiloLoaded())
                         {
@@ -170,17 +172,15 @@ public class PlayerInteract : MonoBehaviour
                             //Take the parts out of the player inventory
                             ActivePlayerInventory inventory = player.GetComponent<ActivePlayerInventory>();
                             inventory.useItem(ActivePlayerInventory.activePlayerItems.NukeParts);
-
-
                         }
                     }
-                    else if (item.name is "RadioTower" || item.name is "RadioTower(Clone)")
+                    else if (item.transform.parent.name is "RadioTower" || item.transform.parent.name is "RadioTower(Clone)")
                     {
-                        ChangeMaterial changeMaterialScript = item.GetComponent<ChangeMaterial>();
+                        ChangeMaterial changeMaterialScript = item.transform.parent.GetComponent<ChangeMaterial>();
                         bool enable = true;
                         if (changeMaterialScript != null)
                         {
-                            changeMaterialScript.ChangeKnobMaterial(item, enable);
+                            changeMaterialScript.ChangeKnobMaterial(item.transform.parent.gameObject, enable);
                         }
                         else
                         {
@@ -262,10 +262,14 @@ public class PlayerInteract : MonoBehaviour
         else if (item != null && item.tag is "Interactable")
         {
             //Debug.Log("Interactable silo, but cannot load rn");
-            if ( !((item.name is "MissileSilo" || item.name is "MissileSilo(Clone)") && !player.GetComponent<ActivePlayerInventory>().itemInInventory(ActivePlayerInventory.activePlayerItems.NukeParts)))
+            if ((item.transform.parent.name is "MissileSilo" || item.transform.parent.name is "MissileSilo(Clone)") && !item.transform.parent.GetComponent<MissileSiloStatus>().isSiloLoaded() && player.GetComponent<ActivePlayerInventory>().itemInInventory(ActivePlayerInventory.activePlayerItems.NukeParts))
             {
                 return true;
             }
+            //if ( !((item.transform.parent.name is "MissileSilo" || item.transform.parent.name is "MissileSilo(Clone)") && !item.transform.parent.GetComponent<MissileSiloStatus>().isSiloLoaded() && !player.GetComponent<ActivePlayerInventory>().itemInInventory(ActivePlayerInventory.activePlayerItems.NukeParts)))
+            //{
+            //    return true;
+            //}
         }
         else if (item != null && (item.name is "Objective") && player.GetComponent<ActivePlayerInventory>().itemInInventory(ActivePlayerInventory.activePlayerItems.RepairKit))
         {
