@@ -262,10 +262,14 @@ public class PlayerInteract : MonoBehaviour
         else if (item != null && item.tag is "Interactable")
         {
             //Debug.Log("Interactable silo, but cannot load rn");
-            if ( !((item.transform.parent.name is "MissileSilo" || item.transform.parent.name is "MissileSilo(Clone)") && !item.transform.parent.GetComponent<MissileSiloStatus>().isSiloLoaded() && !player.GetComponent<ActivePlayerInventory>().itemInInventory(ActivePlayerInventory.activePlayerItems.NukeParts)))
+            if ((item.transform.parent.name is "MissileSilo" || item.transform.parent.name is "MissileSilo(Clone)") && !item.transform.parent.GetComponent<MissileSiloStatus>().isSiloLoaded() && player.GetComponent<ActivePlayerInventory>().itemInInventory(ActivePlayerInventory.activePlayerItems.NukeParts))
             {
                 return true;
             }
+            //if ( !((item.transform.parent.name is "MissileSilo" || item.transform.parent.name is "MissileSilo(Clone)") && !item.transform.parent.GetComponent<MissileSiloStatus>().isSiloLoaded() && !player.GetComponent<ActivePlayerInventory>().itemInInventory(ActivePlayerInventory.activePlayerItems.NukeParts)))
+            //{
+            //    return true;
+            //}
         }
         else if (item != null && (item.name is "Objective") && player.GetComponent<ActivePlayerInventory>().itemInInventory(ActivePlayerInventory.activePlayerItems.RepairKit))
         {
