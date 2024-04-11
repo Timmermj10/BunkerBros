@@ -212,7 +212,11 @@ public class DamageEffectEvent
 }
 
 // Class for turning on the radio towers
-public class RadioTowerActivatedEvent
+public class RadioTowerActivatedPlayerEvent
+{
+}
+
+public class RadioTowerActivatedManagerEvent
 {
 }
 

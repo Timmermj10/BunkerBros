@@ -9,10 +9,10 @@ public class RadioTowerManager : MonoBehaviour
     void Start()
     {
         // Subscribe to radio tower activation events
-        EventBus.Subscribe<RadioTowerActivatedEvent>(radioTowerStrength);
+        EventBus.Subscribe<RadioTowerActivatedManagerEvent>(radioTowerStrength);
     }
 
-    public void radioTowerStrength(RadioTowerActivatedEvent e)
+    public void radioTowerStrength(RadioTowerActivatedManagerEvent e)
     {
         // Update the number of active radio towers
         GetComponent<HasHealth>().changeHealth(1);

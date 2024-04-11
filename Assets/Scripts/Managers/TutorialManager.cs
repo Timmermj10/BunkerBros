@@ -65,7 +65,7 @@ public class TutorialManager : MonoBehaviour
         EventBus.Subscribe<PlayerRespawnEvent>(_playerRespawn);
         EventBus.Subscribe<CoinCollect>(_hasFoundChest);
         EventBus.Subscribe<PopUpEndEvent>(_endPopUp);
-        EventBus.Subscribe<RadioTowerActivatedEvent>(_radioTowerActivated);
+        EventBus.Subscribe<RadioTowerActivatedPlayerEvent>(_radioTowerActivated);
         EventBus.Subscribe<ItemUseEvent>(_ItemPurchased);
 
 
@@ -388,7 +388,7 @@ public class TutorialManager : MonoBehaviour
         hasRespawnedPlayer = true;
     }
 
-    private void _radioTowerActivated(RadioTowerActivatedEvent e)
+    private void _radioTowerActivated(RadioTowerActivatedPlayerEvent e)
     {
         if (!hasActivatedRadioTower)
         {
