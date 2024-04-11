@@ -395,7 +395,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "MouseConfirm",
+                    "name": "EnterConfirm",
                     "type": "Button",
                     "id": "9a86cd0b-4d9d-48ac-b73b-16ef6f4e7587",
                     "expectedControlType": "Button",
@@ -408,7 +408,7 @@
                 {
                     "name": "",
                     "id": "c79a7e02-0be9-4726-9a4e-8b459bc026cd",
-                    "path": "<Gamepad>/buttonSouth",
+                    "path": "<Gamepad>/buttonWest",
                     "interactions": "",
                     "processors": "",
                     "groups": "ControllerPlayer;KBMPlayer",
@@ -423,7 +423,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "KBMPlayer;ControllerPlayer",
-                    "action": "MouseConfirm",
+                    "action": "EnterConfirm",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

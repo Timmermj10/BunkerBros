@@ -29,7 +29,6 @@ public class TutorialManager : MonoBehaviour
     private bool healthPackPopUpIsDone = false;
     private bool hasRespawnedPlayer = false;
     private bool hasActivatedRadioTower = false;
-
     private bool hasLoadedSilo = false;
     private bool hasBlownUpBoulder = false;
 
@@ -96,9 +95,6 @@ public class TutorialManager : MonoBehaviour
     IEnumerator Tutorial()
     {
         yield return new WaitForFixedUpdate();
-
-        bunker.GetComponent<HasHealth>().changeHealth(-10);
-        bunker.GetComponent<HasHealth>().changeHealth(-50);
 
         startPopUp("Manager");
         popUpSystem.popUp("Manager", "Your bunker is under attack! Don't let the zombies break in, your lives depend on it! Deploy your partner to handle the zombies on the surface.");
@@ -259,6 +255,7 @@ public class TutorialManager : MonoBehaviour
         switch (activateNum)
         {
             case 1:
+                bunker.GetComponent<HasHealth>().changeHealth(-10);
                 Instantiate(basicEnemyPrefab, new Vector3(-2, 1, 0), Quaternion.identity);
                 Instantiate(basicEnemyPrefab, new Vector3(1, 1, 1.5f), Quaternion.identity);
                 Instantiate(basicEnemyPrefab, new Vector3(1, 1, -1.5f), Quaternion.identity);
@@ -425,6 +422,8 @@ public class TutorialManager : MonoBehaviour
 
     private IEnumerator ButtonFlashRoutine(GameObject buttonGameObject)
     {
+        Debug.Log($"Flashing gameobject {buttonGameObject.name}");
+
         Button buttonToFlash = buttonGameObject.GetComponent<Button>();
 
         if (buttonToFlash != null)
