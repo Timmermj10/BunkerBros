@@ -240,11 +240,9 @@ public class LastWaveEvent
 {
 }
 
-<<<<<<< HEAD
 //Event to trigger swap into knife and sound
 public class EmptyAmmo
 { }
-=======
 public class newItemInPickupRangeEvent
 {
     public int numItemsInRange;
@@ -264,4 +262,3 @@ public class itemRemovedFromPickupRangeEvent
         this.numItemsInRange = numItemsInRange;
     }
 }
->>>>>>> 1a19664dfc785c5afd42a9eca938d474147131f3

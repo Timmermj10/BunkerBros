@@ -10,17 +10,14 @@ public class HandInventory : MonoBehaviour
     public bool canSwap = false;
     private KBMandController kb;
     private InputAction swap;
-<<<<<<< HEAD
     public AmmoSystem ammo;
 
     private Subscription<EmptyAmmo> empt;
-=======
 
     private RawImage knifeImageRenderer;
     private RawImage gunImageRenderer;
 
     
->>>>>>> 1a19664dfc785c5afd42a9eca938d474147131f3
 
     void Awake()
     {
