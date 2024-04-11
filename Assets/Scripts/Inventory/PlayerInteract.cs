@@ -197,7 +197,7 @@ public class PlayerInteract : MonoBehaviour
                         item.tag = "Untagged";
 
                         // Publish a radio tower event
-                        EventBus.Publish<RadioTowerActivatedPlayerEvent>(new RadioTowerActivatedPlayerEvent());
+                        EventBus.Publish<RadioTowerActivatedPlayerEvent>(new RadioTowerActivatedPlayerEvent(item.transform.parent.GetComponent<RadioTowerCode>().towerCode));
                     }
                 }
                 else if (item != null && (item.name is "Objective") && player.GetComponent<ActivePlayerInventory>().itemInInventory(ActivePlayerInventory.activePlayerItems.RepairKit))

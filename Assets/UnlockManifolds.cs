@@ -10,34 +10,47 @@ public class UnlockManifolds : MonoBehaviour
     // List of buttons
     public List<Button> buttons;
 
+    public List<int> shuffledButtons;
+
     // Shuffled version of buttons
-    public List<Button> shuffledButtons; 
+    public List<int> shuffledButtons1;
+    public List<int> shuffledButtons2;
+    public List<int> shuffledButtons3;
 
     // Keep track of how many buttons were pressed in sequence
     int counter = 0;
 
-    public void Start()
+    private void Start()
     {
-        RestartTheGame();
+        EventBus.Subscribe<RadioTowerActivatedPlayerEvent>(RestartTheGame);
     }
 
-    public void RestartTheGame()
+    public void RestartTheGame(RadioTowerActivatedPlayerEvent e)
     {
+        // Store the code
+        shuffledButtons = e.code;
+
         // Reset the press counter
         counter = 0;
 
         // SHuffle the buttons with a random seed from 0-100
-        shuffledButtons = buttons.OrderBy(a => Random.Range(0, 100)).ToList();
+        for (int i = 0; i < 6; i++)
+        {
+            buttons[i].GetComponentInChildren<Text>().text = e.code[i].ToString();
+        }
+
         for (int i = 1; i < 7; i++)
         {
             // Set the text of the buttons to correct number
-            shuffledButtons[i - 1].GetComponentInChildren<Text>().text = i.ToString();
+            //shuffledButtons[i - 1].GetComponentInChildren<Text>().text = i.ToString();
 
             // Set all buttons to pressable
-            shuffledButtons[i - 1].interactable = true;
+            // shuffledButtons[i - 1].interactable = true;
+            buttons[i - 1].interactable = true;
 
             // Our initial color
-            shuffledButtons[i - 1].image.color = new Color32(177, 220, 233, 255);
+            // shuffledButtons[i - 1].image.color = new Color32(177, 220, 233, 255);
+            buttons[i - 1].image.color = new Color32(177, 220, 233, 255);
         }
     }
 
@@ -73,7 +86,7 @@ public class UnlockManifolds : MonoBehaviour
         // If the player lost
         if (!win)
         {
-            foreach(var button in shuffledButtons)
+            foreach(var button in buttons)
             {
                 // Update the color of the button to red
                 button.image.color = Color.red;
@@ -86,7 +99,7 @@ public class UnlockManifolds : MonoBehaviour
             yield return new WaitForSeconds(2f);
 
             // Restart the game
-            RestartTheGame();
+            RestartTheGame(new RadioTowerActivatedPlayerEvent(shuffledButtons));
         }
         else
         {
@@ -95,9 +108,6 @@ public class UnlockManifolds : MonoBehaviour
 
             // Publish a RadioTowerActivatedManagerEvent
             EventBus.Publish<RadioTowerActivatedManagerEvent>(new RadioTowerActivatedManagerEvent());
-
-            // Restart the game
-            RestartTheGame();
         }    
     }
 }

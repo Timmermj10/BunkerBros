@@ -214,6 +214,12 @@ public class DamageEffectEvent
 // Class for turning on the radio towers
 public class RadioTowerActivatedPlayerEvent
 {
+    public List<int> code;
+
+    public RadioTowerActivatedPlayerEvent(List<int> code)
+    {
+        this.code = code;
+    }
 }
 
 public class RadioTowerActivatedManagerEvent
