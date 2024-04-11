@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -27,7 +28,7 @@ public class UnlockManifolds : MonoBehaviour
 
         // SHuffle the buttons with a random seed from 0-100
         shuffledButtons = buttons.OrderBy(a => Random.Range(0, 100)).ToList();
-        for (int i = 1; i < 11; i++)
+        for (int i = 1; i < 7; i++)
         {
             // Set the text of the buttons to correct number
             shuffledButtons[i - 1].GetComponentInChildren<Text>().text = i.ToString();
@@ -42,7 +43,6 @@ public class UnlockManifolds : MonoBehaviour
 
     public void pressButton(Button button)
     {
-        Debug.Log(button);
         if (int.Parse(button.GetComponentInChildren<Text>().text) - 1 == counter) 
         { 
             // Increment the counter
@@ -55,7 +55,7 @@ public class UnlockManifolds : MonoBehaviour
             button.image.color = Color.green;
 
             // If we have pressed all the buttons correctly
-            if (counter == 10)
+            if (counter == 6)
             {
                 // Present the result for winning
                 StartCoroutine(presentResult(true));
@@ -81,11 +81,23 @@ public class UnlockManifolds : MonoBehaviour
                 // Make the button not interactable
                 button.interactable = false;
             }
-        }
-        // Wait for two seconds
-        yield return new WaitForSeconds(2f);
 
-        // Restart the game
-        RestartTheGame();
+            // Wait for two seconds
+            yield return new WaitForSeconds(2f);
+
+            // Restart the game
+            RestartTheGame();
+        }
+        else
+        {
+            // Wait for one second
+            yield return new WaitForSeconds(1f);
+
+            // Publish a RadioTowerActivatedManagerEvent
+            EventBus.Publish<RadioTowerActivatedManagerEvent>(new RadioTowerActivatedManagerEvent());
+
+            // Restart the game
+            RestartTheGame();
+        }    
     }
 }
