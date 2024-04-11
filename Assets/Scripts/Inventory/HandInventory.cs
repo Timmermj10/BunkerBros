@@ -9,6 +9,10 @@ public class HandInventory : MonoBehaviour
     public bool canSwap = false;
     private KBMandController kb;
     private InputAction swap;
+    public AmmoSystem ammo;
+
+    private Subscription<EmptyAmmo> empt;
+
     void Awake()
     {
         EventBus.Subscribe<PurchaseEvent>(_Purchase);
@@ -16,6 +20,8 @@ public class HandInventory : MonoBehaviour
 
         swap = kb.ActivePlayer.Swap;
         swap.performed += swapWeapons;
+
+        empt = EventBus.Subscribe<EmptyAmmo>(_EmptyAmmo);
     }
 
     void _Purchase(PurchaseEvent e)
@@ -57,5 +63,14 @@ public class HandInventory : MonoBehaviour
             }
         }
 
-    } 
+    }
+
+    private void _EmptyAmmo(EmptyAmmo e)
+    {
+        transform.Find("Knife").gameObject.SetActive(true);
+        transform.Find("Gun").gameObject.SetActive(false);
+        knife = true;
+    }
+
+
 }

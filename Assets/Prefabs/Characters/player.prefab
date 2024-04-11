@@ -169,6 +169,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   knife: 1
   canSwap: 0
+  ammo: {fileID: 5975604464621813633}
 --- !u!1 &1532122942738014198
 GameObject:
   m_ObjectHideFlags: 0

@@ -41,6 +41,7 @@ public class AmmoSystem : MonoBehaviour
         if (ammo_count == 0)
         {
             ammo_count = 0;
+            EventBus.Publish<EmptyAmmo>(new EmptyAmmo());
         }
     }
 

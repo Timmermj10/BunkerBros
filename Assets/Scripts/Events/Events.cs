@@ -229,3 +229,7 @@ public class FirstTutorialWaveEvent
 public class LastWaveEvent
 {
 }
+
+//Event to trigger swap into knife and sound
+public class EmptyAmmo
+{ }
