@@ -43,6 +43,7 @@ public class TutorialManager : MonoBehaviour
     public GameObject Missile;
     public GameObject NukeParts;
     public GameObject EvacuationButton;
+    
     public float buttonFlashDuration = 0.3f;
 
     [SerializeField]
@@ -122,7 +123,7 @@ public class TutorialManager : MonoBehaviour
         yield return new WaitForSeconds(1);
 
         startPopUp("Player");
-        popUpSystem.popUp("Player", "Hold square (ps5) on the repair kit to pick it up.");
+        popUpSystem.popUp("Player", "Hold square on the repair kit to pick it up.");
 
         while (!hasPickedUpRepairKit)
         {
@@ -130,7 +131,7 @@ public class TutorialManager : MonoBehaviour
         }
 
         startPopUp("Player");
-        popUpSystem.popUp("Player", "Hold square (ps5) on the bunker to repair the hatch.");
+        popUpSystem.popUp("Player", "Hold square on the bunker to repair the hatch.");
 
         while (!hasUsedRepairKit)
         {
@@ -154,7 +155,7 @@ public class TutorialManager : MonoBehaviour
         }
 
         startPopUp("Player");
-        popUpSystem.popUp("Player", "Load the nuke parts into the silo with square (ps5).");
+        popUpSystem.popUp("Player", "Load the nuke parts into the silo with square.");
 
         while (!hasLoadedSilo)
         {
@@ -188,11 +189,11 @@ public class TutorialManager : MonoBehaviour
         yield return new WaitForSeconds(1.5f);
 
         startPopUp("Player");
-        popUpSystem.popUp("Player", "Go activate the radio tower to increase your signal strength! If you get your signal strength high enough, you can radio for an extraction team!");
+        popUpSystem.popUp("Player", "Go activate the radio tower to increase your signal strength! If you get your signal strength high enough, you can call for an extraction team!");
 
 
         startPopUp("Manager");
-        popUpSystem.popUp("Manager", "Theres a zombie horde approaching from the southwest! Use some walls, turrets and missiles to defend the bunker while your partner is activating the radio tower.");
+        popUpSystem.popUp("Manager", "There's a zombie horde approaching from the southwest! Use some walls, turrets, and missiles to defend the bunker.");
         EventBus.Publish(new FirstTutorialWaveEvent());
         enemiesAlive = 7;
 
@@ -202,7 +203,7 @@ public class TutorialManager : MonoBehaviour
         }
 
         startPopUp("Manager");
-        popUpSystem.popUp("Manager", "Great work! Here are some more supplies to help your partner. Drop them in a gun and ammo when you get enough gold to help them survive and thrive.");
+        popUpSystem.popUp("Manager", "Great work! Here are some more supplies to help your partner. Help them out by dropping them a gun and some ammo when you get enough gold.");
 
         //turn on the evac button
         EvacuationButton.SetActive(true);
