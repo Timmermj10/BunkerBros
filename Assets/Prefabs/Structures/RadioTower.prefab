@@ -11,13 +11,13 @@ GameObject:
   - component: {fileID: 886334260980221233}
   - component: {fileID: 9184325826736384903}
   - component: {fileID: 3428498470763766911}
-  - component: {fileID: 1747307523190001756}
+  - component: {fileID: 7508064725848993466}
   - component: {fileID: 4007093290795115049}
   - component: {fileID: 8156093787691974908}
   - component: {fileID: 1454534116295468069}
   m_Layer: 13
   m_Name: RadioTower
-  m_TagString: Interactable
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -92,8 +92,8 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &1747307523190001756
-BoxCollider:
+--- !u!64 &7508064725848993466
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -110,9 +110,10 @@ BoxCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.06, y: 0.07, z: 0.35}
-  m_Center: {x: -0.007, y: 0.003, z: 0.15}
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 3425145493320930635, guid: c689ed98214f242c6ad7993ca8fc2af0, type: 3}
 --- !u!114 &4007093290795115049
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -156,7 +157,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f8e0b3dc9a40471d85d8028ba30079a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  newMaterial: {fileID: 2100000, guid: 41956d7faa07c45fa95711785ddd4e0c, type: 2}
 --- !u!1001 &3115023422517931666
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -282,12 +282,12 @@ PrefabInstance:
     - target: {fileID: 3536284794606562838, guid: 7533bc157286d40c0ac1a0e5e2ea6824,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.0108
+      value: 0.0161
       objectReference: {fileID: 0}
     - target: {fileID: 3536284794606562838, guid: 7533bc157286d40c0ac1a0e5e2ea6824,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.0031
+      value: -0.0254
       objectReference: {fileID: 0}
     - target: {fileID: 3536284794606562838, guid: 7533bc157286d40c0ac1a0e5e2ea6824,
         type: 3}
@@ -334,10 +334,19 @@ PrefabInstance:
       propertyPath: m_Name
       value: ControlPanel
       objectReference: {fileID: 0}
+    - target: {fileID: 9154655928784255341, guid: 7533bc157286d40c0ac1a0e5e2ea6824,
+        type: 3}
+      propertyPath: m_TagString
+      value: Interactable
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 9154655928784255341, guid: 7533bc157286d40c0ac1a0e5e2ea6824,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8682262533147001885}
   m_SourcePrefab: {fileID: 100100000, guid: 7533bc157286d40c0ac1a0e5e2ea6824, type: 3}
 --- !u!4 &713204491004349325 stripped
 Transform:
@@ -345,3 +354,30 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 4104652813007889819}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &5187435301777136886 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9154655928784255341, guid: 7533bc157286d40c0ac1a0e5e2ea6824,
+    type: 3}
+  m_PrefabInstance: {fileID: 4104652813007889819}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &8682262533147001885
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5187435301777136886}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0, y: 0.8, z: 0.4}
+  m_Center: {x: 0.3, y: 0.1, z: 0}

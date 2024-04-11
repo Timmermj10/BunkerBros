@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEditor.Progress;
 
 public class SiloAnimation : MonoBehaviour
 {
@@ -42,6 +43,9 @@ public class SiloAnimation : MonoBehaviour
             {
                 Debug.LogWarning("ChangeMaterial script not found on item: " + e.status.gameObject.name);
             }
+
+            // Make it so you can not use the same silo until it is unloaded
+            // e.status.gameObject.transform.Find("ControlPanel").tag = "Interactable";
         }
     }
 }
