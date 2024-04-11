@@ -22,10 +22,10 @@ public class EnemyWaveSpawnManager : MonoBehaviour
     private float randomX;
     private float randomZ;
 
-    //how far away enemies can spawn from the spawner (half the width/height of the map)
+    //how far away enemies can spawn from the spawnpoint
     private float spawnDistance = 4f;
     private int spawnIndex = 0;
-    private Vector3 spawnpointForWave;
+    private List<Vector3> spawnpointsForWave = new List<Vector3>();
 
     //Wave manager reference to get wave information
     WaveManager waveManager;
@@ -61,98 +61,126 @@ public class EnemyWaveSpawnManager : MonoBehaviour
 
     private void _WaveEnded(WaveEndedEvent e)
     {
-        spawnIndex = Random.Range(0, spawnpoints.Count);
-        spawnpointForWave = spawnpoints[spawnIndex];
-        pingManager.Ping(spawnpointForWave, 30, PingType.ENEMY);
-        //Debug.Log($"Wave Ended, spawn position for next wave = {spawnpointForWave}");
+        //Get the number of spawnpoints
+        Debug.Log($"round num = {waveManager.getWaveNumber()}");
+
+        //Every three waves, the zombies will spawn form an additional lane
+        int numSpawnpoints = Mathf.Max(1, waveManager.getWaveNumber() / 3);
+        numSpawnpoints = Mathf.Min(spawnpoints.Count, numSpawnpoints);
+
+        spawnpointsForWave.Clear();
+        
+        //Pick Random spawnpoints
+        for (int i = 0; i < numSpawnpoints; i++)
+        {
+            spawnIndex = Random.Range(0, spawnpoints.Count);
+            while (spawnpointsForWave.Contains(spawnpoints[spawnIndex]))
+            {
+                spawnIndex = Random.Range(0, spawnpoints.Count);
+            }
+            spawnpointsForWave.Add(spawnpoints[spawnIndex]);
+        }
+
+        //For each spawnpoint ping the starting location
+        for (int i = 0; i < spawnpointsForWave.Count; i++)
+        {
+            pingManager.Ping(spawnpointsForWave[i], 30, PingType.ENEMY);
+            Debug.Log($"Wave Ended, spawn position for next wave = {spawnpointsForWave[i]}");
+        }
+       
+        
     }
 
     private void _WaveStarted(WaveStartedEvent e)
     {
         spawnDelay -= 0.1f;
-        StartCoroutine(SpawnEnemiesForWave(spawnpointForWave));
+        StartCoroutine(SpawnEnemiesForWave());
     }
 
-    IEnumerator SpawnEnemiesForWave(Vector3 spawnpointForWave)
+    IEnumerator SpawnEnemiesForWave()
     {
         //Debug.Log("Spawning Enemies For Wave");
         while (waveManager.getNumEnemiesSpawnedSoFar() < waveManager.getNumEnemiesToSpawnThisRound())
         {
-
             //Make sure the maximum amount of enemies is not exceeded and the amount of enemies per wave is not exceeded
             if (spawnTimer <= 0 && waveManager.getNumEnemiesAlive() < waveManager.getMaxEnemiesAliveAtOnce())
             {
                 // Reset the spawn timer
-                spawnTimer = Random.Range(spawnDelay-1, spawnDelay+1);
+                spawnTimer = Random.Range(spawnDelay - 1, spawnDelay + 1);
                 //Debug.Log($"Spawn timer reset to {spawnTimer}");
 
-                
+
                 Vector3 randomSpawnPosition;
                 RaycastHit hitInfo;
 
-                //Get a random position to spawn the enemy
-                do
+                //Spawn an enemy at each spawnpoint
+                foreach (Vector3 spawnpointForWave in spawnpointsForWave)
                 {
-                    // Decide whether to spawn the enemy on the horizontal (X-axis) or vertical (Z-axis) edges
-                    if (Random.value < 0.5f)
+
+                    //Get a random position to spawn the enemy
+                    do
                     {
-                        // Spawn on the horizontal edges
-                        randomX = Random.Range(-spawnDistance, spawnDistance); // Anywhere along the horizontal edge
+                        // Decide whether to spawn the enemy on the horizontal (X-axis) or vertical (Z-axis) edges
+                        if (Random.value < 0.5f)
+                        {
+                            // Spawn on the horizontal edges
+                            randomX = Random.Range(-spawnDistance, spawnDistance); // Anywhere along the horizontal edge
 
-                        randomZ = Random.Range(0, spawnDistance);
+                            randomZ = Random.Range(0, spawnDistance);
 
-                        // Top or Bottom edge
-                        if (Random.value < 0.5) randomZ *= -1;
+                            // Top or Bottom edge
+                            if (Random.value < 0.5) randomZ *= -1;
+                        }
+                        else
+                        {
+                            // Spawn on the vertical edges
+                            randomZ = Random.Range(-spawnDistance, spawnDistance); // Anywhere along the vertical edge
+
+                            randomX = Random.Range(0, spawnDistance);
+
+                            // Top or Bottom edge
+                            if (Random.value < 0.5) randomX *= -1;
+                        }
+
+                        randomSpawnPosition = new Vector3(spawnpointForWave.x + randomX, 30f, spawnpointForWave.z + randomZ);
+                        //Debug.Log($"Checking to see of the chosen spawn position ({randomSpawnPosition}) is valid");
+
+                    } while (!Physics.Raycast(randomSpawnPosition, Vector3.down, out hitInfo, Mathf.Infinity, ~LayerMask.GetMask("Pickup")) || hitInfo.collider.gameObject.layer != LayerMask.NameToLayer("Default"));
+
+                    randomSpawnPosition.y = hitInfo.point.y + 0.5f;
+                    //Debug.Log($"Final spawn position of {randomSpawnPosition} chosen | Raycast collided with {hitInfo.collider.gameObject.name}");
+
+                    //Decide on the type of enemy to spawn
+                    float progressFraction = (float)(waveManager.getNumEnemiesSpawnedSoFar() + 1) / waveManager.getNumEnemiesToSpawnThisRound();
+                    bool hasSpawnedEnoughEnemies = progressFraction > 0.2f;
+                    bool armoredSpawnChance = Random.value < (0.8f * progressFraction); //0.8 is scaling factor to decrease spawn chance for armoredEnemies
+                    bool canSpawnMoreArmored = waveManager.getNumArmoredSpawnedSoFar() < waveManager.getNumArmoredToSpawnThisRound();
+                    //Debug.Log($"progress fraction = {progressFraction}, hasSpawnedEnoughEnemies = {hasSpawnedEnoughEnemies}, armoredSpawnChance = {armoredSpawnChance}, canSpawnMoreArmored = {canSpawnMoreArmored}");
+
+                    if (hasSpawnedEnoughEnemies && armoredSpawnChance && canSpawnMoreArmored)
+                    {
+
+                        //Chance to spawn a horde
+                        if (Random.value <= 0.4f && waveManager.getNumHordesSpawnedSoFar() < waveManager.getNumHordesToSpawnThisRound())
+                        {
+                            //Spawn a horde with a minimum of 4 enemies and a maximum of maxEnemies/6
+                            //Spawn radius is maximum of 3 and waveNumber/2
+                            //Horde centered on randomSpawnPosition
+                            //Debug.Log($"Spawning Horde at {randomSpawnPosition}");
+                            spawnHorde(Mathf.Max(6, Mathf.RoundToInt(waveManager.getNumEnemiesToSpawnThisRound() / 6f)), Mathf.Max(3f, waveManager.getWaveNumber() / 2f), randomSpawnPosition);
+                        }
+                        else
+                        {
+                            //spawn an armored enemy
+                            //Debug.Log("Spawning Armored");
+                            spawnEnemy(EnemyType.Armored, randomSpawnPosition);
+                        }
                     }
                     else
                     {
-                        // Spawn on the vertical edges
-                        randomZ = Random.Range(-spawnDistance, spawnDistance); // Anywhere along the vertical edge
-
-                        randomX = Random.Range(0, spawnDistance);
-
-                        // Top or Bottom edge
-                        if (Random.value < 0.5) randomX *= -1;
+                        //Debug.Log("Spawning Basic");
+                        spawnEnemy(EnemyType.Basic, randomSpawnPosition);
                     }
-
-                    randomSpawnPosition = new Vector3(spawnpointForWave.x + randomX, 30f, spawnpointForWave.z + randomZ);
-                    //Debug.Log($"Checking to see of the chosen spawn position ({randomSpawnPosition}) is valid");
-
-                } while (!Physics.Raycast(randomSpawnPosition, Vector3.down, out hitInfo, Mathf.Infinity) || hitInfo.collider.gameObject.layer != LayerMask.NameToLayer("Default"));
-
-                randomSpawnPosition.y = hitInfo.point.y + 0.5f;
-                //Debug.Log($"Final spawn position of {randomSpawnPosition} chosen | Raycast collided with {hitInfo.collider.gameObject.name}");
-
-                //Decide on the type of enemy to spawn
-                float progressFraction = (float)(waveManager.getNumEnemiesSpawnedSoFar() + 1) / waveManager.getNumEnemiesToSpawnThisRound();
-                bool hasSpawnedEnoughEnemies = progressFraction > 0.2f;
-                bool armoredSpawnChance = Random.value < (0.8f * progressFraction); //0.8 is scaling factor to decrease spawn chance for armoredEnemies
-                bool canSpawnMoreArmored = waveManager.getNumArmoredSpawnedSoFar() < waveManager.getNumArmoredToSpawnThisRound();
-                //Debug.Log($"progress fraction = {progressFraction}, hasSpawnedEnoughEnemies = {hasSpawnedEnoughEnemies}, armoredSpawnChance = {armoredSpawnChance}, canSpawnMoreArmored = {canSpawnMoreArmored}");
-
-                if (hasSpawnedEnoughEnemies && armoredSpawnChance && canSpawnMoreArmored)
-                {
-
-                    //Chance to spawn a horde
-                    if (Random.value <= 0.4f && waveManager.getNumHordesSpawnedSoFar() < waveManager.getNumHordesToSpawnThisRound())
-                    {
-                        //Spawn a horde with a minimum of 4 enemies and a maximum of maxEnemies/6
-                        //Spawn radius is maximum of 3 and waveNumber/2
-                        //Horde centered on randomSpawnPosition
-                        //Debug.Log($"Spawning Horde at {randomSpawnPosition}");
-                        spawnHorde(Mathf.Max(6, Mathf.RoundToInt(waveManager.getNumEnemiesToSpawnThisRound() / 6f)), Mathf.Max(3f, waveManager.getWaveNumber() / 2f), randomSpawnPosition);
-                    }
-                    else
-                    {
-                        //spawn an armored enemy
-                        //Debug.Log("Spawning Armored");
-                        spawnEnemy(EnemyType.Armored, randomSpawnPosition);
-                    }
-                }
-                else
-                {
-                    //Debug.Log("Spawning Basic");
-                    spawnEnemy(EnemyType.Basic, randomSpawnPosition);
                 }
             }
             else

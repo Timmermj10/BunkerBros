@@ -431,7 +431,7 @@ public class TutorialManager : MonoBehaviour
         {
             Color originalColor = Color.white;
 
-            for (int i = 0; i < 3; i++)
+            for (int i = 0; i < 5; i++)
             {
                 // Change the button color to green
                 buttonToFlash.image.color = Color.green;
