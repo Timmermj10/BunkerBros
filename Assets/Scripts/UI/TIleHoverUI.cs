@@ -10,6 +10,10 @@ public class TIleHoverUI : MonoBehaviour
     // The preview prefab
     public GameObject previewPrefab;
 
+    // For respawns
+    public GameObject validPrefab;
+    public GameObject invalidPrefab;
+
     // Preview gameobject instance
     private GameObject previewInstance;
 
