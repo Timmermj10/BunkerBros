@@ -25,6 +25,8 @@ public class ManagerPlayerInputsNew : MonoBehaviour
     private int maxRespawnDistanceFromObjective = 8;
 
     private bool canPlaceMultipleItemsInARow = false;
+    private bool inTutorial = true;
+    private Vector3 tutorialBoulderPosition = new Vector3(-11, 1.5f, -2);
 
     PlayerInput playerInput;
 
@@ -75,7 +77,7 @@ public class ManagerPlayerInputsNew : MonoBehaviour
             inventory = GameObject.Find("Inventory").GetComponent<InventoryUI>();
         }
 
-        //Subscribe to the tutorial ended event
+        //Subscribe to the tutorial ended event to change canPlaceMultipleItemsInARow and InTutorial
         EventBus.Subscribe<FirstTutorialWaveEvent>(_tutorialDefense);
 
         managerCamera = GameObject.Find("ManagerCamera");
@@ -312,11 +314,16 @@ public class ManagerPlayerInputsNew : MonoBehaviour
                 }
                 else if (itemID == 4)
                 {
-                    //get the location of the item
-                    Vector3 itemUsedLocation = new Vector3(worldPositionRounded.x, worldPositionRounded.y + 0.5f, worldPositionRounded.z);
 
-                    // Publish a use Event so the shop manager can update count and 
-                    EventBus.Publish<ItemUseEvent>(new ItemUseEvent(4, itemUsedLocation, true)); //id is 4 for nuke
+                    Debug.Log($"InTutorial = {inTutorial} and distance = {Vector3.Distance(worldPositionRounded, tutorialBoulderPosition)}");
+                    if ((inTutorial && Vector3.Distance(worldPositionRounded, tutorialBoulderPosition) < 5) || !inTutorial)
+                    {
+                        //get the location of the item
+                        Vector3 itemUsedLocation = new Vector3(worldPositionRounded.x, worldPositionRounded.y + 0.5f, worldPositionRounded.z);
+
+                        // Publish a use Event so the shop manager can update count
+                        EventBus.Publish<ItemUseEvent>(new ItemUseEvent(4, itemUsedLocation, true)); //id is 4 for nuke
+                    }
                 }
                 else if (itemID == 5)
                 {
@@ -440,6 +447,7 @@ public class ManagerPlayerInputsNew : MonoBehaviour
     private void _tutorialDefense(FirstTutorialWaveEvent e)
     {
         canPlaceMultipleItemsInARow = true;
+        inTutorial = false;
     }
 }
 
