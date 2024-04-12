@@ -17,7 +17,7 @@ public class RadioTowerManager : MonoBehaviour
     {
         if (gameObject.name is "MiniGame")
         {
-            gameObject.transform.Find("BlueBackground").gameObject.SetActive(true);
+            gameObject.transform.Find("GrayBackground").gameObject.SetActive(true);
         }
     }
 
@@ -39,7 +39,7 @@ public class RadioTowerManager : MonoBehaviour
         // If we are working with the minigame
         else
         {
-            gameObject.transform.Find("BlueBackground").gameObject.SetActive(false);
+            gameObject.transform.Find("GrayBackground").gameObject.SetActive(false);
         }
     }
 }
