@@ -22,7 +22,7 @@ public class ManagerPlayerInputsNew : MonoBehaviour
 
 
     //Maximum distance you can respawn the player form the objective
-    private int maxRespawnDistanceFromObjective = 8;
+    public static int maxRespawnDistanceFromObjective = 8;
 
     private bool canPlaceMultipleItemsInARow = false;
     private bool inTutorial = true;

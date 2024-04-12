@@ -53,6 +53,27 @@ public class TIleHoverUI : MonoBehaviour
                 }
                 else
                 {
+                    // Update the preview instance if we are working with player respawn
+                    if (selectedObj == GameObject.Find("PlayerRespawn"))
+                    {
+                        if (Vector3.Distance(worldPositionRounded, new Vector3(0, 1, 0)) < ManagerPlayerInputsNew.maxRespawnDistanceFromObjective)
+                        {
+                            if (previewInstance != GameObject.Find("ValidSpawnPreview(Clone)"))
+                            {
+                                Destroy(previewInstance);
+                                previewInstance = Instantiate(validPrefab, worldPositionRounded, Quaternion.identity);
+                            }
+                        }
+                        else
+                        {
+                            if (previewInstance != GameObject.Find("InvalidSpawnPreview(Clone)"))
+                            {
+                                Destroy(previewInstance);
+                                previewInstance = Instantiate(invalidPrefab, worldPositionRounded, Quaternion.identity);
+                            }
+                        }
+                    }
+
                     // Move the preview instance to the tile position
                     previewInstance.transform.position = worldPositionRounded;
                 }
