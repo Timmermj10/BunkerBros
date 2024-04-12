@@ -50,7 +50,7 @@ public class UnlockManifolds : MonoBehaviour
 
             // Our initial color
             // shuffledButtons[i - 1].image.color = new Color32(177, 220, 233, 255);
-            buttons[i - 1].image.color = new Color32(177, 220, 233, 255);
+            buttons[i - 1].image.color = new Color32(87, 87, 87, 255);
         }
     }
 
