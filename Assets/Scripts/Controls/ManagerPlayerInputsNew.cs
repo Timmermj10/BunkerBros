@@ -57,6 +57,9 @@ public class ManagerPlayerInputsNew : MonoBehaviour
     private PingManager pingManager;
     public float minX, maxX, minY, MaxY;
 
+    // Bool to hold if we are currently doing the minigame
+    bool minigame = false;
+
     //private void Awake()
     //{
     //    kb = new KBMandController();
@@ -88,6 +91,10 @@ public class ManagerPlayerInputsNew : MonoBehaviour
         // Get reference to the ShopManagerScript
         shopManagerScript = GameObject.Find("GameManager").GetComponent<ShopManagerScript>();
         pingManager = GameObject.Find("GameManager").GetComponent<PingManager>();
+
+        // Subscribe to the minigame events
+        EventBus.Subscribe<RadioTowerActivatedPlayerEvent>(setMinigameTrue);
+        EventBus.Subscribe<RadioTowerActivatedManagerEvent>(setMinigameFalse);
     }
 
 
@@ -268,7 +275,7 @@ public class ManagerPlayerInputsNew : MonoBehaviour
             }
             //Debug.Log($"Selected Gameobject is {selectedObj} and canPlaceMultipleItemsInARow = {canPlaceMultipleItemsInARow}");
 
-            if (selectedObj != null && withinView(worldPositionRounded))
+            if (selectedObj != null && withinView(worldPositionRounded) && !minigame)
             {
                 // Do something with the selected object
 
@@ -448,6 +455,16 @@ public class ManagerPlayerInputsNew : MonoBehaviour
     {
         canPlaceMultipleItemsInARow = true;
         inTutorial = false;
+    }
+
+    public void setMinigameTrue(RadioTowerActivatedPlayerEvent e)
+    {
+        minigame = true;
+    }
+
+    public void setMinigameFalse(RadioTowerActivatedManagerEvent e)
+    {
+        minigame = false;
     }
 }
 
