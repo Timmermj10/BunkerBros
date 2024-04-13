@@ -135,7 +135,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timeToInteract: 2
   itemsInRange: []
-  pickedUpItems: []
   distance: 3
   mask:
     serializedVersion: 2
@@ -340,7 +339,6 @@ GameObject:
   - component: {fileID: 2040935900445435045}
   - component: {fileID: 2972291016970772470}
   - component: {fileID: 5975604464621813633}
-  - component: {fileID: 3894732518182062399}
   - component: {fileID: 8555320606884907261}
   m_Layer: 6
   m_Name: player
@@ -541,20 +539,6 @@ MonoBehaviour:
   ammo_count: 60
   reload_count: 60
   active: 0
---- !u!114 &3894732518182062399
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2463675146606809864}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 45a200cf47106234d8ffb4a571f5fc8e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ammo: {fileID: 5975604464621813633}
-  enable: 0
 --- !u!95 &8555320606884907261
 Animator:
   serializedVersion: 5

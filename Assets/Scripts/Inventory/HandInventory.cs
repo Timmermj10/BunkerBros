@@ -19,7 +19,7 @@ public class HandInventory : MonoBehaviour
 
     
 
-    void Awake()
+    void Start()
     {
         EventBus.Subscribe<PurchaseEvent>(_Purchase);
         kb = new KBMandController();
@@ -30,11 +30,15 @@ public class HandInventory : MonoBehaviour
 
         empt = EventBus.Subscribe<EmptyAmmo>(_EmptyAmmo);
 
-        GameObject knifeImage = GameObject.Find("KnifeImage");
-        GameObject gunImage = GameObject.Find("GunImage");
+        //GameObject knifeImage = GameObject.Find("KnifeImage");
+        //GameObject gunImage = GameObject.Find("GunImage");
 
-        if (knifeImage != null) knifeImageRenderer = knifeImage.GetComponent<RawImage>();
-        if (gunImage != null) gunImageRenderer = gunImage.GetComponent<RawImage>();
+        if (AmmoUI.knife_image != null) knifeImageRenderer = AmmoUI.knife_image.GetComponent<RawImage>();
+        if (AmmoUI.gun_image != null)
+        {
+            gunImageRenderer = AmmoUI.gun_image.GetComponent<RawImage>();
+            Debug.Log(gunImageRenderer);
+        }
     }
 
     void _Purchase(PurchaseEvent e)
@@ -45,21 +49,22 @@ public class HandInventory : MonoBehaviour
             canSwap = true;
             transform.Find("Gun").gameObject.SetActive(true);
             transform.Find("Knife").gameObject.SetActive(false);
-            
+            swap.Enable();
+
             knifeImageRenderer.color = new Color(1f, 1f, 1f, 0.13f);
             gunImageRenderer.color = new Color(1f, 1f, 1f, 1f);
         }
     }
 
-    private void OnEnable()
-    {
-        swap.Enable();
-    }
+    //private void OnEnable()
+    //{
+    //    swap.Enable();
+    //}
 
-    private void OnDisable()
-    {
-        swap.Disable();
-    }
+    //private void OnDisable()
+    //{
+    //    swap.Disable();
+    //}
 
     public void swapWeapons(InputAction.CallbackContext context)
     {

@@ -7,8 +7,8 @@ public class AmmoUI : MonoBehaviour
 {
     private Text ammo_display;
     private GameObject ammo_image;
-    private GameObject knife_image;
-    private GameObject gun_image;
+    public static GameObject knife_image;
+    public static GameObject gun_image;
     public int current_mag = 30;
     public int reserve_mags;
     private int prev_total;
