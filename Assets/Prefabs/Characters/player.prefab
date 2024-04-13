@@ -188,7 +188,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   knife: 1
   canSwap: 0
-  ammo: {fileID: 5975604464621813633}
+  ammo: {fileID: 0}
 --- !u!1 &1532122942738014198
 GameObject:
   m_ObjectHideFlags: 0
@@ -233,7 +233,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31dffa01d58603441bd3e5a3525a16a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ammo: {fileID: 5975604464621813633}
+  ammo: {fileID: 0}
   ProjectilePrefab: {fileID: 4820764227730699988, guid: 07cac96898c26b041928e90fb5d15422,
     type: 3}
   anim: {fileID: 8555320606884907261}
@@ -338,7 +338,6 @@ GameObject:
   - component: {fileID: 4360294523314962802}
   - component: {fileID: 2040935900445435045}
   - component: {fileID: 2972291016970772470}
-  - component: {fileID: 5975604464621813633}
   - component: {fileID: 8555320606884907261}
   m_Layer: 6
   m_Name: player
@@ -524,21 +523,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4cfe9bb7d0d243c4b86a8ebe414d6896, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &5975604464621813633
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2463675146606809864}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f89c86804941e7c42b487288c5344975, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ammo_count: 60
-  reload_count: 60
-  active: 0
 --- !u!95 &8555320606884907261
 Animator:
   serializedVersion: 5

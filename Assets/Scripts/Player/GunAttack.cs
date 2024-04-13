@@ -6,13 +6,18 @@ using UnityEngine.InputSystem;
 
 public class GunAttack : MonoBehaviour
 {
-    public AmmoSystem ammo;
+    private AmmoSystem ammo;
     public ProjectileBehavior ProjectilePrefab;
     public Animator anim;
     public Transform look;
 
     private Subscription<AttackEvent> sub;
     private float firingOffset = 0.5f;
+
+    private void Start()
+    {
+        ammo = GameObject.Find("Ammo").GetComponent<AmmoSystem>();
+    }
 
     private void OnDisable()
     {

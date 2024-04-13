@@ -27,7 +27,6 @@ public class HandInventory : MonoBehaviour
         swap = kb.ActivePlayer.Swap;
         swap.performed += swapWeapons;
 
-
         empt = EventBus.Subscribe<EmptyAmmo>(_EmptyAmmo);
 
         //GameObject knifeImage = GameObject.Find("KnifeImage");
@@ -38,6 +37,12 @@ public class HandInventory : MonoBehaviour
         {
             gunImageRenderer = AmmoUI.gun_image.GetComponent<RawImage>();
             Debug.Log(gunImageRenderer);
+        }
+
+        if (AmmoUI.gun_image.activeSelf) 
+        {
+            swap.Enable();
+            canSwap = true;
         }
     }
 
@@ -101,5 +106,8 @@ public class HandInventory : MonoBehaviour
         knife = true;
     }
 
-
+    private void OnDestroy()
+    {
+        swap.performed -= swapWeapons;
+    }
 }
