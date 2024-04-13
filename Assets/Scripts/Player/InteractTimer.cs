@@ -16,6 +16,7 @@ public class InteractTimer : MonoBehaviour
         gameObject.SetActive(false);
         EventBus.Subscribe<InteractTimerStartedEvent>(_StartTimer);
         EventBus.Subscribe<InteractTimerEndedEvent>(_EndTimer);
+        EventBus.Subscribe<ObjectDestroyedEvent>(_callEndTimer);
 
         EventBus.Subscribe<newItemInPickupRangeEvent>(_DisplayTimer);
         EventBus.Subscribe<itemRemovedFromPickupRangeEvent>(_UpdateTimerDisplay);
@@ -30,7 +31,10 @@ public class InteractTimer : MonoBehaviour
     private void _UpdateTimerDisplay(itemRemovedFromPickupRangeEvent e)
     {
         //Debug.Log($"Hiding interact timer. Count = {e.numItemsInRange}");
-        if (e.numItemsInRange <= 0) gameObject.SetActive(false);
+        if (e.numItemsInRange <= 0)
+        {
+            gameObject.SetActive(false);
+        }
     }
 
     private void _StartTimer(InteractTimerStartedEvent e)
@@ -45,6 +49,14 @@ public class InteractTimer : MonoBehaviour
         timerActive = false;
         slider.value = 0f;
         //gameObject.SetActive(false);
+    }
+
+    public void _callEndTimer(ObjectDestroyedEvent e)
+    {
+        if (e.name is "player")
+        {
+            _UpdateTimerDisplay(new itemRemovedFromPickupRangeEvent(0));
+        }
     }
 
     IEnumerator incrementTimer(float duration)
