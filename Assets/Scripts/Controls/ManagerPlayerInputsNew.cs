@@ -121,6 +121,15 @@ public class ManagerPlayerInputsNew : MonoBehaviour
 
         //Debug.Log("Zoom Max is " + Mathf.Max(.1f, (2f - zoomSpeed)));
 
+        //CHEAT FOR SKIPPING TO FINAL WAVE
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            EventBus.Publish(new RadioTowerActivatedManagerEvent());
+            EventBus.Publish(new RadioTowerActivatedManagerEvent());
+            EventBus.Publish(new RadioTowerActivatedManagerEvent());
+            EventBus.Publish(new RadioTowerActivatedManagerEvent());
+        }
+
     }
 
     private void OnZoom(InputValue value)

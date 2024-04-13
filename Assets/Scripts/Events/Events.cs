@@ -240,6 +240,14 @@ public class LastWaveEvent
 {
 }
 
+public class LastWaveOverEvent
+{
+}
+
+public class GameOverEvent
+{
+}
+
 //Event to trigger swap into knife and sound
 public class EmptyAmmo
 { }

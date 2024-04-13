@@ -14,6 +14,11 @@ public class EnemyWaveSpawnManager : MonoBehaviour
     //List of spawnpoints
     private List<Vector3> spawnpoints = new List<Vector3>();
 
+    //Final Wave variables
+    private bool isFinalWave = false;
+    private float prepTimeForFinalWave = 10f;
+    private bool finalWaveOver = false;
+
     //Time between enemy spawned
     private float spawnDelay = 2f;
     private float spawnTimer = 2f;
@@ -41,6 +46,8 @@ public class EnemyWaveSpawnManager : MonoBehaviour
         EventBus.Subscribe<WaveStartedEvent>(_WaveStarted);
         EventBus.Subscribe<WaveEndedEvent>(_WaveEnded);
         EventBus.Subscribe<ObjectDestroyedEvent>(_boulderDestroyed);
+        EventBus.Subscribe<LastWaveEvent>(_finalWave);
+        EventBus.Subscribe<LastWaveOverEvent>(_finalWaveOver);
 
         spawnpoints.Add(new Vector3(-2, 1, -21)); //Bottom Left;
         spawnpoints.Add(new Vector3(5, 1, -21)); //Bottom Right
@@ -49,6 +56,11 @@ public class EnemyWaveSpawnManager : MonoBehaviour
 
         pingManager = GameObject.Find("GameManager").GetComponent<PingManager>();
 
+    }
+
+    private void _finalWaveOver(LastWaveOverEvent e)
+    {
+        finalWaveOver = true;
     }
 
     private void _boulderDestroyed(ObjectDestroyedEvent e)
@@ -62,8 +74,6 @@ public class EnemyWaveSpawnManager : MonoBehaviour
     private void _WaveEnded(WaveEndedEvent e)
     {
         //Get the number of spawnpoints
-        Debug.Log($"round num = {waveManager.getWaveNumber()}");
-
         //Every three waves, the zombies will spawn form an additional lane
         int numSpawnpoints = Mathf.Max(1, waveManager.getWaveNumber() / 3);
         numSpawnpoints = Mathf.Min(spawnpoints.Count, numSpawnpoints);
@@ -94,7 +104,7 @@ public class EnemyWaveSpawnManager : MonoBehaviour
     private void _WaveStarted(WaveStartedEvent e)
     {
         spawnDelay -= 0.1f;
-        StartCoroutine(SpawnEnemiesForWave());
+        if(!isFinalWave) StartCoroutine(SpawnEnemiesForWave());
     }
 
     IEnumerator SpawnEnemiesForWave()
@@ -197,7 +207,7 @@ public class EnemyWaveSpawnManager : MonoBehaviour
     private void spawnEnemy(EnemyType type, Vector3 position)
     {
         //make sure were not exceeding number of spawns for the wave or maximum enemies alive at once
-        if (waveManager.getNumEnemiesSpawnedSoFar() < waveManager.getNumEnemiesToSpawnThisRound() && waveManager.getNumEnemiesAlive() < waveManager.getMaxEnemiesAliveAtOnce())
+        if (((waveManager.getNumEnemiesSpawnedSoFar() < waveManager.getNumEnemiesToSpawnThisRound()) || isFinalWave) && !finalWaveOver && waveManager.getNumEnemiesAlive() < waveManager.getMaxEnemiesAliveAtOnce())
         {
             GameObject enemy = null;
             //Spawn the correct enemy type at the specified position
@@ -229,6 +239,11 @@ public class EnemyWaveSpawnManager : MonoBehaviour
             maxArmoredToSpawnInHorde = 0;
         }
 
+        if (isFinalWave)
+        {
+            maxArmoredToSpawnInHorde = (int)(hordeSize / 2.5f);
+        }
+
         Vector3 spawnPos;
 
         for (int i = 0; i < hordeSize; i++)
@@ -258,4 +273,156 @@ public class EnemyWaveSpawnManager : MonoBehaviour
         }
     }
 
+    private void _finalWave(LastWaveEvent e)
+    {
+        isFinalWave = true;
+        StartCoroutine(FinalWave());
+    }
+
+
+    private IEnumerator FinalWave()
+    {
+
+        //Final wave timing variables
+        float finalWaveTimer = 0f;
+        float finalWaveDuration = 120f;
+        float finalWavespawnDelay = 1.5f;
+        float finalWaveSpawnTimer = finalWavespawnDelay;
+
+        int numFinalWaveSpawnpoints = spawnpoints.Count;
+
+        List<Vector3> finalWaveSpawnpoints = new List<Vector3>();
+
+        //Pick Random spawnpoints
+        for (int i = 0; i < numFinalWaveSpawnpoints; i++)
+        {
+            finalWaveSpawnpoints.Add(spawnpoints[i]);
+        }
+
+        //For each spawnpoint ping the starting location
+        for (int i = 0; i < finalWaveSpawnpoints.Count; i++)
+        {
+            pingManager.Ping(finalWaveSpawnpoints[i], 60, PingType.ENEMY);
+        }
+
+        yield return new WaitForSeconds(prepTimeForFinalWave);
+
+        while (!finalWaveOver)
+        {
+
+            if (finalWaveSpawnTimer <= 0)
+            {
+                //Decrease time until next spawn
+                finalWavespawnDelay = Mathf.Max(0.75f, finalWavespawnDelay - 0.05f);
+
+                // Reset the spawn timer
+                finalWaveSpawnTimer = Random.Range(finalWavespawnDelay - 0.5f, finalWavespawnDelay + 1);
+                //Debug.Log($"Spawn timer reset to {spawnTimer}");
+
+
+                Vector3 randomSpawnPosition;
+                RaycastHit hitInfo;
+
+                //Spawn an enemy at each spawnpoint
+                foreach (Vector3 spawnpointForWave in finalWaveSpawnpoints)
+                {
+
+                    //Get a random position to spawn the enemy
+                    do
+                    {
+                        // Decide whether to spawn the enemy on the horizontal (X-axis) or vertical (Z-axis) edges
+                        if (Random.value < 0.5f)
+                        {
+                            // Spawn on the horizontal edges
+                            randomX = Random.Range(-spawnDistance, spawnDistance); // Anywhere along the horizontal edge
+
+                            randomZ = Random.Range(0, spawnDistance);
+
+                            // Top or Bottom edge
+                            if (Random.value < 0.5) randomZ *= -1;
+                        }
+                        else
+                        {
+                            // Spawn on the vertical edges
+                            randomZ = Random.Range(-spawnDistance, spawnDistance); // Anywhere along the vertical edge
+
+                            randomX = Random.Range(0, spawnDistance);
+
+                            // Top or Bottom edge
+                            if (Random.value < 0.5) randomX *= -1;
+                        }
+
+                        randomSpawnPosition = new Vector3(spawnpointForWave.x + randomX, 30f, spawnpointForWave.z + randomZ);
+                        //Debug.Log($"Checking to see of the chosen spawn position ({randomSpawnPosition}) is valid");
+
+                    } while (!Physics.Raycast(randomSpawnPosition, Vector3.down, out hitInfo, Mathf.Infinity, ~LayerMask.GetMask("Pickup")) || hitInfo.collider.gameObject.layer != LayerMask.NameToLayer("Default"));
+
+                    randomSpawnPosition.y = hitInfo.point.y + 0.5f;
+
+                    //Decide what type of zombie to spawn
+
+                    finalWaveTimer += Time.deltaTime;
+                    float progress = finalWaveTimer / finalWaveDuration;
+
+                    if (progress > 0.85f)
+                    {
+                        StartCoroutine(spawnImpossibleHorde(finalWaveSpawnpoints));
+                    }
+
+                    //Scale armored probability by 1.8x progress
+                    float armoredEnemyChance = Mathf.Min(1.8f * progress, 0.75f);
+
+
+                    if (Random.value < armoredEnemyChance)
+                    {
+
+                        //Chance to spawn a horde
+                        if (Random.value <= 0.3f)
+                        {
+                            //Spawn a horde of size 10, and radius 4 at the randomSpawnPosition
+                            spawnHorde(10, 4, randomSpawnPosition);
+                        }
+                        else
+                        {
+                            //spawn an armored enemy
+                            //Debug.Log("Spawning Armored");
+                            spawnEnemy(EnemyType.Armored, randomSpawnPosition);
+                        }
+                    }
+                    else
+                    {
+                        //Debug.Log("Spawning Basic");
+                        spawnEnemy(EnemyType.Basic, randomSpawnPosition);
+                    }
+                }
+            }
+            else
+            {
+                // Decrement spawn timer
+                finalWaveSpawnTimer -= Time.deltaTime;
+            }
+
+            yield return new WaitForFixedUpdate();
+        }
+
+        yield return new WaitForFixedUpdate();
+
+    }
+
+
+    private IEnumerator spawnImpossibleHorde(List<Vector3> impossibleHordeSpawnpoints)
+    {
+        for (int i = 0; i < 5; i++)
+        {
+            if (!finalWaveOver)
+            {
+                foreach (Vector3 spawnpoint in impossibleHordeSpawnpoints)
+                {
+                    spawnHorde(10, 8, spawnpoint);
+                }
+            }
+            yield return new WaitForSeconds(0.5f);
+        }
+
+    }
 }

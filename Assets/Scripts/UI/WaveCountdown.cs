@@ -26,6 +26,9 @@ public class WaveCountDown : MonoBehaviour
     //Boolean for if we are in the tutorial
     private bool inTutorial = true;
 
+    //Boolean to tell if it is finalWave
+    private bool isFinalWave = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -38,6 +41,9 @@ public class WaveCountDown : MonoBehaviour
         // Listen for tutorial end events
         EventBus.Subscribe<TutorialEndedEvent>(_endTutorial);
 
+        // Listen for FinalWave events
+        EventBus.Subscribe<LastWaveEvent>(_finalWave);
+
         // Grab the round countdown
         roundCountdown = GameObject.Find("WaveCountdown").GetComponent<Text>();
         //Debug.Log($"roundCountdown is {roundCountdown}");
@@ -49,6 +55,13 @@ public class WaveCountDown : MonoBehaviour
 
         timer = timeBetweenRounds;
         lastSecond = (int)timeBetweenRounds;
+    }
+
+    private void _finalWave(LastWaveEvent e)
+    {
+        isFinalWave = true;
+        timer = 10f;
+        timerStart = true;
     }
 
     private void Update()
@@ -65,7 +78,14 @@ public class WaveCountDown : MonoBehaviour
             if (currentSecond != lastSecond)
             {
                 // Update the UI
-                roundCountdown.text = $"WAVE STARTING IN\n {currentSecond}";
+                if (!isFinalWave)
+                {
+                    roundCountdown.text = $"WAVE STARTING IN\n {currentSecond}";
+                }
+                else
+                {
+                    roundCountdown.text = $"A HUGE WAVE OF ZOMBIES\n IS APPROACHING IN\n {currentSecond}";
+                }
 
                 //Update last second
                 lastSecond = currentSecond;
@@ -74,7 +94,14 @@ public class WaveCountDown : MonoBehaviour
             // If the countdown has reached zero
             if (currentSecond == 0)
             {
-                waveManager.StartWave();
+                if (!isFinalWave)
+                {
+                    waveManager.StartWave();
+                } else
+                {
+                    timerStart = false;
+                    roundCountdown.text = "";
+                }
             }
         }
     }

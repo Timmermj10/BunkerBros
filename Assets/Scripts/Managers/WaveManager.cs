@@ -31,6 +31,12 @@ public class WaveManager : MonoBehaviour
     {
         EventBus.Subscribe<ObjectDestroyedEvent>(_DidEnemyDie);
         EventBus.Subscribe<WaveEndedEvent>(_WaveEnd);
+        EventBus.Subscribe<LastWaveEvent>(_IncreaseMaximumZombiesAlive);
+    }
+
+    private void _IncreaseMaximumZombiesAlive(LastWaveEvent e)
+    {
+        maxEnemiesAtOnce = 48;
     }
 
     public void setMaxEnemiesAtOnce(int newNumEnemies)

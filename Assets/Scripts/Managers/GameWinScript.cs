@@ -5,10 +5,10 @@ public class GameWinScript : MonoBehaviour
 {
     void Start()
     {
-        EventBus.Subscribe<LastWaveEvent>(endGame);
+        EventBus.Subscribe<GameOverEvent>(endGame);
     }
 
-    public void endGame(LastWaveEvent e)
+    public void endGame(GameOverEvent e)
     {
         SceneManager.LoadSceneAsync("GameWin");
     }
