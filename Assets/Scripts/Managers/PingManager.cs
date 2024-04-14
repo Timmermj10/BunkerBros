@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -37,6 +38,11 @@ public class PingManager : MonoBehaviour
         managerHasPing = managerPing.GetComponentInChildren<HasPing>();
         pings.Add(playerPing.transform.Find("spotted"));
         pings.Add(managerPing.transform.Find("spotted"));
+        foreach (Transform ping in pings)
+        {
+            ping.Find("managerView").rotation = Quaternion.LookRotation(Vector3.up, Vector3.forward);
+            ping.gameObject.SetActive(false);
+        }
         managerCamera = GameObject.FindGameObjectWithTag("ManagerCam").GetComponent<Camera>();
     }
 
@@ -44,25 +50,27 @@ public class PingManager : MonoBehaviour
     {
         foreach (Transform ping in pings)
         {
-            Transform playerView = ping.Find("playerView");
-            playerView.LookAt(playerCam.position);
-            Transform managerView = ping.Find("managerView");
-            //vw = 5 - managerBuffer;
-            //vh = 5-managerBuffer;
-            vw = managerCamera.orthographicSize - managerBuffer;
-            vh = vw;
-            Vector3 offset = ping.position - managerCam.position;
-            Vector3 clamped = new(Mathf.Clamp(offset.x, -vw, vw), offset.y, Mathf.Clamp(offset.z, -vh, vh));
-            if (clamped == offset)
+            if (ping)
             {
-                managerView.Find("direction").gameObject.SetActive(false);
-                managerView.localPosition = Vector3.zero;
-            }
-            else{
-                Transform direction = managerView.Find("direction");
-                direction.gameObject.SetActive(true);
-                direction.localRotation = Quaternion.Euler(new(0f, 0f, Mathf.Atan2(offset.x, -offset.z)*Mathf.Rad2Deg));
-                managerView.position = managerCam.position + clamped;
+                Transform playerView = ping.Find("playerView");
+                playerView.rotation = playerCam.transform.rotation;
+                Transform managerView = ping.Find("managerView");
+                vw = managerCamera.orthographicSize - managerBuffer;
+                vh = vw;
+                Vector3 offset = ping.position - managerCam.position;
+                Vector3 clamped = new(Mathf.Clamp(offset.x, -vw, vw), offset.y, Mathf.Clamp(offset.z, -vh, vh));
+                if (clamped == offset)
+                {
+                    managerView.Find("direction").gameObject.SetActive(false);
+                    managerView.localPosition = Vector3.zero;
+                }
+                else
+                {
+                    Transform direction = managerView.Find("direction");
+                    direction.gameObject.SetActive(true);
+                    direction.localRotation = Quaternion.Euler(new(0f, 0f, Mathf.Atan2(-offset.x, -offset.z) * Mathf.Rad2Deg));
+                    managerView.position = managerCam.position + clamped;
+                }
             }
         }
     }

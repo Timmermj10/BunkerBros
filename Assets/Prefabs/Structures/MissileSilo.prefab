@@ -1,104 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &3172600123654857678
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 6104362916614362745}
-    m_Modifications:
-    - target: {fileID: 2367228410747419815, guid: 06f3eff8643a34420a8c2e40d6ec1be1,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2367228410747419815, guid: 06f3eff8643a34420a8c2e40d6ec1be1,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2367228410747419815, guid: 06f3eff8643a34420a8c2e40d6ec1be1,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2367228410747419815, guid: 06f3eff8643a34420a8c2e40d6ec1be1,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2367228410747419815, guid: 06f3eff8643a34420a8c2e40d6ec1be1,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2367228410747419815, guid: 06f3eff8643a34420a8c2e40d6ec1be1,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2367228410747419815, guid: 06f3eff8643a34420a8c2e40d6ec1be1,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2367228410747419815, guid: 06f3eff8643a34420a8c2e40d6ec1be1,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2367228410747419815, guid: 06f3eff8643a34420a8c2e40d6ec1be1,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2367228410747419815, guid: 06f3eff8643a34420a8c2e40d6ec1be1,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2367228410747419815, guid: 06f3eff8643a34420a8c2e40d6ec1be1,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2367228410747419815, guid: 06f3eff8643a34420a8c2e40d6ec1be1,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2367228410747419815, guid: 06f3eff8643a34420a8c2e40d6ec1be1,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2367228410747419815, guid: 06f3eff8643a34420a8c2e40d6ec1be1,
-        type: 3}
-      propertyPath: m_ConstrainProportionsScale
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2807239913689852979, guid: 06f3eff8643a34420a8c2e40d6ec1be1,
-        type: 3}
-      propertyPath: m_Name
-      value: investigate
-      objectReference: {fileID: 0}
-    - target: {fileID: 2807239913689852979, guid: 06f3eff8643a34420a8c2e40d6ec1be1,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 06f3eff8643a34420a8c2e40d6ec1be1, type: 3}
---- !u!4 &926970431989161833 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2367228410747419815, guid: 06f3eff8643a34420a8c2e40d6ec1be1,
-    type: 3}
-  m_PrefabInstance: {fileID: 3172600123654857678}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &3886465976630731197
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -107,6 +8,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6104362916614362745}
     m_Modifications:
+    - target: {fileID: 51896005006611124, guid: 06f3eff8643a34420a8c2e40d6ec1be1,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2367228410747419815, guid: 06f3eff8643a34420a8c2e40d6ec1be1,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -185,7 +91,12 @@ PrefabInstance:
     - target: {fileID: 2807239913689852979, guid: 06f3eff8643a34420a8c2e40d6ec1be1,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3536923006089305534, guid: 06f3eff8643a34420a8c2e40d6ec1be1,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -224,17 +135,17 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 085e5eab42cb443edb508cb6c46a01e8,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 17
+      value: 15.579999
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 085e5eab42cb443edb508cb6c46a01e8,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2
+      value: 2.79
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 085e5eab42cb443edb508cb6c46a01e8,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 20
+      value: 14.270001
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 085e5eab42cb443edb508cb6c46a01e8,
         type: 3}
@@ -447,10 +358,6 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 1528292044550216986}
-    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 085e5eab42cb443edb508cb6c46a01e8,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 926970431989161833}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 085e5eab42cb443edb508cb6c46a01e8,
         type: 3}

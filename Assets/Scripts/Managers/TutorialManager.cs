@@ -423,7 +423,7 @@ public class TutorialManager : MonoBehaviour
 
     private IEnumerator ButtonFlashRoutine(GameObject buttonGameObject)
     {
-        Debug.Log($"Flashing gameobject {buttonGameObject.name}");
+        //Debug.Log($"Flashing gameobject {buttonGameObject.name}");
 
         Button buttonToFlash = buttonGameObject.GetComponent<Button>();
 

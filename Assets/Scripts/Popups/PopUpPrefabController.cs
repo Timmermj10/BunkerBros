@@ -32,7 +32,7 @@ public class PopUpPrefabController : MonoBehaviour
         managerConfirm.SetActive(false);
         playerConfirm.SetActive(false);
 
-        Debug.Log("PopUpBoxCreated");
+        //Debug.Log("PopUpBoxCreated");
     }
 
     public void printText(string playerType, string text)
@@ -128,13 +128,13 @@ public class PopUpPrefabController : MonoBehaviour
 
     private void OnEnterConfirm()
     {
-        Debug.Log("OnEnterConfirm called");
+        //Debug.Log("OnEnterConfirm called");
         hasConfirmed = true;
     }
 
     private void OnGamepadConfirm()
     {
-        Debug.Log("OnGamepadConfirm called");
+        //Debug.Log("OnGamepadConfirm called");
         hasConfirmed = true;
     }
 
