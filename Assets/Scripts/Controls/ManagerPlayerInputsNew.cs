@@ -405,11 +405,38 @@ public class ManagerPlayerInputsNew : MonoBehaviour
                     // Otherwise remove the previous object
                     else
                     {
+                        // Most recently used item
                         mostRecentItem = null;
+
+                        // Set the color to the base color
+                        selectedObj.GetComponent<Image>().color = Color.white;
                     }
                 }
             }
         }
+    }
+
+    private void OnDeselect(InputValue value)
+    {
+        if (mostRecentItem != null)
+        {
+            // Set the color to the base color
+            mostRecentItem.GetComponent<Image>().color = Color.white;
+
+            // Set the most recently selected game object to null
+            mostRecentItem = null;
+        }
+        GameObject selectedObj = EventSystem.current.currentSelectedGameObject;
+
+        if (selectedObj != null)
+        {
+            // Set the color to the base color
+            selectedObj.GetComponent<Image>().color = Color.white;
+
+            // Set the current selected game object to null
+            EventSystem.current.SetSelectedGameObject(null);
+        }
+
     }
 
     private void OnCycle(InputValue value)

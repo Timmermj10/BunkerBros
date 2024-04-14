@@ -299,6 +299,15 @@ public partial class @KBMandController: IInputActionCollection2, IDisposable
                     ""processors"": ""NormalizeVector2"",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Deselect"",
+                    ""type"": ""Button"",
+                    ""id"": ""1b70c525-d8c1-41f6-8404-6b2a556230da"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -400,6 +409,17 @@ public partial class @KBMandController: IInputActionCollection2, IDisposable
                     ""action"": ""Zoom"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""cd5e8832-b112-4ee3-a687-a506b51b7673"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KBMPlayer"",
+                    ""action"": ""Deselect"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -485,6 +505,7 @@ public partial class @KBMandController: IInputActionCollection2, IDisposable
         m_ManagerPlayer_Cycle = m_ManagerPlayer.FindAction("Cycle", throwIfNotFound: true);
         m_ManagerPlayer_Ping = m_ManagerPlayer.FindAction("Ping", throwIfNotFound: true);
         m_ManagerPlayer_Zoom = m_ManagerPlayer.FindAction("Zoom", throwIfNotFound: true);
+        m_ManagerPlayer_Deselect = m_ManagerPlayer.FindAction("Deselect", throwIfNotFound: true);
         // StorySceneConfirms
         m_StorySceneConfirms = asset.FindActionMap("StorySceneConfirms", throwIfNotFound: true);
         m_StorySceneConfirms_GamepadConfirm = m_StorySceneConfirms.FindAction("GamepadConfirm", throwIfNotFound: true);
@@ -681,6 +702,7 @@ public partial class @KBMandController: IInputActionCollection2, IDisposable
     private readonly InputAction m_ManagerPlayer_Cycle;
     private readonly InputAction m_ManagerPlayer_Ping;
     private readonly InputAction m_ManagerPlayer_Zoom;
+    private readonly InputAction m_ManagerPlayer_Deselect;
     public struct ManagerPlayerActions
     {
         private @KBMandController m_Wrapper;
@@ -690,6 +712,7 @@ public partial class @KBMandController: IInputActionCollection2, IDisposable
         public InputAction @Cycle => m_Wrapper.m_ManagerPlayer_Cycle;
         public InputAction @Ping => m_Wrapper.m_ManagerPlayer_Ping;
         public InputAction @Zoom => m_Wrapper.m_ManagerPlayer_Zoom;
+        public InputAction @Deselect => m_Wrapper.m_ManagerPlayer_Deselect;
         public InputActionMap Get() { return m_Wrapper.m_ManagerPlayer; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -714,6 +737,9 @@ public partial class @KBMandController: IInputActionCollection2, IDisposable
             @Zoom.started += instance.OnZoom;
             @Zoom.performed += instance.OnZoom;
             @Zoom.canceled += instance.OnZoom;
+            @Deselect.started += instance.OnDeselect;
+            @Deselect.performed += instance.OnDeselect;
+            @Deselect.canceled += instance.OnDeselect;
         }
 
         private void UnregisterCallbacks(IManagerPlayerActions instance)
@@ -733,6 +759,9 @@ public partial class @KBMandController: IInputActionCollection2, IDisposable
             @Zoom.started -= instance.OnZoom;
             @Zoom.performed -= instance.OnZoom;
             @Zoom.canceled -= instance.OnZoom;
+            @Deselect.started -= instance.OnDeselect;
+            @Deselect.performed -= instance.OnDeselect;
+            @Deselect.canceled -= instance.OnDeselect;
         }
 
         public void RemoveCallbacks(IManagerPlayerActions instance)
@@ -843,6 +872,7 @@ public partial class @KBMandController: IInputActionCollection2, IDisposable
         void OnCycle(InputAction.CallbackContext context);
         void OnPing(InputAction.CallbackContext context);
         void OnZoom(InputAction.CallbackContext context);
+        void OnDeselect(InputAction.CallbackContext context);
     }
     public interface IStorySceneConfirmsActions
     {

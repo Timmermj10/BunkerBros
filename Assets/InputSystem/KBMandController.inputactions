@@ -277,6 +277,15 @@
                     "processors": "NormalizeVector2",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "Deselect",
+                    "type": "Button",
+                    "id": "1b70c525-d8c1-41f6-8404-6b2a556230da",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -376,6 +385,17 @@
                     "processors": "NormalizeVector2",
                     "groups": "KBMPlayer",
                     "action": "Zoom",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "cd5e8832-b112-4ee3-a687-a506b51b7673",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KBMPlayer",
+                    "action": "Deselect",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
