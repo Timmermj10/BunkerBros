@@ -95,7 +95,7 @@ public class ManagerPlayerInputsNew : MonoBehaviour
         // Subscribe to the minigame events
         EventBus.Subscribe<RadioTowerActivatedPlayerEvent>(setMinigameTrue);
         EventBus.Subscribe<RadioTowerActivatedManagerEvent>(setMinigameFalse);
-        EventBus.Subscribe<miniGameAbortEvent>(setMinigameTrueAbort);
+        EventBus.Subscribe<miniGameAbortEvent>(setMinigameFalseAbort);
     }
 
 
@@ -477,9 +477,9 @@ public class ManagerPlayerInputsNew : MonoBehaviour
         minigame = false;
     }
 
-    public void setMinigameTrueAbort(miniGameAbortEvent e)
+    public void setMinigameFalseAbort(miniGameAbortEvent e)
     {
-        minigame = true;
+        minigame = false;
     }
 }
 
