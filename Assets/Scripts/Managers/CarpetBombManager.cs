@@ -20,9 +20,9 @@ public class CarpetBombManager : MonoBehaviour
         Vector3 nukeLocation = Vector3.zero;
         RaycastHit hit;
 
-        for (int i = -50; i <= 51; i += 5)
+        for (int i = -50; i <= 51; i += 2)
         {
-            for (int j = -50; j <= 51; j += 5)
+            for (int j = -50; j <= 51; j += 2)
             {
                 nukeLocation = new Vector3(i, 30, j);
 
