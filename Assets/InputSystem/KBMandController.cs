@@ -382,7 +382,7 @@ public partial class @KBMandController: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""0ce70e47-3e1e-4faf-beb0-af3d270c5221"",
-                    ""path"": ""<Mouse>/rightButton"",
+                    ""path"": ""<Mouse>/middleButton"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""KBMPlayer"",
