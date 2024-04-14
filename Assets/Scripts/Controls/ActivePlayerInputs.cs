@@ -13,6 +13,7 @@ public class ActivePlayerInputs : MonoBehaviour
     public float jumpHeight = 5f;
     public float slideTime = 1f;
     public Vector2 lookSpeed = new Vector2(90, 90);
+    public float adsLookSpeed = .5f;
     public float pingDistance = 100f;
     public LayerMask ignore;
     public LayerMask ground;
@@ -51,7 +52,7 @@ public class ActivePlayerInputs : MonoBehaviour
         rb.velocity = rb.velocity.y * Vector3.up + (running ? runSpeed : (crouched ? crouchSpeed : walkSpeed)) * (forward + right);
         if (playerControls)
         {
-            rotation += Time.deltaTime * new Vector2(-aimInputValue.y * lookSpeed.y, aimInputValue.x * lookSpeed.x);
+            rotation += Time.deltaTime * (ads ? adsLookSpeed : 1f) * new Vector2(-aimInputValue.y * lookSpeed.y, aimInputValue.x * lookSpeed.x);
             rotation.x = Mathf.Clamp(rotation.x, -89, 89);
             look.rotation = Quaternion.Euler(rotation.x, rotation.y, 0);
             transform.rotation = Quaternion.Euler(0, rotation.y, 0);
