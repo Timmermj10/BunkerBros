@@ -34,6 +34,11 @@ public class CarpetBombManager : MonoBehaviour
             }
             yield return new WaitForSeconds(0.3f);
         }
+
+        yield return new WaitForSeconds(3);
+
+        EventBus.Publish(new GameOverEvent());
+
         yield return null;
     }
 }
