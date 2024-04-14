@@ -50,7 +50,7 @@ public class PlayerInteract : MonoBehaviour
 
         EventBus.Subscribe<RadioTowerActivatedPlayerEvent>(playerStartedTower);
         EventBus.Subscribe<RadioTowerActivatedManagerEvent>(managerEndedTower);
-
+        EventBus.Subscribe<miniGameAbortEvent>(managerEndedTowerAbort);
     }
 
     private void Update()
@@ -197,7 +197,7 @@ public class PlayerInteract : MonoBehaviour
                         item.tag = "Untagged";
 
                         // Publish a radio tower event
-                        EventBus.Publish<RadioTowerActivatedPlayerEvent>(new RadioTowerActivatedPlayerEvent(item.transform.parent.GetComponent<RadioTowerCode>().towerCode));
+                        EventBus.Publish<RadioTowerActivatedPlayerEvent>(new RadioTowerActivatedPlayerEvent(item.transform.parent.GetComponent<RadioTowerCode>().towerCode, item));
                     }
                 }
                 else if (item != null && (item.name is "Objective") && player.GetComponent<ActivePlayerInventory>().itemInInventory(ActivePlayerInventory.activePlayerItems.RepairKit))
@@ -298,6 +298,12 @@ public class PlayerInteract : MonoBehaviour
 
     // For when the manager completes the minigame
     public void managerEndedTower(RadioTowerActivatedManagerEvent e)
+    {
+        radioTowerInteract = false;
+    }
+
+    // For when the manager aborts the minigame
+    public void managerEndedTowerAbort(miniGameAbortEvent e)
     {
         radioTowerInteract = false;
     }

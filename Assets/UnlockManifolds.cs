@@ -20,6 +20,9 @@ public class UnlockManifolds : MonoBehaviour
     // Keep track of how many buttons were pressed in sequence
     int counter = 0;
 
+    // Keep track of the radio tower
+    private GameObject radioTower;
+
     private void Start()
     {
         EventBus.Subscribe<RadioTowerActivatedPlayerEvent>(RestartTheGame);
@@ -27,6 +30,9 @@ public class UnlockManifolds : MonoBehaviour
 
     public void RestartTheGame(RadioTowerActivatedPlayerEvent e)
     {
+        // Set radioTower
+        radioTower = e.transformerInteractable;
+
         // Store the code
         shuffledButtons = e.code;
 
@@ -99,7 +105,7 @@ public class UnlockManifolds : MonoBehaviour
             yield return new WaitForSeconds(2f);
 
             // Restart the game
-            RestartTheGame(new RadioTowerActivatedPlayerEvent(shuffledButtons));
+            RestartTheGame(new RadioTowerActivatedPlayerEvent(shuffledButtons, radioTower));
         }
         else
         {

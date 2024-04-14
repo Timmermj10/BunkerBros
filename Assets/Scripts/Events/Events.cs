@@ -215,14 +215,21 @@ public class DamageEffectEvent
 public class RadioTowerActivatedPlayerEvent
 {
     public List<int> code;
+    public GameObject transformerInteractable;
 
-    public RadioTowerActivatedPlayerEvent(List<int> code)
+    public RadioTowerActivatedPlayerEvent(List<int> code, GameObject transformerInteractable)
     {
         this.code = code;
+        this.transformerInteractable = transformerInteractable;
     }
 }
 
 public class RadioTowerActivatedManagerEvent
+{
+}
+
+// Event for when the manager aborts the minigame
+public class miniGameAbortEvent
 {
 }
 
