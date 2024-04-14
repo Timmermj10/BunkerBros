@@ -17,7 +17,7 @@ public class FinalWaveCountdown : MonoBehaviour
     // UI element for the timer
     Text countdown;
 
-    private float timeUntilExtraction = 180;
+    private float timeUntilExtraction = 180; //Should be 180
 
     // Start is called before the first frame update
     void Start()
@@ -63,7 +63,6 @@ public class FinalWaveCountdown : MonoBehaviour
             //Check if a new second has started since the last update
             if (currentSecond != lastSecond)
             {
-                
                 countdown.text = $"EXTRACTION TEAM IS ARRIVING IN\n {minutes}:{seconds}";
 
                 //Update last second
@@ -73,7 +72,9 @@ public class FinalWaveCountdown : MonoBehaviour
             // If the countdown has reached zero
             if (currentSecond == 0)
             {
-                EventBus.Publish(new GameOverEvent());
+                EventBus.Publish(new LastWaveOverEvent());
+                timerStart = false;
+                countdown.text = "";
             }
         }
     }

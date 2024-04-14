@@ -17,6 +17,8 @@ public class AirstrikeListener : MonoBehaviour
     private int nukeDamage = -40;
     private int missileDamage = -20;
 
+    //Bool to turn off damage to objective during carpet bombing
+    private bool canDamageBunker = true;
 
     // Subscribe to Purchase Events
     Subscription<ItemUseEvent> nuke_event_subscription;
@@ -33,6 +35,12 @@ public class AirstrikeListener : MonoBehaviour
         nuke_event_subscription = EventBus.Subscribe<ItemUseEvent>(_CallNuke);
         silo_loaded_event_subscription = EventBus.Subscribe<SiloLoadedEvent>(_SiloLoadedStrike);
         airdrop_landed_subscription = EventBus.Subscribe<AirdropLandedEvent>(_Explode);
+        EventBus.Subscribe<LastWaveOverEvent>(_TurnOffBunkerDamage);
+    }
+
+    private void _TurnOffBunkerDamage(LastWaveOverEvent e)
+    {
+        canDamageBunker = false;
     }
 
     void _CallNuke(ItemUseEvent e)
@@ -96,7 +104,7 @@ public class AirstrikeListener : MonoBehaviour
         foreach (Collider hitCollider in hitColliders)
         {
             HasHealth hasHealth = hitCollider.GetComponent<HasHealth>();
-            if (hasHealth != null && !objectsToDamage.Contains(hasHealth))
+            if (hasHealth != null && !objectsToDamage.Contains(hasHealth) && (!hitCollider.gameObject.CompareTag("Objective") || canDamageBunker))
             {
                 objectsToDamage.Add(hasHealth);
             }
