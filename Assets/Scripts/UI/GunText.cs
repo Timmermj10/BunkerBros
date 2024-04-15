@@ -48,7 +48,7 @@ public class GunText : MonoBehaviour
             textShowing = true;
 
             // Set the text
-            gameObject.GetComponent<Text>().text = "Click TRIANGLE to switch between weapons & LT to ADS";
+            gameObject.GetComponent<Text>().text = "TRIANGLE to swap weapons\n LT to ADS";
         }
     }
 }
