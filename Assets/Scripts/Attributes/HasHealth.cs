@@ -12,6 +12,8 @@ public class HasHealth : MonoBehaviour
 
     private bool inFirstStageTutorial = false;
 
+    private bool canTakeDamage = true;
+
     public HealthBarScript healthBar;
 
     private void Start()
@@ -38,8 +40,15 @@ public class HasHealth : MonoBehaviour
         {
             inFirstStageTutorial = true;
             EventBus.Subscribe<FirstTutorialWaveEvent>(_FirstTutorialWaveEnded);
+            EventBus.Subscribe<LastWaveOverEvent>(_LastWaveEnded);
         }
 
+    }
+
+    private void _LastWaveEnded(LastWaveOverEvent e)
+    {
+        Debug.Log("Turning off bunker damage");
+        canTakeDamage = false;
     }
 
     private void _FirstTutorialWaveEnded(FirstTutorialWaveEvent e)
@@ -77,7 +86,7 @@ public class HasHealth : MonoBehaviour
             }
 
             // Update currentHealth
-            if (healthChange < 0) 
+            if (healthChange < 0 && canTakeDamage) 
             {
                 //Debug.Log($"{gameObject.name} taking damage");
 
