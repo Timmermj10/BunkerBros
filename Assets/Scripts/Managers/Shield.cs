@@ -12,7 +12,7 @@ public class Shield : MonoBehaviour
 
     private float damageTime = 0;
 
-    public ShieldBarScript shield_ui;
+    public List<ShieldBarScript> shield_ui;
 
 
     // Start is called before the first frame update
@@ -21,8 +21,11 @@ public class Shield : MonoBehaviour
         //Initialize to max shield
         currShield = maxShield;
 
-        if (shield_ui != null) {
-            shield_ui.SetMaxShield(maxShield);
+        if (shield_ui.Count != 0) {
+            foreach (ShieldBarScript bar in shield_ui)
+            {
+                bar.SetMaxShield(maxShield);
+            }
         }
     }
 
@@ -35,9 +38,12 @@ public class Shield : MonoBehaviour
         protect = currShield > 0;
 
         //Set the shield UI
-        if (shield_ui != null)
+        if (shield_ui.Count != 0)
         {
-            shield_ui.SetShield(currShield);
+            foreach (ShieldBarScript bar in shield_ui)
+            {
+                bar.SetShield(currShield);
+            }
         }
         
         //If its been more than 5s since the last damage, and were not recovering already, start recovering

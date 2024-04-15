@@ -36,6 +36,11 @@ public class RadioTowerManager : MonoBehaviour
             // Update the number of active radio towers
             GetComponent<HasHealth>().changeHealth(1);
 
+            Debug.Log(GetComponent<SignalStages>().sprites[0].name);
+
+            // Update the sprite
+            GetComponent<Image>().sprite = GetComponent<SignalStages>().sprites[GetComponent<HasHealth>().currentHealth];
+
             // Check if the radio strength is at it's max
             if (GetComponent<HasHealth>().currentHealth == GetComponent<HasHealth>().maxHealth)
             {
@@ -45,7 +50,7 @@ public class RadioTowerManager : MonoBehaviour
         // If we are working with the minigame
         else
         {
-            gameObject.transform.Find("GrayBackground").gameObject.SetActive(false);
+            GameObject.Find("GrayBackground").gameObject.SetActive(false);
         }
     }
 
