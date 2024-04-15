@@ -410,7 +410,7 @@ GameObject:
   - component: {fileID: 7356732274265406360}
   - component: {fileID: 5435411333018689829}
   - component: {fileID: 1468941317256323639}
-  m_Layer: 7
+  m_Layer: 10
   m_Name: ManagerView
   m_TagString: Untagged
   m_Icon: {fileID: 0}
