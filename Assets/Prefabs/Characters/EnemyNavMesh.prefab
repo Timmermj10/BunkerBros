@@ -743,7 +743,7 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 100064, guid: 57b3b021ff1e2f14fa4c233c110e561f,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1611426035529257744}
+      addedObject: {fileID: 3322373793274162831}
     - targetCorrespondingSourceObject: {fileID: 100024, guid: 57b3b021ff1e2f14fa4c233c110e561f,
         type: 3}
       insertIndex: -1
@@ -948,7 +948,7 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &1611426035529257744
+--- !u!114 &3322373793274162831
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -961,7 +961,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 1
-  attackDistance: 0.75
+  attackDistance: 0.1
   agent: {fileID: 2973412359881747354}
   possibleLocations: []
 --- !u!1 &8168291486349822065 stripped
