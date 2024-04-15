@@ -108,7 +108,7 @@ public class EnemyMovementNavMeshTest : MonoBehaviour
             minDistance.y = 0;
 
             // If the min distance is different than the target
-            if (minDistance != targetCenter)
+            if (minDistance != targetCenter || player == null)
             {
                 //Debug.Log("here");
                 if (player != null)

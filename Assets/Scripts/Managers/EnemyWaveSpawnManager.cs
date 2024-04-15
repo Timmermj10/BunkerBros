@@ -18,6 +18,11 @@ public class EnemyWaveSpawnManager : MonoBehaviour
     private bool isFinalWave = false;
     private float prepTimeForFinalWave = 10f;
     private bool finalWaveOver = false;
+    private float finalWaveTimer = 0f;
+    private float finalWaveDuration = 120f;
+    private float finalWavespawnDelay = 2.5f;
+    private float finalWaveSpawnTimer = 0;
+    public AnimationCurve finalWaveSpawnCurve;
 
     //Time between enemy spawned
     private float spawnDelay = 2f;
@@ -49,9 +54,9 @@ public class EnemyWaveSpawnManager : MonoBehaviour
         EventBus.Subscribe<LastWaveEvent>(_finalWave);
         EventBus.Subscribe<LastWaveOverEvent>(_finalWaveOver);
 
-        spawnpoints.Add(new Vector3(-24, -0.2f, 5)); //Bottom Middle;
-        spawnpoints.Add(new Vector3(28, 0.35f, -14)); //Top Middle
-        spawnpoints.Add(new Vector3(-1, 0.15f, 35)); //Middle Left
+        spawnpoints.Add(new Vector3(-24, -0.2f, 5)); //Middle Left
+        spawnpoints.Add(new Vector3(28, 0.35f, -14)); //Right Middle
+        spawnpoints.Add(new Vector3(-1, 0.15f, 35)); //Top Middle
 
         pingManager = GameObject.Find("GameManager").GetComponent<PingManager>();
 
@@ -64,30 +69,35 @@ public class EnemyWaveSpawnManager : MonoBehaviour
 
     private void _boulderDestroyed(ObjectDestroyedEvent e)
     {
+        if (e.tag == "Boulder")
+        {
+            Debug.Log($"location = {e.deathCoordinates}");
+        }
+
         if (e.tag == "Boulder" && Vector3.Distance(e.deathCoordinates, new Vector3(-3.9f, 0.94f, -20.3f)) < 1)
         {
-            Debug.Log($"Adding {new Vector3(-18, 0.8f, -34)}, Middle Right");
-            spawnpoints.Add(new Vector3(-18, 0.8f, -34)); //Middle Right
+            Debug.Log($"Adding {new Vector3(-18, 0.8f, -34)}, Bottom Middle");
+            spawnpoints.Add(new Vector3(-18, 0.8f, -34)); //Bottom Middle
         }
         if (e.tag == "Boulder" && Vector3.Distance(e.deathCoordinates, new Vector3(-27.9f, 1.25f, -21.9f)) < 1)
         {
-            Debug.Log($"Adding {new Vector3(-34f, 0.6f, -28f)}, Bottom Right");
-            spawnpoints.Add(new Vector3(-34f, 0.6f, -28f)); //Bottom Right
+            Debug.Log($"Adding {new Vector3(-34f, 0.6f, -28f)}, Bottom Left");
+            spawnpoints.Add(new Vector3(-34f, 0.6f, -28f)); //Bottom Left
         }
-        if (e.tag == "Boulder" && Vector3.Distance(e.deathCoordinates, new Vector3(-20.5f, 1.25f, -31.7f)) < 1)
+        if (e.tag == "Boulder" && Vector3.Distance(e.deathCoordinates, new Vector3(-20.5f, 1.25f, 31.7f)) < 1)
         {
-            Debug.Log($"Adding {new Vector3(-36, -0.5f, 33)}, Bottom Left");
-            spawnpoints.Add(new Vector3(-36, -0.5f, 33)); //Bottom Left
+            Debug.Log($"Adding {new Vector3(-36, -0.5f, 33)}, Top Left");
+            spawnpoints.Add(new Vector3(-36, -0.5f, 33)); //Top Left
         }
-        if (e.tag == "Boulder" && (Vector3.Distance(e.deathCoordinates, new Vector3(23.1f, 1.25f, -36.1f)) < 1 || Vector3.Distance(e.deathCoordinates, new Vector3(34.7f, 1.25f, -17.3f)) < 1))
+        if (e.tag == "Boulder" && (Vector3.Distance(e.deathCoordinates, new Vector3(23.1f, 1.25f, 36.1f)) < 1 || Vector3.Distance(e.deathCoordinates, new Vector3(34.7f, 1.25f, 17.3f)) < 1) && !spawnpoints.Contains(new Vector3(35, 0.525f, 25)))
         {
-            Debug.Log($"Adding {new Vector3(35, 0.525f, 25)}, Top Left");
-            spawnpoints.Add(new Vector3(35, 0.525f, 25)); //Top Left
+            Debug.Log($"Adding {new Vector3(35, 0.525f, 25)}, Top Right");
+            spawnpoints.Add(new Vector3(35, 0.525f, 25)); //Top Right
         }
         if (e.tag == "Boulder" && Vector3.Distance(e.deathCoordinates, new Vector3(19f, 1.25f, -28.4f)) < 1)
         {
-            Debug.Log($"Adding {new Vector3(24, 0.15f, -35)}, Top Right");
-            spawnpoints.Add(new Vector3(24, 0.15f, -35)); //Top Right
+            Debug.Log($"Adding {new Vector3(24, 0.15f, -35)}, Bottom Right");
+            spawnpoints.Add(new Vector3(24, 0.15f, -35)); //Bottom Right
         }
     }
 
@@ -302,12 +312,9 @@ public class EnemyWaveSpawnManager : MonoBehaviour
 
     private IEnumerator FinalWave()
     {
-
-        //Final wave timing variables
-        float finalWaveTimer = 0f;
-        float finalWaveDuration = 120f;
-        float finalWavespawnDelay = 1.5f;
-        float finalWaveSpawnTimer = finalWavespawnDelay;
+        float progress = finalWaveTimer / finalWaveDuration;
+        finalWaveTimer += Time.deltaTime;
+        finalWaveSpawnTimer = finalWavespawnDelay;
 
         int numFinalWaveSpawnpoints = spawnpoints.Count;
 
@@ -332,11 +339,11 @@ public class EnemyWaveSpawnManager : MonoBehaviour
 
             if (finalWaveSpawnTimer <= 0)
             {
-                //Decrease time until next spawn
-                finalWavespawnDelay = Mathf.Max(0.75f, finalWavespawnDelay - 0.05f);
+                //Decrease time until next spawn (2.5 is initial spawnDelay)
+                finalWavespawnDelay = 2.5f * (1 - finalWaveSpawnCurve.Evaluate(progress)) + 0.2f;
 
                 // Reset the spawn timer
-                finalWaveSpawnTimer = Random.Range(finalWavespawnDelay - 0.5f, finalWavespawnDelay + 1);
+                finalWaveSpawnTimer = finalWavespawnDelay;
                 //Debug.Log($"Spawn timer reset to {spawnTimer}");
 
 
@@ -346,6 +353,7 @@ public class EnemyWaveSpawnManager : MonoBehaviour
                 //Spawn an enemy at each spawnpoint
                 foreach (Vector3 spawnpointForWave in finalWaveSpawnpoints)
                 {
+                    if (Random.value < 0.3f) continue;
 
                     //Get a random position to spawn the enemy
                     do
@@ -381,10 +389,7 @@ public class EnemyWaveSpawnManager : MonoBehaviour
 
                     //Decide what type of zombie to spawn
 
-                    finalWaveTimer += Time.deltaTime;
-                    float progress = finalWaveTimer / finalWaveDuration;
-
-                    if (progress > 0.85f)
+                    if (progress > 0.90f)
                     {
                         StartCoroutine(spawnImpossibleHorde(finalWaveSpawnpoints));
                     }
