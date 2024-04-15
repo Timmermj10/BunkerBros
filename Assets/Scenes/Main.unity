@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.112711005, g: 0.28157306, b: 0.7091771, a: 1}
+  m_IndirectSpecularColor: {r: 0.11271046, g: 0.28158677, b: 0.709181, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -17843,17 +17843,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8b760fe12c112c449768e33d0b90855, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  zoomSpeed: 1
+  zoomSpeed: 2
   zoomScale: 2
   pingCamera: {fileID: 828991604}
   wallPrefab: {fileID: 6836581503973730888, guid: b73f1c3525d174001a5008d8146ca880,
     type: 3}
-  movementSpeed: 10
-  origBlockCount: 0
-  minX: -26
-  maxX: 23
-  minY: -26
-  MaxY: 35
+  movementSpeed: 20
+  origBlockCount: 5
+  minX: -40
+  maxX: 38
+  minY: -35
+  MaxY: 36
 --- !u!1 &1355754830
 GameObject:
   m_ObjectHideFlags: 0
@@ -19184,7 +19184,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1542962839}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6a0eb4eea3bb1794bbf985a9f17ca8c1, type: 3}
   m_Name: 
