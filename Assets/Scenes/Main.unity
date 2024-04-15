@@ -14853,28 +14853,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 904592651}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1042214706 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1150461584060438, guid: 836ca07fc69b4184ca14265c7d24030d,
-    type: 3}
-  m_PrefabInstance: {fileID: 1522068446}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1042214707
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1042214706}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ada0cb034d14d4065882f6fdbed5bdd0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth: 1
-  currentHealth: 0
-  armorValue: 19
-  healthBars: []
 --- !u!1 &1043232237
 GameObject:
   m_ObjectHideFlags: 0
@@ -19218,11 +19196,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 1150461584060438, guid: 836ca07fc69b4184ca14265c7d24030d,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1042214707}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 836ca07fc69b4184ca14265c7d24030d, type: 3}
 --- !u!1 &1542962839
 GameObject:
@@ -22296,8 +22270,8 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 2077486807}
   - {fileID: 33774997}
+  - {fileID: 2077486807}
   - {fileID: 954832681}
   - {fileID: 573732534}
   - {fileID: 1090915756}
@@ -24081,7 +24055,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2077486806}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
