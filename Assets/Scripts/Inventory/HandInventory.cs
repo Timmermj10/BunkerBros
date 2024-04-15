@@ -36,7 +36,7 @@ public class HandInventory : MonoBehaviour
         if (AmmoUI.gun_image != null)
         {
             gunImageRenderer = AmmoUI.gun_image.GetComponent<RawImage>();
-            Debug.Log(gunImageRenderer);
+            //Debug.Log(gunImageRenderer);
         }
 
         if (AmmoUI.gun_image.activeSelf) 

@@ -43,7 +43,7 @@ public class TurretController : MonoBehaviour
                     Vector3 spawnPosition = bulletSpawnpoint.position + gun.forward * firingOffset;
                     GameObject projectileObject = Instantiate(ProjectilePrefab.gameObject, spawnPosition, Quaternion.LookRotation(bulletSpawnpoint.forward));
 
-                    projectileObject.GetComponent<ChangesHealth>().setHealthChange(-5);
+                    projectileObject.GetComponent<ChangesHealth>().setHealthChange(-7);
                     nextShot = Time.time + cooldown;
                 }
             }

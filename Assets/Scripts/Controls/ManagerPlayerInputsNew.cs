@@ -298,6 +298,11 @@ public class ManagerPlayerInputsNew : MonoBehaviour
                 // Get the itemID of the item used
                 int itemID = selectedObj.GetComponent<ButtonInfo>().itemID;
 
+                if (itemID != 4 && hit.collider.gameObject.CompareTag("Boulder"))
+                {
+                    return;
+                }
+
                 // Publish the ItemUseEvent
                 if (itemID == 0)
                 {
@@ -333,7 +338,7 @@ public class ManagerPlayerInputsNew : MonoBehaviour
                 else if (itemID == 4)
                 {
 
-                    Debug.Log($"InTutorial = {inTutorial} and distance = {Vector3.Distance(worldPositionRounded, tutorialBoulderPosition)}");
+                    //Debug.Log($"InTutorial = {inTutorial} and distance = {Vector3.Distance(worldPositionRounded, tutorialBoulderPosition)}");
                     if ((inTutorial && Vector3.Distance(worldPositionRounded, tutorialBoulderPosition) < 8) || !inTutorial)
                     {
                         //get the location of the item

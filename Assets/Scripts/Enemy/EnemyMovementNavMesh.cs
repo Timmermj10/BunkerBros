@@ -110,7 +110,6 @@ public class EnemyMovementNavMesh : MonoBehaviour
             // If the min distance is different than the target
             if (minDistance != targetCenter)
             {
-                Debug.Log("here");
                 if (player != null)
                 {
                     DetermineBestLocation(player.transform.position);
