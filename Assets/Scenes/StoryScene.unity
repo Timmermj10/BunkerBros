@@ -399,7 +399,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Press X to ready up
+  m_text: Press SQUARE to ready up
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 61767c16f03edf14aa064e96c2ef7ab4, type: 2}
   m_sharedMaterial: {fileID: 4284896924131559605, guid: 61767c16f03edf14aa064e96c2ef7ab4,
@@ -996,7 +996,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 469221f60ad6fc4409d14b43a4599fee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  textComponent: {fileID: 0}
+  text: {fileID: 0}
   fullText: In a post apocalyptic world, our heros have been chased by zombies into
     the desert where they are stranded until reinforcements arrive. They have taken
     shelter in a government bunker, equipped with remote controlled robots and drones
