@@ -82,10 +82,10 @@ public class PlayerManager : MonoBehaviour
 
     private void respawnPlayer(AirdropLandedEvent e)
     {
-        if (e.itemID == 9)
+        if (e.itemID == 9 && !respawningPlayer)
         {
             respawningPlayer = true;
-            GameObject activePlayer = Instantiate(activePlayerPrefab, e.itemLocation + new Vector3(0f, 0f, 0f), Quaternion.identity);
+            GameObject activePlayer = Instantiate(activePlayerPrefab, e.itemLocation, Quaternion.identity);
             activePlayer.name = "player";
 
             PlayerInput activePlayerInput = activePlayer.GetComponent<PlayerInput>();

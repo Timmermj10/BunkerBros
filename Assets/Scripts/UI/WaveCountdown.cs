@@ -15,7 +15,7 @@ public class WaveCountDown : MonoBehaviour
     public float timeBetweenRounds = 30f;
 
     //The amount of time before the final wave starts after calling for help
-    float prepTimeforFinalWave = 5f; //Should be 60
+    float prepTimeforFinalWave = 60f; //Should be 60
 
     // Bool to hold if the timer has started
     bool timerStart = false;
