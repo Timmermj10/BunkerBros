@@ -167,7 +167,7 @@ public class EnemyMovementNavMesh : MonoBehaviour
                 // Set where they are going to move to
                 // agent.SetDestination(minDistance);
 
-                agent.SetDestination(Vector3.zero);
+                agent.SetDestination(target);
             }
             // If the enemies are attacking
             else
