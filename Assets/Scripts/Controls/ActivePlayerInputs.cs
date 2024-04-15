@@ -48,13 +48,13 @@ public class ActivePlayerInputs : MonoBehaviour
         velocity = velocity.y * Vector3.up + (running ? runSpeed : walkSpeed) * (forward + right);
         if (controller.isGrounded && Sliding())
         {
-            Debug.Log("sliding");
+            //Debug.Log("sliding");
             velocity.x = hitNormal.x * slideSpeed;
             velocity.z = hitNormal.z * slideSpeed;
         }
         if(toJump)
         {
-            Debug.Log("jumping");
+            //Debug.Log("jumping");
             velocity.y = jumpHeight;
             toJump = false;
         }
@@ -71,7 +71,7 @@ public class ActivePlayerInputs : MonoBehaviour
 
     void OnControllerColliderHit(ControllerColliderHit hit)
     {
-        Debug.Log(hit.gameObject.name);
+        //Debug.Log(hit.gameObject.name);
         hitNormal = hit.normal;
     }
 

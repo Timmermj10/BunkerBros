@@ -40,12 +40,17 @@ public class PingManager : MonoBehaviour
         pings.Add(managerPing.transform.Find("spotted"));
         foreach (Transform ping in pings)
         {
-            ping.Find("managerView").rotation = Quaternion.LookRotation(Vector3.up, Vector3.forward);
-            ping.gameObject.SetActive(false);
+            ping.Find("managerView").rotation = Quaternion.LookRotation(-Vector3.up, Vector3.forward);
+            if(ping.name != "permanent")
+                ping.gameObject.SetActive(false);
         }
         managerCamera = GameObject.FindGameObjectWithTag("ManagerCam").GetComponent<Camera>();
+        EventBus.Subscribe<PlayerRespawnEvent>(_OnRespawn);
     }
-
+    public void _OnRespawn(PlayerRespawnEvent e)
+    {
+        pings.Add(e.activePlayer.transform.Find("Ping").transform);
+    }
     void Update()
     {
         foreach (Transform ping in pings)
@@ -53,7 +58,7 @@ public class PingManager : MonoBehaviour
             if (ping)
             {
                 Transform playerView = ping.Find("playerView");
-                playerView.rotation = playerCam.transform.rotation;
+                playerView.LookAt(playerView.position - playerCam.forward);
                 Transform managerView = ping.Find("managerView");
                 vw = managerCamera.orthographicSize - managerBuffer;
                 vh = vw;
@@ -68,7 +73,7 @@ public class PingManager : MonoBehaviour
                 {
                     Transform direction = managerView.Find("direction");
                     direction.gameObject.SetActive(true);
-                    direction.localRotation = Quaternion.Euler(new(0f, 0f, Mathf.Atan2(-offset.x, -offset.z) * Mathf.Rad2Deg));
+                    direction.localRotation = Quaternion.Euler(new(0f, 0f, Mathf.Atan2(offset.x, -offset.z) * Mathf.Rad2Deg));
                     managerView.position = managerCam.position + clamped;
                 }
             }
