@@ -531,7 +531,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04395893a9d264fc8bac0479f1c1d80f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health_up: 5
+  health_up: 10
 --- !u!114 &2040935900445435045
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -642,7 +642,7 @@ GameObject:
   - component: {fileID: 6550895762749905412}
   - component: {fileID: 1794213896188112388}
   - component: {fileID: 6666310169799892393}
-  m_Layer: 7
+  m_Layer: 10
   m_Name: ManagerView
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -821,7 +821,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2242196870647788273}
-  m_Layer: 7
+  m_Layer: 10
   m_Name: ReticlePivot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1105,7 +1105,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2517451630853129725}
   - component: {fileID: 1340312451817814706}
-  m_Layer: 7
+  m_Layer: 10
   m_Name: Triangle
   m_TagString: Untagged
   m_Icon: {fileID: 0}

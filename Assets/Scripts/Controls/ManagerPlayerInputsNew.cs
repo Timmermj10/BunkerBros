@@ -298,7 +298,7 @@ public class ManagerPlayerInputsNew : MonoBehaviour
                 // Get the itemID of the item used
                 int itemID = selectedObj.GetComponent<ButtonInfo>().itemID;
 
-                if (itemID != 4 && hit.collider.gameObject.CompareTag("Boulder"))
+                if (itemID != 4 && itemID != 5 && hit.collider.gameObject.CompareTag("Boulder"))
                 {
                     return;
                 }

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.11271046, g: 0.28158677, b: 0.709181, a: 1}
+  m_IndirectSpecularColor: {r: 0.16450353, g: 0.42539638, b: 0.6835041, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -18123,10 +18123,10 @@ MonoBehaviour:
     type: 3}
   movementSpeed: 20
   origBlockCount: 5
-  minX: -40
-  maxX: 38
-  minY: -35
-  MaxY: 36
+  minX: -45
+  maxX: 45
+  minY: -45
+  MaxY: 45
 --- !u!1 &1355754830
 GameObject:
   m_ObjectHideFlags: 0

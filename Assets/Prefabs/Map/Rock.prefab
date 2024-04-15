@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 9007602770641792181}
   - component: {fileID: 8022794118404995979}
   - component: {fileID: 8247769684506521334}
-  m_Layer: 19
+  m_Layer: 0
   m_Name: Rock
   m_TagString: Boulder
   m_Icon: {fileID: 0}
@@ -124,7 +124,7 @@ MonoBehaviour:
   maxHealth: 1
   currentHealth: 0
   armorValue: 39
-  healthBar: {fileID: 0}
+  healthBars: []
 --- !u!114 &8022794118404995979
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -140,7 +140,7 @@ MonoBehaviour:
   maxHealth: 1
   currentHealth: 0
   armorValue: 19
-  healthBar: {fileID: 0}
+  healthBars: []
 --- !u!114 &8247769684506521334
 MonoBehaviour:
   m_ObjectHideFlags: 0
