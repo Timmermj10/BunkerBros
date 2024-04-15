@@ -10,7 +10,14 @@ public class TetherFPV : MonoBehaviour
     public Vector3 offset;
 
     private Camera cam;
+    private int camFullyRenderingCullingMask;
+    private Color camFunnlyRenderingBackgroundColor;
+    private CameraClearFlags camFullyRenderingFlags;
+
     private Camera pings;
+    private int pingsFullyRenderingCullingMask;
+    private Color pingsFunnlyRenderingBackgroundColor;
+    private CameraClearFlags pingsFullyRenderingFlags;
 
     private bool dropping = false;
 
@@ -25,8 +32,21 @@ public class TetherFPV : MonoBehaviour
         cam = GetComponent<Camera>();
         pings = cam.transform.Find("Pings").GetComponent<Camera>();
 
-        cam.enabled = false;
-        pings.enabled = false;
+        camFullyRenderingCullingMask = cam.cullingMask;
+        camFunnlyRenderingBackgroundColor = cam.backgroundColor;
+        camFullyRenderingFlags = cam.clearFlags;
+
+        pingsFullyRenderingCullingMask = pings.cullingMask;
+        pingsFunnlyRenderingBackgroundColor = pings.backgroundColor;
+        pingsFullyRenderingFlags = pings.clearFlags;
+
+        cam.clearFlags = CameraClearFlags.SolidColor;
+        cam.backgroundColor = Color.black;
+        cam.cullingMask = 0;
+
+        pings.clearFlags = CameraClearFlags.SolidColor;
+        pings.backgroundColor = Color.black;
+        pings.cullingMask = 0;
     }
 
     void LateUpdate()
@@ -47,8 +67,13 @@ public class TetherFPV : MonoBehaviour
     {
         if (e.name is "player")
         {
-            cam.enabled = false;
-            pings.enabled=false;
+            cam.clearFlags = CameraClearFlags.SolidColor;
+            cam.backgroundColor = Color.black;
+            cam.cullingMask = 0;
+
+            pings.clearFlags = CameraClearFlags.SolidColor;
+            pings.backgroundColor = Color.black;
+            pings.cullingMask = 0;
         }
     }
 
@@ -56,8 +81,13 @@ public class TetherFPV : MonoBehaviour
     {
         if (e.itemID == 9)
         {
-            cam.enabled = true;
-            pings.enabled=true;
+            cam.clearFlags = camFullyRenderingFlags;
+            cam.backgroundColor = camFunnlyRenderingBackgroundColor;
+            cam.cullingMask = camFullyRenderingCullingMask;
+
+            pings.clearFlags = pingsFullyRenderingFlags;
+            pings.backgroundColor = pingsFunnlyRenderingBackgroundColor;
+            pings.cullingMask = pingsFullyRenderingCullingMask;
             transform.rotation = Quaternion.identity;
 
             StartCoroutine(dropWithAirdrop(e.airdropTransform));
