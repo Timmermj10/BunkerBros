@@ -36,7 +36,7 @@ public class AirdropListener : MonoBehaviour
             {
                 prefabToInstantiate = nukePrefab;
                 rotation = Quaternion.Euler(0, 0, 180);
-                dropHeight = 15f;
+                dropHeight = 10f;
             }
             else if (e.itemID == 5) //missile
             {

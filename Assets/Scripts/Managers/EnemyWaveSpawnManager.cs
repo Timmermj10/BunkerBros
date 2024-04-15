@@ -19,7 +19,7 @@ public class EnemyWaveSpawnManager : MonoBehaviour
     private float prepTimeForFinalWave = 10f;
     private bool finalWaveOver = false;
     private float finalWaveTimer = 0f;
-    private float finalWaveDuration = 120f;
+    private float finalWaveDuration = 120f; // Should be 120
     private float finalWavespawnDelay = 2.5f;
     private float finalWaveSpawnTimer = 0;
     public AnimationCurve finalWaveSpawnCurve;
@@ -312,7 +312,7 @@ public class EnemyWaveSpawnManager : MonoBehaviour
 
     private IEnumerator FinalWave()
     {
-        float progress = finalWaveTimer / finalWaveDuration;
+        float progress = 0;
         finalWaveTimer += Time.deltaTime;
         finalWaveSpawnTimer = finalWavespawnDelay;
 
@@ -339,6 +339,8 @@ public class EnemyWaveSpawnManager : MonoBehaviour
 
             if (finalWaveSpawnTimer <= 0)
             {
+                progress = finalWaveTimer / finalWaveDuration;
+
                 //Decrease time until next spawn (2.5 is initial spawnDelay)
                 finalWavespawnDelay = 2.5f * (1 - finalWaveSpawnCurve.Evaluate(progress)) + 0.2f;
 
@@ -389,14 +391,13 @@ public class EnemyWaveSpawnManager : MonoBehaviour
 
                     //Decide what type of zombie to spawn
 
-                    if (progress > 0.90f)
+                    if (progress > 0.85f)
                     {
                         StartCoroutine(spawnImpossibleHorde(finalWaveSpawnpoints));
                     }
 
                     //Scale armored probability by 1.8x progress
                     float armoredEnemyChance = Mathf.Min(1.8f * progress, 0.75f);
-
 
                     if (Random.value < armoredEnemyChance)
                     {
