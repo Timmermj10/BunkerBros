@@ -14,7 +14,7 @@ public class HasHealth : MonoBehaviour
 
     private bool canTakeDamage = true;
 
-    public HealthBarScript healthBar;
+    public List<HealthBarScript> healthBars;
 
     private void Start()
     {
@@ -28,12 +28,15 @@ public class HasHealth : MonoBehaviour
 
         if (gameObject.CompareTag("Player"))
         {
-            healthBar = GameObject.Find("PlayerHealthBar").GetComponent<HealthBarScript>();
+            healthBars.Add(GameObject.Find("PlayerHealthBar").GetComponent<HealthBarScript>());
         }
-        if(healthBar != null)
+        if(healthBars.Count != 0)
         {
-            healthBar.SetMaxHealth(maxHealth);
-            healthBar.SetHealth(currentHealth);
+            foreach (HealthBarScript bar in healthBars)
+            {
+                bar.SetMaxHealth(maxHealth);
+                bar.SetHealth(currentHealth);
+            }
         }
 
         if (gameObject.CompareTag("Objective"))
@@ -61,9 +64,12 @@ public class HasHealth : MonoBehaviour
         currentHealth = Mathf.Min(currentHealth + health_in, maxHealth);
 
         // Update slider
-        if (healthBar != null)
+        if (healthBars.Count != 0)
         {
-            healthBar.SetHealth(currentHealth);
+            foreach (HealthBarScript bar in healthBars)
+            {
+                bar.SetHealth(currentHealth);
+            }
         }
     }
 
@@ -112,9 +118,12 @@ public class HasHealth : MonoBehaviour
             }
 
             // Update slider
-            if (healthBar != null)
+            if (healthBars.Count != 0)
             {
-                healthBar.SetHealth(currentHealth);
+                foreach (HealthBarScript bar in healthBars)
+                {
+                    bar.SetHealth(currentHealth);
+                }
             }
 
             // If we are taking damage
@@ -152,8 +161,11 @@ public class HasHealth : MonoBehaviour
         //Debug.Log($"Setting health to {newHealth}");
         maxHealth = newHealth;
         currentHealth = maxHealth;
-        healthBar.SetMaxHealth(maxHealth);
-        
+
+        foreach (HealthBarScript bar in healthBars)
+        {
+            bar.SetMaxHealth(maxHealth);
+        }      
     }
 }
 
