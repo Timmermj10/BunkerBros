@@ -19,6 +19,8 @@ public class StandbyTextUI : MonoBehaviour
     // Bool to hold if the button is selected
     private bool isSelected = false;
 
+    private bool afterCarpetBombing = false;
+
     // On start get reference to the text component
     private void Start()
     {
@@ -33,11 +35,18 @@ public class StandbyTextUI : MonoBehaviour
 
         // Subscribe to Manager Button Click Events
         EventBus.Subscribe<ManagerButtonClickEvent>(_ButtonClicked);
+        EventBus.Subscribe<LastWaveOverEvent>(_disableRespawn);
     }
+
+    private void _disableRespawn(LastWaveOverEvent e)
+    {
+        afterCarpetBombing = true;
+    }
+
     void Update()
     {
         // If the player is dead and we aren't currently respawning
-        if (GameObject.Find("player") == null && playerRespawn != null && !playerRespawn.respawning)
+        if (GameObject.Find("player") == null && playerRespawn != null && !playerRespawn.respawning && !afterCarpetBombing)
         {
             // Check if the timer is up
             if (playerRespawn.timer > 0)
