@@ -21,6 +21,9 @@ public class StandbyTextUI : MonoBehaviour
 
     private bool afterCarpetBombing = false;
 
+    // Hold whether this is the first spawn
+    private bool firstSpawn = true;
+
     // On start get reference to the text component
     private void Start()
     {
@@ -49,7 +52,7 @@ public class StandbyTextUI : MonoBehaviour
         if (GameObject.Find("player") == null && playerRespawn != null && !playerRespawn.respawning && !afterCarpetBombing)
         {
             // Check if the timer is up
-            if (playerRespawn.timer > 0)
+            if (playerRespawn.timer > 0 && !firstSpawn)
             {
                 // Update the text to tell the player that the manager is about to choose a location
                 standbyText.text = "Prepare for deployment in\n" + string.Format("{0:F1}", playerRespawn.timer);
@@ -93,6 +96,11 @@ public class StandbyTextUI : MonoBehaviour
 
             // Update the value
             section = 1;
+
+            if (firstSpawn)
+            {
+                firstSpawn = false;
+            }
         }
     }
 

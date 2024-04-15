@@ -24,7 +24,10 @@ public class Shield : MonoBehaviour
         if (shield_ui.Count != 0) {
             foreach (ShieldBarScript bar in shield_ui)
             {
-                bar.SetMaxShield(maxShield);
+                if (bar != null)
+                {
+                    bar.SetMaxShield(maxShield);
+                }
             }
         }
     }
@@ -42,7 +45,10 @@ public class Shield : MonoBehaviour
         {
             foreach (ShieldBarScript bar in shield_ui)
             {
-                bar.SetShield(currShield);
+                if (bar != null)
+                {
+                    bar.SetShield(currShield);
+                }
             }
         }
         

@@ -34,8 +34,11 @@ public class HasHealth : MonoBehaviour
         {
             foreach (HealthBarScript bar in healthBars)
             {
-                bar.SetMaxHealth(maxHealth);
-                bar.SetHealth(currentHealth);
+                if (bar != null)
+                {
+                    bar.SetMaxHealth(maxHealth);
+                    bar.SetHealth(currentHealth);
+                }
             }
         }
 
