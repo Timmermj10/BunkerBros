@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.11271046, g: 0.28158677, b: 0.709181, a: 1}
+  m_IndirectSpecularColor: {r: 0.112711005, g: 0.28157306, b: 0.7091771, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -547,7 +547,7 @@ PrefabInstance:
     - target: {fileID: 6288446085563479365, guid: 20869a51f9a254e86997fa55c811931d,
         type: 3}
       propertyPath: m_Name
-      value: ChestPack (3)
+      value: ChestPack
       objectReference: {fileID: 0}
     - target: {fileID: 6633482057907744767, guid: 20869a51f9a254e86997fa55c811931d,
         type: 3}
@@ -14675,7 +14675,7 @@ PrefabInstance:
     - target: {fileID: 886334260980221233, guid: 07f95175e7f9049cdaf69491c182b5b2,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.21
+      value: 0.63
       objectReference: {fileID: 0}
     - target: {fileID: 886334260980221233, guid: 07f95175e7f9049cdaf69491c182b5b2,
         type: 3}
@@ -16598,7 +16598,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.2
   m_MinRegionArea: 2
-  m_NavMeshData: {fileID: 23800000, guid: 6f71ae50ebd15a842a2ce57118e993c5, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: 9286115bc7feee043b6cc2f51aeb15c9, type: 2}
   m_BuildHeightMesh: 0
 --- !u!4 &1223656014
 Transform:
@@ -16644,7 +16644,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.16666667
   m_MinRegionArea: 2
-  m_NavMeshData: {fileID: 23800000, guid: 07447272ce8538546b0a9889e7e22338, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: 4182e8de834e3ab48b7391bc7f95f1d4, type: 2}
   m_BuildHeightMesh: 0
 --- !u!1 &1227402565
 GameObject:
@@ -18319,7 +18319,7 @@ PrefabInstance:
     - target: {fileID: 6288446085563479365, guid: 20869a51f9a254e86997fa55c811931d,
         type: 3}
       propertyPath: m_Name
-      value: ChestPack (2)
+      value: ChestPack
       objectReference: {fileID: 0}
     - target: {fileID: 6633482057907744767, guid: 20869a51f9a254e86997fa55c811931d,
         type: 3}
@@ -18941,6 +18941,7 @@ GameObject:
   - component: {fileID: 1542962846}
   - component: {fileID: 1542962845}
   - component: {fileID: 1542962844}
+  - component: {fileID: 1542962855}
   - component: {fileID: 1542962843}
   - component: {fileID: 1542962842}
   - component: {fileID: 1542962841}
@@ -19183,7 +19184,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1542962839}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6a0eb4eea3bb1794bbf985a9f17ca8c1, type: 3}
   m_Name: 
@@ -19193,17 +19194,17 @@ MonoBehaviour:
   armoredEnemyPrefab: {fileID: 6525121760247072822, guid: 2132e9e3c9805834fb33a68519e455e5,
     type: 3}
   anchoredEnemyPrefab: {fileID: 0}
-  playerRespawn: {fileID: 0}
-  RepairKit: {fileID: 0}
-  AmmoCrate: {fileID: 0}
-  Gun: {fileID: 0}
-  Wall: {fileID: 0}
-  Turret: {fileID: 0}
-  HealthPack: {fileID: 0}
-  Nuke: {fileID: 0}
-  Missile: {fileID: 0}
-  NukeParts: {fileID: 0}
-  EvacuationButton: {fileID: 0}
+  playerRespawn: {fileID: 1875112197}
+  RepairKit: {fileID: 1147238037}
+  AmmoCrate: {fileID: 534006798}
+  Gun: {fileID: 440788259}
+  Wall: {fileID: 809122163}
+  Turret: {fileID: 271882287}
+  HealthPack: {fileID: 90805220}
+  Nuke: {fileID: 837992301}
+  Missile: {fileID: 1759038739}
+  NukeParts: {fileID: 773221783}
+  EvacuationButton: {fileID: 1717707569}
   buttonFlashDuration: 0.3
   actionAsset: {fileID: -944628639613478452, guid: c415be8f3bfa0ae41a25ced4f97ac397,
     type: 3}
@@ -19515,6 +19516,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0dd06e737d306464686f9decd8a6c9a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1542962855
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1542962839}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8318c26a4a21cfb4587bcb5caf839fe8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &1556964911
@@ -20633,7 +20646,7 @@ PrefabInstance:
     - target: {fileID: 6288446085563479365, guid: 20869a51f9a254e86997fa55c811931d,
         type: 3}
       propertyPath: m_Name
-      value: ChestPack (1)
+      value: ChestPack
       objectReference: {fileID: 0}
     - target: {fileID: 6633482057907744767, guid: 20869a51f9a254e86997fa55c811931d,
         type: 3}
@@ -20643,7 +20656,7 @@ PrefabInstance:
     - target: {fileID: 6633482057907744767, guid: 20869a51f9a254e86997fa55c811931d,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.21
+      value: 0.023
       objectReference: {fileID: 0}
     - target: {fileID: 6633482057907744767, guid: 20869a51f9a254e86997fa55c811931d,
         type: 3}
@@ -20653,37 +20666,37 @@ PrefabInstance:
     - target: {fileID: 6633482057907744767, guid: 20869a51f9a254e86997fa55c811931d,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: -0.83362377
+      value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: 6633482057907744767, guid: 20869a51f9a254e86997fa55c811931d,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.023078904
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6633482057907744767, guid: 20869a51f9a254e86997fa55c811931d,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.55150795
+      value: -0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: 6633482057907744767, guid: 20869a51f9a254e86997fa55c811931d,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.019439038
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6633482057907744767, guid: 20869a51f9a254e86997fa55c811931d,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 3.435
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6633482057907744767, guid: 20869a51f9a254e86997fa55c811931d,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 293.036
+      value: -90
       objectReference: {fileID: 0}
     - target: {fileID: 6633482057907744767, guid: 20869a51f9a254e86997fa55c811931d,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0.399
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

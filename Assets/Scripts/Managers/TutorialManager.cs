@@ -106,7 +106,7 @@ public class TutorialManager : MonoBehaviour
         }
 
         startPopUp("Player");
-        popUpSystem.popUp("Player", "Use the left and right joysticks to move/look and use RT to attack!");
+        popUpSystem.popUp("Player", "Use the left and right joysticks to move/look and use R2 to attack!");
 
         while (enemiesAlive > 0)
         {
@@ -179,7 +179,7 @@ public class TutorialManager : MonoBehaviour
         }
 
         startPopUp("Player");
-        popUpSystem.popUp("Player", "You now have a health pack! Press LB at any time to use it!");
+        popUpSystem.popUp("Player", "You now have a health pack! Press L1 at any time to use it!");
 
         while (!healthPackPopUpIsDone)
         {
@@ -274,10 +274,12 @@ public class TutorialManager : MonoBehaviour
                 StartCoroutine(ButtonFlashRoutine(NukeParts));
                 break;
             case 8:
-                pingManager.Ping(new Vector3(10, 1, 1), 10, PingType.INVESTIGATE);
+                //Ping Silo
+                pingManager.Ping(new Vector3(1, 1.45f, 9.1f), 10, PingType.INVESTIGATE);
                 break;
             case 9:
-                pingManager.Ping(new Vector3(-11, 2, -2), 10);
+                //Ping Boulder
+                pingManager.Ping(new Vector3(-3.9f, 0.94f, -20.3f), 10);
                 Nuke.SetActive(true);
                 StartCoroutine(ButtonFlashRoutine(Nuke));
                 break;
@@ -289,17 +291,19 @@ public class TutorialManager : MonoBehaviour
                 healthPackPopUpIsDone = true;
                 break;
             case 12:
-                pingManager.Ping(new Vector3(-24, 5, -3), 10);
+                //Ping Radio Tower
+                pingManager.Ping(new Vector3(-1.7f, 1.5f, -33.63f), 10);
                 break;
             case 13:
-                pingManager.Ping(new Vector3(-5, 1, -22), 10, PingType.ENEMY);
-                Instantiate(basicEnemyPrefab, new Vector3(-6, 1, -23), Quaternion.identity);
-                Instantiate(basicEnemyPrefab, new Vector3(-6, 1, -21f), Quaternion.identity);
-                Instantiate(basicEnemyPrefab, new Vector3(-4, 1, -23f), Quaternion.identity);
-                Instantiate(basicEnemyPrefab, new Vector3(-4, 1, -21), Quaternion.identity);
-                Instantiate(basicEnemyPrefab, new Vector3(-3, 1, -21), Quaternion.identity);
-                Instantiate(basicEnemyPrefab, new Vector3(-3, 1, -23), Quaternion.identity);
-                Instantiate(armoredEnemyPrefab, new Vector3(-5, 1, -22), Quaternion.identity);
+                //Ping Zombie spawn location
+                pingManager.Ping(new Vector3(-1, 0.15f, 35), 10, PingType.ENEMY);
+                Instantiate(basicEnemyPrefab, new Vector3(0, 0.15f, 33), Quaternion.identity);
+                Instantiate(basicEnemyPrefab, new Vector3(-2, 0.15f, 33), Quaternion.identity);
+                Instantiate(basicEnemyPrefab, new Vector3(0, 0.15f, 34), Quaternion.identity);
+                Instantiate(basicEnemyPrefab, new Vector3(-2, 0.15f, 36), Quaternion.identity);
+                Instantiate(basicEnemyPrefab, new Vector3(-2, 0.15f, 34), Quaternion.identity);
+                Instantiate(basicEnemyPrefab, new Vector3(0, 0.15f, 36), Quaternion.identity);
+                Instantiate(armoredEnemyPrefab, new Vector3(-1, 0.15f, 35), Quaternion.identity);
                 
                 //Show the buttons
                 Wall.SetActive(true);

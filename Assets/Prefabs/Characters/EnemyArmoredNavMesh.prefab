@@ -784,7 +784,8 @@ MonoBehaviour:
   maxHealth: 15
   currentHealth: 0
   armorValue: 6
-  healthBar: {fileID: 2420283044746190754}
+  healthBars:
+  - {fileID: 2420283044746190754}
 --- !u!95 &6012456874918098655
 Animator:
   serializedVersion: 5

@@ -26,7 +26,7 @@ public class ManagerPlayerInputsNew : MonoBehaviour
 
     private bool canPlaceMultipleItemsInARow = false;
     private bool inTutorial = true;
-    private Vector3 tutorialBoulderPosition = new Vector3(-11, 1.5f, -2);
+    private Vector3 tutorialBoulderPosition = new Vector3(-3.9f, 0.94f, -20.3f);
 
     PlayerInput playerInput;
 
@@ -334,7 +334,7 @@ public class ManagerPlayerInputsNew : MonoBehaviour
                 {
 
                     Debug.Log($"InTutorial = {inTutorial} and distance = {Vector3.Distance(worldPositionRounded, tutorialBoulderPosition)}");
-                    if ((inTutorial && Vector3.Distance(worldPositionRounded, tutorialBoulderPosition) < 5) || !inTutorial)
+                    if ((inTutorial && Vector3.Distance(worldPositionRounded, tutorialBoulderPosition) < 8) || !inTutorial)
                     {
                         //get the location of the item
                         Vector3 itemUsedLocation = new Vector3(worldPositionRounded.x, worldPositionRounded.y + 0.5f, worldPositionRounded.z);
