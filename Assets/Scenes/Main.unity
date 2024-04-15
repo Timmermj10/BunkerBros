@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.16450353, g: 0.42539638, b: 0.6835041, a: 1}
+  m_IndirectSpecularColor: {r: 0.11271046, g: 0.28158677, b: 0.709181, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -12223,7 +12223,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tooltipPanel: {fileID: 2028445649}
   xOffset: 10
-  cost: 50 Gold
+  cost: 60 Gold
   description: Drop your teammate nuke parts to fill the silos!
 --- !u!114 &773221787
 MonoBehaviour:
@@ -19223,6 +19223,7 @@ GameObject:
   - component: {fileID: 1542962852}
   - component: {fileID: 1542962854}
   - component: {fileID: 1542962856}
+  - component: {fileID: 1542962857}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -19245,7 +19246,7 @@ MonoBehaviour:
   shopItems:
   - itemId: 0
     itemName: Nuke Parts
-    itemCost: 50
+    itemCost: 60
     itemIcon: {fileID: 0}
     itemCount: 0
     oneTimePurchase: 0
@@ -19309,7 +19310,7 @@ MonoBehaviour:
     itemIcon: {fileID: 0}
     itemCount: 0
     oneTimePurchase: 0
-  gold: 1000
+  gold: 150
   goldText: {fileID: 1882513140}
 --- !u!114 &1542962841
 MonoBehaviour:
@@ -19816,6 +19817,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: de34cc762fa343b4cb3a6bb2d1e85390, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1542962857
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1542962839}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3e9ec0fb54815c4f891e917dcff3063, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &1556964911
