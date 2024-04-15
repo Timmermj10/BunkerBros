@@ -129,6 +129,7 @@ public class ManagerPlayerInputsNew : MonoBehaviour
             EventBus.Publish(new RadioTowerActivatedManagerEvent());
             EventBus.Publish(new RadioTowerActivatedManagerEvent());
             EventBus.Publish(new RadioTowerActivatedManagerEvent());
+            EventBus.Publish(new RadioTowerActivatedManagerEvent());
         }
 
     }

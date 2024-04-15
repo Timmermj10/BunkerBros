@@ -31,7 +31,6 @@ public class TIleHoverUI : MonoBehaviour
 
         if (Physics.Raycast(mouseRay, out hit, Mathf.Infinity, LayerMask.GetMask("Default") | LayerMask.GetMask("Map")) && hit.collider.gameObject.name == "Cube")
         {
-            Debug.Log("here");
             // Now worldPosition contains the 3D point in world space where the mouse is pointing
             Vector3 worldPosition = hit.point;
             Vector3 worldPositionRounded = new Vector3(Mathf.RoundToInt(worldPosition.x), worldPosition.y + 1, Mathf.RoundToInt(worldPosition.z));

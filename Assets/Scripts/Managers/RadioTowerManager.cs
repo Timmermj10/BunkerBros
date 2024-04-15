@@ -50,7 +50,9 @@ public class RadioTowerManager : MonoBehaviour
         // If we are working with the minigame
         else
         {
-            GameObject.Find("GrayBackground").gameObject.SetActive(false);
+            if (GameObject.Find("GrayBackground") != null) {
+                GameObject.Find("GrayBackground").gameObject.SetActive(false);
+            }
         }
     }
 
