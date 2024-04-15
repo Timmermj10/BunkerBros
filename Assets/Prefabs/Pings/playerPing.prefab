@@ -94,7 +94,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4374218313585346278}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: direction
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -311,7 +311,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4558694092552448359}
   - component: {fileID: 6425284752878353417}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: arrow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
