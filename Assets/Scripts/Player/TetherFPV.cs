@@ -10,10 +10,7 @@ public class TetherFPV : MonoBehaviour
     public Vector3 offset;
 
     private Camera cam;
-
-    private int fullyRenderingCullingMask;
-    private Color funnlyRenderingBackgroundColor;
-    private CameraClearFlags fullyRenderingFlags;
+    private Camera pings;
 
     private bool dropping = false;
 
@@ -26,13 +23,10 @@ public class TetherFPV : MonoBehaviour
         EventBus.Subscribe<AirdropLandedEvent>(_endDrop);
 
         cam = GetComponent<Camera>();
-        fullyRenderingCullingMask = cam.cullingMask;
-        funnlyRenderingBackgroundColor = cam.backgroundColor;
-        fullyRenderingFlags = cam.clearFlags;
+        pings = cam.transform.Find("Pings").GetComponent<Camera>();
 
-        cam.clearFlags = CameraClearFlags.SolidColor;
-        cam.backgroundColor = Color.black;
-        cam.cullingMask = 0;
+        cam.enabled = false;
+        pings.enabled = false;
     }
 
     void LateUpdate()
@@ -53,9 +47,8 @@ public class TetherFPV : MonoBehaviour
     {
         if (e.name is "player")
         {
-            cam.clearFlags = CameraClearFlags.SolidColor;
-            cam.backgroundColor = Color.black;
-            cam.cullingMask = 0;
+            cam.enabled = false;
+            pings.enabled=false;
         }
     }
 
@@ -63,9 +56,8 @@ public class TetherFPV : MonoBehaviour
     {
         if (e.itemID == 9)
         {
-            cam.clearFlags = fullyRenderingFlags;
-            cam.backgroundColor = funnlyRenderingBackgroundColor;
-            cam.cullingMask = fullyRenderingCullingMask;
+            cam.enabled = true;
+            pings.enabled=true;
             transform.rotation = Quaternion.identity;
 
             StartCoroutine(dropWithAirdrop(e.airdropTransform));

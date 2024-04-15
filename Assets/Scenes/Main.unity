@@ -19659,6 +19659,12 @@ MonoBehaviour:
     type: 3}
   ArmoredEnemyPrefab: {fileID: 6525121760247072822, guid: 2132e9e3c9805834fb33a68519e455e5,
     type: 3}
+  finalWaveSpawnCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!114 &1542962850
 MonoBehaviour:
   m_ObjectHideFlags: 0
