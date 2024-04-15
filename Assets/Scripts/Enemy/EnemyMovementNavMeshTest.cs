@@ -108,9 +108,9 @@ public class EnemyMovementNavMeshTest : MonoBehaviour
             minDistance.y = 0;
 
             // If the min distance is different than the target
-            if (minDistance != targetCenter)
+            if (minDistance != targetCenter || player == null)
             {
-                Debug.Log("here");
+                //Debug.Log("here");
                 if (player != null)
                 {
                     DetermineBestLocation(player.transform.position);
@@ -150,7 +150,7 @@ public class EnemyMovementNavMeshTest : MonoBehaviour
                 // Debug.Log((transform.position - Vector3.zero).magnitude);
                 if ((transform.position - Vector3.zero).magnitude < 1.5)
                 {
-                    Debug.Log("Close to objective");
+                    //Debug.Log("Close to objective");
                     attacking = true;
                 }
             }
@@ -307,7 +307,7 @@ public class EnemyMovementNavMeshTest : MonoBehaviour
 
         foreach (Collider hitCollider in hitColliders)
         {
-            Debug.Log(hitCollider);
+            //Debug.Log(hitCollider);
             GameObject destructible = hitCollider.gameObject;
 
             Vector3 directionToTarget = hitCollider.transform.position - currentPosition;
