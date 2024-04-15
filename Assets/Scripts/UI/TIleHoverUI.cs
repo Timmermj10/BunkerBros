@@ -29,7 +29,7 @@ public class TIleHoverUI : MonoBehaviour
 
         RaycastHit hit;
 
-        if (Physics.Raycast(mouseRay, out hit, Mathf.Infinity, LayerMask.GetMask("Default")) && hit.collider.gameObject.name == "Cube")
+        if (Physics.Raycast(mouseRay, out hit, Mathf.Infinity, LayerMask.GetMask("Default") | LayerMask.GetMask("Map")) && hit.collider.gameObject.name == "Cube")
         {
             // Now worldPosition contains the 3D point in world space where the mouse is pointing
             Vector3 worldPosition = hit.point;
@@ -44,7 +44,7 @@ public class TIleHoverUI : MonoBehaviour
                 selectedObj = ManagerPlayerInputsNew.mostRecentItem;
             }
 
-            if (selectedObj == gameObject && ManagerPlayerInputsNew.withinView(worldPositionRounded))
+            if (selectedObj == gameObject && ManagerPlayerInputsNew.withinView(worldPositionRounded) && hit.transform.gameObject.layer != LayerMask.NameToLayer("Map"))
             {
                 if (previewInstance == null)
                 {

@@ -147,7 +147,7 @@ public class EnemyMovementNavMeshTest : MonoBehaviour
             {
                 attacking = agent.remainingDistance < attackDistance;
                 // Check if we are close enough to the objective to override it
-                Debug.Log((transform.position - Vector3.zero).magnitude);
+                // Debug.Log((transform.position - Vector3.zero).magnitude);
                 if ((transform.position - Vector3.zero).magnitude < 1.5)
                 {
                     Debug.Log("Close to objective");
