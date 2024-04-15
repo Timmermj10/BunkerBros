@@ -17,7 +17,7 @@ public class FinalWaveCountdown : MonoBehaviour
     // UI element for the timer
     Text countdown;
 
-    private float timeUntilExtraction = 180; //Should be 180
+    private float timeUntilExtraction = 25; //Should be 180
 
     // Start is called before the first frame update
     void Start()
@@ -75,7 +75,25 @@ public class FinalWaveCountdown : MonoBehaviour
                 EventBus.Publish(new LastWaveOverEvent());
                 timerStart = false;
                 countdown.text = "";
+                StartCoroutine(ExtractionTeamArrived());
             }
         }
+    }
+
+    private IEnumerator ExtractionTeamArrived()
+    {
+
+        for (int i = 0; i < 5; i++)
+        {
+            countdown.text = "";
+
+            yield return new WaitForSeconds(0.3f);
+
+            countdown.text = "Extraction Team has arrived!";
+
+            yield return new WaitForSeconds(0.3f);
+        }
+
+        yield return null;
     }
 }

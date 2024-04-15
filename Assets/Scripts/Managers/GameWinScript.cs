@@ -19,7 +19,6 @@ public class GameWinScript : MonoBehaviour
 
     public void endGame(GameOverEvent e)
     {
-
         StartCoroutine(finalScene());
     }
 
