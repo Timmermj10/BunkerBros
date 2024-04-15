@@ -233,7 +233,7 @@ public class PlayerInteract : MonoBehaviour
         //Debug.Log(gameObject.name);
         //Debug.Log(other.name);
 
-        //Debug.Log($"tag = {other.gameObject.tag}, canInteractWithObject = {canInteractWithObject(other.gameObject)}");
+        Debug.Log($"tag = {other.gameObject.tag}, canInteractWithObject = {canInteractWithObject(other.gameObject)}");
 
         if ((other.gameObject.tag is "Pickup" || other.gameObject.tag is "Interactable" || other.gameObject.tag is "Objective") && !itemsInRange.Contains(other.gameObject) && canInteractWithObject(other.gameObject))
         {

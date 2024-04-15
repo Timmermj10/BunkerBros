@@ -7,31 +7,33 @@ using static UnityEngine.Rendering.DebugUI;
 
 public class ActivePlayerInputs : MonoBehaviour
 {
-    public float crouchSpeed = 2.5f;
     public float walkSpeed = 5f;
     public float runSpeed = 7.5f;
     public float jumpHeight = 5f;
-    public float slideTime = 1f;
     public Vector2 lookSpeed = new Vector2(90, 90);
     public float adsLookSpeed = .5f;
     public float pingDistance = 100f;
+    public float slideSpeed = 2f;
     public LayerMask ignore;
     public LayerMask ground;
 
     private Vector2 movementInputValue;
     private Vector2 aimInputValue;
+    private Vector3 velocity;
     private Vector2 rotation;
-    private Rigidbody rb;
+    private CharacterController controller;
+    private Vector3 hitNormal;
     private Transform look;
     private bool playerControls = true;
     private PingManager pingManager;
     private Animator anim;
+    private bool toJump = false;
 
     bool willCrouch = false;
     private void Awake()
     {
         EventBus.Subscribe<WaveStartedEvent>(WaveStarted);
-        rb = GetComponent<Rigidbody>();
+        controller = GetComponent<CharacterController>();
         look = transform.Find("PlayerLook");
         pingManager = GameObject.Find("GameManager").GetComponent<PingManager>();
         anim = GetComponent<Animator>();
@@ -39,17 +41,25 @@ public class ActivePlayerInputs : MonoBehaviour
 
     private void FixedUpdate() {
         bool running = anim.GetBool("running");
-        bool crouched = anim.GetBool("crouching");
         bool ads = anim.GetBool("ads");
         bool knife = anim.GetBool("knife");
-        /*Debug.Log(anim.GetCurrentAnimatorClipInfo(0)[0].clip.name + "\n" +
-            "running: " + running + "\t" +
-            "crouched: " + crouched + "\t" +
-            "ads: " + ads + "\t" +
-            "knife: " + knife);*/
         Vector3 forward = movementInputValue.y * transform.forward;
         Vector3 right = movementInputValue.x * transform.right;
-        rb.velocity = rb.velocity.y * Vector3.up + (running ? runSpeed : (crouched ? crouchSpeed : walkSpeed)) * (forward + right);
+        velocity = velocity.y * Vector3.up + (running ? runSpeed : walkSpeed) * (forward + right);
+        if (controller.isGrounded && Sliding())
+        {
+            Debug.Log("sliding");
+            velocity.x = hitNormal.x * slideSpeed;
+            velocity.z = hitNormal.z * slideSpeed;
+        }
+        if(toJump)
+        {
+            Debug.Log("jumping");
+            velocity.y = jumpHeight;
+            toJump = false;
+        }
+        controller.Move(velocity * Time.fixedDeltaTime);
+        velocity += Physics.gravity * Time.fixedDeltaTime;
         if (playerControls)
         {
             rotation += Time.deltaTime * (ads ? adsLookSpeed : 1f) * new Vector2(-aimInputValue.y * lookSpeed.y, aimInputValue.x * lookSpeed.x);
@@ -57,18 +67,13 @@ public class ActivePlayerInputs : MonoBehaviour
             look.rotation = Quaternion.Euler(rotation.x, rotation.y, 0);
             transform.rotation = Quaternion.Euler(0, rotation.y, 0);
         }
-        if (Grounded() && !crouched && willCrouch)
-            if(running)
-            {
-                Slide();
-            }
-            else
-            {
-                running = false;
-                Crouch();
-            }
     }
 
+    void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+        Debug.Log(hit.gameObject.name);
+        hitNormal = hit.normal;
+    }
 
     private void WaveStarted(WaveStartedEvent e)
     {
@@ -92,7 +97,7 @@ public class ActivePlayerInputs : MonoBehaviour
     }
     private void OnRun(InputValue value)
     {
-        if (Grounded())
+        if (controller.isGrounded && !Sliding())
             anim.SetBool("running", true);
 
     }
@@ -115,14 +120,8 @@ public class ActivePlayerInputs : MonoBehaviour
     }
     private void OnJump(InputValue value)
     {
-        if (Grounded())
-            rb.velocity = new(rb.velocity.x, jumpHeight, rb.velocity.y);
-    }
-    private void OnCrouch(InputValue value)
-    {
-        bool crouched = anim.GetBool("crouching");
-        if (crouched) anim.SetBool("crouching", false);
-        else willCrouch = true;
+        if (controller.isGrounded && !Sliding())
+            toJump = true;
     }
 
     private void OnPing(InputValue value)
@@ -146,29 +145,13 @@ public class ActivePlayerInputs : MonoBehaviour
     {
         PlayerInteract.buttonPressed = value.isPressed;
     }
+    private bool Sliding()
+    {
+        return Vector3.Angle(Vector3.up, hitNormal) > controller.slopeLimit;
+    }
 
     public Vector2 getAimValue() { return aimInputValue; }
 
     public Vector2 getMovementValue() { return movementInputValue; }
 
-    bool Grounded()
-    {
-        CapsuleCollider coll = GetComponentInChildren<CapsuleCollider>();
-        return Physics.Raycast(transform.position, Vector3.down, coll.bounds.extents.y + .05f, ground);
-    }
-    private void Crouch()
-    {
-        willCrouch = false;
-        anim.SetBool("crouching", true);
-    }
-    private void Stand()
-    {
-        anim.SetBool("crouching", false);
-    }
-    public IEnumerator Slide()
-    {
-        Crouch();
-        yield return new WaitForSeconds(1f);
-        Stand();
-    }
 }
