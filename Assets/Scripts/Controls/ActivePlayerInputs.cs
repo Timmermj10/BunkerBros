@@ -71,6 +71,7 @@ public class ActivePlayerInputs : MonoBehaviour
 
     void OnControllerColliderHit(ControllerColliderHit hit)
     {
+        Debug.Log(hit.gameObject.name);
         hitNormal = hit.normal;
     }
 
