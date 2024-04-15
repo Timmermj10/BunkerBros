@@ -18,6 +18,11 @@ public class EnemyWaveSpawnManager : MonoBehaviour
     private bool isFinalWave = false;
     private float prepTimeForFinalWave = 10f;
     private bool finalWaveOver = false;
+    private float finalWaveTimer = 0f;
+    private float finalWaveDuration = 120f;
+    private float finalWavespawnDelay = 2.5f;
+    private float finalWaveSpawnTimer = 0;
+    public AnimationCurve finalWaveSpawnCurve;
 
     //Time between enemy spawned
     private float spawnDelay = 2f;
@@ -307,12 +312,9 @@ public class EnemyWaveSpawnManager : MonoBehaviour
 
     private IEnumerator FinalWave()
     {
-
-        //Final wave timing variables
-        float finalWaveTimer = 0f;
-        float finalWaveDuration = 120f;
-        float finalWavespawnDelay = 1.5f;
-        float finalWaveSpawnTimer = finalWavespawnDelay;
+        float progress = finalWaveTimer / finalWaveDuration;
+        finalWaveTimer += Time.deltaTime;
+        finalWaveSpawnTimer = finalWavespawnDelay;
 
         int numFinalWaveSpawnpoints = spawnpoints.Count;
 
@@ -337,11 +339,11 @@ public class EnemyWaveSpawnManager : MonoBehaviour
 
             if (finalWaveSpawnTimer <= 0)
             {
-                //Decrease time until next spawn
-                finalWavespawnDelay = Mathf.Max(0.75f, finalWavespawnDelay - 0.05f);
+                //Decrease time until next spawn (2.5 is initial spawnDelay)
+                finalWavespawnDelay = 2.5f * (1 - finalWaveSpawnCurve.Evaluate(progress)) + 0.2f;
 
                 // Reset the spawn timer
-                finalWaveSpawnTimer = Random.Range(finalWavespawnDelay - 0.5f, finalWavespawnDelay + 1);
+                finalWaveSpawnTimer = finalWavespawnDelay;
                 //Debug.Log($"Spawn timer reset to {spawnTimer}");
 
 
@@ -351,6 +353,7 @@ public class EnemyWaveSpawnManager : MonoBehaviour
                 //Spawn an enemy at each spawnpoint
                 foreach (Vector3 spawnpointForWave in finalWaveSpawnpoints)
                 {
+                    if (Random.value < 0.3f) continue;
 
                     //Get a random position to spawn the enemy
                     do
@@ -386,10 +389,7 @@ public class EnemyWaveSpawnManager : MonoBehaviour
 
                     //Decide what type of zombie to spawn
 
-                    finalWaveTimer += Time.deltaTime;
-                    float progress = finalWaveTimer / finalWaveDuration;
-
-                    if (progress > 0.85f)
+                    if (progress > 0.90f)
                     {
                         StartCoroutine(spawnImpossibleHorde(finalWaveSpawnpoints));
                     }

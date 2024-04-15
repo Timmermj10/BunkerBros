@@ -233,7 +233,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31dffa01d58603441bd3e5a3525a16a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ammo: {fileID: 0}
   ProjectilePrefab: {fileID: 4820764227730699988, guid: 07cac96898c26b041928e90fb5d15422,
     type: 3}
   anim: {fileID: 8555320606884907261}
@@ -462,6 +461,7 @@ MonoBehaviour:
   jumpHeight: 3
   slideTime: 1
   lookSpeed: {x: 180, y: 90}
+  adsLookSpeed: 0.5
   pingDistance: 100
   ignore:
     serializedVersion: 2
@@ -484,7 +484,7 @@ MonoBehaviour:
   maxHealth: 24
   currentHealth: 0
   armorValue: 0
-  healthBar: {fileID: 0}
+  healthBars: []
 --- !u!114 &4360294523314962802
 MonoBehaviour:
   m_ObjectHideFlags: 0

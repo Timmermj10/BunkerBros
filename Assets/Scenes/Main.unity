@@ -19365,6 +19365,48 @@ MonoBehaviour:
     type: 3}
   ArmoredEnemyPrefab: {fileID: 6525121760247072822, guid: 2132e9e3c9805834fb33a68519e455e5,
     type: 3}
+  finalWaveSpawnCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.60540897
+      value: 0.24891119
+      inSlope: 0.88094133
+      outSlope: 0.88094133
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.049547326
+      outWeight: 0.15070112
+    - serializedVersion: 3
+      time: 0.83038557
+      value: 0.55926824
+      inSlope: 2.1446624
+      outSlope: 2.1446624
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.17117552
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 3.3232546
+      outSlope: 3.3232546
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.12080053
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!114 &1542962850
 MonoBehaviour:
   m_ObjectHideFlags: 0
