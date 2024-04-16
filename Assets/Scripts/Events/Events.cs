@@ -186,7 +186,16 @@ public class PlayerDamagedEvent
 
 public class RepairKitUsedEvent { }
 
-public class PopUpStartEvent{ }
+public class PopUpStartEvent
+{
+    public string player;
+    public string text;
+    public PopUpStartEvent(string player, string text)
+    {
+        this.player = player;
+        this.text = text;
+    }
+}
 
 public class PopUpEndEvent 
 {

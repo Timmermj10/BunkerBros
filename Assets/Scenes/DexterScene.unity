@@ -19449,6 +19449,8 @@ MonoBehaviour:
   popUpBox: {fileID: 0}
   popUpBoxPrefab: {fileID: 4040145981536289010, guid: 4b74bcec678f62f4ea5f41a7e167b845,
     type: 3}
+  actionAsset: {fileID: -944628639613478452, guid: c415be8f3bfa0ae41a25ced4f97ac397,
+    type: 3}
 --- !u!114 &1542962844
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19456,7 +19458,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1542962839}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6a0eb4eea3bb1794bbf985a9f17ca8c1, type: 3}
   m_Name: 
@@ -19674,7 +19676,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0300d514a01e25a4f97a719ff2637704, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeBetweenRounds: 30
 --- !u!114 &1542962852
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19803,7 +19804,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1542962839}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8318c26a4a21cfb4587bcb5caf839fe8, type: 3}
   m_Name: 

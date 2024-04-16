@@ -4,9 +4,6 @@ using UnityEngine.SceneManagement;
 
 public class GameWinScript : MonoBehaviour
 {
-
-    private PopUpSystem popUpSystem;
-
     private bool managerConfirmed = false;
     private bool playerConfirmed = false;
 
@@ -14,7 +11,6 @@ public class GameWinScript : MonoBehaviour
     {
         EventBus.Subscribe<GameOverEvent>(endGame);
         EventBus.Subscribe<PopUpEndEvent>(_playerConfirmed);
-        popUpSystem = GameObject.Find("GameManager").GetComponent<PopUpSystem>();
     }
 
     public void endGame(GameOverEvent e)
@@ -27,8 +23,8 @@ public class GameWinScript : MonoBehaviour
 
         managerConfirmed = false;
         playerConfirmed = false;
-        popUpSystem.popUp("Player", "The Extraction Team is here! You have managed to hold out long enough and have successfully escaped from the zombie infested desert! Congratulations!");
-        popUpSystem.popUp("Manager", "The Extraction Team is here! You have managed to hold out long enough and have successfully escaped from the zombie infested desert! Congratulations!");
+        EventBus.Publish(new PopUpStartEvent("Player", "The Extraction Team is here! You have managed to hold out long enough and have successfully escaped from the zombie infested desert! Congratulations!"));
+        EventBus.Publish(new PopUpStartEvent("Manager", "The Extraction Team is here! You have managed to hold out long enough and have successfully escaped from the zombie infested desert! Congratulations!"));
 
         while (!managerConfirmed || !playerConfirmed)
         {
