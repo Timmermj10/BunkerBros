@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.16450353, g: 0.42539638, b: 0.6835041, a: 1}
+  m_IndirectSpecularColor: {r: 0.112711005, g: 0.28157306, b: 0.7091771, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -919,7 +919,7 @@ MonoBehaviour:
   tooltipPanel: {fileID: 2028445649}
   xOffset: 10
   cost: 20 Gold
-  description: Assist your teammate with a health pack!
+  description: Drop in a health pack for your teammate
 --- !u!114 &90805224
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7481,7 +7481,7 @@ MonoBehaviour:
   tooltipPanel: {fileID: 2028445649}
   xOffset: 10
   cost: 250 Gold
-  description: Drop in an automatic turret to control the zombies!
+  description: Drop in an automatic turret to fight the zombies
 --- !u!114 &271882291
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9130,7 +9130,7 @@ MonoBehaviour:
   tooltipPanel: {fileID: 2028445649}
   xOffset: 10
   cost: 300 Gold
-  description: Upgrade your teammates firepower!
+  description: Drop in a gun to increase your teammate's firepower
 --- !u!114 &440788263
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9965,7 +9965,7 @@ MonoBehaviour:
   tooltipPanel: {fileID: 2028445649}
   xOffset: 10
   cost: 30 Gold
-  description: Drop in ammo to help your teammate!
+  description: Drop in additional gun ammo
 --- !u!114 &534006802
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12224,7 +12224,7 @@ MonoBehaviour:
   tooltipPanel: {fileID: 2028445649}
   xOffset: 10
   cost: 60 Gold
-  description: Drop your teammate nuke parts to fill the silos!
+  description: Drop in a nuke crate to load the silos
 --- !u!114 &773221787
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12500,7 +12500,7 @@ MonoBehaviour:
   tooltipPanel: {fileID: 2028445649}
   xOffset: 10
   cost: 10 Gold
-  description: Drop a barrier to help protect the entrance!
+  description: Drop in a barrier
 --- !u!114 &809122167
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13390,7 +13390,7 @@ MonoBehaviour:
   tooltipPanel: {fileID: 2028445649}
   xOffset: 10
   cost: 
-  description: Drop in a Nuke to destroy LARGE hordes!
+  description: Drop a Nuke to deal MASSIVE damage
 --- !u!114 &837992305
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15989,7 +15989,7 @@ MonoBehaviour:
   tooltipPanel: {fileID: 2028445649}
   xOffset: 10
   cost: 30 Gold
-  description: Drop in a repair kit & have your teammate use it on the bunker!
+  description: Drop in a repair kit to fix the bunker
 --- !u!114 &1147238041
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21480,7 +21480,7 @@ MonoBehaviour:
   tooltipPanel: {fileID: 2028445649}
   xOffset: 10
   cost: 
-  description: Call out for help!
+  description: Radio for an evacuation team!
 --- !u!114 &1717707573
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21677,7 +21677,7 @@ MonoBehaviour:
   tooltipPanel: {fileID: 2028445649}
   xOffset: 10
   cost: 30 Gold
-  description: Drop a missle to destroy small hordes
+  description: Drop a missile to deal moderate damage
 --- !u!114 &1759038743
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22867,7 +22867,7 @@ MonoBehaviour:
   tooltipPanel: {fileID: 2028445649}
   xOffset: 10
   cost: 
-  description: Drop in a new robot teammate!
+  description: Drop in your robot partner
 --- !u!114 &1875112201
 MonoBehaviour:
   m_ObjectHideFlags: 0

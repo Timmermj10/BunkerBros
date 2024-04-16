@@ -29,10 +29,8 @@ public class ActivePlayerInputs : MonoBehaviour
     private Animator anim;
     private bool toJump = false;
 
-    bool willCrouch = false;
     private void Awake()
     {
-        EventBus.Subscribe<WaveStartedEvent>(WaveStarted);
         controller = GetComponent<CharacterController>();
         look = transform.Find("PlayerLook");
         pingManager = GameObject.Find("GameManager").GetComponent<PingManager>();
@@ -45,23 +43,23 @@ public class ActivePlayerInputs : MonoBehaviour
         bool knife = anim.GetBool("knife");
         Vector3 forward = movementInputValue.y * transform.forward;
         Vector3 right = movementInputValue.x * transform.right;
-        velocity = velocity.y * Vector3.up + (running ? runSpeed : walkSpeed) * (forward + right);
-        if (controller.isGrounded && Sliding())
-        {
-            //Debug.Log("sliding");
-            velocity.x = hitNormal.x * slideSpeed;
-            velocity.z = hitNormal.z * slideSpeed;
-        }
-        if(toJump)
-        {
-            //Debug.Log("jumping");
-            velocity.y = jumpHeight;
-            toJump = false;
-        }
-        controller.Move(velocity * Time.fixedDeltaTime);
-        velocity += Physics.gravity * Time.fixedDeltaTime;
         if (playerControls)
         {
+            velocity = velocity.y * Vector3.up + (running ? runSpeed : walkSpeed) * (forward + right);
+            if (controller.isGrounded && Sliding())
+            {
+                //Debug.Log("sliding");
+                velocity.x = hitNormal.x * slideSpeed;
+                velocity.z = hitNormal.z * slideSpeed;
+            }
+            if (toJump)
+            {
+                //Debug.Log("jumping");
+                velocity.y = jumpHeight;
+                toJump = false;
+            }
+            controller.Move(velocity * Time.fixedDeltaTime);
+            velocity += Physics.gravity * Time.fixedDeltaTime;
             rotation += Time.deltaTime * (ads ? adsLookSpeed : 1f) * new Vector2(-aimInputValue.y * lookSpeed.y, aimInputValue.x * lookSpeed.x);
             rotation.x = Mathf.Clamp(rotation.x, -89, 89);
             look.rotation = Quaternion.Euler(rotation.x, rotation.y, 0);
@@ -75,10 +73,16 @@ public class ActivePlayerInputs : MonoBehaviour
         hitNormal = hit.normal;
     }
 
-    private void WaveStarted(WaveStartedEvent e)
+    public void enableControls()
     {
         //Debug.Log("Turning on Player Controls");
         playerControls = true;
+    }
+
+    public void disableControls()
+    {
+        //Debug.Log("Turning off Player Controls");
+        playerControls = false;
     }
 
     //private void WaveEnded(WaveEndedEvent e)

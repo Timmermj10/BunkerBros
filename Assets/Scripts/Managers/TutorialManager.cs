@@ -29,8 +29,9 @@ public class TutorialManager : MonoBehaviour
     private bool healthPackPopUpIsDone = false;
     private bool hasRespawnedPlayer = false;
     private bool hasActivatedRadioTower = false;
-    private bool hasLoadedSilo = false;
+    private bool hasFinishedRadioTowerActivation = false;
     private bool hasBlownUpBoulder = false;
+    private bool hasLoadedSilo = false;
 
     public GameObject playerRespawn;
     public GameObject RepairKit;
@@ -49,7 +50,7 @@ public class TutorialManager : MonoBehaviour
     [SerializeField]
     private InputActionAsset actionAsset;
     private InputActionMap managerActionMap;
-    private InputActionMap playerActionMap;
+    private ActivePlayerInputs activePlayerInputs;
 
     private int activateNum = 0;
 
@@ -66,7 +67,9 @@ public class TutorialManager : MonoBehaviour
         EventBus.Subscribe<CoinCollect>(_hasFoundChest);
         EventBus.Subscribe<PopUpEndEvent>(_endPopUp);
         EventBus.Subscribe<RadioTowerActivatedPlayerEvent>(_radioTowerActivated);
+        EventBus.Subscribe<RadioTowerActivatedManagerEvent>(_RadioTowerActivatedByManager);
         EventBus.Subscribe<ItemUseEvent>(_ItemPurchased);
+        EventBus.Subscribe<PlayerRespawnEvent>(_setActivePlayerInputs);
 
 
         pingManager = GameObject.Find("GameManager").GetComponent<PingManager>();
@@ -74,7 +77,6 @@ public class TutorialManager : MonoBehaviour
         bunker = GameObject.Find("Objective");
 
         managerActionMap = actionAsset.FindActionMap("ManagerPlayer");
-        playerActionMap = actionAsset.FindActionMap("ActivePlayer");
 
         playerRespawn.SetActive(false);
         RepairKit.SetActive(false);
@@ -98,7 +100,7 @@ public class TutorialManager : MonoBehaviour
         yield return new WaitForFixedUpdate();
 
         startPopUp("Manager");
-        popUpSystem.popUp("Manager", "Your bunker is under attack! Don't let the zombies break in, your lives depend on it! Deploy your partner to handle the zombies on the surface.");
+        popUpSystem.popUp("Manager", "Your bunker is under attack! Don't let the zombies break in, your lives depend on it! Deploy your partner to handle the zombies on the surface."); //1
 
         while (!hasRespawnedPlayer)
         {
@@ -106,7 +108,7 @@ public class TutorialManager : MonoBehaviour
         }
 
         startPopUp("Player");
-        popUpSystem.popUp("Player", "Use the left and right joysticks to move/look and use R2 to attack!");
+        popUpSystem.popUp("Player", "Use the left and right joysticks to move/look and use R2 to attack!"); //2
 
         while (enemiesAlive > 0)
         {
@@ -114,7 +116,7 @@ public class TutorialManager : MonoBehaviour
         }
 
         startPopUp("Manager");
-        popUpSystem.popUp("Manager", "Your bunker has taken damage! Drop in a repair kit to your partner to patch it up.");
+        popUpSystem.popUp("Manager", "Your bunker has taken damage! Drop in a repair kit to your partner to patch it up."); //3
 
         while (!hasDroppedRepairKit)
         {
@@ -123,7 +125,7 @@ public class TutorialManager : MonoBehaviour
         yield return new WaitForSeconds(1);
 
         startPopUp("Player");
-        popUpSystem.popUp("Player", "Hold square on the repair kit to pick it up.");
+        popUpSystem.popUp("Player", "Hold square on the repair kit to pick it up."); //4
 
         while (!hasPickedUpRepairKit)
         {
@@ -131,7 +133,7 @@ public class TutorialManager : MonoBehaviour
         }
 
         startPopUp("Player");
-        popUpSystem.popUp("Player", "Hold square on the bunker to repair the hatch.");
+        popUpSystem.popUp("Player", "Hold square on the bunker to repair the hatch."); //5
 
         while (!hasUsedRepairKit)
         {
@@ -139,39 +141,7 @@ public class TutorialManager : MonoBehaviour
         }
 
         startPopUp("Manager");
-        popUpSystem.popUp("Manager", "You're low on gold! Work together with your partner to find some! (Use WASD to move)");
-
-        while (!hasFoundChest)
-        {
-            yield return new WaitForFixedUpdate();
-        }
-
-        startPopUp("Manager");
-        popUpSystem.popUp("Manager", "You and your partner need a way to destroy that massive boulder blocking the way. Maybe these nuke parts could help.");
-
-        while (!hasPickedUpNukeParts)
-        {
-            yield return new WaitForFixedUpdate();
-        }
-
-        startPopUp("Player");
-        popUpSystem.popUp("Player", "Load the nuke parts into the silo with square.");
-
-        while (!hasLoadedSilo)
-        {
-            yield return new WaitForFixedUpdate();
-        }
-
-        startPopUp("Manager");
-        popUpSystem.popUp("Manager", "You now have access to a nuke!");
-
-        while (!hasBlownUpBoulder)
-        {
-            yield return new WaitForFixedUpdate();
-        }
-
-        startPopUp("Manager");
-        popUpSystem.popUp("Manager", "Drop your partner in a healthpack, so they're prepared for their next fight!");
+        popUpSystem.popUp("Manager", "Drop your partner in a health pack, so they're prepared for their next fight!"); //6
 
         while (!hasPickedUpHealthPack)
         {
@@ -179,9 +149,46 @@ public class TutorialManager : MonoBehaviour
         }
 
         startPopUp("Player");
-        popUpSystem.popUp("Player", "You now have a health pack! Press L1 at any time to use it!");
+        popUpSystem.popUp("Player", "You now have a health pack! Press L1 at any time to use it!"); //7
 
         while (!healthPackPopUpIsDone)
+        {
+            yield return new WaitForFixedUpdate();
+        }
+
+        startPopUp("Manager");
+        //Has to be much shorter
+        popUpSystem.popUp("Manager", "You're low on gold! Work with your partner to find some! Use WASD to move and scroll to zoom. Use middle mouse button to ping for your partner!"); //8
+
+        startPopUp("Player");
+        popUpSystem.popUp("Player", "You're low on gold! Work with your partner to find some! Press your left stick in to sprint and X to jump!"); //9
+
+
+        while (!hasFoundChest)
+        {
+            yield return new WaitForFixedUpdate();
+        }
+
+        startPopUp("Manager");
+        popUpSystem.popUp("Manager", "You and your partner need a way to destroy that massive boulder blocking the way. Maybe these nuke parts could help."); //10
+
+        while (!hasPickedUpNukeParts)
+        {
+            yield return new WaitForFixedUpdate();
+        }
+
+        startPopUp("Player");
+        popUpSystem.popUp("Player", "Load the nuke parts into the silo with square.");//11
+
+        while (!hasLoadedSilo)
+        {
+            yield return new WaitForFixedUpdate();
+        }
+
+        startPopUp("Manager");
+        popUpSystem.popUp("Manager", "You now have access to a nuke!");//12
+
+        while (!hasBlownUpBoulder)
         {
             yield return new WaitForFixedUpdate();
         }
@@ -189,11 +196,17 @@ public class TutorialManager : MonoBehaviour
         yield return new WaitForSeconds(1.5f);
 
         startPopUp("Player");
-        popUpSystem.popUp("Player", "Go activate the radio tower to increase your signal strength! If you get your signal strength high enough, you can call for an extraction team!");
+        popUpSystem.popUp("Player", "Go activate the radio tower to increase your signal strength! If you get your signal strength high enough, you can radio for an extraction team!"); //13
 
+        while (!hasFinishedRadioTowerActivation)
+        {
+            yield return new WaitForFixedUpdate();
+        }
+
+        yield return new WaitForSeconds(1f);
 
         startPopUp("Manager");
-        popUpSystem.popUp("Manager", "There's a zombie horde approaching from the southwest! Use some walls, turrets, and missiles to defend the bunker.");
+        popUpSystem.popUp("Manager", "There's a zombie horde approaching from the north! Use some walls, turrets, and missiles to defend your bunker.");//14
         EventBus.Publish(new FirstTutorialWaveEvent());
         enemiesAlive = 7;
 
@@ -203,7 +216,7 @@ public class TutorialManager : MonoBehaviour
         }
 
         startPopUp("Manager");
-        popUpSystem.popUp("Manager", "Great work! Here are some more supplies to help your partner. Help them out by dropping them a gun and some ammo when you get enough gold.");
+        popUpSystem.popUp("Manager", "Great work! There are some more supplies to help your partner. Help them out by dropping them a gun and some ammo if you get the chance."); //15
 
         //turn on the evac button
         EvacuationButton.SetActive(true);
@@ -211,7 +224,8 @@ public class TutorialManager : MonoBehaviour
         //Make all buttons interactable again
         playerRespawn.GetComponent<Button>().interactable = true;
         RepairKit.GetComponent<Button>().interactable = true;
-        AmmoCrate.GetComponent<Button>().interactable = true;
+        //Dont enable Ammo crate until a gun is bought
+        AmmoCrate.GetComponent<Button>().interactable = false;
         Gun.GetComponent<Button>().interactable = true;
         Wall.GetComponent<Button>().interactable = true;
         Turret.GetComponent<Button>().interactable = true;
@@ -236,13 +250,13 @@ public class TutorialManager : MonoBehaviour
         else if (playerToFreeze == "Player")
         {
             //Debug.Log("Disabling active Player");
-            playerActionMap.Disable();
+            activePlayerInputs.disableControls();
         } 
         else
         {
             //Debug.Log("Disabling both players");
             managerActionMap.Disable();
-            playerActionMap.Disable();
+            activePlayerInputs.disableControls();
         }
     }
 
@@ -250,7 +264,10 @@ public class TutorialManager : MonoBehaviour
     {
         //Debug.Log("Turning Controls back on");
         managerActionMap.Enable();
-        playerActionMap.Enable();
+        if (activePlayerInputs != null)
+        {
+            activePlayerInputs.enableControls();
+        }
         activateNum++;
 
         switch (activateNum)
@@ -269,41 +286,38 @@ public class TutorialManager : MonoBehaviour
                 RepairKit.SetActive(true);
                 StartCoroutine(ButtonFlashRoutine(RepairKit));
                 break;
+            case 5:
+                //Ping Bunker so player knows what to repair
+                pingManager.Ping(new Vector3(0, 1, 0), 10, PingType.INVESTIGATE);
+                break;
+            case 6:
+                HealthPack.SetActive(true);
+                StartCoroutine(ButtonFlashRoutine(HealthPack));
+                break;
             case 7:
+                healthPackPopUpIsDone = true;
+                break;
+            case 10:
                 NukeParts.SetActive(true);
                 StartCoroutine(ButtonFlashRoutine(NukeParts));
+                pingManager.Ping(new Vector3(-3.9f, 0.94f, -20.3f), 10);
                 break;
-            case 8:
+            case 11:
                 //Ping Silo
                 pingManager.Ping(new Vector3(1, 1.45f, 9.1f), 10, PingType.INVESTIGATE);
                 break;
-            case 9:
+            case 12:
                 //Ping Boulder
                 pingManager.Ping(new Vector3(-3.9f, 0.94f, -20.3f), 10);
                 Nuke.SetActive(true);
                 StartCoroutine(ButtonFlashRoutine(Nuke));
                 break;
-            case 10:
-                HealthPack.SetActive(true);
-                StartCoroutine(ButtonFlashRoutine(HealthPack));
-                break;
-            case 11:
-                healthPackPopUpIsDone = true;
-                break;
-            case 12:
+            case 13:
                 //Ping Radio Tower
                 pingManager.Ping(new Vector3(-1.7f, 1.5f, -33.63f), 10);
                 break;
-            case 13:
-                //Ping Zombie spawn location
-                pingManager.Ping(new Vector3(-1, 0.15f, 35), 10, PingType.ENEMY);
-                Instantiate(basicEnemyPrefab, new Vector3(0, 0.15f, 33), Quaternion.identity);
-                Instantiate(basicEnemyPrefab, new Vector3(-2, 0.15f, 33), Quaternion.identity);
-                Instantiate(basicEnemyPrefab, new Vector3(0, 0.15f, 34), Quaternion.identity);
-                Instantiate(basicEnemyPrefab, new Vector3(-2, 0.15f, 36), Quaternion.identity);
-                Instantiate(basicEnemyPrefab, new Vector3(-2, 0.15f, 34), Quaternion.identity);
-                Instantiate(basicEnemyPrefab, new Vector3(0, 0.15f, 36), Quaternion.identity);
-                Instantiate(armoredEnemyPrefab, new Vector3(-1, 0.15f, 35), Quaternion.identity);
+            case 14:
+                StartCoroutine(spawnTutorialWave());
                 
                 //Show the buttons
                 Wall.SetActive(true);
@@ -315,7 +329,7 @@ public class TutorialManager : MonoBehaviour
                 StartCoroutine(ButtonFlashRoutine(Turret));
                 StartCoroutine(ButtonFlashRoutine(Missile));
                 break;
-            case 14:
+            case 15:
                 //Show the buttons
                 Gun.SetActive(true);
                 AmmoCrate.SetActive(true);
@@ -327,6 +341,28 @@ public class TutorialManager : MonoBehaviour
             default:
                 break;
         }
+    }
+
+    private IEnumerator spawnTutorialWave()
+    {
+        //Ping Zombie spawn location
+        pingManager.Ping(new Vector3(-1, 1.5f, 35), 10, PingType.ENEMY);
+
+        yield return new WaitForSeconds(5f);
+        Instantiate(basicEnemyPrefab, new Vector3(0, 0.15f, 33), Quaternion.identity);
+        Instantiate(basicEnemyPrefab, new Vector3(-2, 0.15f, 33), Quaternion.identity);
+        Instantiate(basicEnemyPrefab, new Vector3(0, 0.15f, 34), Quaternion.identity);
+        Instantiate(basicEnemyPrefab, new Vector3(-2, 0.15f, 36), Quaternion.identity);
+        Instantiate(basicEnemyPrefab, new Vector3(-2, 0.15f, 34), Quaternion.identity);
+        Instantiate(basicEnemyPrefab, new Vector3(0, 0.15f, 36), Quaternion.identity);
+        Instantiate(armoredEnemyPrefab, new Vector3(-1, 0.15f, 35), Quaternion.identity);
+
+        yield return null;
+    }
+
+    private void _setActivePlayerInputs(PlayerRespawnEvent e)
+    {
+        activePlayerInputs = e.activePlayer.GetComponent<ActivePlayerInputs>();
     }
 
     private void _enemyDeath(ObjectDestroyedEvent e)
@@ -349,6 +385,11 @@ public class TutorialManager : MonoBehaviour
         {
             hasDroppedRepairKit = true;
         }
+    }
+
+    private void _RadioTowerActivatedByManager(RadioTowerActivatedManagerEvent e)
+    {
+        hasFinishedRadioTowerActivation = true;
     }
 
     private void _hasPickedUpItems(PickUpEvent e)
@@ -395,7 +436,7 @@ public class TutorialManager : MonoBehaviour
         if (!hasActivatedRadioTower)
         {
             startPopUp("Player");
-            popUpSystem.popUp("Player", "Good job activating the radio tower! If you activate the rest and get your signal strength high enough you can radio for help!");
+            popUpSystem.popUp("Player", "Good job activating the radio tower! Make sure you help your partner get the tower fully online!");
             hasActivatedRadioTower = true;
         }
     }

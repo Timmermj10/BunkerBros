@@ -15,6 +15,9 @@ public class PopUpPrefabController : MonoBehaviour
     private GameObject confirmBorder;
 
     private bool hasConfirmed = false;
+    private string whichPlayer;
+
+    private Subscription<PopUpStartEvent> popUpSubscription;
 
     void Start()
     {
@@ -23,6 +26,8 @@ public class PopUpPrefabController : MonoBehaviour
         {
             transform.SetParent(canvasParent.transform, false);
         }
+
+        popUpSubscription = EventBus.Subscribe<PopUpStartEvent>(_deletePopUp);
 
         confirmBorder = transform.Find("PopUpBackground/GreenConfirmationBorder").gameObject;
         managerConfirm = confirmBorder.transform.Find("ManagerConfirm").gameObject;
@@ -35,8 +40,16 @@ public class PopUpPrefabController : MonoBehaviour
         //Debug.Log("PopUpBoxCreated");
     }
 
+    private void _deletePopUp(PopUpStartEvent e)
+    {
+        Debug.Log("Deleting popup");
+        EventBus.Publish(new PopUpEndEvent(whichPlayer));
+        Destroy(gameObject);
+    }
+
     public void printText(string playerType, string text)
     {
+        whichPlayer = playerType;
         PlayerInput playerInputs = GetComponent<PlayerInput>();
 
         if (playerInputs != null && playerType is "Player")
@@ -126,9 +139,9 @@ public class PopUpPrefabController : MonoBehaviour
         Destroy(gameObject);
     }
 
-    private void OnEnterConfirm()
+    private void OnManagerConfirm()
     {
-        //Debug.Log("OnEnterConfirm called");
+        //Debug.Log("OnManagerConfirm called");
         hasConfirmed = true;
     }
 
@@ -136,6 +149,11 @@ public class PopUpPrefabController : MonoBehaviour
     {
         //Debug.Log("OnGamepadConfirm called");
         hasConfirmed = true;
+    }
+
+    private void OnDestroy()
+    {
+        EventBus.Unsubscribe<PopUpStartEvent>(popUpSubscription);
     }
 
 }

@@ -997,11 +997,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   text: {fileID: 0}
-  fullText: In a post apocalyptic world, our heros have been chased by zombies into
-    the desert where they are stranded until they find a way to escape. They have
-    taken shelter in a government bunker, equipped with remote controlled robots
-    and drones to help them defend themselves. They must now survive long enough
-    until they are able to be extracted.
   delayBetweenCharacters: 0.03
   fadeOutDuration: 3
   sound1: {fileID: 8300000, guid: a320ab57128ff3844b77f405d3f23e2f, type: 3}
@@ -1196,7 +1191,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Press Enter to ready up
+  m_text: Press E to ready up
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 61767c16f03edf14aa064e96c2ef7ab4, type: 2}
   m_sharedMaterial: {fileID: 4284896924131559605, guid: 61767c16f03edf14aa064e96c2ef7ab4,

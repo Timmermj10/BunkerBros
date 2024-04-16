@@ -8,7 +8,7 @@ public class StoryDisplayer : MonoBehaviour
 {
 
     [SerializeField] private TMP_Text text;
-    private string fullText = "In a post apocalyptic world, our heros have been chased by zombies into the desert where they are stranded until they find a way to escape. They have taken shelter in a government bunker, equipped with remote controlled robots and drones to help them defend themselves. They must now survive long enough until they can execute an escape plan.";
+    private string fullText = "In a post apocalyptic world, our heros have been chased by zombies into the desert where they are stranded until they find a way to escape. They have taken shelter in a government bunker, equipped with remote controlled robots and drones to help them defend themselves. They must now survive long enough to execute an escape plan.";
     [SerializeField] private float delayBetweenCharacters = 0.03f;
     [SerializeField] private float fadeOutDuration = 3f;
 

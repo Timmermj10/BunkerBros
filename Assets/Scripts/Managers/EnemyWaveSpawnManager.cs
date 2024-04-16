@@ -69,34 +69,34 @@ public class EnemyWaveSpawnManager : MonoBehaviour
 
     private void _boulderDestroyed(ObjectDestroyedEvent e)
     {
-        if (e.tag == "Boulder")
-        {
-            Debug.Log($"location = {e.deathCoordinates}");
-        }
+        //if (e.tag == "Boulder")
+        //{
+        //    Debug.Log($"location = {e.deathCoordinates}");
+        //}
 
         if (e.tag == "Boulder" && Vector3.Distance(e.deathCoordinates, new Vector3(-3.9f, 0.94f, -20.3f)) < 1)
         {
-            Debug.Log($"Adding {new Vector3(-18, 0.8f, -34)}, Bottom Middle");
+            //Debug.Log($"Adding {new Vector3(-18, 0.8f, -34)}, Bottom Middle");
             spawnpoints.Add(new Vector3(-18, 0.8f, -34)); //Bottom Middle
         }
         if (e.tag == "Boulder" && Vector3.Distance(e.deathCoordinates, new Vector3(-27.9f, 1.25f, -21.9f)) < 1)
         {
-            Debug.Log($"Adding {new Vector3(-34f, 0.6f, -28f)}, Bottom Left");
+            //Debug.Log($"Adding {new Vector3(-34f, 0.6f, -28f)}, Bottom Left");
             spawnpoints.Add(new Vector3(-34f, 0.6f, -28f)); //Bottom Left
         }
         if (e.tag == "Boulder" && Vector3.Distance(e.deathCoordinates, new Vector3(-20.5f, 1.25f, 31.7f)) < 1)
         {
-            Debug.Log($"Adding {new Vector3(-36, -0.5f, 33)}, Top Left");
+            //Debug.Log($"Adding {new Vector3(-36, -0.5f, 33)}, Top Left");
             spawnpoints.Add(new Vector3(-36, -0.5f, 33)); //Top Left
         }
         if (e.tag == "Boulder" && (Vector3.Distance(e.deathCoordinates, new Vector3(23.1f, 1.25f, 36.1f)) < 1 || Vector3.Distance(e.deathCoordinates, new Vector3(34.7f, 1.25f, 17.3f)) < 1) && !spawnpoints.Contains(new Vector3(35, 0.525f, 25)))
         {
-            Debug.Log($"Adding {new Vector3(35, 0.525f, 25)}, Top Right");
+            //Debug.Log($"Adding {new Vector3(35, 0.525f, 25)}, Top Right");
             spawnpoints.Add(new Vector3(35, 0.525f, 25)); //Top Right
         }
         if (e.tag == "Boulder" && Vector3.Distance(e.deathCoordinates, new Vector3(19f, 1.25f, -28.4f)) < 1)
         {
-            Debug.Log($"Adding {new Vector3(24, 0.15f, -35)}, Bottom Right");
+            //Debug.Log($"Adding {new Vector3(24, 0.15f, -35)}, Bottom Right");
             spawnpoints.Add(new Vector3(24, 0.15f, -35)); //Bottom Right
         }
     }
@@ -125,7 +125,7 @@ public class EnemyWaveSpawnManager : MonoBehaviour
         for (int i = 0; i < spawnpointsForWave.Count; i++)
         {
             pingManager.Ping(spawnpointsForWave[i], 30, PingType.ENEMY);
-            Debug.Log($"Wave Ended, spawn position for next wave = {spawnpointsForWave[i]}");
+            //Debug.Log($"Wave Ended, spawn position for next wave = {spawnpointsForWave[i]}");
         }
        
         

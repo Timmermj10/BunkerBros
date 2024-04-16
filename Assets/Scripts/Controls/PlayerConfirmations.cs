@@ -36,9 +36,9 @@ public class PlayerConfirmations : MonoBehaviour
     }
 
 
-    private void OnEnterConfirm()
+    private void OnManagerConfirm()
     {
-        Debug.Log("OnEnterConfirm called");
+        Debug.Log("OnManagerConfirm called");
         storyDisplayer.player1Confirm();
     }
 
