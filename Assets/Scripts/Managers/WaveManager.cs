@@ -141,6 +141,7 @@ public class WaveManager : MonoBehaviour
 
     public void _WaveEnd(WaveEndedEvent e)
     {
+
         // Increment the wave number
         //Debug.Log($"Incrementing WaveNumber to {waveNumber}");
         waveNumber += 1;

@@ -14,6 +14,7 @@ public class ButtonClicked : MonoBehaviour
         {
             Debug.Log("Evacuation Event");
             // Publish the lave wave event
+            EventBus.Publish<WaveEndedEvent>(new WaveEndedEvent());
             EventBus.Publish<LastWaveEvent>(new LastWaveEvent());
 
             // Delete the button

@@ -37,6 +37,8 @@ public class EnemyWaveSpawnManager : MonoBehaviour
     private int spawnIndex = 0;
     private List<Vector3> spawnpointsForWave = new List<Vector3>();
 
+    private bool waveOver = false;
+
     //Wave manager reference to get wave information
     WaveManager waveManager;
 
@@ -103,6 +105,10 @@ public class EnemyWaveSpawnManager : MonoBehaviour
 
     private void _WaveEnded(WaveEndedEvent e)
     {
+
+        Debug.Log("Ending Wave");
+        waveOver = true;
+
         //Get the number of spawnpoints
         //Every three waves, the zombies will spawn form an additional lane
         int numSpawnpoints = Mathf.Max(1, waveManager.getWaveNumber() / 3);
@@ -133,6 +139,7 @@ public class EnemyWaveSpawnManager : MonoBehaviour
 
     private void _WaveStarted(WaveStartedEvent e)
     {
+        waveOver = false;
         spawnDelay -= 0.1f;
         if(!isFinalWave) StartCoroutine(SpawnEnemiesForWave());
     }
@@ -140,7 +147,7 @@ public class EnemyWaveSpawnManager : MonoBehaviour
     IEnumerator SpawnEnemiesForWave()
     {
         //Debug.Log("Spawning Enemies For Wave");
-        while (waveManager.getNumEnemiesSpawnedSoFar() < waveManager.getNumEnemiesToSpawnThisRound())
+        while (waveManager.getNumEnemiesSpawnedSoFar() < waveManager.getNumEnemiesToSpawnThisRound() && !waveOver)
         {
             //Make sure the maximum amount of enemies is not exceeded and the amount of enemies per wave is not exceeded
             if (spawnTimer <= 0 && waveManager.getNumEnemiesAlive() < waveManager.getMaxEnemiesAliveAtOnce())
