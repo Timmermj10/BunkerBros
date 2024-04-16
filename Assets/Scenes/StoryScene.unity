@@ -996,9 +996,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 469221f60ad6fc4409d14b43a4599fee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: {fileID: 0}
-  delayBetweenCharacters: 0.03
-  fadeOutDuration: 3
   sound1: {fileID: 8300000, guid: a320ab57128ff3844b77f405d3f23e2f, type: 3}
   sound2: {fileID: 8300000, guid: 8c4c83aa42cd2cb468dfd2070411b3dc, type: 3}
   managerConfirmation: {fileID: 1576034908}

@@ -7,10 +7,10 @@ using UnityEngine.UI;
 public class StoryDisplayer : MonoBehaviour
 {
 
-    [SerializeField] private TMP_Text text;
+    private TMP_Text text;
     private string fullText = "In a post apocalyptic world, our heroes have been chased by zombies into the desert where they are stranded until they find a way to escape. They have taken shelter in a government bunker, equipped with remote controlled robots and drones to help them defend themselves. They must now survive long enough to execute an escape plan.";
-    [SerializeField] private float delayBetweenCharacters = 0.03f;
-    [SerializeField] private float fadeOutDuration = 3f;
+    private float delayBetweenCharacters = 0.03f;
+    private float fadeOutDuration = 2f;
 
     public AudioClip sound1;
     public AudioClip sound2;
@@ -108,7 +108,7 @@ public class StoryDisplayer : MonoBehaviour
         StartCoroutine(ImageFadeOut(playerConfirmation));
         StartCoroutine(ImageFadeOut(managerConfirmation));
 
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(2);
 
         asyncLoad.allowSceneActivation = true;
 
