@@ -147,11 +147,11 @@ public class WaveManager : MonoBehaviour
         waveNumber += 1;
 
         // Increase the number of enemies to be spawned
-        numEnemiesToSpawnThisRound =  Mathf.RoundToInt(1.5f * (-0.006f * Mathf.Pow(waveNumber, 3) + 0.4f * Mathf.Pow(waveNumber, 2) + 0.8f * waveNumber + 8f));
-        //Debug.Log($"Changed numEnemiesToSpawnThisRound to {numEnemiesToSpawnThisRound}");
+        numEnemiesToSpawnThisRound =  Mathf.RoundToInt(1.3f * (-0.006f * Mathf.Pow(waveNumber, 3) + 0.4f * Mathf.Pow(waveNumber, 2) + 0.8f * waveNumber + 8f));
+        Debug.Log($"Changed numEnemiesToSpawnThisRound to {numEnemiesToSpawnThisRound}");
 
         // Increase the number of Armored Enemies to be spawned
-        numArmoredToSpawnThisRound = Mathf.RoundToInt(2.3f * ((0.02f * waveNumber - 0.025f) * (-0.006f * Mathf.Pow(waveNumber, 3) + 0.4f * Mathf.Pow(waveNumber, 2) + 0.8f * waveNumber + 8f) + waveNumber / 3f));
+        numArmoredToSpawnThisRound = Mathf.RoundToInt(2f * ((0.02f * waveNumber - 0.025f) * (-0.006f * Mathf.Pow(waveNumber, 3) + 0.4f * Mathf.Pow(waveNumber, 2) + 0.8f * waveNumber + 8f) + waveNumber / 3f));
         //Debug.Log($"Changed numArmoredToSpawnThisRound to {numArmoredToSpawnThisRound}");
 
         // Increase the number of Hordes to be spawned

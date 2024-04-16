@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class RoundCounterUI : MonoBehaviour
 {
     // Round count
-    private int roundCount = 0;
+    private int roundCount = 1;
 
     // Manager Round Text
     private Text managerRounds;
@@ -18,14 +18,14 @@ public class RoundCounterUI : MonoBehaviour
     void Start()
     {
         // Subscribe to round start events
-        EventBus.Subscribe<WaveStartedEvent>(_UpdateRoundUI);
+        EventBus.Subscribe<WaveEndedEvent>(_UpdateRoundUI);
 
         // Get reference to the text for rounds
         managerRounds = GameObject.Find("ManagerRoundCounter").GetComponent<Text>();
         playerRounds = GameObject.Find("PlayerRoundCounter").GetComponent<Text>();
     }
 
-    public void _UpdateRoundUI(WaveStartedEvent e)
+    public void _UpdateRoundUI(WaveEndedEvent e)
     {
         // Increment the round count
         roundCount++;

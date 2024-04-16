@@ -119,9 +119,9 @@ public class EnemyWaveSpawnManager : MonoBehaviour
         Debug.Log($"round number = {waveManager.getWaveNumber()}");
         int numSpawnpoints = 1;
 
-        if (numSpawnpoints >= 4) numSpawnpoints++;
-        if (numSpawnpoints >= 7) numSpawnpoints++;
-        if (numSpawnpoints >= 9) numSpawnpoints++;
+        if (waveManager.getWaveNumber() >= 4) numSpawnpoints++;
+        if (waveManager.getWaveNumber() >= 7) numSpawnpoints++;
+        if (waveManager.getWaveNumber() >= 9) numSpawnpoints++;
 
         Debug.Log($"numSpawnpoints = {numSpawnpoints}");
         numSpawnpoints = Mathf.Min(spawnpoints.Count, numSpawnpoints);
