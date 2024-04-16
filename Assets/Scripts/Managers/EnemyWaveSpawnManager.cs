@@ -105,17 +105,29 @@ public class EnemyWaveSpawnManager : MonoBehaviour
 
     private void _WaveEnded(WaveEndedEvent e)
     {
-
-        Debug.Log("Ending Wave");
         waveOver = true;
+        StartCoroutine(_updateSpawnpoints());
+        
+    }
+
+    private IEnumerator _updateSpawnpoints()
+    {
+        yield return new WaitForEndOfFrame();
 
         //Get the number of spawnpoints
         //Every three waves, the zombies will spawn form an additional lane
-        int numSpawnpoints = Mathf.Max(1, waveManager.getWaveNumber() / 3);
+        Debug.Log($"round number = {waveManager.getWaveNumber()}");
+        int numSpawnpoints = 0;
+
+        if (numSpawnpoints >= 4) numSpawnpoints++;
+        if (numSpawnpoints >= 7) numSpawnpoints++;
+        if (numSpawnpoints >= 9) numSpawnpoints++;
+
+        Debug.Log($"numSpawnpoints = {numSpawnpoints}");
         numSpawnpoints = Mathf.Min(spawnpoints.Count, numSpawnpoints);
 
         spawnpointsForWave.Clear();
-        
+
         //Pick Random spawnpoints
         for (int i = 0; i < numSpawnpoints; i++)
         {
@@ -133,8 +145,8 @@ public class EnemyWaveSpawnManager : MonoBehaviour
             pingManager.Ping(spawnpointsForWave[i], 30, PingType.ENEMY);
             //Debug.Log($"Wave Ended, spawn position for next wave = {spawnpointsForWave[i]}");
         }
-       
-        
+
+        yield return null;
     }
 
     private void _WaveStarted(WaveStartedEvent e)
