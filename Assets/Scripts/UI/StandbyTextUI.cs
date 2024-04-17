@@ -64,7 +64,7 @@ public class StandbyTextUI : MonoBehaviour
                 if (section != 2)
                 {
                     // Update the text to tell the player that the manager is about to choose a location
-                    standbyText.text = "Waiting for Manager";
+                    standbyText.text = "Waiting for Partner";
 
                     // Update section
                     section = 2;
