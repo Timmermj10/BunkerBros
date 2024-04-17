@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class CarpetBombManager : MonoBehaviour
 {
+    public GameObject carpetBombPlane;
+
     void Start()
     {
-
         EventBus.Subscribe<LastWaveOverEvent>(_carpetBomb);
     }
 
@@ -20,9 +21,15 @@ public class CarpetBombManager : MonoBehaviour
         Vector3 nukeLocation = Vector3.zero;
         RaycastHit hit;
 
-        for (int i = -50; i <= 51; i += 2)
+        for (int z = -50; z <= 50; z += 3)
         {
-            for (int j = -50; j <= 51; j += 2)
+            Instantiate(carpetBombPlane, new Vector3(-50, 15, z), Quaternion.identity);
+        }
+
+
+        for (int i = -50; i <= 51; i += 3)
+        {
+            for (int j = -50; j <= 51; j += 3)
             {
                 nukeLocation = new Vector3(i, 30, j);
 
@@ -32,7 +39,7 @@ public class CarpetBombManager : MonoBehaviour
                     EventBus.Publish<ItemUseEvent>(new ItemUseEvent(4, nukeLocation, true)); //id is 4 for nuke
                 }
             }
-            yield return new WaitForSeconds(0.15f);
+            yield return new WaitForSeconds(0.225f);
         }
 
         yield return new WaitForSeconds(1);

@@ -42,7 +42,7 @@ public class PopUpSystem : MonoBehaviour
         {
             //Debug.Log("Disabling both players");
             managerActionMap.Disable();
-            activePlayerInputs.disableControls();
+            if (activePlayerInputs != null) activePlayerInputs.disableControls();
         }
         else if (playerToFreeze == "Manager")
         {
@@ -52,7 +52,7 @@ public class PopUpSystem : MonoBehaviour
         else if (playerToFreeze == "Player")
         {
             //Debug.Log("Disabling active Player");
-            activePlayerInputs.disableControls();
+            if (activePlayerInputs != null) activePlayerInputs.disableControls();
         }
     }
 

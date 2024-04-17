@@ -116,14 +116,12 @@ public class EnemyWaveSpawnManager : MonoBehaviour
 
         //Get the number of spawnpoints
         //Every three waves, the zombies will spawn form an additional lane
-        Debug.Log($"round number = {waveManager.getWaveNumber()}");
         int numSpawnpoints = 1;
 
         if (waveManager.getWaveNumber() >= 4) numSpawnpoints++;
         if (waveManager.getWaveNumber() >= 7) numSpawnpoints++;
         if (waveManager.getWaveNumber() >= 9) numSpawnpoints++;
 
-        Debug.Log($"numSpawnpoints = {numSpawnpoints}");
         numSpawnpoints = Mathf.Min(spawnpoints.Count, numSpawnpoints);
 
         spawnpointsForWave.Clear();
