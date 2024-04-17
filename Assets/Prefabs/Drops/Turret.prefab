@@ -357,7 +357,7 @@ MonoBehaviour:
   cooldown: 1.25
   ProjectilePrefab: {fileID: 4820764227730699988, guid: 07cac96898c26b041928e90fb5d15422,
     type: 3}
-  activationDistance: 5
+  activationDistance: 10
 --- !u!114 &3465474054156532825
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -373,7 +373,7 @@ MonoBehaviour:
   maxHealth: 8
   currentHealth: 0
   armorValue: 0
-  healthBar: {fileID: 0}
+  healthBars: []
 --- !u!65 &8907759553847711845
 BoxCollider:
   m_ObjectHideFlags: 0
