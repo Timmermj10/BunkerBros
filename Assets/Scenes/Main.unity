@@ -19449,7 +19449,8 @@ MonoBehaviour:
   popUpBox: {fileID: 0}
   popUpBoxPrefab: {fileID: 4040145981536289010, guid: 4b74bcec678f62f4ea5f41a7e167b845,
     type: 3}
-  actionAsset: {fileID: 0}
+  actionAsset: {fileID: -944628639613478452, guid: c415be8f3bfa0ae41a25ced4f97ac397,
+    type: 3}
 --- !u!114 &1542962844
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19830,7 +19831,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3e9ec0fb54815c4f891e917dcff3063, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  carpetBombPlane: {fileID: 0}
+  carpetBombPlane: {fileID: 3271600442215709858, guid: f2ff1b5cabc9f224db90bf7bb457724b,
+    type: 3}
 --- !u!114 &1542962858
 MonoBehaviour:
   m_ObjectHideFlags: 0
