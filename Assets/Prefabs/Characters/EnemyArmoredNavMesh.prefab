@@ -619,11 +619,11 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 100064, guid: a21249fc4024a534fb7a73b3a30363d2,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1017098228307849158}
+      addedObject: {fileID: 1915310147656879459}
     - targetCorrespondingSourceObject: {fileID: 100064, guid: a21249fc4024a534fb7a73b3a30363d2,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1915310147656879459}
+      addedObject: {fileID: -3830098511603864339}
     - targetCorrespondingSourceObject: {fileID: 100022, guid: a21249fc4024a534fb7a73b3a30363d2,
         type: 3}
       insertIndex: -1
@@ -807,22 +807,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &1017098228307849158
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6525121760247072822}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a0eff4a664db8424d92f784cbfd606fb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 1
-  attackDistance: 0.1
-  agent: {fileID: 1915310147656879459}
-  possibleLocations: []
 --- !u!195 &1915310147656879459
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -845,6 +829,22 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &-3830098511603864339
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6525121760247072822}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04fa5ec03a18fd044be4e5d3217623b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 5
+  attackDistance: 1.5
+  agent: {fileID: 1915310147656879459}
+  possibleLocations: []
 --- !u!1 &6525121760247072864 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100022, guid: a21249fc4024a534fb7a73b3a30363d2,

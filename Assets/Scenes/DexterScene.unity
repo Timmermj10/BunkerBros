@@ -19480,8 +19480,6 @@ MonoBehaviour:
   NukeParts: {fileID: 773221783}
   EvacuationButton: {fileID: 1717707569}
   buttonFlashDuration: 0.3
-  actionAsset: {fileID: -944628639613478452, guid: c415be8f3bfa0ae41a25ced4f97ac397,
-    type: 3}
 --- !u!82 &1542962845
 AudioSource:
   m_ObjectHideFlags: 0

@@ -186,7 +186,7 @@ public class TutorialManager : MonoBehaviour
 
         yield return new WaitForSeconds(1f);
 
-        EventBus.Publish(new PopUpStartEvent("Manager", "There's a zombie horde approaching from the north! Use some walls, turrets, and missiles to defend your bunker."));//14
+        EventBus.Publish(new PopUpStartEvent("Manager", "There's a zombie horde approaching from the north! Use some walls, turrets, and missiles to defend your bunker.", true, true));//15
         EventBus.Publish(new FirstTutorialWaveEvent());
         enemiesAlive = 7;
 
@@ -195,7 +195,7 @@ public class TutorialManager : MonoBehaviour
             yield return new WaitForFixedUpdate();
         }
 
-        EventBus.Publish(new PopUpStartEvent("Manager", "Great work! There are some more supplies to help your partner. Help them out by dropping them a gun and some ammo if you get the chance.")); //15
+        EventBus.Publish(new PopUpStartEvent("Manager", "Great work! There are some more supplies to help your partner. Help them out by dropping them a gun and some ammo if you get the chance.")); //16
 
         //turn on the evac button
         EvacuationButton.SetActive(true);
@@ -267,7 +267,7 @@ public class TutorialManager : MonoBehaviour
                 //Ping Radio Tower
                 pingManager.Ping(new Vector3(-1.7f, 1.5f, -33.63f), 10);
                 break;
-            case 14:
+            case 15:
                 StartCoroutine(spawnTutorialWave());
                 
                 //Show the buttons
@@ -280,7 +280,7 @@ public class TutorialManager : MonoBehaviour
                 StartCoroutine(ButtonFlashRoutine(Turret));
                 StartCoroutine(ButtonFlashRoutine(Missile));
                 break;
-            case 15:
+            case 16:
                 //Show the buttons
                 Gun.SetActive(true);
                 AmmoCrate.SetActive(true);
@@ -381,7 +381,7 @@ public class TutorialManager : MonoBehaviour
     {
         if (!hasActivatedRadioTower)
         {
-            EventBus.Publish(new PopUpStartEvent("Player", "Good job activating the radio tower! Make sure you help your partner get the tower fully online!"));
+            EventBus.Publish(new PopUpStartEvent("Player", "Good job activating the radio tower! Make sure you help your partner get the tower fully online!")); //14
             hasActivatedRadioTower = true;
         }
     }

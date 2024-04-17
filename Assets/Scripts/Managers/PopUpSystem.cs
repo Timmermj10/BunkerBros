@@ -31,14 +31,20 @@ public class PopUpSystem : MonoBehaviour
     {
         //Debug.Log("PopUpCalled");
         popUpBox = Instantiate(popUpBoxPrefab);
-        freezePlayer(e.player);
+        freezePlayer(e.player, e.freezeBothPlayers);
         PopUpPrefabController prefab = popUpBox.GetComponent<PopUpPrefabController>();
         prefab.printText(e.player, e.text);
     }
 
-    private void freezePlayer(string playerToFreeze)
+    private void freezePlayer(string playerToFreeze, bool freezeBothPlayers)
     {
-        if (playerToFreeze == "Manager")
+        if(freezeBothPlayers)
+        {
+            //Debug.Log("Disabling both players");
+            managerActionMap.Disable();
+            activePlayerInputs.disableControls();
+        }
+        else if (playerToFreeze == "Manager")
         {
             //Debug.Log("Disabling manager Player");
             managerActionMap.Disable();
@@ -46,12 +52,6 @@ public class PopUpSystem : MonoBehaviour
         else if (playerToFreeze == "Player")
         {
             //Debug.Log("Disabling active Player");
-            activePlayerInputs.disableControls();
-        }
-        else
-        {
-            //Debug.Log("Disabling both players");
-            managerActionMap.Disable();
             activePlayerInputs.disableControls();
         }
     }

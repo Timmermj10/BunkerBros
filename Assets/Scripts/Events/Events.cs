@@ -190,10 +190,14 @@ public class PopUpStartEvent
 {
     public string player;
     public string text;
-    public PopUpStartEvent(string player, string text)
+    public bool freezeEnemies;
+    public bool freezeBothPlayers;
+    public PopUpStartEvent(string player, string text, bool freezeEnemies = true, bool freezeBothPlayers = false)
     {
         this.player = player;
         this.text = text;
+        this.freezeEnemies = freezeEnemies;
+        this.freezeBothPlayers = freezeBothPlayers;
     }
 }
 

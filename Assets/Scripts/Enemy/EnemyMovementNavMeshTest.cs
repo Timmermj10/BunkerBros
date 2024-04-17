@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.IO;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UIElements;
@@ -47,7 +48,12 @@ public class EnemyMovementNavMeshTest : MonoBehaviour
     // Nearest destructable
     GameObject nearestDestructable;
 
+    //Bool to turn off movement
+    private bool canMove = true;
 
+    private Subscription<PopUpStartEvent> startpopup_subscription;
+    private Subscription<PopUpEndEvent> endpopup_subscription;
+    private Subscription<PlayerRespawnEvent> respawn_event_subscription;
 
     private void Awake()
     {
@@ -56,8 +62,12 @@ public class EnemyMovementNavMeshTest : MonoBehaviour
         player = GameObject.Find("player");
         animator = this.GetComponent<Animator>();
 
+        startpopup_subscription = EventBus.Subscribe<PopUpStartEvent>(_FreezeMovement);
+        endpopup_subscription = EventBus.Subscribe<PopUpEndEvent>(_UnfreezeMovement);
+        respawn_event_subscription = EventBus.Subscribe<PlayerRespawnEvent>(_ResetPlayer);
+
         // Set the animator speed
-        animator.speed = speed * 2;
+        animator.speed = 2;
 
         // Define all the possible locations that the zombie could attack
         DefinePossibleLocations();
@@ -71,139 +81,159 @@ public class EnemyMovementNavMeshTest : MonoBehaviour
         }
     }
 
+    public void _ResetPlayer(PlayerRespawnEvent e)
+    {
+        player = e.activePlayer;
+    }
+
+    private void _FreezeMovement(PopUpStartEvent e)
+    {
+        Debug.Log("setting canMove to false");
+        canMove = false;
+
+        if(agent != null && agent.enabled) agent.SetDestination(transform.position);
+        animator.speed = 0f;
+    }
+
+    private void _UnfreezeMovement(PopUpEndEvent e)
+    {
+        canMove = true;
+        animator.speed = 2;
+    }
+
     // Update is called once per frame
     void Update()
     {
-        if (objective != null)
+        if (canMove)
         {
-            // Get the objective offset
-            Vector3 objectiveOffset = transform.position - objective.transform.position;
-
-            // Initialize the player offset
-            Vector3 playerOffset;
-
-            // If we have a player in the scene
-            if (player != null)
+            if (objective != null)
             {
-                // Set the player offset to the distance between the enemy and the player
-                playerOffset = transform.position - player.transform.position;
-            }
-            else
-            {
-                // Try to find the player
-                player = GameObject.Find("player");
+                // Get the objective offset
+                Vector3 objectiveOffset = transform.position - objective.transform.position;
 
-                // Set the player offset to infinity (so the enemy won't go after an imaginary player)
-                playerOffset = new Vector3(Mathf.Infinity, Mathf.Infinity, Mathf.Infinity);
-            }
+                // Initialize the player offset
+                Vector3 playerOffset;
 
-            // Offset to work with animator
-            Vector3 minOffset = objectiveOffset.magnitude <= playerOffset.magnitude ? objectiveOffset : playerOffset;
-            minOffset.y = 0;
-
-            // Distance to work with NavMesh
-            minDistance = objectiveOffset.magnitude <= playerOffset.magnitude ? objective.transform.position : player.transform.position;
-            minDistance.y = 0;
-
-            // If the min distance is different than the target
-            if (minDistance != targetCenter || player == null)
-            {
-                //Debug.Log("here");
+                // If we have a player in the scene
                 if (player != null)
                 {
-                    DetermineBestLocation(player.transform.position);
+                    // Set the player offset to the distance between the enemy and the player
+                    playerOffset = transform.position - player.transform.position;
                 }
                 else
                 {
-                    DetermineBestLocation(playerOffset);
+                    // Set the player offset to infinity (so the enemy won't go after an imaginary player)
+                    playerOffset = new Vector3(Mathf.Infinity, Mathf.Infinity, Mathf.Infinity);
                 }
-            }
 
-            targetCenter = minDistance;
+                // Offset to work with animator
+                Vector3 minOffset = objectiveOffset.magnitude <= playerOffset.magnitude ? objectiveOffset : playerOffset;
+                minOffset.y = 0;
 
+                // Distance to work with NavMesh
+                minDistance = objectiveOffset.magnitude <= playerOffset.magnitude ? objective.transform.position : player.transform.position;
+                minDistance.y = 0;
 
-
-            //// Adjust the closest point a little to make it so they all don't stack up
-            //if (minDistance == Vector3.zero)
-            //{
-            //    Vector3 direction = minOffset - minDistance;
-            //    float angle = Mathf.Atan2(direction.z, direction.x);
-
-            //    minDistance.x += 0.5f * Mathf.Cos(angle);
-            //    minDistance.z += 0.5f * Mathf.Sin(angle);
-            //}
-
-            // DefinePossibleLocations();
-            //Debug.Log(target);
-
-            active = minOffset.magnitude > attackDistance;
-            animator.SetBool("walking", active);
-            //attacking = minOffset.magnitude <= attackDistance;
-            //DetermineBestLocation();
-            // If the agent has an end point, check if we are close enough to the end point to start attacking
-            if (agent.remainingDistance > 0)
-            {
-                attacking = agent.remainingDistance < attackDistance;
-                // Check if we are close enough to the objective to override it
-                // Debug.Log((transform.position - Vector3.zero).magnitude);
-                if ((transform.position - Vector3.zero).magnitude < 1.5)
+                // If the min distance is different than the target
+                if (minDistance != targetCenter || player == null)
                 {
-                    //Debug.Log("Close to objective");
-                    attacking = true;
+                    //Debug.Log("here");
+                    if (player != null)
+                    {
+                        DetermineBestLocation(player.transform.position);
+                    }
+                    else
+                    {
+                        DetermineBestLocation(playerOffset);
+                    }
                 }
-            }
-            animator.SetBool("attacking", attacking);
 
-            // If the enemies are currently walking
-            if (animator.GetCurrentAnimatorStateInfo(0).IsName("walk"))
-            {
-                // To start the agent
-                agent.isStopped = false;
+                targetCenter = minDistance;
 
-                // Need to determine if the path is complete
 
-                // If the path is not complete we need to set the path to the nearest object blocking the path
 
-                // Do this by sending out a raycast from the feet of the zombie toward the objective
-                // Whatever it hits first, set this to the closestObject game object to be considered in the minOffset calculation
+                //// Adjust the closest point a little to make it so they all don't stack up
+                //if (minDistance == Vector3.zero)
+                //{
+                //    Vector3 direction = minOffset - minDistance;
+                //    float angle = Mathf.Atan2(direction.z, direction.x);
 
-                // If the path is complete
+                //    minDistance.x += 0.5f * Mathf.Cos(angle);
+                //    minDistance.z += 0.5f * Mathf.Sin(angle);
+                //}
 
-                // Set where they are going to move to
-                // agent.SetDestination(minDistance);
+                // DefinePossibleLocations();
+                //Debug.Log(target);
 
-                agent.SetDestination(target);
-            }
-            // If the enemies are attacking
-            else
-            {
-                // Send out raycasts in a sphere to find nearest object
-                nearestDestructable = FindNearestDestructible();
-
-                if (nearestDestructable != null)
+                active = minOffset.magnitude > attackDistance;
+                animator.SetBool("walking", active);
+                //attacking = minOffset.magnitude <= attackDistance;
+                //DetermineBestLocation();
+                // If the agent has an end point, check if we are close enough to the end point to start attacking
+                if (agent.remainingDistance > 0)
                 {
-                    Vector3 look = new Vector3(nearestDestructable.transform.position.x, transform.position.y, nearestDestructable.transform.position.z);
-                    // Rotate our zombie toward the destructable and start attacking
-                    transform.LookAt(look, Vector3.up);
-
-                    // To stop the agent
-                    agent.isStopped = true;
-
-                    // Clear path
-                    agent.ResetPath();
+                    attacking = agent.remainingDistance < attackDistance;
+                    // Check if we are close enough to the objective to override it
+                    // Debug.Log((transform.position - Vector3.zero).magnitude);
+                    if ((transform.position - Vector3.zero).magnitude < 1.5)
+                    {
+                        //Debug.Log("Close to objective");
+                        attacking = true;
+                    }
                 }
+                animator.SetBool("attacking", attacking);
+
+                // If the enemies are currently walking
+                if (animator.GetCurrentAnimatorStateInfo(0).IsName("walk"))
+                {
+                    // To start the agent
+                    agent.isStopped = false;
+
+                    // Need to determine if the path is complete
+
+                    // If the path is not complete we need to set the path to the nearest object blocking the path
+
+                    // Do this by sending out a raycast from the feet of the zombie toward the objective
+                    // Whatever it hits first, set this to the closestObject game object to be considered in the minOffset calculation
+
+                    // If the path is complete
+
+                    // Set where they are going to move to
+                    // agent.SetDestination(minDistance);
+
+                    agent.SetDestination(target);
+                }
+                // If the enemies are attacking
                 else
                 {
-                    attacking = false;
-                    animator.SetBool("attacking", attacking);
+                    // Send out raycasts in a sphere to find nearest object
+                    nearestDestructable = FindNearestDestructible();
+
+                    if (nearestDestructable != null)
+                    {
+                        Vector3 look = new Vector3(nearestDestructable.transform.position.x, transform.position.y, nearestDestructable.transform.position.z);
+                        // Rotate our zombie toward the destructable and start attacking
+                        transform.LookAt(look, Vector3.up);
+
+                        // To stop the agent
+                        agent.isStopped = true;
+
+                        // Clear path
+                        agent.ResetPath();
+                    }
+                    else
+                    {
+                        attacking = false;
+                        animator.SetBool("attacking", attacking);
+                    }
+
+                    // Angle them towards the thing they are attacking
+                    // Vector3 direction = minOffset - minDistance;
+                    // Quaternion rotation = Quaternion.LookRotation(direction);
+
+                    // transform.rotation = Quaternion.Euler(0, -rotation.eulerAngles.y, 0);
+                    // transform.LookAt(transform.position + minOffset);
                 }
-
-                // Angle them towards the thing they are attacking
-                // Vector3 direction = minOffset - minDistance;
-                // Quaternion rotation = Quaternion.LookRotation(direction);
-
-                // transform.rotation = Quaternion.Euler(0, -rotation.eulerAngles.y, 0);
-                // transform.LookAt(transform.position + minOffset);
             }
         }
     }

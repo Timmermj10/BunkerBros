@@ -22,7 +22,7 @@ public class EnemyMovement : MonoBehaviour
 
     private bool canMove = true;
 
-    void Awake()
+    void Start()
     {
         objective = GameObject.Find("Objective");
         player = GameObject.Find("player");
@@ -40,12 +40,15 @@ public class EnemyMovement : MonoBehaviour
 
     private void _FreezeMovement(PopUpStartEvent e)
     {
+        Debug.Log("setting canMove to false");
         canMove = false;
+        animator.speed = 0f;
     }
 
     private void _UnfreezeMovement(PopUpEndEvent e)
     {
         canMove = true;
+        animator.speed = speed * 2;
     }
 
     void Update()
