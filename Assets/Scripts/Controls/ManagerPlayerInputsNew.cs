@@ -191,7 +191,7 @@ public class ManagerPlayerInputsNew : MonoBehaviour
 
     private void OnPlayerSnap(InputValue value)
     {
-        GameObject play = GameObject.Find("player");
+        GameObject play = GameObject.Find("player");git
         if (play != null) {
             Vector3 loc = play.transform.position;
             loc.y = 20;
