@@ -8,9 +8,6 @@ public class RoundCounterUI : MonoBehaviour
     // Round count
     private int roundCount = 1;
 
-    // Manager Round Text
-    private Text managerRounds;
-
     // Player Round Text
     private Text playerRounds;
 
@@ -21,7 +18,6 @@ public class RoundCounterUI : MonoBehaviour
         EventBus.Subscribe<WaveEndedEvent>(_UpdateRoundUI);
 
         // Get reference to the text for rounds
-        managerRounds = GameObject.Find("ManagerRoundCounter").GetComponent<Text>();
         playerRounds = GameObject.Find("PlayerRoundCounter").GetComponent<Text>();
     }
 
@@ -31,7 +27,6 @@ public class RoundCounterUI : MonoBehaviour
         roundCount++;
 
         // Update the UI
-        managerRounds.text = $"Round: {roundCount}";
         playerRounds.text = $"Round: {roundCount}";
     }
 }
