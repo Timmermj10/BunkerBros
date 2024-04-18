@@ -61,7 +61,7 @@ public class AirstrikeListener : MonoBehaviour
     {
         if (e.itemID == 4) //nuke
         {
-            blastRadius = 5;
+            blastRadius = 5.5f;
             explosionDamage = nukeDamage;
             StartCoroutine(ExplosionEffect(e.itemLocation, explosionPrefab));
         }
