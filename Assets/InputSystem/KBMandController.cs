@@ -308,6 +308,24 @@ public partial class @KBMandController: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ObjectiveSnap"",
+                    ""type"": ""Button"",
+                    ""id"": ""105d269c-accd-4221-89ff-c328068acd20"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""PlayerSnap"",
+                    ""type"": ""Button"",
+                    ""id"": ""23c1d5bd-053a-4235-993a-2ff656c75301"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -420,6 +438,28 @@ public partial class @KBMandController: IInputActionCollection2, IDisposable
                     ""action"": ""Deselect"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""361bb967-ca85-496c-95c3-863ac2763402"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ObjectiveSnap"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""27d5ff90-a3a3-4cad-861a-675698f7e07b"",
+                    ""path"": ""<Keyboard>/f"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PlayerSnap"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -506,6 +546,8 @@ public partial class @KBMandController: IInputActionCollection2, IDisposable
         m_ManagerPlayer_Ping = m_ManagerPlayer.FindAction("Ping", throwIfNotFound: true);
         m_ManagerPlayer_Zoom = m_ManagerPlayer.FindAction("Zoom", throwIfNotFound: true);
         m_ManagerPlayer_Deselect = m_ManagerPlayer.FindAction("Deselect", throwIfNotFound: true);
+        m_ManagerPlayer_ObjectiveSnap = m_ManagerPlayer.FindAction("ObjectiveSnap", throwIfNotFound: true);
+        m_ManagerPlayer_PlayerSnap = m_ManagerPlayer.FindAction("PlayerSnap", throwIfNotFound: true);
         // StorySceneConfirms
         m_StorySceneConfirms = asset.FindActionMap("StorySceneConfirms", throwIfNotFound: true);
         m_StorySceneConfirms_GamepadConfirm = m_StorySceneConfirms.FindAction("GamepadConfirm", throwIfNotFound: true);
@@ -703,6 +745,8 @@ public partial class @KBMandController: IInputActionCollection2, IDisposable
     private readonly InputAction m_ManagerPlayer_Ping;
     private readonly InputAction m_ManagerPlayer_Zoom;
     private readonly InputAction m_ManagerPlayer_Deselect;
+    private readonly InputAction m_ManagerPlayer_ObjectiveSnap;
+    private readonly InputAction m_ManagerPlayer_PlayerSnap;
     public struct ManagerPlayerActions
     {
         private @KBMandController m_Wrapper;
@@ -713,6 +757,8 @@ public partial class @KBMandController: IInputActionCollection2, IDisposable
         public InputAction @Ping => m_Wrapper.m_ManagerPlayer_Ping;
         public InputAction @Zoom => m_Wrapper.m_ManagerPlayer_Zoom;
         public InputAction @Deselect => m_Wrapper.m_ManagerPlayer_Deselect;
+        public InputAction @ObjectiveSnap => m_Wrapper.m_ManagerPlayer_ObjectiveSnap;
+        public InputAction @PlayerSnap => m_Wrapper.m_ManagerPlayer_PlayerSnap;
         public InputActionMap Get() { return m_Wrapper.m_ManagerPlayer; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -740,6 +786,12 @@ public partial class @KBMandController: IInputActionCollection2, IDisposable
             @Deselect.started += instance.OnDeselect;
             @Deselect.performed += instance.OnDeselect;
             @Deselect.canceled += instance.OnDeselect;
+            @ObjectiveSnap.started += instance.OnObjectiveSnap;
+            @ObjectiveSnap.performed += instance.OnObjectiveSnap;
+            @ObjectiveSnap.canceled += instance.OnObjectiveSnap;
+            @PlayerSnap.started += instance.OnPlayerSnap;
+            @PlayerSnap.performed += instance.OnPlayerSnap;
+            @PlayerSnap.canceled += instance.OnPlayerSnap;
         }
 
         private void UnregisterCallbacks(IManagerPlayerActions instance)
@@ -762,6 +814,12 @@ public partial class @KBMandController: IInputActionCollection2, IDisposable
             @Deselect.started -= instance.OnDeselect;
             @Deselect.performed -= instance.OnDeselect;
             @Deselect.canceled -= instance.OnDeselect;
+            @ObjectiveSnap.started -= instance.OnObjectiveSnap;
+            @ObjectiveSnap.performed -= instance.OnObjectiveSnap;
+            @ObjectiveSnap.canceled -= instance.OnObjectiveSnap;
+            @PlayerSnap.started -= instance.OnPlayerSnap;
+            @PlayerSnap.performed -= instance.OnPlayerSnap;
+            @PlayerSnap.canceled -= instance.OnPlayerSnap;
         }
 
         public void RemoveCallbacks(IManagerPlayerActions instance)
@@ -873,6 +931,8 @@ public partial class @KBMandController: IInputActionCollection2, IDisposable
         void OnPing(InputAction.CallbackContext context);
         void OnZoom(InputAction.CallbackContext context);
         void OnDeselect(InputAction.CallbackContext context);
+        void OnObjectiveSnap(InputAction.CallbackContext context);
+        void OnPlayerSnap(InputAction.CallbackContext context);
     }
     public interface IStorySceneConfirmsActions
     {
