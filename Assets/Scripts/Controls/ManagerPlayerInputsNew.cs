@@ -396,7 +396,7 @@ public class ManagerPlayerInputsNew : MonoBehaviour
 
                     EventBus.Publish<ItemUseEvent>(new ItemUseEvent(8, itemUsedLocation, true)); // Changed to 8 for a AmmoCrate
                 }
-                else if (itemID == 9 && Vector3.Distance(worldPositionRounded, new Vector3(0, 1, 0)) < maxRespawnDistanceFromObjective && GameObject.Find("player") == null)
+                else if (itemID == 9 && Vector3.Distance(worldPositionRounded, new Vector3(0, 1, 0)) < maxRespawnDistanceFromObjective && GameObject.Find("player") == null && !ButtonUpdate.respawning)
                 {
                     //get the location of the item
                     Vector3 itemUsedLocation = new Vector3(worldPositionRounded.x, worldPositionRounded.y + 0.5f, worldPositionRounded.z);

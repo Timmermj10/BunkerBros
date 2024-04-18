@@ -56,7 +56,7 @@ public class TIleHoverUI : MonoBehaviour
                     // Update the preview instance if we are working with player respawn
                     if (selectedObj == GameObject.Find("PlayerRespawn"))
                     {
-                        if (Vector3.Distance(worldPositionRounded, new Vector3(0, 15, 0)) < ManagerPlayerInputsNew.maxRespawnDistanceFromObjective)
+                        if (Vector3.Distance(worldPositionRounded, new Vector3(0, 15, 0)) < ManagerPlayerInputsNew.maxRespawnDistanceFromObjective && GameObject.Find("Player") == null)
                         {
                             if (previewInstance != GameObject.Find("ValidSpawnPreview(Clone)"))
                             {
