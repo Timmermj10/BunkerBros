@@ -381,7 +381,7 @@ public class TutorialManager : MonoBehaviour
     {
         if (!hasActivatedRadioTower)
         {
-            EventBus.Publish(new PopUpStartEvent("Player", "Good job activating the radio tower! Make sure you help your partner get the tower fully online!")); //14
+            EventBus.Publish(new PopUpStartEvent("Player", "Good job activating the radio tower! Make sure you find the code to help get the tower fully online!")); //14
             hasActivatedRadioTower = true;
         }
     }
