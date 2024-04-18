@@ -357,7 +357,7 @@ MonoBehaviour:
   cooldown: 1.25
   ProjectilePrefab: {fileID: 4820764227730699988, guid: 07cac96898c26b041928e90fb5d15422,
     type: 3}
-  activationDistance: 10
+  activationDistance: 7.5
 --- !u!114 &3465474054156532825
 MonoBehaviour:
   m_ObjectHideFlags: 0
