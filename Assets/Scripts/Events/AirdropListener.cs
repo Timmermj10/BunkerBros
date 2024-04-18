@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Security.Cryptography.X509Certificates;
 using UnityEngine;
+using static UnityEditor.FilePathAttribute;
 
 public class AirdropListener : MonoBehaviour
 {
@@ -30,13 +31,14 @@ public class AirdropListener : MonoBehaviour
 
             GameObject prefabToInstantiate;
             Quaternion rotation;
-            GameObject airdrop;
+            float waitTime = 0f;
 
             if (e.itemID == 4) //nuke
             {
                 prefabToInstantiate = nukePrefab;
                 rotation = Quaternion.Euler(0, 0, 180);
                 dropHeight = 10f;
+                waitTime = .5f;
             }
             else if (e.itemID == 5) //missile
             {
@@ -56,14 +58,20 @@ public class AirdropListener : MonoBehaviour
             Vector3 finalDropLocation = initialDropLocation - new Vector3(0f, dropHeight, 0f);
 
             //Debug.Log($"Spawning airdrop with initialLocation of {initialDropLocation} and final location of {finalDropLocation}");
-
-            //Instantiate the drop
-            airdrop = Instantiate(prefabToInstantiate, initialDropLocation, rotation);
-            EventBus.Publish(new AirDropStartedEvent(e.itemID, airdrop.transform));
-
-            // Start the descending coroutine to handle contact with the ground
-            StartCoroutine(WaitForAirdropToLand(airdrop, initialDropLocation, finalDropLocation, e.itemID));
+            StartCoroutine(AirdropCorutine(waitTime, initialDropLocation, finalDropLocation, rotation, prefabToInstantiate, e));
         }
+    }
+
+    IEnumerator AirdropCorutine(float time, Vector3 initialDropLocation, Vector3 finalDropLocation, Quaternion rotation, GameObject prefabToInstantiate, ItemUseEvent e)
+    {
+        yield return new WaitForSeconds(time);
+        GameObject airdrop;
+        //Instantiate the drop
+        airdrop = Instantiate(prefabToInstantiate, initialDropLocation, rotation);
+        EventBus.Publish(new AirDropStartedEvent(e.itemID, airdrop.transform));
+
+        // Start the descending coroutine to handle contact with the ground
+        StartCoroutine(WaitForAirdropToLand(airdrop, initialDropLocation, finalDropLocation, e.itemID));
     }
 
     private IEnumerator WaitForAirdropToLand(GameObject airdrop, Vector3 initialDropLocation, Vector3 finalDropLocation, int itemID)

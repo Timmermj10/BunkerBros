@@ -29,11 +29,11 @@ public class TIleHoverUI : MonoBehaviour
 
         RaycastHit hit;
 
-        if (Physics.Raycast(mouseRay, out hit, Mathf.Infinity, LayerMask.GetMask("Default") | LayerMask.GetMask("Map")) && hit.collider.gameObject.name == "Cube")
+        if (Physics.Raycast(mouseRay, out hit, Mathf.Infinity, LayerMask.GetMask("Default", "Map", "Enemy")) && (hit.collider.gameObject.name == "Cube" || hit.collider.gameObject.layer == 11 || ((hit.collider.gameObject.name == "Boulder") && (gameObject.name is "Nuke" || gameObject.name is "Missle"))))
         {
             // Now worldPosition contains the 3D point in world space where the mouse is pointing
             Vector3 worldPosition = hit.point;
-            Vector3 worldPositionRounded = new Vector3(Mathf.RoundToInt(worldPosition.x), worldPosition.y + 1, Mathf.RoundToInt(worldPosition.z));
+            Vector3 worldPositionRounded = new Vector3(Mathf.RoundToInt(worldPosition.x), 15, Mathf.RoundToInt(worldPosition.z));
 
             // EventSystem.current holds a reference to the current event system
             GameObject selectedObj = EventSystem.current.currentSelectedGameObject;
@@ -56,7 +56,7 @@ public class TIleHoverUI : MonoBehaviour
                     // Update the preview instance if we are working with player respawn
                     if (selectedObj == GameObject.Find("PlayerRespawn"))
                     {
-                        if (Vector3.Distance(worldPositionRounded, new Vector3(0, 1, 0)) < ManagerPlayerInputsNew.maxRespawnDistanceFromObjective)
+                        if (Vector3.Distance(worldPositionRounded, new Vector3(0, 15, 0)) < ManagerPlayerInputsNew.maxRespawnDistanceFromObjective)
                         {
                             if (previewInstance != GameObject.Find("ValidSpawnPreview(Clone)"))
                             {

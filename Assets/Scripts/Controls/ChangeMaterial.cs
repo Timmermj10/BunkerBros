@@ -6,7 +6,10 @@ public class ChangeMaterial : MonoBehaviour
     {
         // Find the controlBox within the RadioTower prefab
         Transform ControlPanel = parentItem.transform.Find("ControlPanel");
-    
+
+        // Find the managerIndicator within the RadioTower prefab
+        Transform Indicators = parentItem.transform.Find("RadioTowerIndicators");
+
         // Check if the controlBox was found
         if (ControlPanel != null)
         {
@@ -40,6 +43,31 @@ public class ChangeMaterial : MonoBehaviour
         else
         {
             Debug.LogWarning("ControlBox not found within the RadioTower prefab.");
+        }
+
+        // Check if the indicator was found
+        if (Indicators != null)
+        {
+            // Loop through each child of the parent GameObject
+            foreach (Transform Indicator in Indicators)
+            {
+                // Get the Renderer component of the indicator
+                Renderer IndicatorRenderer = Indicator.GetComponent<Renderer>();
+
+                // Change the material of the knob
+                if (enable == true)
+                {
+                    IndicatorRenderer.material.color = new Color(0.0f, 0.937f, 0.0f);
+                }
+                else if (enable == false)
+                {
+                    IndicatorRenderer.material.color = new Color(0.937f, 0.0f, 0.0f);
+                }
+            }
+        }
+        else
+        {
+            Debug.LogWarning("Indicators not found within the RadioTower prefab.");
         }
     }
 }
