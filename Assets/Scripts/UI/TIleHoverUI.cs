@@ -29,7 +29,7 @@ public class TIleHoverUI : MonoBehaviour
 
         RaycastHit hit;
 
-        if (Physics.Raycast(mouseRay, out hit, Mathf.Infinity, LayerMask.GetMask("Default", "Map", "Enemy")) && (hit.collider.gameObject.name == "Cube" || hit.collider.gameObject.layer == 11 || ((hit.collider.gameObject.name == "Boulder") && (gameObject.name is "Nuke" || gameObject.name is "Missle"))))
+        if (Physics.Raycast(mouseRay, out hit, Mathf.Infinity, LayerMask.GetMask("Default", "Map", "Enemy", "Structure")) && (hit.collider.gameObject.name == "Cube" || hit.collider.gameObject.layer == 11 || ((hit.collider.gameObject.name == "Boulder") && (gameObject.name is "Nuke" || gameObject.name is "Missle"))))
         {
             // Now worldPosition contains the 3D point in world space where the mouse is pointing
             Vector3 worldPosition = hit.point;
@@ -44,7 +44,7 @@ public class TIleHoverUI : MonoBehaviour
                 selectedObj = ManagerPlayerInputsNew.mostRecentItem;
             }
 
-            if (selectedObj == gameObject && ManagerPlayerInputsNew.withinView(worldPositionRounded) && hit.transform.gameObject.layer != LayerMask.NameToLayer("Map"))
+            if (selectedObj == gameObject && ManagerPlayerInputsNew.withinView(worldPositionRounded) && hit.transform.gameObject.layer != LayerMask.NameToLayer("Map") && hit.transform.gameObject.layer != LayerMask.NameToLayer("Structure"))
             {
                 if (previewInstance == null)
                 {
@@ -56,7 +56,7 @@ public class TIleHoverUI : MonoBehaviour
                     // Update the preview instance if we are working with player respawn
                     if (selectedObj == GameObject.Find("PlayerRespawn"))
                     {
-                        if (Vector3.Distance(worldPositionRounded, new Vector3(0, 15, 0)) < ManagerPlayerInputsNew.maxRespawnDistanceFromObjective)
+                        if (Vector3.Distance(worldPositionRounded, new Vector3(0, 15, 0)) < ManagerPlayerInputsNew.maxRespawnDistanceFromObjective && GameObject.Find("Player") == null)
                         {
                             if (previewInstance != GameObject.Find("ValidSpawnPreview(Clone)"))
                             {

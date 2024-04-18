@@ -16,7 +16,7 @@ public class ButtonUpdate : MonoBehaviour
     private ShopManagerScript shopManager;
 
     // Respawning player
-    public bool respawning = false;
+    public static bool respawning = false;
 
     // Player respawn timer
     public float timer = 5f;
