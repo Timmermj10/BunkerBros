@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class AmmoUI : MonoBehaviour
 {
     private Text ammo_display;
+    public Text swap_display;
     private GameObject ammo_image;
     public static GameObject knife_image;
     public static GameObject gun_image;
@@ -30,6 +31,11 @@ public class AmmoUI : MonoBehaviour
         {
             // Debug.Log("Ammo UI Text Found");
         }
+
+        if (swap_display != null)
+        {
+            swap_display.text = "";
+        }
     }
 
     // Update is called once per frame
@@ -47,6 +53,8 @@ public class AmmoUI : MonoBehaviour
                     prev_total = 0;
                     reserve_mags = 0;
                     current_mag = 0;
+                    //Adding Swap Text
+                    swap_display.text = "SWAP:TRI";
                 }
                 else {
                     if (ammo.ammo_count > prev_total) {
@@ -59,6 +67,7 @@ public class AmmoUI : MonoBehaviour
                     }
                     prev_total = ammo.ammo_count;
                 }
+                swap_display.text = "";
                 ammo_display.text = current_mag.ToString() + "/" + reserve_mags.ToString();
             }
             else
