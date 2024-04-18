@@ -57,6 +57,9 @@ public class ManagerPlayerInputsNew : MonoBehaviour
     private PingManager pingManager;
     public float minX, maxX, minY, MaxY;
 
+    InputAction ObjSnap;
+    InputAction PlaySnap;
+
     // Bool to hold if we are currently doing the minigame
     bool minigame = false;
 
@@ -75,6 +78,9 @@ public class ManagerPlayerInputsNew : MonoBehaviour
         //zoomSpeed = 1;
         zoom = playerInput.actions.FindAction("Zoom");
         moveAction = playerInput.actions.FindAction("Move");
+        ObjSnap = playerInput.actions.FindAction("ObjectiveSnap");
+        PlaySnap = playerInput.actions.FindAction("PlayerSnap");
+
         if (GameObject.Find("Inventory") != null)
         {
             inventory = GameObject.Find("Inventory").GetComponent<InventoryUI>();
@@ -175,6 +181,20 @@ public class ManagerPlayerInputsNew : MonoBehaviour
         //managerCamera.position = newPosition;
 
         //Debug.Log("Manager Player: MovementInputValue = " + movementInputValue);
+    }
+
+    private void OnObjectiveSnap(InputValue value)
+    {
+        
+        transform.position = new Vector3(0, 20, 0);
+    }
+
+    private void OnPlayerSnap(InputValue value)
+    {
+        Vector3 loc = GameObject.Find("Player").transform.position;
+        loc.y = 20;
+        transform.position = loc;
+        
     }
 
     //private void OnInteract(InputValue value)

@@ -286,6 +286,24 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "ObjectiveSnap",
+                    "type": "Button",
+                    "id": "105d269c-accd-4221-89ff-c328068acd20",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "PlayerSnap",
+                    "type": "Button",
+                    "id": "23c1d5bd-053a-4235-993a-2ff656c75301",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -396,6 +414,28 @@
                     "processors": "",
                     "groups": "KBMPlayer",
                     "action": "Deselect",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "361bb967-ca85-496c-95c3-863ac2763402",
+                    "path": "<Keyboard>/r",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ObjectiveSnap",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "27d5ff90-a3a3-4cad-861a-675698f7e07b",
+                    "path": "<Keyboard>/f",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PlayerSnap",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
