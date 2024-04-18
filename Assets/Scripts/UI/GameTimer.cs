@@ -14,6 +14,8 @@ public class GameTimer : MonoBehaviour
     {
         timer = GetComponent<Text>();
         numSecondsPassed = 0;
+
+        EventBus.Subscribe<GameOverEvent>(_setFinalTime);
     }
 
     // Update is called once per frame
@@ -43,9 +45,12 @@ public class GameTimer : MonoBehaviour
                 //Update last second
                 lastSecond = currentSecond;
             }
-
-
         }
-        
     }
+
+    private void _setFinalTime(GameOverEvent e)
+    {
+        PlayerPrefs.SetInt("time", lastSecond);
+    }
+
 }
