@@ -5,6 +5,7 @@ using UnityEngine;
 public class TutorialBypassManager : MonoBehaviour
 {
     public GameObject AmmoCrate;
+    public GameObject Gun;
 
     void Start()
     {
@@ -12,6 +13,9 @@ public class TutorialBypassManager : MonoBehaviour
 
         // Subscribe to purchase events for ammo button
         EventBus.Subscribe<PurchaseEvent>(_gunUse);
+
+        // Listen for player death
+        EventBus.Subscribe<ObjectDestroyedEvent>(playerDeath);
     }
 
 
@@ -29,6 +33,16 @@ public class TutorialBypassManager : MonoBehaviour
         if (e.purchasedItem.itemId == 3)
         {
             AmmoCrate.SetActive(true);
+        }
+    }
+
+    // Listen for player death
+    public void playerDeath(ObjectDestroyedEvent e)
+    {
+        if (e.name is "player")
+        {
+            AmmoCrate.SetActive(false);
+            Gun.SetActive(true);
         }
     }
 }

@@ -207,7 +207,7 @@ public class TutorialManager : MonoBehaviour
         playerRespawn.GetComponent<Button>().interactable = true;
         RepairKit.GetComponent<Button>().interactable = true;
         //Dont enable Ammo crate until a gun is bought
-        AmmoCrate.GetComponent<Button>().interactable = false;
+        AmmoCrate.GetComponent<Button>().interactable = true;
         Gun.GetComponent<Button>().interactable = true;
         Wall.GetComponent<Button>().interactable = true;
         Turret.GetComponent<Button>().interactable = true;
@@ -325,6 +325,13 @@ public class TutorialManager : MonoBehaviour
         if (e.tag is "Boulder")
         {
             hasBlownUpBoulder = true;
+        }
+
+        // Watch out for player death
+        if (e.name is "player")
+        {
+            AmmoCrate.SetActive(false);
+            Gun.SetActive(true);
         }
     }
 

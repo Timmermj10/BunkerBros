@@ -44,6 +44,9 @@ public class HandInventory : MonoBehaviour
             swap.Enable();
             canSwap = true;
         }
+
+        // Set the color of the knife
+        knifeImageRenderer.color = new Color(1f, 1f, 1f, 1f);
     }
 
     void _Purchase(PurchaseEvent e)

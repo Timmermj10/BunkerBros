@@ -21,6 +21,9 @@ public class AmmoUI : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
+        // Listen for player death
+        EventBus.Subscribe<ObjectDestroyedEvent>(playerDeath);
+
         purchase = EventBus.Subscribe<PurchaseEvent>(_enable_text);
         ammo_display = GameObject.Find("Ammo").GetComponentInChildren<Text>();
         ammo_image = GameObject.Find("AmmoImage");
@@ -88,6 +91,14 @@ public class AmmoUI : MonoBehaviour
         {
             Debug.Log("Purchased Item was: " + p.purchasedItem.itemName);
         }
-        
+    }
+
+    // Listen for player death
+    public void playerDeath(ObjectDestroyedEvent e)
+    {
+        if (e.name is "player")
+        {
+            enable = false;
+        }
     }
 }
