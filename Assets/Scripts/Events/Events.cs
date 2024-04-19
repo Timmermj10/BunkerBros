@@ -290,3 +290,9 @@ public class itemRemovedFromPickupRangeEvent
         this.numItemsInRange = numItemsInRange;
     }
 }
+
+// Empty class for when the objective is being damaged
+public class ObjectiveDamagedEvent
+{
+
+}
