@@ -70,6 +70,9 @@ public class TutorialManager : MonoBehaviour
         EventBus.Subscribe<RadioTowerActivatedManagerEvent>(_RadioTowerActivatedByManager);
         EventBus.Subscribe<ItemUseEvent>(_ItemPurchased);
 
+        // Subscribe to purchase events for ammo button
+        EventBus.Subscribe<PurchaseEvent>(_gunUse);
+
 
         pingManager = GameObject.Find("GameManager").GetComponent<PingManager>();
         bunker = GameObject.Find("Objective");
@@ -283,11 +286,11 @@ public class TutorialManager : MonoBehaviour
             case 16:
                 //Show the buttons
                 Gun.SetActive(true);
-                AmmoCrate.SetActive(true);
+                // AmmoCrate.SetActive(true);
 
                 //Flash the buttons
                 StartCoroutine(ButtonFlashRoutine(Gun));
-                StartCoroutine(ButtonFlashRoutine(AmmoCrate));
+                // StartCoroutine(ButtonFlashRoutine(AmmoCrate));
                 break;
             default:
                 break;
@@ -435,6 +438,14 @@ public class TutorialManager : MonoBehaviour
                 // Wait for flashDuration to end
                 yield return new WaitForSeconds(buttonFlashDuration);
             }
+        }
+    }
+
+    public void _gunUse(PurchaseEvent e)
+    {
+        if (e.purchasedItem.itemId == 3)
+        {
+            AmmoCrate.SetActive(true);
         }
     }
 
