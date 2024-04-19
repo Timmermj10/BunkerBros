@@ -101,11 +101,11 @@ public class HandInventory : MonoBehaviour
 
     private void _EmptyAmmo(EmptyAmmo e)
     {
-        transform.Find("Knife").gameObject.SetActive(true);
-        transform.Find("Gun").gameObject.SetActive(false);
-        knife = true;
-        gunImageRenderer.color = new Color(1f, 1f, 1f, 0.13f);
-        knifeImageRenderer.color = new Color(1f, 1f, 1f, 1f);
+        //transform.Find("Knife").gameObject.SetActive(true);
+        //transform.Find("Gun").gameObject.SetActive(false);
+        //knife = true;
+        //gunImageRenderer.color = new Color(1f, 1f, 1f, 0.13f);
+        //knifeImageRenderer.color = new Color(1f, 1f, 1f, 1f);
     }
 
     private void OnDestroy()

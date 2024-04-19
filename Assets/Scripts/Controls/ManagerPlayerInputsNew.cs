@@ -198,6 +198,7 @@ public class ManagerPlayerInputsNew : MonoBehaviour
             transform.position = loc;
         }
         
+        
     }
 
     //private void OnInteract(InputValue value)
