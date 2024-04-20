@@ -14,9 +14,9 @@ GameObject:
   - component: {fileID: 64326202081095742}
   - component: {fileID: 9007602770641792181}
   - component: {fileID: 8022794118404995979}
-  - component: {fileID: 8247769684506521334}
   - component: {fileID: 7024883310862245847}
   - component: {fileID: 4276781209052707203}
+  - component: {fileID: 639878335362129442}
   m_Layer: 0
   m_Name: Boulder
   m_TagString: Boulder
@@ -144,25 +144,6 @@ MonoBehaviour:
   currentHealth: 0
   armorValue: 39
   healthBars: []
---- !u!114 &8247769684506521334
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1150461584060438}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1e3fdca004f2d45fe8abbed571a8abd5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_OverrideArea: 0
-  m_Area: 0
-  m_OverrideGenerateLinks: 0
-  m_GenerateLinks: 0
-  m_IgnoreFromBuild: 1
-  m_ApplyToChildren: 1
-  m_AffectedAgents: ffffffff
 --- !u!114 &7024883310862245847
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -191,6 +172,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6cbab0108f8bc435e99ee4a276c141a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!208 &639878335362129442
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1150461584060438}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 0
+  m_Extents: {x: 0.9, y: 0.65300006, z: 0.9}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: -0.115, y: 0.22500001, z: -0.108}
+  m_TimeToStationary: 0.5
 --- !u!1001 &1705821424079565235
 PrefabInstance:
   m_ObjectHideFlags: 0
