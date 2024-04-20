@@ -948,7 +948,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 318b6ea1edc16ea4886cc6042e3efe07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  respawning: 0
   timer: 5
 --- !u!114 &90805226
 MonoBehaviour:
@@ -7510,7 +7509,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 318b6ea1edc16ea4886cc6042e3efe07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  respawning: 0
   timer: 5
 --- !u!114 &271882293
 MonoBehaviour:
@@ -9159,7 +9157,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 318b6ea1edc16ea4886cc6042e3efe07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  respawning: 0
   timer: 5
 --- !u!114 &440788265
 MonoBehaviour:
@@ -9994,7 +9991,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 318b6ea1edc16ea4886cc6042e3efe07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  respawning: 0
   timer: 5
 --- !u!114 &534006804
 MonoBehaviour:
@@ -11194,6 +11190,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45a200cf47106234d8ffb4a571f5fc8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  swap_display: {fileID: 0}
   current_mag: 30
   reserve_mags: 0
   ammo: {fileID: 679111648}
@@ -12253,7 +12250,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 318b6ea1edc16ea4886cc6042e3efe07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  respawning: 0
   timer: 5
 --- !u!114 &773221789
 MonoBehaviour:
@@ -12529,7 +12525,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 318b6ea1edc16ea4886cc6042e3efe07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  respawning: 0
   timer: 5
 --- !u!114 &809122169
 MonoBehaviour:
@@ -15668,6 +15663,74 @@ MonoBehaviour:
   m_Spacing: {x: 15, y: 15}
   m_Constraint: 0
   m_ConstraintCount: 2
+--- !u!1001 &1105365531
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1922620019267095637, guid: 95b9bdcba418040c5bc4daea8215b088,
+        type: 3}
+      propertyPath: m_Name
+      value: Pebble
+      objectReference: {fileID: 0}
+    - target: {fileID: 2210722968664842942, guid: 95b9bdcba418040c5bc4daea8215b088,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 4.5868845
+      objectReference: {fileID: 0}
+    - target: {fileID: 2210722968664842942, guid: 95b9bdcba418040c5bc4daea8215b088,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.241
+      objectReference: {fileID: 0}
+    - target: {fileID: 2210722968664842942, guid: 95b9bdcba418040c5bc4daea8215b088,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -8.885
+      objectReference: {fileID: 0}
+    - target: {fileID: 2210722968664842942, guid: 95b9bdcba418040c5bc4daea8215b088,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7709025
+      objectReference: {fileID: 0}
+    - target: {fileID: 2210722968664842942, guid: 95b9bdcba418040c5bc4daea8215b088,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.6369532
+      objectReference: {fileID: 0}
+    - target: {fileID: 2210722968664842942, guid: 95b9bdcba418040c5bc4daea8215b088,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2210722968664842942, guid: 95b9bdcba418040c5bc4daea8215b088,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2210722968664842942, guid: 95b9bdcba418040c5bc4daea8215b088,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -79.13
+      objectReference: {fileID: 0}
+    - target: {fileID: 2210722968664842942, guid: 95b9bdcba418040c5bc4daea8215b088,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2210722968664842942, guid: 95b9bdcba418040c5bc4daea8215b088,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 95b9bdcba418040c5bc4daea8215b088, type: 3}
 --- !u!114 &1105936002 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1734447896805151206, guid: 3931f6a0025fa49ab89912b51ea8d6a5,
@@ -16018,7 +16081,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 318b6ea1edc16ea4886cc6042e3efe07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  respawning: 0
   timer: 5
 --- !u!114 &1147238043
 MonoBehaviour:
@@ -19674,7 +19736,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0300d514a01e25a4f97a719ff2637704, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeBetweenRounds: 30
 --- !u!114 &1542962852
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19808,6 +19869,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8318c26a4a21cfb4587bcb5caf839fe8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  AmmoCrate: {fileID: 0}
+  Gun: {fileID: 0}
 --- !u!114 &1542962856
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21294,6 +21357,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5cf19758ee265b146a67168ca681b388, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  first: 1
 --- !u!114 &1702966546
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21495,7 +21559,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 318b6ea1edc16ea4886cc6042e3efe07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  respawning: 0
   timer: 5
 --- !u!114 &1717707574
 MonoBehaviour:
@@ -21708,7 +21771,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 318b6ea1edc16ea4886cc6042e3efe07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  respawning: 0
   timer: 5
 --- !u!114 &1759038745
 MonoBehaviour:
@@ -22900,7 +22962,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 318b6ea1edc16ea4886cc6042e3efe07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  respawning: 0
   timer: 5
 --- !u!114 &1875112203
 MonoBehaviour:
@@ -24577,3 +24638,4 @@ SceneRoots:
   - {fileID: 1056508409}
   - {fileID: 9065429934438557646}
   - {fileID: 902951826}
+  - {fileID: 1105365531}
