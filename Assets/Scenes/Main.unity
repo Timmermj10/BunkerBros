@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.112711005, g: 0.28157306, b: 0.7091771, a: 1}
+  m_IndirectSpecularColor: {r: 0.11271046, g: 0.28158677, b: 0.709181, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -13898,14 +13898,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.40784314, g: 1, b: 0.92156863, a: 0.39215687}
+  m_Color: {r: 0.3066038, g: 1, b: 0.90815943, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 1cb49814a48ae7143a080b1b2448137c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ce5dc5855f77ec34f875165a72c5efd8, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -19699,7 +19699,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0300d514a01e25a4f97a719ff2637704, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeBetweenRounds: 3
 --- !u!114 &1542962852
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19821,7 +19820,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0dd06e737d306464686f9decd8a6c9a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeUntilExtraction: 180
 --- !u!114 &1542962855
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19896,6 +19894,8 @@ MonoBehaviour:
   airdropLandedSound: {fileID: 8300000, guid: fd6fed00e585226459c6ed68c9e34da0, type: 3}
   knifeSwingSound: {fileID: 8300000, guid: 275c40128b7bd154a81b4c243b739eaf, type: 3}
   shootingSound: {fileID: 8300000, guid: ade66992c03bce84aaed02fd38e6bcd3, type: 3}
+  turretFire: {fileID: 0}
+  bunkerAlarmNoise: {fileID: 0}
 --- !u!1001 &1556964911
 PrefabInstance:
   m_ObjectHideFlags: 0
