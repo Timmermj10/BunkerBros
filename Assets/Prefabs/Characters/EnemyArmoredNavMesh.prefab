@@ -842,7 +842,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
-  attackDistance: 1.5
+  attackDistance: 0.75
   agent: {fileID: 1915310147656879459}
   possibleLocations: []
 --- !u!1 &6525121760247072864 stripped

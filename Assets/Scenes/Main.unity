@@ -16775,7 +16775,7 @@ MonoBehaviour:
   m_OverrideTileSize: 0
   m_TileSize: 256
   m_OverrideVoxelSize: 0
-  m_VoxelSize: 0.2
+  m_VoxelSize: 0.16666667
   m_MinRegionArea: 2
   m_NavMeshData: {fileID: 23800000, guid: 9286115bc7feee043b6cc2f51aeb15c9, type: 2}
   m_BuildHeightMesh: 0
@@ -16821,7 +16821,7 @@ MonoBehaviour:
   m_OverrideTileSize: 0
   m_TileSize: 256
   m_OverrideVoxelSize: 0
-  m_VoxelSize: 0.16666667
+  m_VoxelSize: 0.25
   m_MinRegionArea: 2
   m_NavMeshData: {fileID: 23800000, guid: 4182e8de834e3ab48b7391bc7f95f1d4, type: 2}
   m_BuildHeightMesh: 0
