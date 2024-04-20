@@ -328,3 +328,15 @@ public class TurretShootingEvent
         this.position = position;
     }
 }
+
+public class PlayerMovingEvent
+{
+    public Vector2 movementValue;
+    public bool isSprinting;
+
+    public PlayerMovingEvent(Vector2 movementValue, bool isSprinting)
+    {
+        this.movementValue = movementValue;
+        this.isSprinting = isSprinting;
+    }
+}
