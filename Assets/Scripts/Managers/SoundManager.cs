@@ -15,6 +15,8 @@ public class SoundManager : MonoBehaviour
     public AudioClip airdropLandedSound;
     public AudioClip knifeSwingSound;
     public AudioClip shootingSound;
+    public AudioClip turretFire;
+    public AudioClip bunkerAlarmNoise;
 
     private GameObject player;
 
@@ -27,12 +29,24 @@ public class SoundManager : MonoBehaviour
         EventBus.Subscribe<zombieDamagedEvent>(zombieDamagedSound);
         EventBus.Subscribe<AirdropLandedEvent>(explosionNoises);
         EventBus.Subscribe<KnifeAttackSoundEvent>(knifeSwing);
+        EventBus.Subscribe<TurretShootingEvent>(turretShooting);
         EventBus.Subscribe<ShootEvent>(gunSound);
+        EventBus.Subscribe<ObjectiveDamagedEvent>(bunkerAlarm);
     }
 
     private void playerRespawn(PlayerRespawnEvent e)
     {
         player = e.activePlayer;
+    }
+
+    private void turretShooting(TurretShootingEvent e)
+    {
+        PlaySoundAtLocation(turretFire, e.position, 0.6f, 15);
+    }
+
+    private void bunkerAlarm(ObjectiveDamagedEvent e)
+    {
+        PlaySoundAtLocation(bunkerAlarmNoise, new Vector3(0, 1, 0), 0.6f, 15);
     }
 
     private void zombieDamagedSound(zombieDamagedEvent e)

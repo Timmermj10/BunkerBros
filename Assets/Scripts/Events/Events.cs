@@ -317,5 +317,14 @@ public class KnifeAttackSoundEvent
 // Empty class for when the objective is being damaged
 public class ObjectiveDamagedEvent
 {
+}
 
+public class TurretShootingEvent
+{
+    public Vector3 position;
+
+    public TurretShootingEvent(Vector3 position)
+    {
+        this.position = position;
+    }
 }
