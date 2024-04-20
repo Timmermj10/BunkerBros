@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.11271046, g: 0.28158677, b: 0.709181, a: 1}
+  m_IndirectSpecularColor: {r: 0.112711005, g: 0.28157306, b: 0.7091771, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -8264,11 +8264,11 @@ GameObject:
   m_Component:
   - component: {fileID: 330585546}
   - component: {fileID: 330585545}
-  - component: {fileID: 330585544}
   - component: {fileID: 330585547}
   - component: {fileID: 330585548}
   - component: {fileID: 330585549}
   - component: {fileID: 330585550}
+  - component: {fileID: 330585551}
   m_Layer: 0
   m_Name: PlayerCamera
   m_TagString: PlayerCam
@@ -8276,14 +8276,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &330585544
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 330585543}
-  m_Enabled: 1
 --- !u!20 &330585545
 Camera:
   m_ObjectHideFlags: 0
@@ -8323,7 +8315,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 571767
+    m_Bits: 588151
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -8439,6 +8431,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fadeSpeed: 1.5
+--- !u!81 &330585551
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 330585543}
+  m_Enabled: 1
 --- !u!1 &339390768
 GameObject:
   m_ObjectHideFlags: 0
@@ -17949,7 +17949,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 831639
+    m_Bits: 848023
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -19227,13 +19227,14 @@ GameObject:
   - component: {fileID: 1542962848}
   - component: {fileID: 1542962850}
   - component: {fileID: 1542962849}
-  - component: {fileID: 1542962851}
   - component: {fileID: 1542962853}
   - component: {fileID: 1542962852}
+  - component: {fileID: 1542962851}
   - component: {fileID: 1542962854}
   - component: {fileID: 1542962856}
   - component: {fileID: 1542962857}
   - component: {fileID: 1542962858}
+  - component: {fileID: 1542962859}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -19467,7 +19468,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1542962839}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6a0eb4eea3bb1794bbf985a9f17ca8c1, type: 3}
   m_Name: 
@@ -19683,6 +19684,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0300d514a01e25a4f97a719ff2637704, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timeBetweenRounds: 3
 --- !u!114 &1542962852
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19804,6 +19806,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0dd06e737d306464686f9decd8a6c9a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timeUntilExtraction: 180
 --- !u!114 &1542962855
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19811,7 +19814,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1542962839}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8318c26a4a21cfb4587bcb5caf839fe8, type: 3}
   m_Name: 
@@ -19856,6 +19859,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00359d35e3952f6419ba29e79b6d383d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1542962859
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1542962839}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d4916872f8d2b14ba82f65ec12df053, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundPrefab: {fileID: 2870993679421863122, guid: 607a625390908d44aaf86a6a0019d7d6,
+    type: 3}
+  zombieAttack: {fileID: 8300000, guid: 0786ab5eb38cafb48a4f77ff3849d347, type: 3}
+  zombieDeath: {fileID: 8300000, guid: 869c0dc72edc74e4ab9568cbc041f40e, type: 3}
+  zombieDamaged: {fileID: 8300000, guid: 398115effb894194bb18db394cd5983b, type: 3}
+  missileExplosion: {fileID: 8300000, guid: 48e088d7d4165b244a25f199723692b2, type: 3}
+  nukeExplosion: {fileID: 8300000, guid: 0d7217c6f18212448a37c322d1d3f756, type: 3}
+  airdropLandedSound: {fileID: 8300000, guid: fd6fed00e585226459c6ed68c9e34da0, type: 3}
+  knifeSwingSound: {fileID: 8300000, guid: 275c40128b7bd154a81b4c243b739eaf, type: 3}
+  shootingSound: {fileID: 8300000, guid: ade66992c03bce84aaed02fd38e6bcd3, type: 3}
 --- !u!1001 &1556964911
 PrefabInstance:
   m_ObjectHideFlags: 0

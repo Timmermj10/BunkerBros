@@ -290,3 +290,27 @@ public class itemRemovedFromPickupRangeEvent
         this.numItemsInRange = numItemsInRange;
     }
 }
+
+public class zombieDamagedEvent
+{
+    public Vector3 position;
+
+    public zombieDamagedEvent(Vector3 position)
+    {
+        this.position = position;
+    }
+}
+
+public class zombieAttackEvent
+{
+    public Vector3 position;
+
+    public zombieAttackEvent(Vector3 position)
+    {
+        this.position = position;
+    }
+}
+
+public class KnifeAttackSoundEvent
+{ } 
+

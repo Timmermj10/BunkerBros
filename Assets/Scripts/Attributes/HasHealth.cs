@@ -102,9 +102,15 @@ public class HasHealth : MonoBehaviour
                 // Publish a damage effect event
                 if (gameObject.tag == "Enemy")
                 {
-                    if (healthChange + armorValue < 0)
+                    if (healthChange + armorValue <= 0)
                     {
                         EventBus.Publish<DamageEffectEvent>(new DamageEffectEvent(gameObject, true));
+
+                        //if the enemy is not dying
+                        if (currentHealth + Mathf.Min(healthChange + armorValue, 0) > 0)
+                        {
+                            EventBus.Publish(new zombieDamagedEvent(transform.position));
+                        }
                     }
                     // Publish a damage effect event
                     else

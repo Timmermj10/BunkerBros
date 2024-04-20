@@ -21,5 +21,7 @@ public class KnifeAttack : MonoBehaviour
     void _Attack(AttackEvent e)
     {
         anim.SetTrigger("knife");
+        EventBus.Publish(new KnifeAttackSoundEvent());
+        Debug.Log("Published KnifeAttackSoundEvent");
     }
 }
