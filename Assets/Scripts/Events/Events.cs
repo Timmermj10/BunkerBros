@@ -314,3 +314,8 @@ public class zombieAttackEvent
 public class KnifeAttackSoundEvent
 { } 
 
+// Empty class for when the objective is being damaged
+public class ObjectiveDamagedEvent
+{
+
+}

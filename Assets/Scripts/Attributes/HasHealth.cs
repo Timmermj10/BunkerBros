@@ -78,6 +78,12 @@ public class HasHealth : MonoBehaviour
 
     public void changeHealth(int healthChange)
     {
+        // Publish that the objective is being damaged
+        if (gameObject.name is "Objective" && healthChange < 0)
+        {
+            EventBus.Publish<ObjectiveDamagedEvent>(new ObjectiveDamagedEvent());
+        }
+
         //Check if the tower is taking damage, and if it has a shield
         if (GetComponent<Shield>() != null)
         {
