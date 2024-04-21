@@ -17969,7 +17969,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 430480369}
-  - component: {fileID: 430480368}
+  - component: {fileID: 430480370}
   m_Layer: 0
   m_Name: SoundManager
   m_TagString: Untagged
@@ -17977,7 +17977,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &430480368
+--- !u!4 &430480369
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 430480367}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.40821788, y: -0.23456968, z: 0.10938163, w: 0.8754261}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &430480370
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -17995,6 +18010,17 @@ MonoBehaviour:
     type: 3}
   mainMusicTrack: {fileID: 8300000, guid: ac942f8e8cff3aa488887ed5300eadbe, type: 3}
   finalWaveMusicTrack: {fileID: 8300000, guid: f2a9304eb3672c247a67020abc09df4d, type: 3}
+  managerCodeCorrect: {fileID: 8300000, guid: 83e1b57586cb2654098694ab4cfb34bb, type: 3}
+  managerCodeWrong: {fileID: 8300000, guid: 5a570842b93b18c4f801f1d32c16ed0e, type: 3}
+  managerButtonPress: {fileID: 8300000, guid: b938e2797c8cebc4a98c7847d930b3a5, type: 3}
+  playerRadioTowerActivateSound: {fileID: 8300000, guid: a7ab3062242df844ca36c0737cb2beef,
+    type: 3}
+  bombFalling: {fileID: 8300000, guid: 5ccd65a0ae75f254d95e0fc10c7248e5, type: 3}
+  coinPickupSound: {fileID: 8300000, guid: dbe46e4d337aa0348aa8f87a9207944f, type: 3}
+  drawKnifeSound: {fileID: 8300000, guid: e9ba4681f4942444785574e99cbbab88, type: 3}
+  drawGunSound: {fileID: 8300000, guid: 75664b71dbbfd894980a5da776d2bfd8, type: 3}
+  siloLoadedSound: {fileID: 8300000, guid: 0691a6d3a948b194e86ba0bd7e06c019, type: 3}
+  ItemSelectSound: {fileID: 8300000, guid: 72057a8d6a5b3d44b9c0ef57ce21ba48, type: 3}
   emptyAmmoSound: {fileID: 8300000, guid: 12c88c446df2f44769382245a4f2b4d1, type: 3}
   chestOpeningSound: {fileID: 8300000, guid: f15ac1bca443e75438f63fa1bf8d3c2a, type: 3}
   zombieAttack: {fileID: 8300000, guid: 0786ab5eb38cafb48a4f77ff3849d347, type: 3}
@@ -18009,21 +18035,6 @@ MonoBehaviour:
   bunkerAlarmNoise: {fileID: 8300000, guid: f939fc14549dc574cb9ebc4da20e700d, type: 3}
   footstepSound: {fileID: 8300000, guid: d0ff442021c7b0647854bd798608894c, type: 3}
   playerDamaged: {fileID: 8300000, guid: af0fb817b2f92e94792422ab545d8b04, type: 3}
---- !u!4 &430480369
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 430480367}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0.40821788, y: -0.23456968, z: 0.10938163, w: 0.8754261}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &430551851 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7821609143663794790, guid: 66fefffeb8f634bd38a4a55fe914918a,
