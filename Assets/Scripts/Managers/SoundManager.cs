@@ -16,6 +16,20 @@ public class SoundManager : MonoBehaviour
     public AudioClip finalWaveMusicTrack;
     private AudioSource musicInstance;
 
+    public AudioClip managerCodeCorrect;
+    public AudioClip managerCodeWrong;
+    public AudioClip managerButtonPress;
+    public AudioClip playerRadioTowerActivateSound;
+    public AudioClip bombFalling;
+
+    public AudioClip coinPickupSound;
+    public AudioClip drawKnifeSound;
+    public AudioClip drawGunSound;
+
+    public AudioClip siloLoadedSound;
+    public AudioClip ItemSelectSound;
+
+
     public AudioClip emptyAmmoSound;
     public AudioClip chestOpeningSound;
     public AudioClip zombieAttack;
@@ -47,6 +61,7 @@ public class SoundManager : MonoBehaviour
         EventBus.Subscribe<ObjectDestroyedEvent>(zombieDeathSound);
         EventBus.Subscribe<zombieDamagedEvent>(zombieDamagedSound);
         EventBus.Subscribe<AirdropLandedEvent>(explosionNoises);
+        EventBus.Subscribe<ItemUseEvent>(MissileOrNukeWhistle);
         EventBus.Subscribe<KnifeAttackSoundEvent>(knifeSwing);
         EventBus.Subscribe<TurretShootingEvent>(turretShooting);
         EventBus.Subscribe<ShootEvent>(gunSound);
@@ -55,9 +70,17 @@ public class SoundManager : MonoBehaviour
         EventBus.Subscribe<PlayerDamagedEvent>(metalDamageNoise);
         EventBus.Subscribe<LastWaveEvent>(finalWaveMusic);
         EventBus.Subscribe<LastWaveOverEvent>(stopMusic);
-        EventBus.Subscribe<CoinCollect>(chestOpen);
+        EventBus.Subscribe<CoinCollect>(coinsCollected);
         EventBus.Subscribe<GameplayStartEvent>(startMainMusic);
         EventBus.Subscribe<EmptyAmmo>(noAmmoNoise);
+        EventBus.Subscribe<SiloLoadedEvent>(loadSilo);
+        EventBus.Subscribe<ManagerButtonClickEvent>(ManagerItemSelect);
+        EventBus.Subscribe<WeaponSwapEvent>(swapWeapons);
+
+        EventBus.Subscribe<ManagerButtonPress>(buttonPressed);
+        EventBus.Subscribe<ManagerIncorrectAnswer>(incorrectCode);
+        EventBus.Subscribe<RadioTowerActivatedManagerEvent>(correctCode);
+        EventBus.Subscribe<RadioTowerActivatedPlayerEvent>(playerActivateTower);
 
 
 
@@ -67,6 +90,49 @@ public class SoundManager : MonoBehaviour
         musicInstance.spatialBlend = 0;
         musicInstance.loop = true;
         musicInstance.Play();
+    }
+
+    private void swapWeapons(WeaponSwapEvent e)
+    {
+        if (e.trueIsKnife)
+        {
+            PlaySoundAtLocation(drawKnifeSound, player.transform.position, 0.7f, 3);
+        }
+        else
+        {
+            PlaySoundAtLocation(drawGunSound, player.transform.position, 0.7f, 3);
+        }
+        
+    }
+
+    private void buttonPressed(ManagerButtonPress e)
+    {
+        PlaySoundAtLocation(managerButtonPress, Vector3.zero, 0.6f, 15, true);
+    }
+
+    private void ManagerItemSelect(ManagerButtonClickEvent e)
+    {
+        PlaySoundAtLocation(ItemSelectSound, Vector3.zero, 1f, 15, true);
+    }
+
+    private void loadSilo(SiloLoadedEvent e)
+    {
+        PlaySoundAtLocation(siloLoadedSound, e.position, 1f, 15);
+    }
+
+    private void incorrectCode(ManagerIncorrectAnswer e)
+    {
+        PlaySoundAtLocation(managerCodeWrong, Vector3.zero, 0.6f, 15, true);
+    }
+
+    private void correctCode(RadioTowerActivatedManagerEvent e)
+    {
+        PlaySoundAtLocation(managerCodeCorrect, Vector3.zero, 1f, 15, true);
+    }
+
+    private void playerActivateTower(RadioTowerActivatedPlayerEvent e)
+    {
+        PlaySoundAtLocation(playerRadioTowerActivateSound, Vector3.zero, 1f, 15, true);
     }
 
     private void playerRespawn(PlayerRespawnEvent e)
@@ -103,11 +169,15 @@ public class SoundManager : MonoBehaviour
         Destroy(musicInstance);
     }
 
-    private void chestOpen(CoinCollect e)
+    private void coinsCollected(CoinCollect e)
     {
         if (e.value > 100)
         {
             PlaySoundAtLocation(chestOpeningSound, player.transform.position, 0.6f, 5);
+        }
+        else if (e.value > 0)
+        {
+            PlaySoundAtLocation(coinPickupSound, player.transform.position, 0.6f, 5);
         }
     }
 
@@ -172,7 +242,7 @@ public class SoundManager : MonoBehaviour
         if (bunkerAlarmTimer > (bunkerAlarmNoise.length - 0.09f))
         {
             bunkerAlarmTimer = 0;
-            PlaySoundAtLocation(bunkerAlarmNoise, new Vector3(0, 1, 0), 0.1f, 100, true);
+            PlaySoundAtLocation(bunkerAlarmNoise, new Vector3(0, 1, 0), 0.05f, 100, true);
         }
     }
 
@@ -204,6 +274,24 @@ public class SoundManager : MonoBehaviour
                 break;
             default:
                 PlaySoundAtLocation(airdropLandedSound, e.itemLocation, 20f, 10);
+                break;
+        }
+
+    }
+
+    private void MissileOrNukeWhistle(ItemUseEvent e)
+    {
+        switch (e.itemID)
+        {
+            case 4:
+                //nuke
+                PlaySoundAtLocation(bombFalling, e.itemLocation, 0.8f, 15);
+                break;
+            case 5:
+                //missile
+                PlaySoundAtLocation(bombFalling, e.itemLocation, 0.8f, 15);
+                break;
+            default:
                 break;
         }
 
