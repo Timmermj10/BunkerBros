@@ -11,10 +11,12 @@ public class SoundManager : MonoBehaviour
     public AudioSource soundPrefab;
 
 
+    public AudioClip titleScreenMusicTrack;
     public AudioClip mainMusicTrack;
     public AudioClip finalWaveMusicTrack;
     private AudioSource musicInstance;
 
+    public AudioClip emptyAmmoSound;
     public AudioClip chestOpeningSound;
     public AudioClip zombieAttack;
     public AudioClip zombieDeath;
@@ -38,6 +40,7 @@ public class SoundManager : MonoBehaviour
 
     void Start()
     {
+        DontDestroyOnLoad(this);
         player = GameObject.Find("player");
 
         EventBus.Subscribe<PlayerRespawnEvent>(playerRespawn);
@@ -53,10 +56,14 @@ public class SoundManager : MonoBehaviour
         EventBus.Subscribe<LastWaveEvent>(finalWaveMusic);
         EventBus.Subscribe<LastWaveOverEvent>(stopMusic);
         EventBus.Subscribe<CoinCollect>(chestOpen);
+        EventBus.Subscribe<GameplayStartEvent>(startMainMusic);
+        EventBus.Subscribe<EmptyAmmo>(noAmmoNoise);
+
+
 
         musicInstance = Instantiate(soundPrefab, Vector3.zero, Quaternion.identity);
-        musicInstance.clip = mainMusicTrack;
-        musicInstance.volume = 0.3f;
+        musicInstance.clip = titleScreenMusicTrack;
+        musicInstance.volume = 0.15f;
         musicInstance.spatialBlend = 0;
         musicInstance.loop = true;
         musicInstance.Play();
@@ -74,7 +81,17 @@ public class SoundManager : MonoBehaviour
 
         musicInstance = Instantiate(soundPrefab, Vector3.zero, Quaternion.identity);
         musicInstance.clip = finalWaveMusicTrack;
-        musicInstance.volume = 0.3f;
+        musicInstance.volume = 0.08f;
+        musicInstance.spatialBlend = 0;
+        musicInstance.loop = true;
+        musicInstance.Play();
+    }
+
+    private void startMainMusic(GameplayStartEvent e)
+    {
+        musicInstance = Instantiate(soundPrefab, Vector3.zero, Quaternion.identity);
+        musicInstance.clip = mainMusicTrack;
+        musicInstance.volume = 0.05f;
         musicInstance.spatialBlend = 0;
         musicInstance.loop = true;
         musicInstance.Play();
@@ -136,6 +153,11 @@ public class SoundManager : MonoBehaviour
         PlaySoundAtLocation(turretFire, e.position, 0.6f, 15);
     }
 
+    private void noAmmoNoise(EmptyAmmo e)
+    {
+        PlaySoundAtLocation(emptyAmmoSound, player.transform.position, 0.6f, 15);
+    }
+
     private void metalDamageNoise(PlayerDamagedEvent e)
     {
         PlaySoundAtLocation(playerDamaged, player.transform.position, 0.6f, 3, true);
@@ -150,7 +172,7 @@ public class SoundManager : MonoBehaviour
         if (bunkerAlarmTimer > (bunkerAlarmNoise.length - 0.09f))
         {
             bunkerAlarmTimer = 0;
-            PlaySoundAtLocation(bunkerAlarmNoise, new Vector3(0, 1, 0), 0.2f, 100, true);
+            PlaySoundAtLocation(bunkerAlarmNoise, new Vector3(0, 1, 0), 0.1f, 100, true);
         }
     }
 
@@ -206,6 +228,12 @@ public class SoundManager : MonoBehaviour
                 soundInstance.minDistance = 1.5f; // Minimum distance at which the sound is heard at full volume
                 soundInstance.maxDistance = maxSoundDistance;
             }
+            else
+            {
+                soundInstance.spatialBlend = 0f; // Set to 3D spatialization
+            }
+
+
             soundInstance.Play();
             Destroy(soundInstance.gameObject, clip.length); // Destroy the AudioSource after the sound finishes playing
         }

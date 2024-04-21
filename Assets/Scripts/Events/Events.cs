@@ -319,6 +319,10 @@ public class ObjectiveDamagedEvent
 {
 }
 
+public class GameplayStartEvent
+{
+}
+
 public class TurretShootingEvent
 {
     public Vector3 position;

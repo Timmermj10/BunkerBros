@@ -16780,7 +16780,7 @@ MonoBehaviour:
   m_OverrideTileSize: 0
   m_TileSize: 256
   m_OverrideVoxelSize: 0
-  m_VoxelSize: 0.2
+  m_VoxelSize: 0.16666667
   m_MinRegionArea: 2
   m_NavMeshData: {fileID: 23800000, guid: 9286115bc7feee043b6cc2f51aeb15c9, type: 2}
   m_BuildHeightMesh: 0
@@ -16826,7 +16826,7 @@ MonoBehaviour:
   m_OverrideTileSize: 0
   m_TileSize: 256
   m_OverrideVoxelSize: 0
-  m_VoxelSize: 0.16666667
+  m_VoxelSize: 0.25
   m_MinRegionArea: 2
   m_NavMeshData: {fileID: 23800000, guid: 4182e8de834e3ab48b7391bc7f95f1d4, type: 2}
   m_BuildHeightMesh: 0
@@ -19893,13 +19893,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   soundPrefab: {fileID: 2870993679421863122, guid: 607a625390908d44aaf86a6a0019d7d6,
     type: 3}
+  titleScreenMusicTrack: {fileID: 0}
   mainMusicTrack: {fileID: 8300000, guid: ac942f8e8cff3aa488887ed5300eadbe, type: 3}
   finalWaveMusicTrack: {fileID: 8300000, guid: f2a9304eb3672c247a67020abc09df4d, type: 3}
+  emptyAmmoSound: {fileID: 8300000, guid: 12c88c446df2f44769382245a4f2b4d1, type: 3}
   chestOpeningSound: {fileID: 8300000, guid: f15ac1bca443e75438f63fa1bf8d3c2a, type: 3}
   zombieAttack: {fileID: 8300000, guid: 0786ab5eb38cafb48a4f77ff3849d347, type: 3}
   zombieDeath: {fileID: 8300000, guid: 869c0dc72edc74e4ab9568cbc041f40e, type: 3}
   zombieDamaged: {fileID: 8300000, guid: 398115effb894194bb18db394cd5983b, type: 3}
-  missileExplosion: {fileID: 8300000, guid: 48e088d7d4165b244a25f199723692b2, type: 3}
+  missileExplosion: {fileID: 8300000, guid: 986e7748725a94e4c8095841fcbc589a, type: 3}
   nukeExplosion: {fileID: 8300000, guid: 0d7217c6f18212448a37c322d1d3f756, type: 3}
   airdropLandedSound: {fileID: 8300000, guid: fd6fed00e585226459c6ed68c9e34da0, type: 3}
   knifeSwingSound: {fileID: 8300000, guid: 275c40128b7bd154a81b4c243b739eaf, type: 3}
