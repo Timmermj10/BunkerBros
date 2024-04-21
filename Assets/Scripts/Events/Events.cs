@@ -164,6 +164,10 @@ public class WaveStartedEvent
 {
 }
 
+public class VictoryMusicEvent
+{
+}
+
 public class ShootEvent
 {
 }

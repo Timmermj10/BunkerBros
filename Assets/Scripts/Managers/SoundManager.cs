@@ -14,6 +14,7 @@ public class SoundManager : MonoBehaviour
     public AudioClip titleScreenMusicTrack;
     public AudioClip mainMusicTrack;
     public AudioClip finalWaveMusicTrack;
+    public AudioClip victoryMusicTrack;
     private AudioSource musicInstance;
 
     public AudioClip managerCodeCorrect;
@@ -78,6 +79,7 @@ public class SoundManager : MonoBehaviour
         EventBus.Subscribe<SiloUnloadedEvent>(nukeLaunched);
         EventBus.Subscribe<ManagerButtonClickEvent>(ManagerItemSelect);
         EventBus.Subscribe<WeaponSwapEvent>(swapWeapons);
+        EventBus.Subscribe<VictoryMusicEvent>(playVictoryMusic);
 
         EventBus.Subscribe<ManagerButtonPress>(buttonPressed);
         EventBus.Subscribe<ManagerIncorrectAnswer>(incorrectCode);
@@ -149,12 +151,22 @@ public class SoundManager : MonoBehaviour
 
     private void finalWaveMusic(LastWaveEvent e)
     {
-        musicInstance.Stop();
         Destroy(musicInstance);
 
         musicInstance = Instantiate(soundPrefab, Vector3.zero, Quaternion.identity);
         musicInstance.clip = finalWaveMusicTrack;
         musicInstance.volume = 0.08f;
+        musicInstance.spatialBlend = 0;
+        musicInstance.loop = true;
+        musicInstance.Play();
+    }
+
+    private void playVictoryMusic(VictoryMusicEvent e)
+    {
+        Debug.Log("playVictoryMusic");
+        musicInstance = Instantiate(soundPrefab, Vector3.zero, Quaternion.identity);
+        musicInstance.clip = victoryMusicTrack;
+        musicInstance.volume = 0.1f;
         musicInstance.spatialBlend = 0;
         musicInstance.loop = true;
         musicInstance.Play();
