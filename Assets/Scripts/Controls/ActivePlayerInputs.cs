@@ -34,13 +34,13 @@ public class ActivePlayerInputs : MonoBehaviour
         controller = GetComponent<CharacterController>();
         look = transform.Find("PlayerLook");
         pingManager = GameObject.Find("GameManager").GetComponent<PingManager>();
-        anim = GetComponent<Animator>();
+        anim = GetComponentInChildren<Animator>();
     }
 
     private void FixedUpdate() {
-        bool running = anim.GetBool("running");
+        bool running = anim.GetBool("r");
         bool ads = anim.GetBool("ads");
-        bool knife = anim.GetBool("knife");
+        bool attack = anim.GetBool("attack");
         Vector3 forward = movementInputValue.y * transform.forward;
         Vector3 right = movementInputValue.x * transform.right;
         if (playerControls)
@@ -97,12 +97,12 @@ public class ActivePlayerInputs : MonoBehaviour
     {
         movementInputValue = value.Get<Vector2>();
         if (movementInputValue == Vector2.zero)
-            anim.SetBool("running", false);
+            anim.SetBool("run", false);
     }
     private void OnRun(InputValue value)
     {
         if (controller.isGrounded && !Sliding())
-            anim.SetBool("running", true);
+            anim.SetBool("run", true);
 
     }
     // Constantly sets the value of aimInputValue to the current input on the right joystick

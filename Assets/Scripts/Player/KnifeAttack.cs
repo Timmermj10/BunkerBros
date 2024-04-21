@@ -20,6 +20,6 @@ public class KnifeAttack : MonoBehaviour
     }
     void _Attack(AttackEvent e)
     {
-        anim.SetTrigger("knife");
+        anim.SetTrigger("attack");
     }
 }
