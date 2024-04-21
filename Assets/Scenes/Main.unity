@@ -23176,9 +23176,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   soundPrefab: {fileID: 2870993679421863122, guid: 607a625390908d44aaf86a6a0019d7d6,
     type: 3}
-  mainMusicTrack: {fileID: 0}
-  finalWaveMusicTrack: {fileID: 0}
-  chestOpeningSound: {fileID: 0}
+  mainMusicTrack: {fileID: 8300000, guid: ac942f8e8cff3aa488887ed5300eadbe, type: 3}
+  finalWaveMusicTrack: {fileID: 8300000, guid: f2a9304eb3672c247a67020abc09df4d, type: 3}
+  chestOpeningSound: {fileID: 8300000, guid: f15ac1bca443e75438f63fa1bf8d3c2a, type: 3}
   zombieAttack: {fileID: 8300000, guid: 0786ab5eb38cafb48a4f77ff3849d347, type: 3}
   zombieDeath: {fileID: 8300000, guid: 869c0dc72edc74e4ab9568cbc041f40e, type: 3}
   zombieDamaged: {fileID: 8300000, guid: 398115effb894194bb18db394cd5983b, type: 3}
@@ -23189,8 +23189,8 @@ MonoBehaviour:
   shootingSound: {fileID: 8300000, guid: ade66992c03bce84aaed02fd38e6bcd3, type: 3}
   turretFire: {fileID: 8300000, guid: 4a06af3e37c06d24a8910900c4d91b3d, type: 3}
   bunkerAlarmNoise: {fileID: 8300000, guid: f939fc14549dc574cb9ebc4da20e700d, type: 3}
-  footstepSound: {fileID: 0}
-  playerDamaged: {fileID: 0}
+  footstepSound: {fileID: 8300000, guid: d0ff442021c7b0647854bd798608894c, type: 3}
+  playerDamaged: {fileID: 8300000, guid: af0fb817b2f92e94792422ab545d8b04, type: 3}
 --- !u!1001 &1549407776
 PrefabInstance:
   m_ObjectHideFlags: 0

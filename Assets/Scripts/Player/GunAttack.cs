@@ -14,7 +14,7 @@ public class GunAttack : MonoBehaviour
     public Transform shellSpawn;
     public float shellSpeed = 1f;
 
-    private Subscription<AttackEvent> sub;
+    private Subscription<AttackEvent> attack;
     private Animator anim;
     private Vector3 lastPos;
     private Vector3 velocity;
@@ -33,22 +33,18 @@ public class GunAttack : MonoBehaviour
     }
     private void OnDisable()
     {
-        EventBus.Unsubscribe(sub);
+        EventBus.Unsubscribe(attack);
     }
     private void OnEnable()
     {
-        sub = EventBus.Subscribe<AttackEvent>(_Attack);
+        attack = EventBus.Subscribe<AttackEvent>(_Attack);
     }
     void _Attack(AttackEvent e)
     {
-        if (ammo.ammo_count > 0)
-        {
-            Debug.Log(velocity);
-            anim.SetInteger("ammo", ammo.ammo_count);
-            anim.SetTrigger("shoot");
-            Instantiate(bullet, bulletSpawn.position, Quaternion.LookRotation(bulletSpawn.forward));
-            Instantiate(shell, shellSpawn.position, Quaternion.LookRotation(bulletSpawn.up)).GetComponent<Rigidbody>().velocity = velocity + shellSpeed * shellSpawn.forward;
-            EventBus.Publish<ShootEvent>(new ShootEvent());
-        }
+        anim.SetInteger("ammo", ammo.ammo_count);
+        anim.SetTrigger("shoot");
+        Instantiate(bullet, bulletSpawn.position, Quaternion.LookRotation(bulletSpawn.forward));
+        Instantiate(shell, shellSpawn.position, Quaternion.LookRotation(bulletSpawn.up)).GetComponent<Rigidbody>().velocity = velocity + shellSpeed * shellSpawn.forward;
+        EventBus.Publish<ShootEvent>(new ShootEvent());
     }
 }
