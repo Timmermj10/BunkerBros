@@ -38,7 +38,7 @@ public class ActivePlayerInputs : MonoBehaviour
     }
 
     private void FixedUpdate() {
-        bool running = anim.GetBool("r");
+        bool running = anim.GetBool("run");
         bool ads = anim.GetBool("ads");
         bool attack = anim.GetBool("attack");
         Vector3 forward = movementInputValue.y * transform.forward;
@@ -119,7 +119,7 @@ public class ActivePlayerInputs : MonoBehaviour
     }
     private void OnAttack(InputValue value)
     {
-        if (playerControls)
+        if (playerControls && !anim.GetBool("run"))
         {
             //Debug.Log("Active Player: Player Attacked");
             EventBus.Publish(new AttackEvent());
