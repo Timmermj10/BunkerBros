@@ -27,6 +27,7 @@ public class SoundManager : MonoBehaviour
     public AudioClip drawGunSound;
 
     public AudioClip siloLoadedSound;
+    public AudioClip nukeLanchedSound;
     public AudioClip ItemSelectSound;
 
 
@@ -74,6 +75,7 @@ public class SoundManager : MonoBehaviour
         EventBus.Subscribe<GameplayStartEvent>(startMainMusic);
         EventBus.Subscribe<EmptyAmmo>(noAmmoNoise);
         EventBus.Subscribe<SiloLoadedEvent>(loadSilo);
+        EventBus.Subscribe<SiloUnloadedEvent>(nukeLaunched);
         EventBus.Subscribe<ManagerButtonClickEvent>(ManagerItemSelect);
         EventBus.Subscribe<WeaponSwapEvent>(swapWeapons);
 
@@ -118,6 +120,11 @@ public class SoundManager : MonoBehaviour
     private void loadSilo(SiloLoadedEvent e)
     {
         PlaySoundAtLocation(siloLoadedSound, e.position, 1f, 15);
+    }
+
+    private void nukeLaunched(SiloUnloadedEvent e)
+    {
+        PlaySoundAtLocation(nukeLanchedSound, e.position, 1f, 15);
     }
 
     private void incorrectCode(ManagerIncorrectAnswer e)

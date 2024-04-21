@@ -147,10 +147,12 @@ public class SiloLoadedEvent
 public class SiloUnloadedEvent
 {
     public MissileSiloStatus status;
+    public Vector3 position;
 
-    public SiloUnloadedEvent(MissileSiloStatus e)
+    public SiloUnloadedEvent(MissileSiloStatus e, Vector3 position)
     {
         status = e;
+        this.position = position;
     }
 }
 
