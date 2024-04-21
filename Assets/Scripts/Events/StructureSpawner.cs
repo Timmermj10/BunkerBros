@@ -38,7 +38,7 @@ public class StructureSpawner : MonoBehaviour
         }
         else if (e.itemID == 3)
         {
-            //spawn turret
+            //spawn gun
             Instantiate(gunPrefab, e.itemLocation + new Vector3(0, -0.4f, 0), Quaternion.identity);
         }else if (e.itemID == 6)
         {

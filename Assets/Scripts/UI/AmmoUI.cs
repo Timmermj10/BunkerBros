@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class AmmoUI : MonoBehaviour
 {
     private Text ammo_display;
+    public Text swap_display;
     private GameObject ammo_image;
     public static GameObject knife_image;
     public static GameObject gun_image;
@@ -20,6 +21,9 @@ public class AmmoUI : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
+        // Listen for player death
+        EventBus.Subscribe<ObjectDestroyedEvent>(playerDeath);
+
         purchase = EventBus.Subscribe<PurchaseEvent>(_enable_text);
         ammo_display = GameObject.Find("Ammo").GetComponentInChildren<Text>();
         ammo_image = GameObject.Find("AmmoImage");
@@ -29,6 +33,11 @@ public class AmmoUI : MonoBehaviour
         if(ammo_display != null)
         {
             // Debug.Log("Ammo UI Text Found");
+        }
+
+        if (swap_display != null)
+        {
+            swap_display.text = "";
         }
     }
 
@@ -47,6 +56,8 @@ public class AmmoUI : MonoBehaviour
                     prev_total = 0;
                     reserve_mags = 0;
                     current_mag = 0;
+                    //Adding Swap Text
+                    swap_display.text = "SWAP:TRI";
                 }
                 else {
                     if (ammo.ammo_count > prev_total) {
@@ -59,6 +70,7 @@ public class AmmoUI : MonoBehaviour
                     }
                     prev_total = ammo.ammo_count;
                 }
+                swap_display.text = "";
                 ammo_display.text = current_mag.ToString() + "/" + reserve_mags.ToString();
             }
             else
@@ -79,6 +91,14 @@ public class AmmoUI : MonoBehaviour
         {
             Debug.Log("Purchased Item was: " + p.purchasedItem.itemName);
         }
-        
+    }
+
+    // Listen for player death
+    public void playerDeath(ObjectDestroyedEvent e)
+    {
+        if (e.name is "player")
+        {
+            enable = false;
+        }
     }
 }

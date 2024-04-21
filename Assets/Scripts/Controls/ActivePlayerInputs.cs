@@ -43,6 +43,9 @@ public class ActivePlayerInputs : MonoBehaviour
         bool attack = anim.GetBool("attack");
         Vector3 forward = movementInputValue.y * transform.forward;
         Vector3 right = movementInputValue.x * transform.right;
+
+        EventBus.Publish(new PlayerMovingEvent(movementInputValue, running));
+
         if (playerControls)
         {
             velocity = velocity.y * Vector3.up + (running ? runSpeed : walkSpeed) * (forward + right);

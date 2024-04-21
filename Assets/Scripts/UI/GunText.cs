@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class GunText : MonoBehaviour
 {
+    // Only show the text the first time the players buy the gun
+    public bool first = true;
     // Start is called before the first frame update
     void Start()
     {
@@ -14,8 +16,9 @@ public class GunText : MonoBehaviour
 
     public void _gunUse(PurchaseEvent e)
     {
-        if (e.purchasedItem.itemId == 3)
+        if (e.purchasedItem.itemId == 3 && first)
         {
+            first = false;
             EventBus.Publish(new PopUpStartEvent("Player", "TRIANGLE to swap weapons\n LT to ADS", true, true));
         }
     }

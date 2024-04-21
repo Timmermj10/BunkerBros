@@ -57,6 +57,9 @@ public class ManagerPlayerInputsNew : MonoBehaviour
     private PingManager pingManager;
     public float minX, maxX, minY, MaxY;
 
+    InputAction ObjSnap;
+    InputAction PlaySnap;
+
     // Bool to hold if we are currently doing the minigame
     bool minigame = false;
 
@@ -75,6 +78,9 @@ public class ManagerPlayerInputsNew : MonoBehaviour
         //zoomSpeed = 1;
         zoom = playerInput.actions.FindAction("Zoom");
         moveAction = playerInput.actions.FindAction("Move");
+        ObjSnap = playerInput.actions.FindAction("ObjectiveSnap");
+        PlaySnap = playerInput.actions.FindAction("PlayerSnap");
+
         if (GameObject.Find("Inventory") != null)
         {
             inventory = GameObject.Find("Inventory").GetComponent<InventoryUI>();
@@ -175,6 +181,24 @@ public class ManagerPlayerInputsNew : MonoBehaviour
         //managerCamera.position = newPosition;
 
         //Debug.Log("Manager Player: MovementInputValue = " + movementInputValue);
+    }
+
+    private void OnObjectiveSnap(InputValue value)
+    {
+        
+        transform.position = new Vector3(0, 20, 0);
+    }
+
+    private void OnPlayerSnap(InputValue value)
+    {
+        GameObject play = GameObject.Find("player");
+        if (play != null) {
+            Vector3 loc = play.transform.position;
+            loc.y = 20;
+            transform.position = loc;
+        }
+        
+        
     }
 
     //private void OnInteract(InputValue value)
@@ -373,7 +397,7 @@ public class ManagerPlayerInputsNew : MonoBehaviour
 
                     EventBus.Publish<ItemUseEvent>(new ItemUseEvent(8, itemUsedLocation, true)); // Changed to 8 for a AmmoCrate
                 }
-                else if (itemID == 9 && Vector3.Distance(worldPositionRounded, new Vector3(0, 1, 0)) < maxRespawnDistanceFromObjective && GameObject.Find("player") == null)
+                else if (itemID == 9 && Vector3.Distance(worldPositionRounded, new Vector3(0, 1, 0)) < maxRespawnDistanceFromObjective && GameObject.Find("player") == null && !ButtonUpdate.respawning)
                 {
                     //get the location of the item
                     Vector3 itemUsedLocation = new Vector3(worldPositionRounded.x, worldPositionRounded.y + 0.5f, worldPositionRounded.z);
@@ -398,7 +422,8 @@ public class ManagerPlayerInputsNew : MonoBehaviour
                         // Send out the purchase event for jeremy's implementation
                         // EventBus.Publish<PurchaseEvent>(new PurchaseEvent(shopManagerScript.shopItems[3]));
 
-                        Destroy(selectedObj);
+                        // Turn the button off
+                        selectedObj.SetActive(false);
                     }
                     else if (shopManagerScript.gold >= cost)
                     {

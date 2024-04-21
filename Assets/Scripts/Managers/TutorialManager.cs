@@ -70,6 +70,9 @@ public class TutorialManager : MonoBehaviour
         EventBus.Subscribe<RadioTowerActivatedManagerEvent>(_RadioTowerActivatedByManager);
         EventBus.Subscribe<ItemUseEvent>(_ItemPurchased);
 
+        // Subscribe to purchase events for ammo button
+        EventBus.Subscribe<PurchaseEvent>(_gunUse);
+
 
         pingManager = GameObject.Find("GameManager").GetComponent<PingManager>();
         bunker = GameObject.Find("Objective");
@@ -204,7 +207,7 @@ public class TutorialManager : MonoBehaviour
         playerRespawn.GetComponent<Button>().interactable = true;
         RepairKit.GetComponent<Button>().interactable = true;
         //Dont enable Ammo crate until a gun is bought
-        AmmoCrate.GetComponent<Button>().interactable = false;
+        AmmoCrate.GetComponent<Button>().interactable = true;
         Gun.GetComponent<Button>().interactable = true;
         Wall.GetComponent<Button>().interactable = true;
         Turret.GetComponent<Button>().interactable = true;
@@ -283,11 +286,11 @@ public class TutorialManager : MonoBehaviour
             case 16:
                 //Show the buttons
                 Gun.SetActive(true);
-                AmmoCrate.SetActive(true);
+                // AmmoCrate.SetActive(true);
 
                 //Flash the buttons
                 StartCoroutine(ButtonFlashRoutine(Gun));
-                StartCoroutine(ButtonFlashRoutine(AmmoCrate));
+                // StartCoroutine(ButtonFlashRoutine(AmmoCrate));
                 break;
             default:
                 break;
@@ -322,6 +325,13 @@ public class TutorialManager : MonoBehaviour
         if (e.tag is "Boulder")
         {
             hasBlownUpBoulder = true;
+        }
+
+        // Watch out for player death
+        if (e.name is "player")
+        {
+            AmmoCrate.SetActive(false);
+            Gun.SetActive(true);
         }
     }
 
@@ -381,7 +391,7 @@ public class TutorialManager : MonoBehaviour
     {
         if (!hasActivatedRadioTower)
         {
-            EventBus.Publish(new PopUpStartEvent("Player", "Good job activating the radio tower! Make sure you help your partner get the tower fully online!")); //14
+            EventBus.Publish(new PopUpStartEvent("Player", "Good job activating the radio tower! Make sure you find the code to help get the tower fully online!")); //14
             hasActivatedRadioTower = true;
         }
     }
@@ -435,6 +445,14 @@ public class TutorialManager : MonoBehaviour
                 // Wait for flashDuration to end
                 yield return new WaitForSeconds(buttonFlashDuration);
             }
+        }
+    }
+
+    public void _gunUse(PurchaseEvent e)
+    {
+        if (e.purchasedItem.itemId == 3)
+        {
+            AmmoCrate.SetActive(true);
         }
     }
 

@@ -49,7 +49,7 @@ public class StandbyTextUI : MonoBehaviour
     void Update()
     {
         // If the player is dead and we aren't currently respawning
-        if (GameObject.Find("player") == null && playerRespawn != null && !playerRespawn.respawning && !afterCarpetBombing)
+        if (GameObject.Find("player") == null && playerRespawn != null && !ButtonUpdate.respawning && !afterCarpetBombing)
         {
             // Check if the timer is up
             if (playerRespawn.timer > 0 && !firstSpawn)

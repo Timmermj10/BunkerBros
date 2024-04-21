@@ -78,6 +78,12 @@ public class HasHealth : MonoBehaviour
 
     public void changeHealth(int healthChange)
     {
+        // Publish that the objective is being damaged
+        if (gameObject.name is "Objective" && healthChange < 0)
+        {
+            EventBus.Publish<ObjectiveDamagedEvent>(new ObjectiveDamagedEvent());
+        }
+
         //Check if the tower is taking damage, and if it has a shield
         if (GetComponent<Shield>() != null)
         {
@@ -102,9 +108,15 @@ public class HasHealth : MonoBehaviour
                 // Publish a damage effect event
                 if (gameObject.tag == "Enemy")
                 {
-                    if (healthChange + armorValue < 0)
+                    if (healthChange + armorValue <= 0)
                     {
                         EventBus.Publish<DamageEffectEvent>(new DamageEffectEvent(gameObject, true));
+
+                        //if the enemy is not dying
+                        if (currentHealth + Mathf.Min(healthChange + armorValue, 0) > 0)
+                        {
+                            EventBus.Publish(new zombieDamagedEvent(transform.position));
+                        }
                     }
                     // Publish a damage effect event
                     else
