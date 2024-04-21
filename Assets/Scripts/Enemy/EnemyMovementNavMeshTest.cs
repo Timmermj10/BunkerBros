@@ -54,6 +54,9 @@ public class EnemyMovementNavMeshTest : MonoBehaviour
     // Bool to hold if we reset destination after players death already
     private bool reset = false;
 
+    // Count the number of frames
+    private int enemyFrameCounter = 0;
+
     private Subscription<PopUpStartEvent> startpopup_subscription;
     private Subscription<PopUpEndEvent> endpopup_subscription;
     private Subscription<PlayerRespawnEvent> respawn_event_subscription;
@@ -107,6 +110,11 @@ public class EnemyMovementNavMeshTest : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        enemyFrameCounter++;
+        if (enemyFrameCounter % 5 != 0)
+        {
+            return;
+        }
         if (canMove)
         {
             if (objective != null)
