@@ -134,10 +134,12 @@ public class InteractTimerEndedEvent
 public class SiloLoadedEvent
 {
     public MissileSiloStatus status;
+    public Vector3 position;
 
-    public SiloLoadedEvent(MissileSiloStatus e)
+    public SiloLoadedEvent(MissileSiloStatus e, Vector3 position)
     {
         status = e;
+        this.position = position;
     }
 }
 
@@ -319,6 +321,10 @@ public class ObjectiveDamagedEvent
 {
 }
 
+public class GameplayStartEvent
+{
+}
+
 public class TurretShootingEvent
 {
     public Vector3 position;
@@ -339,4 +345,22 @@ public class PlayerMovingEvent
         this.movementValue = movementValue;
         this.isSprinting = isSprinting;
     }
+}
+
+public class WeaponSwapEvent
+{
+    public bool trueIsKnife;
+
+    public WeaponSwapEvent(bool trueIsKnife)
+    {
+        this.trueIsKnife = trueIsKnife;
+    }
+}
+
+public class ManagerButtonPress
+{
+}
+
+public class ManagerIncorrectAnswer
+{
 }

@@ -51,6 +51,12 @@ public class EnemyMovementNavMeshTest : MonoBehaviour
     //Bool to turn off movement
     private bool canMove = true;
 
+    // Bool to hold if we reset destination after players death already
+    private bool reset = false;
+
+    // Count the number of frames
+    private int enemyFrameCounter = 0;
+
     private Subscription<PopUpStartEvent> startpopup_subscription;
     private Subscription<PopUpEndEvent> endpopup_subscription;
     private Subscription<PlayerRespawnEvent> respawn_event_subscription;
@@ -104,6 +110,11 @@ public class EnemyMovementNavMeshTest : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        enemyFrameCounter++;
+        if (enemyFrameCounter % 5 != 0)
+        {
+            return;
+        }
         if (canMove)
         {
             if (objective != null)
@@ -135,15 +146,20 @@ public class EnemyMovementNavMeshTest : MonoBehaviour
                 minDistance.y = 0;
 
                 // If the min distance is different than the target
-                if (minDistance != targetCenter || player == null)
+                if (minDistance != targetCenter || (player == null && !reset))
                 {
                     //Debug.Log("here");
                     if (player != null)
                     {
-                        DetermineBestLocation(player.transform.position);
+                        reset = false;
+                        // We want to adjust the player.transform.position to be slightly closer to the enemy
+                        // This will make the enemy actually stop and attack the player
+                        Vector3 direction = (gameObject.transform.position - player.transform.position).normalized;
+                        DetermineBestLocation(player.transform.position + (direction * 0.5f));
                     }
                     else
                     {
+                        reset = true;
                         DetermineBestLocation(playerOffset);
                     }
                 }

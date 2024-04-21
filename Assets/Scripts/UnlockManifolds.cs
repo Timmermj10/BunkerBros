@@ -62,7 +62,9 @@ public class UnlockManifolds : MonoBehaviour
     public void pressButton(Button button)
     {
         if (int.Parse(button.GetComponentInChildren<Text>().text) - 1 == counter) 
-        { 
+        {
+            EventBus.Publish(new ManagerButtonPress());
+
             // Increment the counter
             counter++;
 
@@ -82,6 +84,7 @@ public class UnlockManifolds : MonoBehaviour
         else
         {
             // Present the result for losing
+            EventBus.Publish(new ManagerIncorrectAnswer());
             StartCoroutine(presentResult(false));
         }
     }

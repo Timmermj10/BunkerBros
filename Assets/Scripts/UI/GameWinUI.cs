@@ -23,7 +23,6 @@ public class GameWinUI : MonoBehaviour
             seconds = "0" + seconds;
         }
 
-        winText.text = $"Time: {minutes}:{seconds}";
-
+        winText.text = $"CONGRATULATIONS! YOU ESCAPED IN {minutes}:{seconds}";
     }
 }
