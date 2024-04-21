@@ -3241,9 +3241,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31dffa01d58603441bd3e5a3525a16a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ProjectilePrefab: {fileID: 4820764227730699988, guid: 07cac96898c26b041928e90fb5d15422,
-    type: 3}
-  aim: {fileID: 8432561248401903532}
+  bullet: {fileID: 3798957443515782968, guid: 07cac96898c26b041928e90fb5d15422, type: 3}
+  bulletSpawn: {fileID: 8432561248401903532}
+  shell: {fileID: 6461046125311005452, guid: 0db36be84badc304abe4588bae0dc871, type: 3}
+  shellSpawn: {fileID: 915690424082875523}
+  shellSpeed: 2
 --- !u!1 &6936641520981721241
 GameObject:
   m_ObjectHideFlags: 0

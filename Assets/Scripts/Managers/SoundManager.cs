@@ -97,7 +97,7 @@ public class SoundManager : MonoBehaviour
 
     private void footstepSounds(PlayerMovingEvent e)
     {
-        Debug.Log($"footstep noises");
+        //Debug.Log($"footstep noises");
         if (footstepPrefabInstance == null && e.movementValue != Vector2.zero)
         {
             footstepPrefabInstance = Instantiate(soundPrefab, player.transform.position, Quaternion.identity);
