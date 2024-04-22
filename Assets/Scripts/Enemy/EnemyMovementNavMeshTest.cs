@@ -57,6 +57,8 @@ public class EnemyMovementNavMeshTest : MonoBehaviour
     // Count the number of frames
     private int enemyFrameCounter = 0;
 
+    // Player offset
+
     private Subscription<PopUpStartEvent> startpopup_subscription;
     private Subscription<PopUpEndEvent> endpopup_subscription;
     private Subscription<PlayerRespawnEvent> respawn_event_subscription;
@@ -145,6 +147,11 @@ public class EnemyMovementNavMeshTest : MonoBehaviour
                 minDistance = objectiveOffset.magnitude <= playerOffset.magnitude ? objective.transform.position : player.transform.position;
                 minDistance.y = 0;
 
+                Debug.Log($"objectiveOffset: {objectiveOffset}");
+                Debug.Log($"playerOffset: {playerOffset}");
+                Debug.Log($"minDistance: {minDistance}");
+                Debug.Log($"targetCenter: {targetCenter}");
+
                 // If the min distance is different than the target
                 if (minDistance != targetCenter || (player == null && !reset))
                 {
@@ -155,16 +162,21 @@ public class EnemyMovementNavMeshTest : MonoBehaviour
                         // We want to adjust the player.transform.position to be slightly closer to the enemy
                         // This will make the enemy actually stop and attack the player
                         Vector3 direction = (gameObject.transform.position - player.transform.position).normalized;
-                        DetermineBestLocation(player.transform.position + (direction * 0.5f));
+                        Vector3 previous = player.transform.position;
+                        if (DetermineBestLocation(previous) == previous)
+                        {
+                            target = player.transform.position + (direction * 0.5f);
+                        }
                     }
                     else
                     {
                         reset = true;
                         DetermineBestLocation(playerOffset);
                     }
+                    targetCenter = minDistance;
                 }
 
-                targetCenter = minDistance;
+               // targetCenter = minDistance;
 
 
 
