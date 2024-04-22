@@ -70,7 +70,7 @@ public class GunAttack : MonoBehaviour
             magCount--;
             anim.SetTrigger("shoot");
             anim.SetInteger("ammo", magCount);
-
+            parentAnim.SetTrigger("attack");
             EventBus.Publish(new ShootEvent());
             Instantiate(bullet, bulletSpawn.position, Quaternion.LookRotation(bulletSpawn.forward));
             Instantiate(shell, shellSpawn.position, Quaternion.LookRotation(bulletSpawn.up)).GetComponent<Rigidbody>().velocity = velocity + shellSpeed * shellSpawn.forward;
