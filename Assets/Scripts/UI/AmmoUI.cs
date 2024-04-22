@@ -30,6 +30,7 @@ public class AmmoUI : MonoBehaviour
         ammo_image = GameObject.Find("AmmoImage");
         knife_image = GameObject.Find("KnifeImage");
         gun_image = GameObject.Find("GunImage");
+        gun_image.SetActive(false);
     }
 
     // Update is called once per frame
