@@ -25,15 +25,8 @@ public class HandInventory : MonoBehaviour
 
 
         if (AmmoUI.knife_image != null) knifeImageRenderer = AmmoUI.knife_image.GetComponent<RawImage>();
-        if (AmmoUI.gun_image != null)
-        {
-            gunImageRenderer = AmmoUI.gun_image.GetComponent<RawImage>();
-        }
-
-        if (AmmoUI.gun_image.activeSelf) 
-        {
-            canSwap = true;
-        }
+        if (AmmoUI.gun_image != null)  gunImageRenderer = AmmoUI.gun_image.GetComponent<RawImage>();
+        if (AmmoUI.gun_image.activeSelf) canSwap = true;
 
         // Set the color of the knife
         knifeImageRenderer.color = new Color(1f, 1f, 1f, 1f);

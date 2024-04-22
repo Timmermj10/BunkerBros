@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class AmmoSystem : MonoBehaviour
 {
+    public int mag_size = 8;
+    public int mag_count = 8;
     public int ammo_count = 60;
     public int reload_count = 60;
 
@@ -37,12 +39,18 @@ public class AmmoSystem : MonoBehaviour
 
     private void _decrement(ShootEvent s)
     {
-        ammo_count -= 1;
-        if (ammo_count == 0)
+        mag_count -= 1;
+        if (mag_count == 0)
         {
-            ammo_count = 0;
-            EventBus.Publish<EmptyAmmo>(new EmptyAmmo());
+            EventBus.Publish(new EmptyAmmo());
+            mag_count = mag_size;
+            ammo_count -= mag_size;
         }
     }
-
+    private void OnDestroy()
+    {
+        EventBus.Unsubscribe(purchase);
+        EventBus.Unsubscribe(pickup);
+        EventBus.Unsubscribe(shot);
+    }
 }
