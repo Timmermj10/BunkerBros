@@ -34,13 +34,13 @@ public class SoundManager : MonoBehaviour
     public AudioClip coinPickupSound;
     public AudioClip drawKnifeSound;
     public AudioClip drawGunSound;
+    public AudioClip emptyAmmoSound;
+    public AudioClip reloadSound;
 
     public AudioClip siloLoadedSound;
     public AudioClip nukeLanchedSound;
     public AudioClip ItemSelectSound;
 
-
-    public AudioClip emptyAmmoSound;
     public AudioClip chestOpeningSound;
     public AudioClip zombieAttack;
     public AudioClip zombieDeath;
@@ -102,6 +102,7 @@ public class SoundManager : MonoBehaviour
         EventBus.Subscribe<WeaponSwapEvent>(swapWeapons);
         EventBus.Subscribe<VictoryMusicEvent>(playVictoryMusic);
         EventBus.Subscribe<DeathMusicEvent>(playDeathMusic);
+        EventBus.Subscribe<ReloadEvent>(reload);
 
         EventBus.Subscribe<InteractTimerStartedEvent>(playInteractSound);
         EventBus.Subscribe<InteractTimerEndedEvent>(stopInteractSound);
@@ -183,6 +184,11 @@ public class SoundManager : MonoBehaviour
     private void buttonPressed(ManagerButtonPress e)
     {
         PlaySoundAtLocation(managerButtonPress, Vector3.zero, 0.6f, 15, true);
+    }
+
+    private void reload(ReloadEvent e)
+    {
+        PlaySoundAtLocation(reloadSound, player.transform.position, 0.6f, 3);
     }
 
     private void ManagerItemSelect(ManagerButtonClickEvent e)
