@@ -216,7 +216,7 @@ public class EnemyMovementNavMeshTest : MonoBehaviour
 
                     // Set where they are going to move to
                     // agent.SetDestination(minDistance);
-
+                    Debug.Log(target);
                     agent.SetDestination(target);
                 }
                 // If the enemies are attacking
