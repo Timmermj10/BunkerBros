@@ -18036,7 +18036,7 @@ MonoBehaviour:
   zombieDamaged: {fileID: 8300000, guid: 398115effb894194bb18db394cd5983b, type: 3}
   missileExplosion: {fileID: 8300000, guid: 986e7748725a94e4c8095841fcbc589a, type: 3}
   nukeExplosion: {fileID: 8300000, guid: 0d7217c6f18212448a37c322d1d3f756, type: 3}
-  airdropLandedSound: {fileID: 8300000, guid: fd6fed00e585226459c6ed68c9e34da0, type: 3}
+  landingSound: {fileID: 8300000, guid: fd6fed00e585226459c6ed68c9e34da0, type: 3}
   knifeSwingSound: {fileID: 8300000, guid: 275c40128b7bd154a81b4c243b739eaf, type: 3}
   shootingSound: {fileID: 8300000, guid: ade66992c03bce84aaed02fd38e6bcd3, type: 3}
   turretFire: {fileID: 8300000, guid: 4a06af3e37c06d24a8910900c4d91b3d, type: 3}
