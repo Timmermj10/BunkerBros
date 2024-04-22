@@ -6,7 +6,6 @@ using UnityEngine.UI;
 
 public class AmmoUI : MonoBehaviour
 {
-    public AmmoSystem ammo;
     public Text swap_display;
     public Text ammo_display;
 
@@ -47,13 +46,13 @@ public class AmmoUI : MonoBehaviour
         {
             ammo_image.SetActive(true);
             gun_image.SetActive(true);
-            if (ammo.ammo_count == 0 && ammo.mag_count == 0) {
+            if (gun.ammoCount == 0 && gun.magCount == 0) {
                 ammo_display.text = "empty";
                 swap_display.text = "SWAP:TRI";
             }
             else {
                 swap_display.text = "";
-                ammo_display.text = ammo.mag_count.ToString() + "/" + ammo.ammo_count.ToString();
+                ammo_display.text = gun.magCount.ToString() + "/" + gun.ammoCount.ToString();
             }
         }
         else
@@ -68,7 +67,7 @@ public class AmmoUI : MonoBehaviour
     {
         if (p.purchasedItem.itemName == "Gun")
         {
-            gun = GameObject.Find("gun").GetComponent<GunAttack>();
+            gun = GameObject.Find("RightHand").transform.Find("gun").gameObject.GetComponent<GunAttack>();
         }
     }
 
