@@ -351,7 +351,7 @@ public class EnemyMovementNavMeshTest : MonoBehaviour
 
         foreach (Collider hitCollider in hitColliders)
         {
-            if(hitCollider.gameObject.name == "NukeCrate(Clone)" || hitCollider.gameObject.name == "BarbedWire(Clone)" || hitCollider.gameObject.name == "Turret(Clone)")
+            if(hitCollider.gameObject.name == "NukeCrate(Clone)" || hitCollider.gameObject.name == "BarbedWire(Clone)" || hitCollider.gameObject.name == "Turret(Clone)" || hitCollider.gameObject.name == "player" || hitCollider.gameObject.name == "Objective")
             {
                 //Debug.Log(hitCollider);
                 GameObject destructible = hitCollider.gameObject;

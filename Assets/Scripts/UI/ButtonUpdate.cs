@@ -46,6 +46,12 @@ public class ButtonUpdate : MonoBehaviour
 
         // Listen to item used events
         EventBus.Subscribe<ItemUseEvent>(_checkRespawn);
+
+        // If this is the ammo crate, set in tutorial to false
+        if (gameObject.name is "AmmoCrate")
+        {
+            isInTutorial = false;
+        }
     }
 
     // Update button colors and interactable status
