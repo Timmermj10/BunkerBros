@@ -153,7 +153,7 @@ public class EnemyMovementNavMeshTest : MonoBehaviour
                 Debug.Log($"targetCenter: {targetCenter}");
 
                 // If the min distance is different than the target
-                if (minDistance != targetCenter || (player == null && !reset))
+                if (minDistance != targetCenter || (player == null && !reset) || (agent.remainingDistance <= agent.stoppingDistance && !attacking))
                 {
                     //Debug.Log("here");
                     if (player != null)
@@ -175,8 +175,28 @@ public class EnemyMovementNavMeshTest : MonoBehaviour
                     }
                     targetCenter = minDistance;
                 }
+                //if (minDistance != targetCenter || (agent.remainingDistance <= agent.stoppingDistance && !attacking))
+                //{
+                //    if (player != null)
+                //    {
+                //        //reset = false;
+                //        // We want to adjust the player.transform.position to be slightly closer to the enemy
+                //        // This will make the enemy actually stop and attack the player
+                //        Vector3 direction = (gameObject.transform.position - player.transform.position).normalized;
+                //        Vector3 previous = player.transform.position;
+                //        if (DetermineBestLocation(previous) == previous)
+                //        {
+                //            target = player.transform.position + (direction * 0.5f);
+                //        }
+                //    }
+                //    else
+                //    {
+                //        //reset = true;
+                //        DetermineBestLocation(playerOffset);
+                //    }
+                //    targetCenter = minDistance;
+                //}
 
-               // targetCenter = minDistance;
 
 
 
