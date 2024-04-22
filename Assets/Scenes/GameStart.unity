@@ -18025,10 +18025,11 @@ MonoBehaviour:
   coinPickupSound: {fileID: 8300000, guid: dbe46e4d337aa0348aa8f87a9207944f, type: 3}
   drawKnifeSound: {fileID: 8300000, guid: e9ba4681f4942444785574e99cbbab88, type: 3}
   drawGunSound: {fileID: 8300000, guid: 75664b71dbbfd894980a5da776d2bfd8, type: 3}
+  emptyAmmoSound: {fileID: 8300000, guid: 12c88c446df2f44769382245a4f2b4d1, type: 3}
+  reloadSound: {fileID: 8300000, guid: 0ff34cbcad6bddf45aa0516aca0e2ec7, type: 3}
   siloLoadedSound: {fileID: 8300000, guid: 0691a6d3a948b194e86ba0bd7e06c019, type: 3}
   nukeLanchedSound: {fileID: 8300000, guid: b4424f542b4554d44b71fee8bc2425c1, type: 3}
   ItemSelectSound: {fileID: 8300000, guid: 1cbaba81b77168747b34683a37afffa1, type: 3}
-  emptyAmmoSound: {fileID: 8300000, guid: 12c88c446df2f44769382245a4f2b4d1, type: 3}
   chestOpeningSound: {fileID: 8300000, guid: f15ac1bca443e75438f63fa1bf8d3c2a, type: 3}
   zombieAttack: {fileID: 8300000, guid: 0786ab5eb38cafb48a4f77ff3849d347, type: 3}
   zombieDeath: {fileID: 8300000, guid: 869c0dc72edc74e4ab9568cbc041f40e, type: 3}

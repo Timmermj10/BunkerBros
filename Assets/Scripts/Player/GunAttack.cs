@@ -62,6 +62,7 @@ public class GunAttack : MonoBehaviour
                 magCount = Mathf.Min(ammoCount, magSize);
                 ammoCount -= magCount;
                 anim.SetInteger("ammo", magCount);
+                EventBus.Publish(new ReloadEvent());
                 return;
             }
         }

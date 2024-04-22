@@ -34,20 +34,20 @@ public class SoundManager : MonoBehaviour
     public AudioClip coinPickupSound;
     public AudioClip drawKnifeSound;
     public AudioClip drawGunSound;
+    public AudioClip emptyAmmoSound;
+    public AudioClip reloadSound;
 
     public AudioClip siloLoadedSound;
     public AudioClip nukeLanchedSound;
     public AudioClip ItemSelectSound;
 
-
-    public AudioClip emptyAmmoSound;
     public AudioClip chestOpeningSound;
     public AudioClip zombieAttack;
     public AudioClip zombieDeath;
     public AudioClip zombieDamaged;
     public AudioClip missileExplosion;
     public AudioClip nukeExplosion;
-    public AudioClip airdropLandedSound;
+    public AudioClip landingSound;
     public AudioClip knifeSwingSound;
     public AudioClip shootingSound;
     public AudioClip turretFire;
@@ -102,6 +102,8 @@ public class SoundManager : MonoBehaviour
         EventBus.Subscribe<WeaponSwapEvent>(swapWeapons);
         EventBus.Subscribe<VictoryMusicEvent>(playVictoryMusic);
         EventBus.Subscribe<DeathMusicEvent>(playDeathMusic);
+        EventBus.Subscribe<ReloadEvent>(reload);
+        EventBus.Subscribe<PlayerLandEvent>(jumpLanding);
 
         EventBus.Subscribe<InteractTimerStartedEvent>(playInteractSound);
         EventBus.Subscribe<InteractTimerEndedEvent>(stopInteractSound);
@@ -183,6 +185,16 @@ public class SoundManager : MonoBehaviour
     private void buttonPressed(ManagerButtonPress e)
     {
         PlaySoundAtLocation(managerButtonPress, Vector3.zero, 0.6f, 15, true);
+    }
+
+    private void reload(ReloadEvent e)
+    {
+        PlaySoundAtLocation(reloadSound, player.transform.position, 0.6f, 3);
+    }
+
+    private void jumpLanding(PlayerLandEvent e)
+    {
+        PlaySoundAtLocation(landingSound, player.transform.position, 0.6f, 3);
     }
 
     private void ManagerItemSelect(ManagerButtonClickEvent e)
@@ -372,7 +384,7 @@ public class SoundManager : MonoBehaviour
                 PlaySoundAtLocation(missileExplosion, e.itemLocation, 0.8f, 25);
                 break;
             default:
-                PlaySoundAtLocation(airdropLandedSound, e.itemLocation, 20f, 10);
+                PlaySoundAtLocation(landingSound, e.itemLocation, 1f, 10);
                 break;
         }
 
