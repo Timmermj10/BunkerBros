@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.16450353, g: 0.42539638, b: 0.6835041, a: 1}
+  m_IndirectSpecularColor: {r: 0.112711005, g: 0.28157306, b: 0.7091771, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -10078,7 +10078,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tooltipPanel: {fileID: 2028445649}
   xOffset: 10
-  cost: 300 Gold
+  cost: 100 Gold
   description: Drop in a gun to increase firepower
 --- !u!114 &440788263
 MonoBehaviour:
@@ -22557,7 +22557,7 @@ MonoBehaviour:
     oneTimePurchase: 0
   - itemId: 3
     itemName: Gun
-    itemCost: 300
+    itemCost: 100
     itemIcon: {fileID: 0}
     itemCount: 0
     oneTimePurchase: 1
