@@ -9485,7 +9485,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c8d251c3d4c75b4e9550019e8bc5fe5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  activePlayerPrefab: {fileID: 2463675146606809864, guid: 8d8f0a1d8092c4b41a0c6b8e477d0505,
+  activePlayerPrefab: {fileID: 6004158060614221615, guid: a63734b299ad5af4a945342562aa9cc1,
     type: 3}
 --- !u!114 &330585549
 MonoBehaviour:
@@ -23621,7 +23621,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1542962839}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6a0eb4eea3bb1794bbf985a9f17ca8c1, type: 3}
   m_Name: 
@@ -23965,7 +23965,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1542962839}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8318c26a4a21cfb4587bcb5caf839fe8, type: 3}
   m_Name: 
@@ -24024,9 +24024,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   soundPrefab: {fileID: 2870993679421863122, guid: 607a625390908d44aaf86a6a0019d7d6,
     type: 3}
-  mainMusicTrack: {fileID: 0}
-  finalWaveMusicTrack: {fileID: 0}
-  chestOpeningSound: {fileID: 0}
+  mainMusicTrack: {fileID: 8300000, guid: ac942f8e8cff3aa488887ed5300eadbe, type: 3}
+  finalWaveMusicTrack: {fileID: 8300000, guid: f2a9304eb3672c247a67020abc09df4d, type: 3}
+  chestOpeningSound: {fileID: 8300000, guid: f15ac1bca443e75438f63fa1bf8d3c2a, type: 3}
   zombieAttack: {fileID: 8300000, guid: 0786ab5eb38cafb48a4f77ff3849d347, type: 3}
   zombieDeath: {fileID: 8300000, guid: 869c0dc72edc74e4ab9568cbc041f40e, type: 3}
   zombieDamaged: {fileID: 8300000, guid: 398115effb894194bb18db394cd5983b, type: 3}
@@ -24037,7 +24037,7 @@ MonoBehaviour:
   shootingSound: {fileID: 8300000, guid: ade66992c03bce84aaed02fd38e6bcd3, type: 3}
   turretFire: {fileID: 8300000, guid: 4a06af3e37c06d24a8910900c4d91b3d, type: 3}
   bunkerAlarmNoise: {fileID: 8300000, guid: f939fc14549dc574cb9ebc4da20e700d, type: 3}
-  footstepSound: {fileID: 0}
+  footstepSound: {fileID: 8300000, guid: d0ff442021c7b0647854bd798608894c, type: 3}
   playerDamaged: {fileID: 8300000, guid: af0fb817b2f92e94792422ab545d8b04, type: 3}
 --- !u!1001 &1549407776
 PrefabInstance:

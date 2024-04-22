@@ -134,7 +134,7 @@ public class AirstrikeListener : MonoBehaviour
         siloStatus.RemoveAt(0);
 
         // Publish that the silo was unloaded
-        EventBus.Publish<SiloUnloadedEvent>(new SiloUnloadedEvent(silo));
+        EventBus.Publish<SiloUnloadedEvent>(new SiloUnloadedEvent(silo, silo.transform.position));
     }
 
     // Update is called once per frame

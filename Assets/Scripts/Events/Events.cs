@@ -118,10 +118,12 @@ public class GoldChestEvent
 public class InteractTimerStartedEvent
 {
     public float duration;
+    public GameObject item;
 
-    public InteractTimerStartedEvent(float duration)
+    public InteractTimerStartedEvent(float duration, GameObject item)
     {
         this.duration = duration;
+        this.item = item;
     }
 
 }
@@ -134,10 +136,12 @@ public class InteractTimerEndedEvent
 public class SiloLoadedEvent
 {
     public MissileSiloStatus status;
+    public Vector3 position;
 
-    public SiloLoadedEvent(MissileSiloStatus e)
+    public SiloLoadedEvent(MissileSiloStatus e, Vector3 position)
     {
         status = e;
+        this.position = position;
     }
 }
 
@@ -145,10 +149,12 @@ public class SiloLoadedEvent
 public class SiloUnloadedEvent
 {
     public MissileSiloStatus status;
+    public Vector3 position;
 
-    public SiloUnloadedEvent(MissileSiloStatus e)
+    public SiloUnloadedEvent(MissileSiloStatus e, Vector3 position)
     {
         status = e;
+        this.position = position;
     }
 }
 
@@ -157,6 +163,14 @@ public class WaveEndedEvent
 }
 
 public class WaveStartedEvent
+{
+}
+
+public class VictoryMusicEvent
+{
+}
+
+public class DeathMusicEvent
 {
 }
 
@@ -319,6 +333,10 @@ public class ObjectiveDamagedEvent
 {
 }
 
+public class GameplayStartEvent
+{
+}
+
 public class TurretShootingEvent
 {
     public Vector3 position;
@@ -339,4 +357,22 @@ public class PlayerMovingEvent
         this.movementValue = movementValue;
         this.isSprinting = isSprinting;
     }
+}
+
+public class WeaponSwapEvent
+{
+    public bool trueIsKnife;
+
+    public WeaponSwapEvent(bool trueIsKnife)
+    {
+        this.trueIsKnife = trueIsKnife;
+    }
+}
+
+public class ManagerButtonPress
+{
+}
+
+public class ManagerIncorrectAnswer
+{
 }

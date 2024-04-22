@@ -64,6 +64,8 @@ public class HandInventory : MonoBehaviour
             gunImageRenderer.color = knifeImageRenderer.color;
             knifeImageRenderer.color = temp;
             anim.SetBool("gun", !anim.GetBool("gun"));
+
+            EventBus.Publish(new WeaponSwapEvent(!anim.GetBool("gun")));
         }
     }
     private void OnDestroy()

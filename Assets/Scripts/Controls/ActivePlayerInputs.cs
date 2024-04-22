@@ -29,6 +29,8 @@ public class ActivePlayerInputs : MonoBehaviour
     private Animator anim;
     private bool toJump = false;
 
+    private int movementFrameCounter = 0;
+
     private void Awake()
     {
         controller = GetComponent<CharacterController>();
@@ -44,7 +46,14 @@ public class ActivePlayerInputs : MonoBehaviour
         Vector3 forward = movementInputValue.y * transform.forward;
         Vector3 right = movementInputValue.x * transform.right;
 
-        EventBus.Publish(new PlayerMovingEvent(movementInputValue, running));
+
+        movementFrameCounter++;
+        if ( movementFrameCounter % 15 == 0)
+        {
+            movementFrameCounter = 0;
+            EventBus.Publish(new PlayerMovingEvent(movementInputValue, running));
+        }
+
 
         if (playerControls)
         {
