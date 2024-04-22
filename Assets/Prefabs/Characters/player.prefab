@@ -2399,7 +2399,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canSwap: 0
-  ammo: {fileID: 0}
 --- !u!114 &6318540277790292256
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3250,6 +3249,7 @@ MonoBehaviour:
   magSize: 15
   ammoCount: 60
   reloadCount: 60
+  parentAnim: {fileID: 7468117647064966716}
 --- !u!1 &6936641520981721241
 GameObject:
   m_ObjectHideFlags: 0

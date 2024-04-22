@@ -12646,7 +12646,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45a200cf47106234d8ffb4a571f5fc8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ammo: {fileID: 0}
   swap_display: {fileID: 317884780}
   ammo_display: {fileID: 679111650}
 --- !u!114 &679111650
@@ -22751,7 +22750,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1542962839}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6a0eb4eea3bb1794bbf985a9f17ca8c1, type: 3}
   m_Name: 
@@ -22890,7 +22889,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1542962839}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8318c26a4a21cfb4587bcb5caf839fe8, type: 3}
   m_Name: 

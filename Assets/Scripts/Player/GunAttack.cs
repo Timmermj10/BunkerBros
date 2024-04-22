@@ -16,6 +16,7 @@ public class GunAttack : MonoBehaviour
     public int magSize = 15;
     public int ammoCount = 60;
     public int reloadCount = 60;
+    public Animator parentAnim;
 
     private Animator anim;
     private Vector3 lastPos;
@@ -56,6 +57,7 @@ public class GunAttack : MonoBehaviour
             else
             {
                 anim.SetTrigger("reload");
+                parentAnim.SetTrigger("reload");
                 magCount = Mathf.Min(ammoCount, magSize);
                 ammoCount -= magCount;
                 return;
