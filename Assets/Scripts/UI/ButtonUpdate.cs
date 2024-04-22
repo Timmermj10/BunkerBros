@@ -110,7 +110,7 @@ public class ButtonUpdate : MonoBehaviour
     public void _ButtonClicked(ManagerButtonClickEvent e)
     {
         // If the button clicked is not this button and it was the most recently used
-        if (button.gameObject == ManagerPlayerInputsNew.mostRecentItem && button != e.button)
+        if (button.gameObject == ManagerPlayerInputsNew.mostRecentItem && button != e.button && gameObject.name != "Evacuation")
         {
             // Update most recently used
             ManagerPlayerInputsNew.mostRecentItem = e.button.gameObject;

@@ -47,6 +47,7 @@ public class ButtonClicked : MonoBehaviour
         Color newColor = button.image.color;
         newColor.a = 0f;
         button.image.color = newColor;
+        button.interactable = false;
     }
 
     private void waveIsOver(WaveEndedEvent e)
