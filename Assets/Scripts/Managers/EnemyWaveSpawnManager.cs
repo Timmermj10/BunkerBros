@@ -323,12 +323,16 @@ public class EnemyWaveSpawnManager : MonoBehaviour
     private void _finalWave(LastWaveEvent e)
     {
         isFinalWave = true;
+        Debug.Log("final Wave started");
         StartCoroutine(FinalWave());
     }
 
 
     private IEnumerator FinalWave()
     {
+        yield return new WaitForSeconds(WaveCountDown.prepTimeforFinalWave);
+        Debug.Log("Starting to spawn final wave enemies");
+
         float progress = 0;
         finalWaveTimer += Time.deltaTime;
         finalWaveSpawnTimer = finalWavespawnDelay;
