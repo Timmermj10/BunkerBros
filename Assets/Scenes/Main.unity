@@ -22920,7 +22920,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3e9ec0fb54815c4f891e917dcff3063, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  carpetBombPlane: {fileID: 3271600442215709858, guid: f2ff1b5cabc9f224db90bf7bb457724b,
+  carpetBombPlane: {fileID: 7109440037554859800, guid: d330896adf9464df2a575174db2f5cac,
     type: 3}
 --- !u!114 &1542962858
 MonoBehaviour:
