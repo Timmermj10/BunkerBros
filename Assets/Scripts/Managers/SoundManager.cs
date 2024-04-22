@@ -15,6 +15,7 @@ public class SoundManager : MonoBehaviour
     public AudioClip mainMusicTrack;
     public AudioClip finalWaveMusicTrack;
     public AudioClip victoryMusicTrack;
+    public AudioClip deathMusicTrack;
     private AudioSource musicInstance;
 
     public AudioClip managerCodeCorrect;
@@ -54,9 +55,22 @@ public class SoundManager : MonoBehaviour
 
     private GameObject player;
 
+
+    static SoundManager instance;
+
     void Start()
     {
-        DontDestroyOnLoad(this);
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+            return;
+        }
+
         player = GameObject.Find("player");
 
         EventBus.Subscribe<PlayerRespawnEvent>(playerRespawn);
@@ -80,6 +94,7 @@ public class SoundManager : MonoBehaviour
         EventBus.Subscribe<ManagerButtonClickEvent>(ManagerItemSelect);
         EventBus.Subscribe<WeaponSwapEvent>(swapWeapons);
         EventBus.Subscribe<VictoryMusicEvent>(playVictoryMusic);
+        EventBus.Subscribe<DeathMusicEvent>(playDeathMusic);
 
         EventBus.Subscribe<ManagerButtonPress>(buttonPressed);
         EventBus.Subscribe<ManagerIncorrectAnswer>(incorrectCode);
@@ -163,7 +178,6 @@ public class SoundManager : MonoBehaviour
 
     private void playVictoryMusic(VictoryMusicEvent e)
     {
-        Debug.Log("playVictoryMusic");
         musicInstance = Instantiate(soundPrefab, Vector3.zero, Quaternion.identity);
         musicInstance.clip = victoryMusicTrack;
         musicInstance.volume = 0.1f;
@@ -171,6 +185,16 @@ public class SoundManager : MonoBehaviour
         musicInstance.loop = true;
         musicInstance.Play();
     }
+    private void playDeathMusic(DeathMusicEvent e)
+    {
+        musicInstance = Instantiate(soundPrefab, Vector3.zero, Quaternion.identity);
+        musicInstance.clip = deathMusicTrack;
+        musicInstance.volume = 0.1f;
+        musicInstance.spatialBlend = 0;
+        musicInstance.loop = true;
+        musicInstance.Play();
+    }
+
 
     private void startMainMusic(GameplayStartEvent e)
     {

@@ -168,6 +168,10 @@ public class VictoryMusicEvent
 {
 }
 
+public class DeathMusicEvent
+{
+}
+
 public class ShootEvent
 {
 }
