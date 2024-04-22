@@ -20,7 +20,7 @@ public class EnemyWaveSpawnManager : MonoBehaviour
     private bool finalWaveOver = false;
     private float finalWaveTimer = 0f;
     private float finalWaveDuration = 120f; // Should be 120
-    private float finalWavespawnDelay = 2.5f;
+    private float finalWavespawnDelay = 3f;
     private float finalWaveSpawnTimer = 0;
     public AnimationCurve finalWaveSpawnCurve;
 
