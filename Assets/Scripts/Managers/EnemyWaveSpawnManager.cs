@@ -268,7 +268,7 @@ public class EnemyWaveSpawnManager : MonoBehaviour
             }
             //let the wave manager know an enemy spawned
             waveManager.enemySpawned(type);
-            enemy.GetComponent<HasHealth>().setHealth(enemy.GetComponent<HasHealth>().getMaxHealth() + waveManager.getWaveNumber() - 1);
+            enemy.GetComponent<HasHealth>().setHealth(enemy.GetComponent<HasHealth>().getMaxHealth() + (int)((waveManager.getWaveNumber() - 1) * (0.75f)));
         }
     }
 
