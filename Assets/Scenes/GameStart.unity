@@ -18012,6 +18012,10 @@ MonoBehaviour:
   finalWaveMusicTrack: {fileID: 8300000, guid: f2a9304eb3672c247a67020abc09df4d, type: 3}
   victoryMusicTrack: {fileID: 8300000, guid: 1ee314d164ac6d34faee9fb72799c1f8, type: 3}
   deathMusicTrack: {fileID: 8300000, guid: 254418a8e1e9aa048a3f9ceae1d02b71, type: 3}
+  unlockingChestSound: {fileID: 8300000, guid: d99ff0cc8d3e05e448608e78536422cb, type: 3}
+  fixingBunkerSound: {fileID: 8300000, guid: 7337d9d4f3c3e1e42a8f33253e4e47bf, type: 3}
+  activatingKeypad: {fileID: 8300000, guid: 9854dd174b76dd840af871fa258446e7, type: 3}
+  pickingUpItemSound: {fileID: 8300000, guid: 853ca18ac7d429b41b37c9876df79048, type: 3}
   managerCodeCorrect: {fileID: 8300000, guid: 83e1b57586cb2654098694ab4cfb34bb, type: 3}
   managerCodeWrong: {fileID: 8300000, guid: 5a570842b93b18c4f801f1d32c16ed0e, type: 3}
   managerButtonPress: {fileID: 8300000, guid: b938e2797c8cebc4a98c7847d930b3a5, type: 3}

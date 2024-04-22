@@ -118,10 +118,12 @@ public class GoldChestEvent
 public class InteractTimerStartedEvent
 {
     public float duration;
+    public GameObject item;
 
-    public InteractTimerStartedEvent(float duration)
+    public InteractTimerStartedEvent(float duration, GameObject item)
     {
         this.duration = duration;
+        this.item = item;
     }
 
 }

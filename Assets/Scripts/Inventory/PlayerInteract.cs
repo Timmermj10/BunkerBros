@@ -85,7 +85,7 @@ public class PlayerInteract : MonoBehaviour
             {
                 if (itemsInRange.Count > 0 && canInteractWithObject(item))
                 {
-                    EventBus.Publish(new InteractTimerStartedEvent(timeToInteract));
+                    EventBus.Publish(new InteractTimerStartedEvent(timeToInteract, item));
                     //Debug.Log("Starting Timer");
                 }
                 else

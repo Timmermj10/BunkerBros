@@ -18,6 +18,13 @@ public class SoundManager : MonoBehaviour
     public AudioClip deathMusicTrack;
     private AudioSource musicInstance;
 
+    public AudioClip unlockingChestSound;
+    public AudioClip fixingBunkerSound;
+    public AudioClip activatingKeypad;
+    public AudioClip pickingUpItemSound;
+    private AudioSource interactSoundPrefabInstance;
+    private bool isInteracting = false;
+
     public AudioClip managerCodeCorrect;
     public AudioClip managerCodeWrong;
     public AudioClip managerButtonPress;
@@ -96,6 +103,9 @@ public class SoundManager : MonoBehaviour
         EventBus.Subscribe<VictoryMusicEvent>(playVictoryMusic);
         EventBus.Subscribe<DeathMusicEvent>(playDeathMusic);
 
+        EventBus.Subscribe<InteractTimerStartedEvent>(playInteractSound);
+        EventBus.Subscribe<InteractTimerEndedEvent>(stopInteractSound);
+
         EventBus.Subscribe<ManagerButtonPress>(buttonPressed);
         EventBus.Subscribe<ManagerIncorrectAnswer>(incorrectCode);
         EventBus.Subscribe<RadioTowerActivatedManagerEvent>(correctCode);
@@ -122,6 +132,52 @@ public class SoundManager : MonoBehaviour
             PlaySoundAtLocation(drawGunSound, player.transform.position, 0.7f, 3);
         }
         
+    }
+
+    private void stopInteractSound(InteractTimerEndedEvent e)
+    {
+        isInteracting = false;
+        interactSoundPrefabInstance.Stop();
+    }
+
+    private void playInteractSound(InteractTimerStartedEvent e)
+    {
+        if (player == null) return;
+
+        isInteracting = true;
+
+        if (e.item.name is "ChestPack" || e.item.name is "ChestPack(Clone)")
+        {
+            interactSoundPrefabInstance = Instantiate(soundPrefab, player.transform.position, Quaternion.identity);
+            interactSoundPrefabInstance.clip = unlockingChestSound;
+            interactSoundPrefabInstance.volume = 1f;
+            interactSoundPrefabInstance.loop = true;
+            interactSoundPrefabInstance.Play();
+        }
+        else if (e.item.name is "Objective")
+        {
+            interactSoundPrefabInstance = Instantiate(soundPrefab, player.transform.position, Quaternion.identity);
+            interactSoundPrefabInstance.clip = fixingBunkerSound;
+            interactSoundPrefabInstance.volume = 0.4f;
+            interactSoundPrefabInstance.loop = true;
+            interactSoundPrefabInstance.Play();
+        }
+        else if (e.item.name is "ControlPanel")
+        {
+            interactSoundPrefabInstance = Instantiate(soundPrefab, player.transform.position, Quaternion.identity);
+            interactSoundPrefabInstance.clip = activatingKeypad;
+            interactSoundPrefabInstance.volume = 0.6f;
+            interactSoundPrefabInstance.loop = true;
+            interactSoundPrefabInstance.Play();
+        }
+        else
+        {
+            interactSoundPrefabInstance = Instantiate(soundPrefab, player.transform.position, Quaternion.identity);
+            interactSoundPrefabInstance.clip = pickingUpItemSound;
+            interactSoundPrefabInstance.volume = 0.6f;
+            interactSoundPrefabInstance.loop = true;
+            interactSoundPrefabInstance.Play();
+        }
     }
 
     private void buttonPressed(ManagerButtonPress e)
