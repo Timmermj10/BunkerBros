@@ -2398,7 +2398,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3278f2a7665826542926fa8677c6c027, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canSwap: 1
+  canSwap: 0
   ammo: {fileID: 0}
 --- !u!114 &6318540277790292256
 MonoBehaviour:
@@ -3246,6 +3246,10 @@ MonoBehaviour:
   shell: {fileID: 6461046125311005452, guid: 0db36be84badc304abe4588bae0dc871, type: 3}
   shellSpawn: {fileID: 915690424082875523}
   shellSpeed: 2
+  magCount: 15
+  magSize: 15
+  ammoCount: 60
+  reloadCount: 60
 --- !u!1 &6936641520981721241
 GameObject:
   m_ObjectHideFlags: 0
@@ -4112,8 +4116,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 0
   serializedVersion: 3
-  m_Size: {x: 0.001, y: 0.005, z: 0.001}
-  m_Center: {x: 0, y: -0.0025, z: 0}
+  m_Size: {x: 0.001, y: 0.008, z: 0.001}
+  m_Center: {x: 0, y: -0.004, z: 0}
 --- !u!114 &6795952970476029424
 MonoBehaviour:
   m_ObjectHideFlags: 0

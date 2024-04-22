@@ -12605,7 +12605,6 @@ GameObject:
   - component: {fileID: 679111651}
   - component: {fileID: 679111650}
   - component: {fileID: 679111649}
-  - component: {fileID: 679111648}
   m_Layer: 5
   m_Name: Ammo
   m_TagString: Untagged
@@ -12635,21 +12634,6 @@ RectTransform:
   m_AnchoredPosition: {x: 779, y: 58}
   m_SizeDelta: {x: 120, y: 90.73}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &679111648
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 679111646}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f89c86804941e7c42b487288c5344975, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ammo_count: 60
-  reload_count: 60
-  active: 0
 --- !u!114 &679111649
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12662,11 +12646,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45a200cf47106234d8ffb4a571f5fc8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ammo: {fileID: 0}
   swap_display: {fileID: 317884780}
-  current_mag: 30
-  reserve_mags: 0
-  ammo: {fileID: 679111648}
-  enable: 0
+  ammo_display: {fileID: 679111650}
 --- !u!114 &679111650
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23117,7 +23099,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1542962839}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8318c26a4a21cfb4587bcb5caf839fe8, type: 3}
   m_Name: 
