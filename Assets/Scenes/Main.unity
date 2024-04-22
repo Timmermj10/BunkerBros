@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.16450353, g: 0.42539638, b: 0.6835041, a: 1}
+  m_IndirectSpecularColor: {r: 0.11267225, g: 0.28148, b: 0.70868415, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -20951,7 +20951,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67ae37354fe7bb742845b7b3bd8ec1f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  airdropPrefab: {fileID: 1596226825768193627, guid: fe6c1ba31ec663345afee41a64661595,
+  airdropPrefab: {fileID: 1755558789773807005, guid: 3fd43a2a49a3547bf9fabae2de88e2fc,
     type: 3}
   nukePrefab: {fileID: 4441908323739865683, guid: d1492baa79de0df45b4b03e97e6d2679,
     type: 3}
