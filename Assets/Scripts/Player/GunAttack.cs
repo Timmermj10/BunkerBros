@@ -44,6 +44,7 @@ public class GunAttack : MonoBehaviour
     {
         attack = EventBus.Subscribe<AttackEvent>(_Attack);
         pickup = EventBus.Subscribe<PickUpEvent>(_refill);
+        anim.SetInteger("ammo", magCount);
     }
     void _Attack(AttackEvent e)
     {
@@ -60,6 +61,7 @@ public class GunAttack : MonoBehaviour
                 parentAnim.SetTrigger("reload");
                 magCount = Mathf.Min(ammoCount, magSize);
                 ammoCount -= magCount;
+                anim.SetInteger("ammo", magCount);
                 return;
             }
         }

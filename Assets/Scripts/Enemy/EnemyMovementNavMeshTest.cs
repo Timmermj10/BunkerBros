@@ -351,15 +351,18 @@ public class EnemyMovementNavMeshTest : MonoBehaviour
 
         foreach (Collider hitCollider in hitColliders)
         {
-            //Debug.Log(hitCollider);
-            GameObject destructible = hitCollider.gameObject;
-
-            Vector3 directionToTarget = hitCollider.transform.position - currentPosition;
-            float dSqrToTarget = directionToTarget.sqrMagnitude;
-            if (dSqrToTarget < closestDistanceSqr)
+            if(hitCollider.gameObject.name == "NukeCrate(Clone)" || hitCollider.gameObject.name == "BarbedWire(Clone)" || hitCollider.gameObject.name == "Turret(Clone)")
             {
-                closestDistanceSqr = dSqrToTarget;
-                nearestDestructible = destructible;
+                //Debug.Log(hitCollider);
+                GameObject destructible = hitCollider.gameObject;
+
+                Vector3 directionToTarget = hitCollider.transform.position - currentPosition;
+                float dSqrToTarget = directionToTarget.sqrMagnitude;
+                if (dSqrToTarget < closestDistanceSqr)
+                {
+                    closestDistanceSqr = dSqrToTarget;
+                    nearestDestructible = destructible;
+                }
             }
         }
 

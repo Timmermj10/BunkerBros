@@ -6,6 +6,6 @@ public class destroyOnLand : MonoBehaviour
 {
     private void OnCollisionEnter(Collision collision)
     {
-        Destroy(this.gameObject);
+        Destroy(gameObject);
     }
 }

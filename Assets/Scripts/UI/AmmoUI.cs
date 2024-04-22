@@ -6,60 +6,53 @@ using UnityEngine.UI;
 
 public class AmmoUI : MonoBehaviour
 {
-    public Text swap_display;
+    public GameObject swap_display;
     public Text ammo_display;
 
     public static GameObject ammo_image;
     public static GameObject knife_image;
     public static GameObject gun_image;
 
-    private GunAttack gun;
+    private GameObject gun;
+    private GunAttack gunAttack;
     private Subscription<PurchaseEvent> purchase;
     private Subscription<ObjectDestroyedEvent> death;
-
+/*    private Subscription<WeaponSwapEvent> swap;
+*/
     // Start is called before the first frame update
     void Awake()
     {
         // Listen for player death
         death = EventBus.Subscribe<ObjectDestroyedEvent>(_PlayerDeath);
         purchase = EventBus.Subscribe<PurchaseEvent>(_EnableText);
-
+/*        swap = EventBus.Subscribe<WeaponSwapEvent>(_Swap);
+*/
         ammo_image = GameObject.Find("AmmoImage");
         knife_image = GameObject.Find("KnifeImage");
         gun_image = GameObject.Find("GunImage");
-
-        if (ammo_display != null)
-        {
-            // Debug.Log("Ammo UI Text Found");
-        }
-
-        if (swap_display != null)
-        {
-            swap_display.text = "";
-        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (gun)
+        if (gun && gun.activeSelf)
         {
-            ammo_image.SetActive(true);
-            gun_image.SetActive(true);
-            if (gun.ammoCount == 0 && gun.magCount == 0) {
+            if (gunAttack.ammoCount == 0 && gunAttack.magCount == 0) {
+                swap_display.SetActive(true);
                 ammo_display.text = "empty";
-                swap_display.text = "SWAP:TRI";
             }
             else {
-                swap_display.text = "";
-                ammo_display.text = gun.magCount.ToString() + "/" + gun.ammoCount.ToString();
+                swap_display.SetActive(false);
+                ammo_display.text = gunAttack.magCount.ToString() + "/" + gunAttack.ammoCount.ToString();
             }
+            ammo_image.SetActive(true);
+            gun_image.SetActive(true);
         }
         else
         {
-            ammo_display.text = "∞";
-            if (ammo_image != null) ammo_image.SetActive(false);
-            if (gun_image != null) gun_image.SetActive(false);
+            swap_display.SetActive(false);
+            ammo_display.text = "";
+            ammo_image.SetActive(false);
         }
     }
 
@@ -67,9 +60,18 @@ public class AmmoUI : MonoBehaviour
     {
         if (p.purchasedItem.itemName == "Gun")
         {
-            gun = GameObject.Find("RightHand").transform.Find("gun").gameObject.GetComponent<GunAttack>();
+            gun = GameObject.Find("RightHand").transform.Find("gun").gameObject;
+            gunAttack = gun.GetComponent<GunAttack>();
         }
     }
+
+    /*void _Swap(WeaponSwapEvent e)
+    {
+        if (e.trueIsKnife)
+        {
+            gun = GameObject.Find("RightHand").transform.Find("gun").gameObject.GetComponent<GunAttack>();
+        }
+    }*/
 
     // Listen for player death
     public void _PlayerDeath(ObjectDestroyedEvent e)
@@ -77,6 +79,8 @@ public class AmmoUI : MonoBehaviour
         if (e.name is "player")
         {
             gun = null;
+            gunAttack = null;
+            gun_image.SetActive(false);
         }
     }
 
