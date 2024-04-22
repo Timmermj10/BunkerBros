@@ -17,7 +17,7 @@ public class FinalWaveCountdown : MonoBehaviour
     // UI element for the timer
     Text countdown;
 
-    private float timeUntilExtraction = 5; //Should be 180
+    private float timeUntilExtraction = 180; //Should be 180
 
     // Start is called before the first frame update
     void Start()

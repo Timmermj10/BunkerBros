@@ -160,6 +160,8 @@ public class HasHealth : MonoBehaviour
     {
         EventBus.Publish(new ObjectDestroyedEvent(gameObject.name, gameObject.tag, gameObject.transform.position));
 
+        if (gameObject.name is "player" || gameObject.CompareTag("Pickup")) EventBus.Publish(new InteractTimerEndedEvent());
+
         //Debug.Log(gameObject.name + " has died!");
         Destroy(gameObject);
     }

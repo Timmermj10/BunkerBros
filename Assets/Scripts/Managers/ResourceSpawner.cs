@@ -26,9 +26,12 @@ public class ResourceSpawner : MonoBehaviour
             //spawn a coin at that location
             Instantiate(coin_prefab, location, Quaternion.identity);
 
-            if (e.name == "EnemyArmored")
+            if (e.name == "EnemyArmoredNavMesh(Clone)")
             {
-                Instantiate(coin_prefab, location, Quaternion.identity);
+                for (int i = 0; i < 3; i++)
+                {
+                    Instantiate(coin_prefab, location + new Vector3(Random.value, Random.value/2, Random.value), Quaternion.identity);
+                }
             }
         }
 

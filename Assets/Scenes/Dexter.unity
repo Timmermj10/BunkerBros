@@ -12605,7 +12605,6 @@ GameObject:
   - component: {fileID: 679111651}
   - component: {fileID: 679111650}
   - component: {fileID: 679111649}
-  - component: {fileID: 679111648}
   m_Layer: 5
   m_Name: Ammo
   m_TagString: Untagged
@@ -12635,21 +12634,6 @@ RectTransform:
   m_AnchoredPosition: {x: 779, y: 58}
   m_SizeDelta: {x: 120, y: 90.73}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &679111648
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 679111646}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f89c86804941e7c42b487288c5344975, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ammo_count: 60
-  reload_count: 60
-  active: 0
 --- !u!114 &679111649
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12663,10 +12647,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   swap_display: {fileID: 317884780}
-  current_mag: 30
-  reserve_mags: 0
-  ammo: {fileID: 679111648}
-  enable: 0
+  ammo_display: {fileID: 679111650}
 --- !u!114 &679111650
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19950,88 +19931,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 37bf6b4eaddee8d448771b63238e03d1, type: 3}
---- !u!1 &1254101434
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1254101436}
-  - component: {fileID: 1254101437}
-  m_Layer: 0
-  m_Name: SoundManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1254101436
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1254101434}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0.40821788, y: -0.23456968, z: 0.10938163, w: 0.8754261}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1254101437
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1254101434}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0d4916872f8d2b14ba82f65ec12df053, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  soundPrefab: {fileID: 2870993679421863122, guid: 607a625390908d44aaf86a6a0019d7d6,
-    type: 3}
-  titleScreenMusicTrack: {fileID: 8300000, guid: 0dc31ae2d292e214ab0086ddf01b9227,
-    type: 3}
-  mainMusicTrack: {fileID: 8300000, guid: ac942f8e8cff3aa488887ed5300eadbe, type: 3}
-  finalWaveMusicTrack: {fileID: 8300000, guid: f2a9304eb3672c247a67020abc09df4d, type: 3}
-  victoryMusicTrack: {fileID: 8300000, guid: 1ee314d164ac6d34faee9fb72799c1f8, type: 3}
-  deathMusicTrack: {fileID: 8300000, guid: 254418a8e1e9aa048a3f9ceae1d02b71, type: 3}
-  unlockingChestSound: {fileID: 8300000, guid: d99ff0cc8d3e05e448608e78536422cb, type: 3}
-  fixingBunkerSound: {fileID: 8300000, guid: 7337d9d4f3c3e1e42a8f33253e4e47bf, type: 3}
-  activatingKeypad: {fileID: 8300000, guid: 9854dd174b76dd840af871fa258446e7, type: 3}
-  pickingUpItemSound: {fileID: 8300000, guid: 853ca18ac7d429b41b37c9876df79048, type: 3}
-  managerCodeCorrect: {fileID: 8300000, guid: 83e1b57586cb2654098694ab4cfb34bb, type: 3}
-  managerCodeWrong: {fileID: 8300000, guid: 5a570842b93b18c4f801f1d32c16ed0e, type: 3}
-  managerButtonPress: {fileID: 8300000, guid: b938e2797c8cebc4a98c7847d930b3a5, type: 3}
-  playerRadioTowerActivateSound: {fileID: 8300000, guid: a7ab3062242df844ca36c0737cb2beef,
-    type: 3}
-  bombFalling: {fileID: 8300000, guid: 5ccd65a0ae75f254d95e0fc10c7248e5, type: 3}
-  coinPickupSound: {fileID: 8300000, guid: dbe46e4d337aa0348aa8f87a9207944f, type: 3}
-  drawKnifeSound: {fileID: 8300000, guid: e9ba4681f4942444785574e99cbbab88, type: 3}
-  drawGunSound: {fileID: 8300000, guid: 75664b71dbbfd894980a5da776d2bfd8, type: 3}
-  siloLoadedSound: {fileID: 8300000, guid: 0691a6d3a948b194e86ba0bd7e06c019, type: 3}
-  nukeLanchedSound: {fileID: 8300000, guid: b4424f542b4554d44b71fee8bc2425c1, type: 3}
-  ItemSelectSound: {fileID: 8300000, guid: 1cbaba81b77168747b34683a37afffa1, type: 3}
-  emptyAmmoSound: {fileID: 8300000, guid: 12c88c446df2f44769382245a4f2b4d1, type: 3}
-  chestOpeningSound: {fileID: 8300000, guid: f15ac1bca443e75438f63fa1bf8d3c2a, type: 3}
-  zombieAttack: {fileID: 8300000, guid: 0786ab5eb38cafb48a4f77ff3849d347, type: 3}
-  zombieDeath: {fileID: 8300000, guid: 869c0dc72edc74e4ab9568cbc041f40e, type: 3}
-  zombieDamaged: {fileID: 8300000, guid: 398115effb894194bb18db394cd5983b, type: 3}
-  missileExplosion: {fileID: 8300000, guid: 986e7748725a94e4c8095841fcbc589a, type: 3}
-  nukeExplosion: {fileID: 8300000, guid: 0d7217c6f18212448a37c322d1d3f756, type: 3}
-  airdropLandedSound: {fileID: 8300000, guid: fd6fed00e585226459c6ed68c9e34da0, type: 3}
-  knifeSwingSound: {fileID: 8300000, guid: 275c40128b7bd154a81b4c243b739eaf, type: 3}
-  shootingSound: {fileID: 8300000, guid: ade66992c03bce84aaed02fd38e6bcd3, type: 3}
-  turretFire: {fileID: 8300000, guid: 4a06af3e37c06d24a8910900c4d91b3d, type: 3}
-  bunkerAlarmNoise: {fileID: 8300000, guid: f939fc14549dc574cb9ebc4da20e700d, type: 3}
-  footstepSound: {fileID: 8300000, guid: d0ff442021c7b0647854bd798608894c, type: 3}
-  playerDamaged: {fileID: 8300000, guid: af0fb817b2f92e94792422ab545d8b04, type: 3}
 --- !u!1 &1257180820
 GameObject:
   m_ObjectHideFlags: 0
@@ -22704,7 +22603,7 @@ MonoBehaviour:
     itemIcon: {fileID: 0}
     itemCount: 0
     oneTimePurchase: 0
-  gold: 1000
+  gold: 10000
   goldText: {fileID: 1882513140}
 --- !u!114 &1542962841
 MonoBehaviour:
@@ -27293,6 +27192,88 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1904003374}
   m_CullTransparentMesh: 1
+--- !u!1 &1907405140
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1907405142}
+  - component: {fileID: 1907405141}
+  m_Layer: 0
+  m_Name: SoundManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1907405141
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1907405140}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d4916872f8d2b14ba82f65ec12df053, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundPrefab: {fileID: 2870993679421863122, guid: 607a625390908d44aaf86a6a0019d7d6,
+    type: 3}
+  titleScreenMusicTrack: {fileID: 8300000, guid: 0dc31ae2d292e214ab0086ddf01b9227,
+    type: 3}
+  mainMusicTrack: {fileID: 8300000, guid: ac942f8e8cff3aa488887ed5300eadbe, type: 3}
+  finalWaveMusicTrack: {fileID: 8300000, guid: f2a9304eb3672c247a67020abc09df4d, type: 3}
+  victoryMusicTrack: {fileID: 8300000, guid: 1ee314d164ac6d34faee9fb72799c1f8, type: 3}
+  deathMusicTrack: {fileID: 8300000, guid: 254418a8e1e9aa048a3f9ceae1d02b71, type: 3}
+  unlockingChestSound: {fileID: 8300000, guid: d99ff0cc8d3e05e448608e78536422cb, type: 3}
+  fixingBunkerSound: {fileID: 8300000, guid: 7337d9d4f3c3e1e42a8f33253e4e47bf, type: 3}
+  activatingKeypad: {fileID: 8300000, guid: 9854dd174b76dd840af871fa258446e7, type: 3}
+  pickingUpItemSound: {fileID: 8300000, guid: 853ca18ac7d429b41b37c9876df79048, type: 3}
+  managerCodeCorrect: {fileID: 8300000, guid: 83e1b57586cb2654098694ab4cfb34bb, type: 3}
+  managerCodeWrong: {fileID: 8300000, guid: 5a570842b93b18c4f801f1d32c16ed0e, type: 3}
+  managerButtonPress: {fileID: 8300000, guid: b938e2797c8cebc4a98c7847d930b3a5, type: 3}
+  playerRadioTowerActivateSound: {fileID: 8300000, guid: a7ab3062242df844ca36c0737cb2beef,
+    type: 3}
+  bombFalling: {fileID: 8300000, guid: 5ccd65a0ae75f254d95e0fc10c7248e5, type: 3}
+  coinPickupSound: {fileID: 8300000, guid: dbe46e4d337aa0348aa8f87a9207944f, type: 3}
+  drawKnifeSound: {fileID: 8300000, guid: e9ba4681f4942444785574e99cbbab88, type: 3}
+  drawGunSound: {fileID: 8300000, guid: 75664b71dbbfd894980a5da776d2bfd8, type: 3}
+  siloLoadedSound: {fileID: 8300000, guid: 0691a6d3a948b194e86ba0bd7e06c019, type: 3}
+  nukeLanchedSound: {fileID: 8300000, guid: b4424f542b4554d44b71fee8bc2425c1, type: 3}
+  ItemSelectSound: {fileID: 8300000, guid: 1cbaba81b77168747b34683a37afffa1, type: 3}
+  emptyAmmoSound: {fileID: 8300000, guid: 12c88c446df2f44769382245a4f2b4d1, type: 3}
+  chestOpeningSound: {fileID: 8300000, guid: f15ac1bca443e75438f63fa1bf8d3c2a, type: 3}
+  zombieAttack: {fileID: 8300000, guid: 0786ab5eb38cafb48a4f77ff3849d347, type: 3}
+  zombieDeath: {fileID: 8300000, guid: 869c0dc72edc74e4ab9568cbc041f40e, type: 3}
+  zombieDamaged: {fileID: 8300000, guid: 398115effb894194bb18db394cd5983b, type: 3}
+  missileExplosion: {fileID: 8300000, guid: 986e7748725a94e4c8095841fcbc589a, type: 3}
+  nukeExplosion: {fileID: 8300000, guid: 0d7217c6f18212448a37c322d1d3f756, type: 3}
+  airdropLandedSound: {fileID: 8300000, guid: fd6fed00e585226459c6ed68c9e34da0, type: 3}
+  knifeSwingSound: {fileID: 8300000, guid: 275c40128b7bd154a81b4c243b739eaf, type: 3}
+  shootingSound: {fileID: 8300000, guid: ade66992c03bce84aaed02fd38e6bcd3, type: 3}
+  turretFire: {fileID: 8300000, guid: 4a06af3e37c06d24a8910900c4d91b3d, type: 3}
+  bunkerAlarmNoise: {fileID: 8300000, guid: f939fc14549dc574cb9ebc4da20e700d, type: 3}
+  footstepSound: {fileID: 8300000, guid: d0ff442021c7b0647854bd798608894c, type: 3}
+  playerDamaged: {fileID: 8300000, guid: af0fb817b2f92e94792422ab545d8b04, type: 3}
+--- !u!4 &1907405142
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1907405140}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.40821788, y: -0.23456968, z: 0.10938163, w: 0.8754261}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1914875471
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -29706,9 +29687,9 @@ SceneRoots:
   - {fileID: 1223656014}
   - {fileID: 330585546}
   - {fileID: 1350505079}
+  - {fileID: 1907405142}
   - {fileID: 410087041}
   - {fileID: 832575519}
-  - {fileID: 1254101436}
   - {fileID: 211823538}
   - {fileID: 1648275646}
   - {fileID: 1542962847}

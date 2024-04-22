@@ -12,7 +12,7 @@ public class WaveCountDown : MonoBehaviour
     int lastSecond = 30;
 
     //The amount of time between waves
-    private float timeBetweenRounds = 30f; //Should be 30
+    private float timeBetweenRounds = 5f; //Should be 30
 
     //The amount of time before the final wave starts after calling for help
     float prepTimeforFinalWave = 60f; //Should be 60
@@ -99,7 +99,9 @@ public class WaveCountDown : MonoBehaviour
             {
                 if (!isFinalWave)
                 {
+                    Debug.Log("Starting Wave");
                     waveManager.StartWave();
+                    timer = timeBetweenRounds;
                 } else
                 {
                     timerStart = false;

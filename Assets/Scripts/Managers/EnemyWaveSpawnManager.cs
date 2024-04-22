@@ -20,7 +20,7 @@ public class EnemyWaveSpawnManager : MonoBehaviour
     private bool finalWaveOver = false;
     private float finalWaveTimer = 0f;
     private float finalWaveDuration = 120f; // Should be 120
-    private float finalWavespawnDelay = 2.5f;
+    private float finalWavespawnDelay = 3f;
     private float finalWaveSpawnTimer = 0;
     public AnimationCurve finalWaveSpawnCurve;
 
@@ -268,7 +268,7 @@ public class EnemyWaveSpawnManager : MonoBehaviour
             }
             //let the wave manager know an enemy spawned
             waveManager.enemySpawned(type);
-            enemy.GetComponent<HasHealth>().setHealth(enemy.GetComponent<HasHealth>().getMaxHealth() + waveManager.getWaveNumber() - 1);
+            enemy.GetComponent<HasHealth>().setHealth(enemy.GetComponent<HasHealth>().getMaxHealth() + (int)((waveManager.getWaveNumber() - 1) * (0.75f)));
         }
     }
 
