@@ -9,6 +9,9 @@ public class AttackEvent
 public class ReloadEvent
 {
 }
+public class PlayerLandEvent
+{
+}
 public class ItemUseEvent
 {
     public int itemID;

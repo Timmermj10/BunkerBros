@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting.InputSystem;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Windows;
@@ -28,7 +29,7 @@ public class ActivePlayerInputs : MonoBehaviour
     private PingManager pingManager;
     private Animator anim;
     private bool toJump = false;
-
+    private bool wasGrounded = true;
     private int movementFrameCounter = 0;
 
     private void Awake()
@@ -46,6 +47,11 @@ public class ActivePlayerInputs : MonoBehaviour
         Vector3 forward = movementInputValue.y * transform.forward;
         Vector3 right = movementInputValue.x * transform.right;
 
+        if(!wasGrounded && controller.isGrounded)
+        {
+            EventBus.Publish(new PlayerLandEvent());
+        }
+        wasGrounded = controller.isGrounded;
 
         movementFrameCounter++;
         if ( movementFrameCounter % 15 == 0)
