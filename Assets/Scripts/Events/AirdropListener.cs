@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Security.Cryptography.X509Certificates;
 using UnityEngine;
-using static UnityEditor.FilePathAttribute;
 
 public class AirdropListener : MonoBehaviour
 {
@@ -71,7 +70,7 @@ public class AirdropListener : MonoBehaviour
         airdrop = Instantiate(prefabToInstantiate, initialDropLocation, rotation);
 
         if (e.itemID == 9) {
-            airdrop.GetComponent<MeshRenderer>().enabled = false;
+            airdrop.GetComponentInChildren<MeshRenderer>().enabled = false;
         }
         EventBus.Publish(new AirDropStartedEvent(e.itemID, airdrop.transform));
 
