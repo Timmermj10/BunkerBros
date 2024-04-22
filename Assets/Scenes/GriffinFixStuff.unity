@@ -916,6 +916,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46f58261db6b0ae45980893fc6d33d8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  button: {fileID: 0}
 --- !u!114 &90805223
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2680,18 +2681,33 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1712699208789000450, guid: d330896adf9464df2a575174db2f5cac,
         type: 3}
+      propertyPath: m_LocalScale.x
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 1712699208789000450, guid: d330896adf9464df2a575174db2f5cac,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 1712699208789000450, guid: d330896adf9464df2a575174db2f5cac,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 1712699208789000450, guid: d330896adf9464df2a575174db2f5cac,
+        type: 3}
       propertyPath: m_LocalPosition.x
-      value: -48.4591
+      value: -0.6
       objectReference: {fileID: 0}
     - target: {fileID: 1712699208789000450, guid: d330896adf9464df2a575174db2f5cac,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 107.66849
+      value: 14.5
       objectReference: {fileID: 0}
     - target: {fileID: 1712699208789000450, guid: d330896adf9464df2a575174db2f5cac,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -87.84649
+      value: 7.4
       objectReference: {fileID: 0}
     - target: {fileID: 1712699208789000450, guid: d330896adf9464df2a575174db2f5cac,
         type: 3}
@@ -7764,6 +7780,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46f58261db6b0ae45980893fc6d33d8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  button: {fileID: 0}
 --- !u!114 &271882290
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9486,6 +9503,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46f58261db6b0ae45980893fc6d33d8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  button: {fileID: 0}
 --- !u!114 &440788262
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10320,6 +10338,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46f58261db6b0ae45980893fc6d33d8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  button: {fileID: 0}
 --- !u!114 &534006801
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11616,6 +11635,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f89c86804941e7c42b487288c5344975, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mag_size: 8
+  mag_count: 8
   ammo_count: 60
   reload_count: 60
   active: 0
@@ -11632,10 +11653,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   swap_display: {fileID: 0}
-  current_mag: 30
-  reserve_mags: 0
-  ammo: {fileID: 679111648}
-  enable: 0
+  ammo_display: {fileID: 0}
 --- !u!114 &679111650
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12715,6 +12733,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46f58261db6b0ae45980893fc6d33d8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  button: {fileID: 0}
 --- !u!114 &773221786
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12990,6 +13009,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46f58261db6b0ae45980893fc6d33d8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  button: {fileID: 0}
 --- !u!114 &809122166
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13879,6 +13899,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46f58261db6b0ae45980893fc6d33d8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  button: {fileID: 0}
 --- !u!114 &837992304
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16886,6 +16907,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46f58261db6b0ae45980893fc6d33d8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  button: {fileID: 0}
 --- !u!114 &1147238040
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18987,7 +19009,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67ae37354fe7bb742845b7b3bd8ec1f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  airdropPrefab: {fileID: 1596226825768193627, guid: fe6c1ba31ec663345afee41a64661595,
+  airdropPrefab: {fileID: 1755558789773807005, guid: 3fd43a2a49a3547bf9fabae2de88e2fc,
     type: 3}
   nukePrefab: {fileID: 4441908323739865683, guid: d1492baa79de0df45b4b03e97e6d2679,
     type: 3}
@@ -22496,6 +22518,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46f58261db6b0ae45980893fc6d33d8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  button: {fileID: 0}
 --- !u!114 &1717707572
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22692,6 +22715,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46f58261db6b0ae45980893fc6d33d8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  button: {fileID: 0}
 --- !u!114 &1759038742
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23881,6 +23905,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46f58261db6b0ae45980893fc6d33d8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  button: {fileID: 0}
 --- !u!114 &1875112200
 MonoBehaviour:
   m_ObjectHideFlags: 0

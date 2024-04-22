@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Security.Cryptography.X509Certificates;
@@ -68,6 +69,10 @@ public class AirdropListener : MonoBehaviour
         GameObject airdrop;
         //Instantiate the drop
         airdrop = Instantiate(prefabToInstantiate, initialDropLocation, rotation);
+
+        if (e.itemID == 9) {
+            airdrop.GetComponent<MeshRenderer>().enabled = false;
+        }
         EventBus.Publish(new AirDropStartedEvent(e.itemID, airdrop.transform));
 
         // Start the descending coroutine to handle contact with the ground

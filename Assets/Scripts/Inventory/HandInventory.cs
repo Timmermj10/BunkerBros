@@ -7,7 +7,6 @@ using UnityEngine.UI;
 public class HandInventory : MonoBehaviour
 {
     public bool canSwap = false;
-    public AmmoSystem ammo;
 
     private Subscription<PurchaseEvent> purchase;
     private Subscription<EmptyAmmo> empty;

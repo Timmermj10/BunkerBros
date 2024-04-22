@@ -6,6 +6,21 @@ using UnityEngine.UI;
 
 public class ButtonClicked : MonoBehaviour
 {
+
+    private bool isWaveOver = false;
+    public Button button;
+
+    private void Start()
+    {
+        if (gameObject.name == "Evacuation")
+        {
+            button = GetComponent<Button>();
+            EventBus.Subscribe<WaveEndedEvent>(waveIsOver);
+            EventBus.Subscribe<WaveStartedEvent>(waveHasStarted);
+        }
+        
+    }
+
     // Function for button click
     public void onButtonSelection()
     {
@@ -13,12 +28,9 @@ public class ButtonClicked : MonoBehaviour
         if (gameObject.name == "Evacuation")
         {
             Debug.Log("Evacuation Event");
-            // Publish the lave wave event
-            EventBus.Publish<WaveEndedEvent>(new WaveEndedEvent());
-            EventBus.Publish<LastWaveEvent>(new LastWaveEvent());
 
-            // Delete the button
-            Destroy(gameObject);
+            StartCoroutine(WaitForEndOfWave());
+            Hide();
         }
 
         // Otherwise
@@ -28,4 +40,40 @@ public class ButtonClicked : MonoBehaviour
             EventBus.Publish<ManagerButtonClickEvent>(new ManagerButtonClickEvent(gameObject.GetComponent<Button>()));
         }
     }
+
+    void Hide()
+    {
+        // Change the alpha value of the button's color to 0 (completely transparent)
+        Color newColor = button.image.color;
+        newColor.a = 0f;
+        button.image.color = newColor;
+    }
+
+    private void waveIsOver(WaveEndedEvent e)
+    {
+        Debug.Log("Wave has ended");
+        isWaveOver = true;
+    }
+
+    private void waveHasStarted(WaveStartedEvent e)
+    {
+        Debug.Log("Wave has started");
+        isWaveOver = false;
+    }
+
+    private IEnumerator WaitForEndOfWave()
+    {
+        Debug.Log("Waiting For wave to be over");
+
+        while (!isWaveOver)
+        {
+            yield return new WaitForFixedUpdate();
+        }
+
+        Debug.Log("Publishing Last Wave Event");
+        EventBus.Publish<LastWaveEvent>(new LastWaveEvent());
+        Destroy(gameObject);
+        yield return null;
+    }
+
 }
