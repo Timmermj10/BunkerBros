@@ -4,7 +4,7 @@ This is my personal repository for the game that I designed and developed as my 
 
 This was the third project in a three project sequence for EECS494, where we were tasked with designing and developing a game from scratch in Unity using C# as the development language.
 
-The project took six weeks to complete and has hundred of man hours put into it. This is by far the hardest I have ever worked on a project, and while the final product isn't exactly what I had hoped for, I am still very proud of what I accomplished with the iteration of the project. 
+The project took six weeks to complete and has hundred of man hours put into it. This is by far the hardest I have ever worked on a project, and while the final product isn't exactly what I had hoped for, I am still very proud of what I accomplished during the creation and iteration on Bunker Bros.
 
 DevBlogs:
 <br/>
