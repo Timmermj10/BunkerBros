@@ -54,6 +54,8 @@ public class TutorialManager : MonoBehaviour
     //int to keep track of timings for unlocking new player actions
     private int activateNum = 0;
 
+    private bool isInTutorial = true;
+
 
     void Start()
     {
@@ -217,6 +219,7 @@ public class TutorialManager : MonoBehaviour
         Missile.GetComponent<Button>().interactable = true;
 
         EventBus.Publish(new TutorialEndedEvent());
+        isInTutorial = false;
         EventBus.Publish(new WaveEndedEvent());
 
         yield return null;
@@ -333,7 +336,10 @@ public class TutorialManager : MonoBehaviour
         if (e.name is "player")
         {
             AmmoCrate.SetActive(false);
-            Gun.SetActive(true);
+            if (!isInTutorial)
+            {
+                Gun.SetActive(true);
+            }
         }
     }
 
