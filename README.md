@@ -1,3 +1,5 @@
+<h1>Bunker Bros</h1>
+
 This is my personal repository for the game that I designed and developed as my final project in EECS494 Game Development and Design. 
 
 This was the third project in a three project sequence for EECS494, where we were tasked with designing and developing a game from scratch in Unity using C# as the development language.
